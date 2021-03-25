@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
@@ -6,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroComponent implements OnInit {
 
-  constructor() { }
-
+  cadastroForm!: FormGroup;  
+  
+  constructor(private fb: FormBuilder) { }
+  
   ngOnInit(): void {
+
+    this.cadastroForm = this.fb.group({
+        nome: [''],
+        email: [''],
+        password: [''],
+        confirmPassword: ['']
+    });
   }
 
+  adicionarUsuario(){
+     let x = this.cadastroForm.value;
+  }
+  
 }
