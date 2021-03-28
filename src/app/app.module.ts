@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavegacaoModule } from './navegacao/navegacao.module';
+import { NgBrazil } from 'ng-brazil'
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,8 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
     BrowserModule,
     AppRoutingModule,
     NavegacaoModule,
-    NgbModule    
+    NgbModule,
+    NgBrazil
   ],
   providers: [],
   bootstrap: [AppComponent]

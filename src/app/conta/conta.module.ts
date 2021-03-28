@@ -30,8 +30,7 @@ import { ContaRoutingModulo } from './conta.route';
     ReactiveFormsModule,
     HttpClientModule,
     TextMaskModule,
-    NgBrazil,
-    TextMaskModule
+    NgBrazil    
   ]
 })
 export class ContaModule { }
