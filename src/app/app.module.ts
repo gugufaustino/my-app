@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { NgBrazil } from 'ng-brazil'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomFormsModule } from 'ng2-validation'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavegacaoModule } from './navegacao/navegacao.module';
-import { NgBrazil } from 'ng-brazil'
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { NgBrazil } from 'ng-brazil'
     AppRoutingModule,
     NavegacaoModule,
     NgbModule,
-    NgBrazil
+    NgBrazil,
+    CustomFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

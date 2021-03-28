@@ -1,4 +1,3 @@
-//Se não tem comportamento pode ser apenas interface, não precisa ser classe
 export interface Usuario{ 
     id: string;
     nome: string;
@@ -6,5 +5,5 @@ export interface Usuario{
     email: string;
     telefone: string; 
     password: string;
-    confirmPassword: string;
+    confirmPassword: string;  
 }

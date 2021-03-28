@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Telefone</label>
                 <div class="col-md-10">
-                    <input class="form-control" id="telefone" type="text" placeholder="Telefone (requerido)" formControlName="telefone" 
+                    <input class="form-control" id="telefone" type="text" placeholder="Telefone" formControlName="telefone" 
                     telefone #telefone [textMask]="{mask: MASKS.telefone.textMaskFunction}" />
                     <span class="text-danger"
                         *ngIf="cadastroForm?.get('telefone')?.errors && (cadastroForm?.get('telefone')?.dirty || cadastroForm?.get('telefone')?.touched)">
@@ -52,6 +52,29 @@
                     </span>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Password</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="password" type="text" placeholder="Password (requerido)" formControlName="password"   />
+                    <span class="text-danger"
+                        *ngIf="cadastroForm?.get('password')?.errors?.rangeLength && (cadastroForm?.get('password')?.dirty || cadastroForm?.get('password')?.touched)">
+                        <p>Inválido </p>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-2 control-label">Confirmação</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="confirmPassword" type="text" placeholder="Confirmação (requerido)" formControlName="confirmPassword"   />
+                    <span class="text-danger"
+                        *ngIf="cadastroForm?.get('confirmPassword')?.errors?.equalTo && (cadastroForm?.get('confirmPassword')?.dirty || cadastroForm?.get('confirmPassword')?.touched)">
+                        <p>Inválido </p>
+                    </span>
+                </div>
+            </div>
+
 
             <div class="form-group">
                 <div class="col-md-4 col-md-offset-2">
