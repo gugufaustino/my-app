@@ -1,9 +1,10 @@
-export interface Usuario{ 
+export interface Usuario {
     id: string;
-    nome: string;
-    cpf: string;    
     email: string;
-    telefone: string; 
     password: string;
-    confirmPassword: string;  
+    confirmPassword: string;
+    
+    nome: string;
+    cpf: string;
+    telefone: string;
 }

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { NgBrazil } from 'ng-brazil'
+import { TextMaskModule } from 'angular2-text-mask'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ng2-validation'
 
@@ -19,7 +20,9 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
     NavegacaoModule,
     NgbModule,
     NgBrazil,
-    CustomFormsModule
+    CustomFormsModule,
+    TextMaskModule,
+    NgBrazil    
   ],
   providers: [],
   bootstrap: [AppComponent]

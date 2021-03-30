@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask'
 
 import { CadastroComponent } from './cadastro/cadastro.component';
@@ -13,8 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { ContaAppComponent } from './conta.app.component';
 
 import { ContaRoutingModulo } from './conta.route';
+import { ContaService } from './services/conta.service';
 
-
+ 
 
 @NgModule({
   declarations: [
@@ -30,7 +30,10 @@ import { ContaRoutingModulo } from './conta.route';
     ReactiveFormsModule,
     HttpClientModule,
     TextMaskModule,
-    NgBrazil    
+  ],
+  providers :[
+    ContaService
   ]
+
 })
 export class ContaModule { }
