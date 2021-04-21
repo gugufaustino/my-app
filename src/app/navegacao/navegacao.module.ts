@@ -6,12 +6,14 @@ import { MenuComponent } from "./menu/menu.component";
 import { FooterComponent } from "./footer/footer.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { MenuLoginComponent } from './menu-login/menu-login.component';
 
 @NgModule({    
     declarations: [
         MenuComponent,
         HomeComponent,
-        FooterComponent
+        FooterComponent,
+        MenuLoginComponent
         
     ], 
     imports : [
@@ -22,7 +24,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     exports: [
         MenuComponent,
         HomeComponent,
-        FooterComponent     
+        FooterComponent,
+        MenuLoginComponent   
                
     ] 
 })

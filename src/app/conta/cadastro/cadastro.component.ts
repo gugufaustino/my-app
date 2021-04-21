@@ -1,12 +1,16 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { MASKS, NgBrazilValidators } from 'ng-brazil';
-import { CustomValidators } from 'ng2-validation';
+
 import { fromEvent, merge, Observable } from 'rxjs';
 
-import { Usuario } from '../models/usuario';
+import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import { CustomValidators } from 'ng2-validation';
 import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
+import { ToastrService } from 'ngx-toastr';
+
+import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -21,14 +25,16 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   formResult: string = '';
   MASKS: any = MASKS;
 
-  errors: any = [];
-
+  errors: any = [];  
 
   validationMessages: ValidationMessages;
   genericValidatior: GenericValidator;
   displayMessage: DisplayMessage;
 
-  constructor(private fb: FormBuilder, private contaService: ContaService) {
+  constructor(private fb: FormBuilder,
+    private contaService: ContaService,
+    private toastr: ToastrService,
+    private router: Router ) {
     this.validationMessages = {
       nome: {
         required: 'Requerido',
@@ -58,7 +64,6 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
 
     let senhaFg = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15])]);
     //let senhaconfirmFg = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15]), CustomValidators.equalTo(senhaFg)]);
@@ -101,18 +106,20 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   private processarSucesso(response: any) {
     this.cadastroForm.reset();
     this.errors = [];
+    this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
+
+    let toastSucesso = this.toastr.success("cadastro realizado com sucesso.", "Bem vindo!");
+    if (toastSucesso) {
+      toastSucesso.onHidden.subscribe(() => {
+          this.router.navigate(['/home']);
+      });
+    }
+
+
   }
   processarFalha(fail: any) {
     this.errors = fail.error.errors;
+    this.toastr.error(fail.error.errors.join(), "Erro");
   }
-
-
-
-
-
-
-
-
-
 
 }
