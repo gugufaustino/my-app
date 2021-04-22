@@ -12,6 +12,14 @@ export abstract class BaserService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
     }
+    protected ObterHeaderAuthJson() {
+        return {
+            headers: new HttpHeaders({ 
+                'Content-Type': 'application/json', 
+                'Authorization': 'Bearer ' + this.LocalStorage.obterToken() 
+             })
+        };
+    }
 
     protected extractData(response: any) {
         console.info(response.data || {});

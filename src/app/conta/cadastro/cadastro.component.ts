@@ -93,12 +93,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
       this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value)
       this.contaService.registraUsuario(this.usuario)
         .subscribe(
-          sucesso => {
-            this.processarSucesso(sucesso)
-          },
-          falha => {
-            this.processarFalha(falha)
-          }
+          sucesso => {  this.processarSucesso(sucesso) },
+          falha => { this.processarFalha(falha) }
         );
     }
   }
@@ -114,10 +110,9 @@ export class CadastroComponent implements OnInit, AfterViewInit {
           this.router.navigate(['/home']);
       });
     }
-
-
   }
-  processarFalha(fail: any) {
+
+  private processarFalha(fail: any) {
     this.errors = fail.error.errors;
     this.toastr.error(fail.error.errors.join(), "Erro");
   }
