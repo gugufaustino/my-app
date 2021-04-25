@@ -1,8 +1,24 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { LocalStorageUtils } from "src/app/utils/localstorage";
 
 @Component({
-    selector    : 'app-home',
+    selector: 'app-home',
     templateUrl: './home.component.html'
 })
 
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+
+    localStorageUtil = new LocalStorageUtils();
+
+    constructor(private router: Router) { }
+
+    ngOnInit(): void {
+
+        if(!this.localStorageUtil.usuarioLogado()){
+         this.router.navigate(['/conta/login']);
+        }
+
+    }
+}
+

@@ -25,6 +25,10 @@ export class LocalStorageUtils {
 
         return localStorage.getItem(this.token)  ;
     }
+
+    public usuarioLogado() : boolean{
+        return this.obterToken() !== null;
+    }
  
 
     public limparDadosLocaisUsuario() {

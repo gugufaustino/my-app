@@ -6,9 +6,7 @@ import { NavegacaoService } from '../services/navegacao.service';
 
 @Component({
   selector: 'app-menu-login',
-  templateUrl: './menu-login.component.html',
-  styles: [      
-  ]
+  templateUrl: './menu-login.component.html',  
 })
 export class MenuLoginComponent implements OnInit {
 
@@ -35,7 +33,7 @@ export class MenuLoginComponent implements OnInit {
   }
   logOut() {
     this.localStorageUtil.limparDadosLocaisUsuario()
-    this.router.navigate(['/home']);
+    this.router.navigate(['/conta/login']);
   }
 
   obterPerfil(){
