@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+
 import { ListaComponent } from './lista/lista.component';
 import { DetalheComponent } from './detalhe/detalhe.component';
 import { ContasAPagarAppComponent } from './contas-a-pagar.app.component';

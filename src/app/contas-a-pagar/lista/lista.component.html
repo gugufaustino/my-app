@@ -1,7 +1,8 @@
-<div class="container main-container">
+<!-- <div class="container main-container"></div> -->
 	<table  class="container-table">
 		<thead>
 			<tr>
+				<th>Dia</th>
 				<th>Conta</th>
 				<th>Valor</th>
 				<th class="w90">Pago</th>
@@ -9,15 +10,18 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let conta of contasPagamento">
-				<td> <a [routerLink]="['/detalhe', conta.id]">{{ conta.descricaoFornecedor }}</a> </td>
-				<td class="text-right">{{ conta.valor }}</td>
-				<td class="text-center"> <input type="checkbox" class="form-check-input"
-												 name="{{conta.indPago}}"
-												  [value]="conta.indPago" [checked]="conta.indPago" > </td>
+				<td class="text-right">{{ conta.dtVencimento | date:'dd'}}</td>
+				<td class="text-pink"> <a [routerLink]="['/detalhe', conta.id]">{{conta.descricaoFornecedor}}</a> </td>
+				<td class="text-right">{{ conta.valor | currency:'BRL':true:'1.2-2':'pt' }}</td>
+				<td class="text-center content-checkbox"> 
+					<input type="checkbox" class="form-check-input"
+					name="{{conta.indPago}}"
+					[value]="conta.indPago" [checked]="conta.indPago" > 
+				</td>
 			</tr>			
 		</tbody>
 	</table>
-</div>
+
 
 <!-- <h5> 
     <span class="blue">&lt;</span>

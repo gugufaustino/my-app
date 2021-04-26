@@ -107,13 +107,21 @@ h1 {
 
 
 
-.container-table td:first-child {
+.container-table td.text-pink {
     color: #FB667A !important;
 }
-.container-table td:first-child a{
+.container-table td.text-pink a{
     color: #FB667A !important;
     text-decoration: underline;
 } 
+
+.container-table td input[type=checkbox]{
+    margin: 0px;
+    margin-left: -10px;
+}
+.container-table td.content-checkbox{
+    padding-bottom: 13px;
+}
 
 
 .container-table tr:hover {
@@ -128,9 +136,9 @@ h1 {
 }
 
 @media (max-width: 800px) {
-    .container-table td:nth-child(4), .container-table th:nth-child(4) {
+    /* .container-table td:nth-child(4), .container-table th:nth-child(4) {
         display: none;
-    }
+    } */
 }
 
 .bt-conta {
