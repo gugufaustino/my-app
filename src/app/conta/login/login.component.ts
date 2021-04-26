@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
     let toastSucesso = this.toastr.success("Login realizado com sucesso", "Bem vindo!");
     if (toastSucesso) {
       toastSucesso.onHidden.subscribe(() => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/contas-a-pagar/lista']);
       });
     }
 

@@ -1,8 +1,139 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color: #A7A1AE;
+    background-color: #1F2739 !important;
+    /*background-color: #6c757dcc;*/
+   
+    text-size-adjust: initial !important;
+    -webkit-tap-highlight-color:initial !important;
+}
+html{
+    -webkit-tap-highlight-color: unset
+}
 
-/* input, textarea { max-width: 300px;} */
+app-menu-login{display: contents; }
 
-.bt-conta{
+h1 {
+    /* font-size:3em;  */
+    font-weight: 300; 
+    color: #4DC3FA;
+  }
+  
+  h2 {
+    /* font-size:1em;  */
+    font-weight: 300;
+    text-align: center;
+    display: block; 
+    padding-bottom: 2em;
+    color: #FB667A;
+  }
+  
+  h2 a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FB667A;
+    text-decoration: none;
+  }
+
+  .container-table h1 {
+    font-size:  18px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.blue {
+    color: #185875;
+}
+.blue-light {
+    color: #4DC3FA;
+}
+
+.yellow {
+    color: #FFF842;
+}
+
+.container-table td {
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+    -moz-box-shadow: 0 2px 2px -2px #0E1119;
+    box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.container-table {
+    text-align: left;
+    overflow: hidden;
+    width: 98%;
+    margin: 0 auto;
+    display: table;
+    padding: 0 0 15px 0;
+    border-collapse: separate;
+
+    text-size-adjust: initial !important;
+    -webkit-tap-highlight-color:initial !important;
+
+}
+
+.container-table td, .container-table th {
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+/* Background-color of the odd rows */
+
+.container-table tr:nth-child(odd) {
+    background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+
+.container-table tr:nth-child(even) {
+    background-color: #2C3446;
+}
+
+.container-table th {
+    color: #4DC3FA;
+    background-color: #1F2739;
+    font-size: 18px;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+
+
+.container-table td:first-child {
+    color: #FB667A !important;
+}
+.container-table td:first-child a{
+    color: #FB667A !important;
+    text-decoration: underline;
+} 
+
+
+.container-table tr:hover {
+    background-color: #464A52;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.container-table th.w90 {
+    width: 90px;
+}
+
+@media (max-width: 800px) {
+    .container-table td:nth-child(4), .container-table th:nth-child(4) {
+        display: none;
+    }
+}
+
+.bt-conta {
     padding-top: 2px;
     padding-bottom: 2px;
     margin-bottom: 3px;
@@ -10,17 +141,16 @@
     min-width: 107px;
     text-transform: uppercase;
 }
-body{
-    background-color: #6c757dcc;
-}
 
-.form-control{
+.form-control {
     border-radius: 0;
     border: 1px solid #495057;
 }
 
-.main-container{
-    padding-top:10px ;
+.main-container {
+    padding-top: 10px;
 }
 
-.hidden{display: none;}
+.hidden {
+    display: none;
+}

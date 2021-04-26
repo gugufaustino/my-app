@@ -1,29 +1,24 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
-        <div class="container">
-            <!-- <a class="navbar-brand text-white" href="/">App</a> -->
-            <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngbCollapse]="isCollapsed">
-                
-                <app-menu-login></app-menu-login> 
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
-                <ul class="navbar-nav flex-grow-1">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link text-white" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/">Fornecedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/">Produtos</a>
-                    </li> -->
-                </ul>
+        <a class="navbar-brand text-white" href="/">
+            <i style="font-size: x-large;" class="fas fa-hand-holding-usd yellow"></i>
+        </a>
 
-                
-               
-            </div>
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target=".navbar-collapse"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" [ngbCollapse]="isCollapsed">
+            <app-menu-login></app-menu-login>
         </div>
+
+
+
     </nav>
+
+
+
+
 </header>

@@ -5,19 +5,18 @@ import { NotFoundComponent } from "../navegacao/not-found/not-found.component";
 import { CadastroComponent } from "./cadastro/cadastro.component";
 import { ContaAppComponent } from "./conta.app.component";
 import { LoginComponent } from "./login/login.component";
- 
+
 const contaRouterConfig: Routes = [{
-    path: '', component: ContaAppComponent,
+    path: '',
+    component: ContaAppComponent,
     children: [
-        {path: 'cadastro', component: CadastroComponent},
-        {path: 'login', component: LoginComponent}
-    ]    
-  }];
+        { path: 'cadastro', component: CadastroComponent },
+        { path: 'login', component: LoginComponent }
+    ]
+}];
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(contaRouterConfig)
-    ],
+    imports: [RouterModule.forChild(contaRouterConfig)],
     exports: [RouterModule]
 })
 

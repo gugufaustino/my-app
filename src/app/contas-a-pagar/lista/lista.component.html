@@ -1,0 +1,31 @@
+<div class="container main-container">
+	<table  class="container-table">
+		<thead>
+			<tr>
+				<th>Conta</th>
+				<th>Valor</th>
+				<th class="w90">Pago</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let conta of contasPagamento">
+				<td> <a [routerLink]="['/detalhe', conta.id]">{{ conta.descricaoFornecedor }}</a> </td>
+				<td class="text-right">{{ conta.valor }}</td>
+				<td class="text-center"> <input type="checkbox" class="form-check-input"
+												 name="{{conta.indPago}}"
+												  [value]="conta.indPago" [checked]="conta.indPago" > </td>
+			</tr>			
+		</tbody>
+	</table>
+</div>
+
+<!-- <h5> 
+    <span class="blue">&lt;</span>
+    <span class="blue-light">Table</span>
+    <span class="blue">&gt;</span> 
+    
+    <span class="yellow">Responsive
+    </span>
+</h5>
+<h2>Created with love by <a href="http://pablogarcia.dev" target="_blank">Pablo García</a></h2> -->
+

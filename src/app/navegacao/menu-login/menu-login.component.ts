@@ -23,13 +23,12 @@ export class MenuLoginComponent implements OnInit {
   }
 
   usuarioLogado(): boolean {
-    this.token = this.localStorageUtil.obterToken();
     this.user = this.localStorageUtil.obterUsuario();
 
     if (this.user)
       this.email = this.user.nome + " " + this.apelido;
 
-    return this.token !== null;
+    return this.localStorageUtil.usuarioLogado();
   }
   logOut() {
     this.localStorageUtil.limparDadosLocaisUsuario()
