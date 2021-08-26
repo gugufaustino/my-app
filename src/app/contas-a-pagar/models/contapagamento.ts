@@ -1,7 +1,7 @@
-export interface ContaPagamento {
+export class ContaPagamento {
     id: string;
     descricaoFornecedor: string;
     valor: number ;   
-    dtVencimento: string;
+    dtVencimento:  Date;
     indPago: boolean;
 }

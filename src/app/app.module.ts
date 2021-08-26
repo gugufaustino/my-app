@@ -22,9 +22,8 @@ import { ToastrModule } from 'ngx-toastr';
     NavegacaoModule,
     NgbModule,
     NgBrazil,
-    CustomFormsModule,
     TextMaskModule,
-    NgBrazil,
+    CustomFormsModule,
     NgbAlertModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({ // ToastrModule added    

@@ -11,7 +11,7 @@
 		<tbody>
 			<tr *ngFor="let conta of contasPagamento">
 				<td class="text-right">{{ conta.dtVencimento | date:'dd'}}</td>
-				<td class="text-pink"> <a [routerLink]="['/detalhe', conta.id]">{{conta.descricaoFornecedor}}</a> </td>
+				<td class="text-pink"> <a [routerLink]="['/contas-a-pagar/detalhe', conta.id]">{{conta.descricaoFornecedor}}</a> </td>
 				<td class="text-right">{{ conta.valor | currency:'BRL':true:'1.2-2':'pt' }}</td>
 				<td class="text-center content-checkbox"> 
 					<input type="checkbox" class="form-check-input"

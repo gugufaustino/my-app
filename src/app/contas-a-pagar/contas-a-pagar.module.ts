@@ -11,6 +11,10 @@ import { ContasAPagarAppComponent } from './contas-a-pagar.app.component';
 import { RouterModule } from '@angular/router';
 import { ContasAPagarRouteModule } from './contas-a-pagar.route';
 import { ContasAPagarService } from './services/contas-a-pagar.service';
+import { ContasAPagarResolve } from './services/contas-a-pagar.resolve';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -22,9 +26,14 @@ import { ContasAPagarService } from './services/contas-a-pagar.service';
   imports: [
     CommonModule,
     RouterModule,
-    ContasAPagarRouteModule
+    ContasAPagarRouteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgBrazil,
+    TextMaskModule,
   ],
 providers: [
-  ContasAPagarService
+  ContasAPagarService,
+  ContasAPagarResolve
 ]})
 export class ContasAPagarModule { }

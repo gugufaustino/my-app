@@ -16,7 +16,7 @@ export class ListaComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.contasAPagarService.listarContaPagamento()
+    this.contasAPagarService.listarTodos()
       .subscribe(
         contasPagamento =>  this.contasPagamento = contasPagamento ,
         falha =>  this.toastr.error(falha.error.errors.join(), "Erro")

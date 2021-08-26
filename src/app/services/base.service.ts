@@ -4,7 +4,7 @@ import { LocalStorageUtils } from "../utils/localstorage";
 
 
 export abstract class BaserService {
-    protected UrlServiceV1: string = "https://localhost:44390/api/";
+    protected UrlServiceV1: string = "https://localhost:5001/api/";
     public LocalStorage = new LocalStorageUtils();
 
     protected ObterHeaderJson() {
@@ -48,3 +48,5 @@ export abstract class BaserService {
         return throwError(response);
     }
 }
+
+ 

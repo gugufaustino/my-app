@@ -3,6 +3,7 @@ import {  RouterModule, Routes } from "@angular/router";
 import { ContasAPagarAppComponent } from "./contas-a-pagar.app.component";
 import { DetalheComponent } from "./detalhe/detalhe.component";
 import { ListaComponent } from "./lista/lista.component";
+import { ContasAPagarResolve } from "./services/contas-a-pagar.resolve";
 
 
 const rotasContasAPagar: Routes = [{
@@ -10,7 +11,11 @@ const rotasContasAPagar: Routes = [{
     component:  ContasAPagarAppComponent,
     children: [
         { path: 'lista', component: ListaComponent },
-        { path: 'detalhe', component: DetalheComponent }
+        { path: 'detalhe/:id', component: DetalheComponent,
+                resolve: {
+                    contaPgamento: ContasAPagarResolve
+            }    
+        }
     ]
 }];
 
