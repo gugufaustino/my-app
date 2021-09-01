@@ -4,7 +4,7 @@ import { LocalStorageUtils } from "../utils/localstorage";
 
 
 export abstract class BaserService {
-    protected UrlServiceV1: string = "https://localhost:5001/api/";
+    protected UrlServiceV1: string = "https://localhost:44390/api/";
     public LocalStorage = new LocalStorageUtils();
 
     protected ObterHeaderJson() {
@@ -22,7 +22,6 @@ export abstract class BaserService {
     }
 
     protected extractData(response: any) {
-        console.info(response.data || {});
         return response.data || {};
     }
 
@@ -33,18 +32,15 @@ export abstract class BaserService {
             if (response.statusText === "Unknown Error") {
                 customError.push("Ocorreu um erro desconhecido");
                 response.error.errors = customError;
-            }else if(response.statusText === "Unauthorized"){
+            }else if(response.statusText === "Unauthorized" || response.statusText === "Forbidden"){
                 customError.push("Acesso não autorizado");
                 var responseFake: any = {};
                 responseFake.error = {}
                 responseFake.error.errors = customError;
-
-                console.error(responseFake);
+ 
                 return throwError(responseFake);
             }
-        }
-         
-        console.error(response);
+        }         
         return throwError(response);
     }
 }

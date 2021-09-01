@@ -18,6 +18,16 @@ export class DateUtils {
         return dt;
     }
 
+    public static StringParaDate(data : string) : Date {
+ 
+         moment.locale('pt-br');     
+        var txtData =  moment.utc(data, 'DD/MM/YYYY').format('L');
+        
+       var dt = new Date(new Date('04-25-2022').toDateString())
+
+
+        return dt;
+    }
     
 }
 

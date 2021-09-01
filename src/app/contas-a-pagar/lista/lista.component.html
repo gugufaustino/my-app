@@ -6,6 +6,7 @@
 				<th>Conta</th>
 				<th>Valor</th>
 				<th class="w90">Pago</th>
+				<th>Ação</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,8 +19,22 @@
 					name="{{conta.indPago}}"
 					[value]="conta.indPago" [checked]="conta.indPago" > 
 				</td>
+				<td class="text-center">
+					<a class=" text-white" href="javascript:void(0)" (click)="excluir(conta)" >
+						<i class="fas fa-trash-alt yellow"></i>
+					</a>				
+				</td>
 			</tr>			
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" class="text-right"> 
+					<button class="bt yellow" [routerLink]="['/contas-a-pagar/novo']"  >
+						<i class="fas fa-plus yellow"></i> <span class="yellow">&nbsp;Novo</span>
+					</button>
+				 </td>
+			</tr>
+		</tfoot>
 	</table>
 
 

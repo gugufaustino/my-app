@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { BaserService } from "src/app/services/base.service";
-import { ContaPagamento } from "../models/contapagamento";
+import { Pagamento } from "../models/pagamento";
 
 
 
@@ -12,17 +12,38 @@ export class ContasAPagarService extends BaserService {
     
     constructor(private http: HttpClient) { super(); }
  
-    public listarTodos(): Observable<ContaPagamento[]> {
+    public listarTodos(): Observable<Pagamento[]> {
         return this.http
-            .get<ContaPagamento[]>(this.UrlServiceV1 + 'conta/', this.ObterHeaderAuthJson())
+            .get<Pagamento[]>(this.UrlServiceV1 + 'conta/', this.ObterHeaderAuthJson())
             .pipe(catchError(this.serviceError));
     }
     
-    public obterPorId(id: string): Observable<ContaPagamento> {
+    public obterPorId(id: string): Observable<Pagamento> {
         return this.http
-            .get<ContaPagamento>(this.UrlServiceV1 + 'conta/' + id, this.ObterHeaderAuthJson())
+            .get<Pagamento>(this.UrlServiceV1 + 'pagamento/' + id, this.ObterHeaderAuthJson())
             .pipe(catchError(this.serviceError));
     }
+
+    public salvarConta(contaPagamento: Pagamento): Observable<Pagamento> {
+        let response = this.http
+            .put(this.UrlServiceV1 + 'pagamento/' + contaPagamento.id, contaPagamento, this.ObterHeaderAuthJson())
+            .pipe(
+                map(this.extractData),
+                catchError(this.serviceError));
+        return response;
+    }
+
+    public excluir(id: string) : Observable<Pagamento>{
+
+        let response = this.http
+                            .delete(this.UrlServiceV1 + 'pagamento/' + id, this.ObterHeaderAuthJson())
+                            .pipe(
+                                map(this.extractData),
+                                catchError(this.serviceError));
+
+        return response;   
+    }
+
 
 
 }

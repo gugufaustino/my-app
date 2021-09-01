@@ -15,6 +15,7 @@ import { ContasAPagarResolve } from './services/contas-a-pagar.resolve';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { NovoComponent } from './novo/novo.component';
 
 
 
@@ -22,7 +23,8 @@ import { TextMaskModule } from 'angular2-text-mask';
   declarations: [
     ContasAPagarAppComponent,
     ListaComponent,
-    DetalheComponent],
+    DetalheComponent,
+    NovoComponent],
   imports: [
     CommonModule,
     RouterModule,

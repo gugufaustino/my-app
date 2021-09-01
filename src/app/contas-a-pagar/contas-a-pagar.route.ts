@@ -3,6 +3,7 @@ import {  RouterModule, Routes } from "@angular/router";
 import { ContasAPagarAppComponent } from "./contas-a-pagar.app.component";
 import { DetalheComponent } from "./detalhe/detalhe.component";
 import { ListaComponent } from "./lista/lista.component";
+import { NovoComponent } from "./novo/novo.component";
 import { ContasAPagarResolve } from "./services/contas-a-pagar.resolve";
 
 
@@ -15,7 +16,8 @@ const rotasContasAPagar: Routes = [{
                 resolve: {
                     contaPgamento: ContasAPagarResolve
             }    
-        }
+        },
+        { path: 'novo', component: NovoComponent },
     ]
 }];
 

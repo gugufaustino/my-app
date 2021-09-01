@@ -1,4 +1,4 @@
-export class ContaPagamento {
+export class Pagamento {
     id: string;
     descricaoFornecedor: string;
     valor: number ;   
