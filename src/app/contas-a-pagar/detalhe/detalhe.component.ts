@@ -68,9 +68,7 @@ export class DetalheComponent implements OnInit {
       this.contaPagamento.dtVencimento = DateUtils.StringParaDate(this.contaPagamento.dtVencimento.toString());
       this.contaPagamento.valor = CurrencyUtils.StringParaDecimal(this.contaPagamento.valor);
       
-      console.log(JSON.stringify(this.contaPagamento))
-      
-      this.contasAPagarService.salvarConta(this.contaPagamento)
+      this.contasAPagarService.editar(this.contaPagamento)
         .subscribe(
           sucesso => {  this.processarSucesso(sucesso) },
           falha => { this.processarFalha(falha) }

@@ -20,11 +20,10 @@ export class DateUtils {
 
     public static StringParaDate(data : string) : Date {
  
-         moment.locale('pt-br');     
-        var txtData =  moment.utc(data, 'DD/MM/YYYY').format('L');
+        moment.locale('pt-br');     
         
-       var dt = new Date(new Date('04-25-2022').toDateString())
-
+        var momentUtc  =  moment.utc(data, 'DD/MM/YYYY') 
+        var dt =  momentUtc.toDate();
 
         return dt;
     }
