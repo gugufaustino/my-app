@@ -32,7 +32,7 @@ export class ContasAPagarService extends BaserService {
         return response;
     }
 
-    public excluir(id: string): Observable<Pagamento> {
+    public excluir(id: number): Observable<Pagamento> {
         let response = this.http.delete(this.UrlServiceV1 + 'pagamento/' + id, this.ObterHeaderAuthJson())
             .pipe(
                 map(this.extractData),
@@ -43,6 +43,15 @@ export class ContasAPagarService extends BaserService {
 
     public inserir(conta: Pagamento): Observable<Pagamento> {
         let response = this.http.post(this.UrlServiceV1 + 'conta/', conta, this.ObterHeaderAuthJson())
+            .pipe(
+                map(this.extractData),
+                catchError(this.serviceError));
+        return response;
+    }
+
+    public editarPago(id: number, indPago: boolean): Observable<Pagamento> {
+        let response = this.http
+            .put(this.UrlServiceV1 + 'pagamento/pago/' + id, indPago, this.ObterHeaderAuthJson())
             .pipe(
                 map(this.extractData),
                 catchError(this.serviceError));

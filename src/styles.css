@@ -175,3 +175,13 @@ h1 {
     display: none;
 }
  
+.toast-center-center {
+    top: 40% !important;
+}
+
+.toast-container .ngx-toastr {
+    border-radius: 0px !important;
+    box-shadow: 0 0 0 700px #00000063 !important;
+}
+
+ 

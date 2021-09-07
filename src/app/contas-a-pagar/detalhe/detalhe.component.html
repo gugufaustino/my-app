@@ -30,7 +30,7 @@
                     <label class="col-md-4 control-label">Valor R$</label>
                     <div class="col-md-12">
                         <input class="form-control bg-dark text-white text-right" formControlName="valor" id="valor" placeholder="(requerido)"
-                            [textMask]="{mask: MASKS?.number.textMask}"
+                            [textMask]="{mask: MASKS?.currency.textMask}"
                             [ngClass]="{'is-invalid': displayMessage?.valor}" />
                         <span class="text-danger" *ngIf="displayMessage?.valor">
                             <p [innerHTML]="displayMessage?.valor"></p>

@@ -9,19 +9,25 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MenuLoginComponent } from './menu-login/menu-login.component';
 import { NavegacaoService } from "./services/navegacao.service";
 import { HttpClientModule } from "@angular/common/http";
+import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
+import { NotFoundComponent } from "./not-found/not-found.component";
 
 @NgModule({    
     declarations: [
         MenuComponent,
+        MenuLoginComponent,
         HomeComponent,
         FooterComponent,
-        MenuLoginComponent
+        
+        NotFoundComponent,
+        AcessoNegadoComponent
         
     ], 
     imports : [
         CommonModule,
         RouterModule,
         NgbModule,
+        
         HttpClientModule
     ],
     exports: [

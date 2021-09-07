@@ -1,5 +1,5 @@
 export class Pagamento {
-    id: string;
+    id: number;
     descricaoFornecedor: string;
     valor: number ;   
     dtVencimento:  Date;

@@ -1,41 +1,67 @@
 <!-- <div class="container main-container"></div> -->
-	<table  class="container-table">
-		<thead>
-			<tr>
-				<th>Dia</th>
-				<th>Conta</th>
-				<th>Valor</th>
-				<th class="w90">Pago</th>
-				<th>Ação</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let conta of contasPagamento">
-				<td class="text-right">{{ conta.dtVencimento | date:'dd'}}</td>
-				<td class="text-pink text-capitalize"> <a [routerLink]="['/contas-a-pagar/detalhe', conta.id]">{{conta.descricaoFornecedor}}</a> </td>
-				<td class="text-right">{{ conta.valor | currency:'BRL':true:'1.2-2':'pt' }}</td>
-				<td class="text-center content-checkbox"> 
-					<input type="checkbox" class="form-check-input"
-					name="{{conta.indPago}}"
-					[value]="conta.indPago" [checked]="conta.indPago" > 
-				</td>
-				<td class="text-center">
-					<a class=" text-white" href="javascript:void(0)" (click)="excluir(conta)" >
-						<i class="fas fa-trash-alt yellow"></i>
-					</a>				
-				</td>
-			</tr>			
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="5" class="text-right"> 
-					<button class="bt yellow" [routerLink]="['/contas-a-pagar/novo']"  >
-						<i class="fas fa-plus yellow"></i> <span class="yellow">&nbsp;Novo</span>
-					</button>
-				 </td>
-			</tr>
-		</tfoot>
-	</table>
+<table class="container-table">
+	<thead>
+		<tr>
+			<th>Dia</th>
+			<th>Conta</th>
+			<th>Valor</th>
+			<th class="w90">Pago</th>
+			<th>Ação</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let pagamento of contasPagamento">
+			<td class="text-right">{{ pagamento.dtVencimento | date:'dd'}}</td>
+			<td class="text-pink text-capitalize"> <a [routerLink]="['/contas-a-pagar/detalhe', pagamento.id]">{{pagamento.descricaoFornecedor}}</a> </td>
+			<td class="text-right">{{ pagamento.valor | currency:'BRL':true:'1.2-2':'pt' }}</td>
+			<td class="text-center content-checkbox">
+				<input type="checkbox" class="form-check-input" name="{{pagamento.indPago}}" [value]="pagamento.indPago" [checked]="pagamento.indPago" (change)="onChangePago($event, pagamento.id)"  >
+			</td>
+			<td class="text-center">
+				<a class=" text-white" href="javascript:void(0)" (click)="excluir(pagamento)"  placement="top" ngbTooltip="Excluir '{{pagamento.descricaoFornecedor}}'" >
+					<i class="fas fa-trash-alt yellow"></i>
+				</a>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="5" class="text-right">
+
+
+				<button class="bt yellow" [routerLink]="['/contas-a-pagar/novo']">
+					<i class="fas fa-plus yellow"></i> <span class="yellow">&nbsp;Novo</span>
+				</button>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
+<div class="container " *ngIf="false">
+	<div class="row">
+		<div class="sm-6">
+			<div class="alert alert-warning">
+				<strong>Vivamus! </strong> sagittis lacus
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="sm-6">
+			<ngb-alert type="info" [dismissible]="true">
+				<strong>Warning!</strong> Better check yourself, you're not looking too good.
+			</ngb-alert>
+		</div>
+	</div>
+	<div class="row">
+		<div class="sm-2">
+			<button type="button" class="bt yellow mr-2" placement="top" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
+				Popover on top
+			</button>
+		</div>
+	</div>
+
+</div>
+
 
 
 <!-- <h5> 
@@ -47,4 +73,3 @@
     </span>
 </h5>
 <h2>Created with love by <a href="http://pablogarcia.dev" target="_blank">Pablo García</a></h2> -->
-

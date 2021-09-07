@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -18,7 +19,6 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { NovoComponent } from './novo/novo.component';
 
 
-
 @NgModule({
   declarations: [
     ContasAPagarAppComponent,
@@ -28,6 +28,8 @@ import { NovoComponent } from './novo/novo.component';
   imports: [
     CommonModule,
     RouterModule,
+    NgbModule,
+    
     ContasAPagarRouteModule,
     FormsModule,
     ReactiveFormsModule,

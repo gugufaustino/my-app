@@ -21,13 +21,13 @@ import { ToastrService } from 'ngx-toastr';
 export class DetalheComponent implements OnInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-    contaPagamento: Pagamento;
-    pagamentoForm!: FormGroup  ;
+  contaPagamento: Pagamento;
+  pagamentoForm!: FormGroup;
 
-    MASKS: any = MASKS;
-    DateMask = DateUtils.DataMask;
+  MASKS: any = MASKS;
+  DateMask = DateUtils.DataMask;
 
-    errors: any = []; 
+  errors: any = [];
 
 
   validationMessages: ValidationMessages;
@@ -35,42 +35,42 @@ export class DetalheComponent implements OnInit {
   displayMessage: DisplayMessage;
 
   constructor(private router: Router,
-              private route: ActivatedRoute,
-              private fb: FormBuilder,
-              private toastr: ToastrService,
-              private contasAPagarService: ContasAPagarService) {
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private contasAPagarService: ContasAPagarService) {
 
-              this.contaPagamento = this.route.snapshot.data["contaPgamento"];
+    this.contaPagamento = this.route.snapshot.data["contaPgamento"];
 
   }
 
   ngOnInit(): void {
 
     this.pagamentoForm = this.fb.group({
-        descricaoFornecedor: ['', [Validators.required]],
-        valor: ['', [Validators.required]],
-        dtVencimento: ['', [Validators.required]],
+      descricaoFornecedor: ['', [Validators.required]],
+      valor: ['', [Validators.required, NgBrazilValidators.currency]],
+      dtVencimento: ['', [Validators.required]],
     });
-    
+
 
     this.pagamentoForm.patchValue({
       descricaoFornecedor: this.contaPagamento.descricaoFornecedor,
       valor: CurrencyUtils.DecimalParaString(this.contaPagamento.valor),
-      dtVencimento: DateUtils.Format(this.contaPagamento.dtVencimento),       
+      dtVencimento: DateUtils.Format(this.contaPagamento.dtVencimento),
     });
   }
 
   submitForm() {
 
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
-      
+
       this.contaPagamento = Object.assign({}, this.contaPagamento, this.pagamentoForm.value)
       this.contaPagamento.dtVencimento = DateUtils.StringParaDate(this.contaPagamento.dtVencimento.toString());
       this.contaPagamento.valor = CurrencyUtils.StringParaDecimal(this.contaPagamento.valor);
-      
+
       this.contasAPagarService.editar(this.contaPagamento)
         .subscribe(
-          sucesso => {  this.processarSucesso(sucesso) },
+          sucesso => { this.processarSucesso(sucesso) },
           falha => { this.processarFalha(falha) }
         );
     }
@@ -80,16 +80,18 @@ export class DetalheComponent implements OnInit {
     this.pagamentoForm.reset();
     this.errors = [];
 
-    let toast = this.toastr.success('Salvo com sucesso!', 'Sucesso!');
+    let toast = this.toastr.success('Salvo com sucesso!');
     if (toast) {
       toast.onHidden.subscribe(() => {
-        this.router.navigate(['/contas-a-pagar/lista']);        
+        this.router.navigate(['/contas-a-pagar/lista']);
       });
     }
   }
 
-  processarFalha(fail: any) {
-    this.errors = fail.error.errors;
-    this.toastr.error('Ocorreu um erro!', 'Opa :(');
+  processarFalha(falha: any) {
+    if (falha?.error != null) {
+      this.errors = falha.error.errors;
+      this.toastr.error(falha.error.errors, 'Erro');
+    }
   }
 }

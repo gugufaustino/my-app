@@ -3,6 +3,7 @@ export class CurrencyUtils {
     public static StringParaDecimal(input: any): any {
         if (input === null) return 0;
 
+        input = input.replace("R$ ", '');
         input = input.replace(/\./g, '');
         input = input.replace(/,/g, '.');
         return parseFloat(input);

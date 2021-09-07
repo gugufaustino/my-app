@@ -13,7 +13,7 @@ import { ContaAppComponent } from './conta.app.component';
 
 import { ContaRoutingModulo } from './conta.route';
 import { ContaService } from './services/conta.service';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
  
 
@@ -26,12 +26,12 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     RouterModule,
+    NgbModule,
+    
     ContaRoutingModulo,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    ReactiveFormsModule,    
     TextMaskModule,
-    NgbAlertModule
   ],
   providers :[
     ContaService

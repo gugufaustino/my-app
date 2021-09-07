@@ -14,10 +14,10 @@ export abstract class BaserService {
     }
     protected ObterHeaderAuthJson() {
         return {
-            headers: new HttpHeaders({ 
-                'Content-Type': 'application/json', 
-                'Authorization': 'Bearer ' + this.LocalStorage.obterToken() 
-             })
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.LocalStorage.obterToken()
+            })
         };
     }
 
@@ -27,22 +27,34 @@ export abstract class BaserService {
 
     protected serviceError(response: Response | any) {
         let customError: string[] = [];
+        let customResponse: any = { error: { errors: [] } }
 
         if (response instanceof HttpErrorResponse) {
+
             if (response.statusText === "Unknown Error") {
                 customError.push("Ocorreu um erro desconhecido");
                 response.error.errors = customError;
-            }else if(response.statusText === "Unauthorized" || response.statusText === "Forbidden"){
-                customError.push("Acesso não autorizado");
-                var responseFake: any = {};
-                responseFake.error = {}
-                responseFake.error.errors = customError;
- 
-                return throwError(responseFake);
             }
-        }         
+        }
+        if (response.status === 500) {
+            customError.push("Ocorreu um erro no processamento, tente novamente mais tarde ou contate o nosso suporte.");
+            // Erros do tipo 500 não possuem uma lista de erros
+            // A lista de erros do HttpErrorResponse é readonly                
+            customResponse.error.errors = customError;
+            return throwError(customResponse);
+        }
+
+
+        //  else if(response.statusText === "Unauthorized" || response.statusText === "Forbidden"){
+        //     customError.push("Acesso não autorizado");
+        //     var responseDto: any = {};
+        //     responseDto.error = {}
+        //     responseDto.error.errors = customError;
+
+        //     return throwError(responseDto);
+        // }
+        console.log(response)
         return throwError(response);
     }
 }
 
- 
