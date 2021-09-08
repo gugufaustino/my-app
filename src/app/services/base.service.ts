@@ -41,18 +41,10 @@ export abstract class BaserService {
             // Erros do tipo 500 não possuem uma lista de erros
             // A lista de erros do HttpErrorResponse é readonly                
             customResponse.error.errors = customError;
+            console.log(response)
             return throwError(customResponse);
         }
-
-
-        //  else if(response.statusText === "Unauthorized" || response.statusText === "Forbidden"){
-        //     customError.push("Acesso não autorizado");
-        //     var responseDto: any = {};
-        //     responseDto.error = {}
-        //     responseDto.error.errors = customError;
-
-        //     return throwError(responseDto);
-        // }
+  
         console.log(response)
         return throwError(response);
     }

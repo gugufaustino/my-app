@@ -12,7 +12,7 @@ import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { CurrencyUtils } from 'src/app/utils/currency-utils';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastAppService } from 'src/app/services/toastapp.service';
 
 @Component({
   selector: 'app-detalhe',
@@ -37,7 +37,7 @@ export class DetalheComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private toastr: ToastrService,
+    private toastr: ToastAppService,
     private contasAPagarService: ContasAPagarService) {
 
     this.contaPagamento = this.route.snapshot.data["contaPgamento"];
@@ -80,12 +80,10 @@ export class DetalheComponent implements OnInit {
     this.pagamentoForm.reset();
     this.errors = [];
 
-    let toast = this.toastr.success('Salvo com sucesso!');
-    if (toast) {
-      toast.onHidden.subscribe(() => {
-        this.router.navigate(['/contas-a-pagar/lista']);
-      });
-    }
+    let toast = this.toastr.success('Salvo com sucesso!', "", () => {
+      this.router.navigate(['/contas-a-pagar/lista']);
+    });
+     
   }
 
   processarFalha(falha: any) {

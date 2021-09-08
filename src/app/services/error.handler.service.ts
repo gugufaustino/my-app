@@ -21,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 if(error.status === 401){
                     this.localStorageUtil.limparDadosLocaisUsuario();
                     this.router.navigate(['conta/login'])
-                    return throwError({}); // cancela toast
+                    return throwError(['Acesso expirou, faça login novamente']); // cancela toast
 
                 }else if(error.status === 403){
                     this.router.navigate(['acesso-negado'])
