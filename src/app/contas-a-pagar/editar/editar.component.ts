@@ -15,10 +15,10 @@ import { ContasAPagarService } from '../services/contas-a-pagar.service';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 
 @Component({
-  selector: 'app-detalhe',
-  templateUrl: './detalhe.component.html'
+  selector: 'app-editar',
+  templateUrl: './editar.component.html'
 })
-export class DetalheComponent implements OnInit {
+export class EditarComponent implements OnInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   contaPagamento: Pagamento;

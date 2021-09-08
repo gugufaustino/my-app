@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core"
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
-import { Observable } from "rxjs";
 import { Pagamento } from "../models/pagamento";
 import { ContasAPagarService } from "./contas-a-pagar.service";
 

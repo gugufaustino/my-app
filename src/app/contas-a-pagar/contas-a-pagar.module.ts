@@ -7,7 +7,7 @@ import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
 import { ListaComponent } from './lista/lista.component';
-import { DetalheComponent } from './detalhe/detalhe.component';
+import { EditarComponent } from './editar/editar.component';
 import { ContasAPagarAppComponent } from './contas-a-pagar.app.component';
 import { RouterModule } from '@angular/router';
 import { ContasAPagarRouteModule } from './contas-a-pagar.route';
@@ -23,7 +23,7 @@ import { NovoComponent } from './novo/novo.component';
   declarations: [
     ContasAPagarAppComponent,
     ListaComponent,
-    DetalheComponent,
+    EditarComponent,
     NovoComponent],
   imports: [
     CommonModule,
