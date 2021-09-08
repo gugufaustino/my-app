@@ -18,7 +18,7 @@
 				<input type="checkbox" class="form-check-input" name="{{pagamento.indPago}}" [value]="pagamento.indPago" [checked]="pagamento.indPago" (change)="onChangePago($event, pagamento.id)"  >
 			</td>
 			<td class="text-center">
-				<a class=" text-white" href="javascript:void(0)" (click)="excluir(pagamento)"  placement="top" ngbTooltip="Excluir '{{pagamento.descricaoFornecedor}}'" >
+				<a class="text-white" href="javascript:void(0)" (click)="excluir(pagamento)"  placement="top" ngbTooltip="Excluir '{{pagamento.descricaoFornecedor}}'" >
 					<i class="fas fa-trash-alt yellow"></i>
 				</a>
 			</td>
@@ -27,9 +27,7 @@
 	<tfoot>
 		<tr>
 			<td colspan="5" class="text-right">
-
-
-				<button class="bt yellow" [routerLink]="['/contas-a-pagar/novo']">
+				<button class="bt yellow" [routerLink]="['/contas-a-pagar/novo']"  [disabled]="!localStorageUtils.possuiPermissao('PAGAMENTO', 'INSERIR')">
 					<i class="fas fa-plus yellow"></i> <span class="yellow">&nbsp;Novo</span>
 				</button>
 			</td>

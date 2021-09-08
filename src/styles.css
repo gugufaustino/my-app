@@ -156,6 +156,9 @@ h1 {
     border: 1px solid;
     text-transform: uppercase;
 }
+.bt:disabled{
+    opacity: 0.4;
+}
 
 .bt.yellow{
     border-color: #FFF842;

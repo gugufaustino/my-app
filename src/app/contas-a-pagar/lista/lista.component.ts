@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ToastAppService } from 'src/app/services/toastapp.service';
+import { LocalStorageUtils } from 'src/app/utils/localstorage';
 import { isThisTypeNode } from 'typescript';
 import { Pagamento } from '../models/pagamento';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
@@ -13,6 +14,7 @@ import { ContasAPagarService } from '../services/contas-a-pagar.service';
 export class ListaComponent implements OnInit {
 
   public contasPagamento: Pagamento[];
+  public localStorageUtils = new LocalStorageUtils();
 
   constructor(private contasAPagarService: ContasAPagarService,
     private toastr: ToastAppService) { }
@@ -45,11 +47,12 @@ export class ListaComponent implements OnInit {
 
   excluir(contaPagamento: Pagamento): void {
 
+    //let retorno = this.localStorageUtils.possuiPermissao('USUARIO', 'CONSULTAR')
     this.contasAPagarService.excluir(contaPagamento.id)
       .subscribe(
         () => { this.toastr.success('Excluído com sucesso!'); this.listarTodos(); },
         error => this.toastr.error(error)
-      )
+      );
   }
 
 

@@ -11,10 +11,34 @@ export class LocalStorageUtils {
     public salvarUsuario(user: string) {
         localStorage.setItem(this.user, JSON.stringify(user));
     }
-     
-    public obterUsuario() {         
+
+    public obterUsuario() {
         return JSON.parse(localStorage.getItem(this.user) || '{}');
     }
+
+
+    public obterClaim(): any[] {
+        let lstClmaims = this.obterUsuario()["claims"]
+        return lstClmaims;
+    }
+
+
+    public possuiPermissao(permissao: string, acao: string): boolean {
+
+        if (acao == "" || permissao == "")
+            return false;
+
+        var lstClaims: any[] = this.obterClaim();
+        var claim = lstClaims.find(i => i.type === permissao);
+
+        if (!claim)
+            return false;
+
+        let claimValores = claim.value as string;
+
+        return claimValores.includes(acao);
+    }
+
 
 
     public salvarToken(token: string) {
@@ -23,13 +47,13 @@ export class LocalStorageUtils {
 
     public obterToken(): string | null {
 
-        return localStorage.getItem(this.token)  ;
+        return localStorage.getItem(this.token);
     }
 
-    public usuarioLogado() : boolean{
+    public usuarioLogado(): boolean {
         return this.obterToken() !== null;
     }
- 
+
 
     public limparDadosLocaisUsuario() {
         localStorage.removeItem(this.token);
