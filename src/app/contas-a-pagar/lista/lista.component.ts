@@ -46,8 +46,7 @@ export class ListaComponent implements OnInit {
   }
 
   excluir(contaPagamento: Pagamento): void {
-
-    //let retorno = this.localStorageUtils.possuiPermissao('USUARIO', 'CONSULTAR')
+    
     this.contasAPagarService.excluir(contaPagamento.id)
       .subscribe(
         () => { this.toastr.success('Excluído com sucesso!'); this.listarTodos(); },

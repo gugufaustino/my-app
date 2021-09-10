@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContasAPagarGuard } from './contas-a-pagar/services/contas-a-pagar.guard';
 import { AcessoNegadoComponent } from './navegacao/acesso-negado/acesso-negado.component';
 import { HomeComponent } from './navegacao/home/home.component';
 import { NotFoundComponent } from './navegacao/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent,
+        canActivate: [ContasAPagarGuard],
+        data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
+  },
   { path: 'conta', 
     loadChildren: () => import ('./conta/conta.module')
                                 .then(m=> m.ContaModule)

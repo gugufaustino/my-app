@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NovoComponent } from './novo/novo.component';
+import { ContasAPagarGuard } from './services/contas-a-pagar.guard';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NovoComponent } from './novo/novo.component';
   ],
 providers: [
   ContasAPagarService,
-  ContasAPagarResolve
+  ContasAPagarResolve,
+  ContasAPagarGuard
 ]})
 export class ContasAPagarModule { }

@@ -35,7 +35,6 @@ export class LocalStorageUtils {
             return false;
 
         let claimValores = claim.value as string;
-
         return claimValores.includes(acao);
     }
 
