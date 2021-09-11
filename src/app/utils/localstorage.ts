@@ -22,15 +22,14 @@ export class LocalStorageUtils {
         return lstClmaims;
     }
 
-
     public possuiPermissao(permissao: string, acao: string): boolean {
 
         if (acao == "" || permissao == "")
             return false;
 
         var lstClaims: any[] = this.obterClaim();
-        var claim = lstClaims.find(i => i.type === permissao);
-
+        var claim = lstClaims?.find(i => i.type === permissao);
+ 
         if (!claim)
             return false;
 

@@ -188,3 +188,14 @@ h1 {
 }
 
  
+.display-7 {  
+ font-size:  2.0rem
+}
+ .display-8 {  
+ font-size:  1.3rem
+}
+
+ 
+ .hidden-disabled[disabled]{
+    display: none!important;
+ }

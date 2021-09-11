@@ -1,8 +1,12 @@
 import * as moment from 'moment';
+import { Pagamento } from '../contas-a-pagar/models/pagamento';
 
 export class DateUtils {
      
     public static DataMask = [ /\d/, /\d/, '/', /\d/, /\d/,'/', /\d/, /\d/, /\d/, /\d/];
+    public static DataDayMask = [/\b[0123]/,/\b[0-9]/];
+    //public static DataDayMask = [/\b(0?[1-9]|[1-9][0-9]|100)\b/gm];
+    public static DataDiaMes= [/\d/, /\d/, '/', /\d/, /\d/];
 
     public static StringFormat(sData : string) : string {
         
@@ -26,7 +30,7 @@ export class DateUtils {
         var dt =  momentUtc.toDate();
 
         return dt;
-    }
+    } 
     
 }
 

@@ -18,6 +18,7 @@ import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NovoComponent } from './novo/novo.component';
 import { ContasAPagarGuard } from './services/contas-a-pagar.guard';
+import { Pagamento } from './models/pagamento';
 
 
 @NgModule({
@@ -40,6 +41,6 @@ import { ContasAPagarGuard } from './services/contas-a-pagar.guard';
 providers: [
   ContasAPagarService,
   ContasAPagarResolve,
-  ContasAPagarGuard
+  ContasAPagarGuard 
 ]})
 export class ContasAPagarModule { }
