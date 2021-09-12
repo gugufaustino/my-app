@@ -1,24 +1,23 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormBuilder, AbstractControl, FormControlName, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, AbstractControl, FormControlName, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
 import { CustomValidators } from 'ng2-validation';
-import { FormBaseComponent } from 'src/app/base-components/form-base.components';
 import { DisplayMessage, GenericValidator, ValidationMessages } from 'src/app/utils/generic-form-validation';
 
 import { Pagamento } from '../models/pagamento';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
-import { DateUtils } from 'src/app/utils/date-utils';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
 import { ToastrService } from 'ngx-toastr';
+import { ContasPagarBase } from '../contas-a-pagar-form.base.component';
 
 
 @Component({
   selector: 'app-novo',
   templateUrl: './novo.component.html'
 })
-export class NovoComponent extends FormBaseComponent implements OnInit, AfterViewInit {
+export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -26,72 +25,68 @@ export class NovoComponent extends FormBaseComponent implements OnInit, AfterVie
     private toastr: ToastrService,
     private contasAPagarService: ContasAPagarService) {
     super();
-
   }
 
-
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+
   pagamento: Pagamento = new Pagamento();
 
-  pagamentoForm: FormGroup;
-
-  MASKS: any = MASKS;
-  DateMask = DateUtils.DataMask;
-  DataDayMask = DateUtils.DataDayMask;
-
-  errors: any = [];
-
-  validationMessages: ValidationMessages;
-  genericValidatior: GenericValidator;
-  displayMessage: DisplayMessage;
-
-
   ngOnInit(): void {
-    this.pagamentoForm = this.fb.group({
-      descricaoFornecedor: ['', [Validators.required]],
-      tipoRecorrencia: ['', [Validators.required]],
-      valor: ['', [Validators.required]],
-      dtVencimento: ['', [Validators.required]],
-      diaVencimento: ['', [Validators.required]],
+
+    this.pagamentoForm = this.fb.group(this.controlsFormBase); // obrigatário uso de this aqui nesso ponto    
+    this.pagamentoForm.addControl('new', new FormControl('dtVencimento', super.dtVencValidators));
+
+    // Valores Default
+    this.pagamentoForm.patchValue({ tipoRecorrencia: '1', ativo: true });
+  }
+
+  ngAfterViewInit(): void {
+
+    this.tipoRecorrencia().valueChanges.subscribe(() => {
+      this.tipoRecorrenciaValueChanges();
+       //super.validarFormulario(this.pagamentoForm);
     });
 
-    this.pagamentoForm.patchValue({ tipoRecorrencia: '1', ativo: true });
   }
 
   tipoRecorrencia(): FormControl | any {
     return this.pagamentoForm.get('tipoRecorrencia');
   }
-  diaVencimento(): FormControl | any {
-    return this.pagamentoForm.get('diaVencimento');
-  }
-
   dtVencimento(): AbstractControl | any {
     return this.pagamentoForm.get('dtVencimento');
   }
 
-  ngAfterViewInit(): void {
-    this.tipoRecorrencia().valueChanges.subscribe(() => {
-      this.tipoRecorrenciaValueChanges();
-    });
-
+  diaVencimento(): AbstractControl | any {
+    return this.pagamentoForm.get('diaVencimento');
   }
 
   tipoRecorrenciaValueChanges() {
     if (this.tipoRecorrencia().value === "1") {
-      this.diaVencimento().clearValidators();
-      this.dtVencimento().clearValidators();
+      //Dia
+      this.diaVencimento()?.clearValidators();
+      //Data
+      this.dtVencimento()?.setValidators(super.dtVencValidators);
 
     }
     else {
-      this.dtVencimento().clearValidators()
-      this.diaVencimento().clearValidators()
+
+      //Dia
+      if (this.diaVencimento() == null) {
+        this.pagamentoForm.addControl('new', new FormControl('diaVencimento', super.diaVencValidators));
+      }
+      this.diaVencimento()?.setValidators(super.diaVencValidators);
+
+      //Data
+      this.dtVencimento().clearValidators();
+
+      
     }
   }
 
   submitForm(): void {
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
 
-      this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value )
+      this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value)
       // this.pagamento = Object.assign({}, this.pagamento, this.pagamentoForm.value)
       // this.pagamento.dtVencimento = DateUtils.StringParaDate(this.pagamento.dtVencimento.toString());
       // this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);
