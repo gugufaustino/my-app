@@ -58,7 +58,7 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
       this.contasAPagarService.editar(this.pagamento)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
-          falha => { this.processarFalha(falha) }
+          falha =>  this.toastr.error(falha)
         );
     }
   }
@@ -73,10 +73,5 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
 
   }
 
-  processarFalha(falha: any) {
-    if (falha?.error != null) {
-      this.errors = falha.error.errors;
-      this.toastr.error(falha.error.errors, 'Erro');
-    }
-  }
+  
 }

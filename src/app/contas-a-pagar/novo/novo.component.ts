@@ -9,8 +9,8 @@ import { DisplayMessage, GenericValidator, ValidationMessages } from 'src/app/ut
 import { Pagamento } from '../models/pagamento';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
-import { ToastrService } from 'ngx-toastr';
 import { ContasPagarBase } from '../contas-a-pagar-form.base.component';
+import { ToastAppService } from 'src/app/services/toastapp.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewI
   constructor(private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private toastr: ToastrService,
+    private toastr: ToastAppService,
     private contasAPagarService: ContasAPagarService) {
     super();
   }
@@ -44,9 +44,8 @@ export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewI
 
     this.tipoRecorrencia().valueChanges.subscribe(() => {
       this.tipoRecorrenciaValueChanges();
-       //super.validarFormulario(this.pagamentoForm);
+      //super.validarFormulario(this.pagamentoForm);
     });
-
   }
 
   tipoRecorrencia(): FormControl | any {
@@ -61,25 +60,21 @@ export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewI
   }
 
   tipoRecorrenciaValueChanges() {
+
+    this.dtVencimento().clearValidators();
+    this.diaVencimento()?.clearValidators();
+
     if (this.tipoRecorrencia().value === "1") {
-      //Dia
-      this.diaVencimento()?.clearValidators();
       //Data
       this.dtVencimento()?.setValidators(super.dtVencValidators);
-
     }
     else {
-
       //Dia
       if (this.diaVencimento() == null) {
         this.pagamentoForm.addControl('new', new FormControl('diaVencimento', super.diaVencValidators));
       }
       this.diaVencimento()?.setValidators(super.diaVencValidators);
 
-      //Data
-      this.dtVencimento().clearValidators();
-
-      
     }
   }
 
@@ -95,7 +90,7 @@ export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewI
       this.contasAPagarService.inserir(this.pagamento)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
-          falha => { this.processarFalha(falha) }
+          falha =>  this.toastr.error(falha)
         );
     }
   }
@@ -104,17 +99,9 @@ export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewI
     this.pagamentoForm.reset();
     this.errors = [];
 
-    let toast = this.toastr.success('Salvo com sucesso!', 'Sucesso!');
-    if (toast) {
-      toast.onHidden.subscribe(() => {
-        this.router.navigate(['/contas-a-pagar/lista']);
-      });
-    }
-  }
-
-  processarFalha(fail: any) {
-    this.errors = fail.error.errors;
-    this.toastr.error('Ocorreu um erro!', 'Opa :( ');
-  }
+    this.toastr.success('Salvo com sucesso!', 'Sucesso!', () => {
+      this.router.navigate(['/contas-a-pagar/lista']);
+    }); 
+  } 
 
 }
