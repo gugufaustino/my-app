@@ -23,9 +23,9 @@ export class ContasAPagarService extends BaserService {
             .pipe(catchError(this.serviceError));
     }
 
-    public editar(contaPagamento: Pagamento): Observable<Pagamento> {
+    public editar(pagamento: Pagamento): Observable<Pagamento> {
         let response = this.http
-            .put(this.UrlServiceV1 + 'pagamento/' + contaPagamento.id, contaPagamento, this.ObterHeaderAuthJson())
+            .put(this.UrlServiceV1 + 'pagamento/' + pagamento.id, pagamento, this.ObterHeaderAuthJson())
             .pipe(
                 map(this.extractData),
                 catchError(this.serviceError));

@@ -45,9 +45,9 @@ export class ListaComponent implements OnInit {
       )
   }
 
-  excluir(contaPagamento: Pagamento): void {
+  excluir(pagamento: Pagamento): void {
     
-    this.contasAPagarService.excluir(contaPagamento.id)
+    this.contasAPagarService.excluir(pagamento.id)
       .subscribe(
         () => { this.toastr.success('Excluído com sucesso!'); this.listarTodos(); },
         error => this.toastr.error(error)

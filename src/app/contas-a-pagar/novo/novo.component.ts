@@ -33,8 +33,7 @@ export class NovoComponent extends FormBaseComponent implements OnInit, AfterVie
 
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
-  contaPagamento: Pagamento = new Pagamento();
-  contaNova: Pagamento;//= new Pagamento();
+  pagamento: Pagamento = new Pagamento();
 
   pagamentoForm: FormGroup;
 
@@ -96,14 +95,14 @@ export class NovoComponent extends FormBaseComponent implements OnInit, AfterVie
   submitForm(): void {
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
 
-      this.contaPagamento = super.mapToModel(this.contaPagamento, this.pagamentoForm.value )
+      this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value )
 
-      // // this.contaPagamento = Object.assign({}, this.contaPagamento, this.pagamentoForm.value)
-      // // this.contaPagamento.dtVencimento = DateUtils.StringParaDate(this.contaPagamento.dtVencimento.toString());
-      // // this.contaPagamento.valor = CurrencyUtils.StringParaDecimal(this.contaPagamento.valor);
-      // // this.contaPagamento.tipoRecorrencia = parseInt(this.contaPagamento.tipoRecorrencia.toString());
+      // this.pagamento = Object.assign({}, this.pagamento, this.pagamentoForm.value)
+      // this.pagamento.dtVencimento = DateUtils.StringParaDate(this.pagamento.dtVencimento.toString());
+      // this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);
+      // this.pagamento.tipoRecorrencia = parseInt(this.pagamento.tipoRecorrencia.toString());
 
-      this.contasAPagarService.inserir(this.contaPagamento)
+      this.contasAPagarService.inserir(this.pagamento)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
           falha => { this.processarFalha(falha) }
