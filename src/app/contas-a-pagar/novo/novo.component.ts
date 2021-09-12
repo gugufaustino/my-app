@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@ang
 import { FormBuilder, AbstractControl, FormControlName, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { fromEvent, merge, Observable } from 'rxjs';
 
 import { CustomValidators } from 'ng2-validation';
 import { FormBaseComponent } from 'src/app/base-components/form-base.components';
@@ -10,7 +9,6 @@ import { DisplayMessage, GenericValidator, ValidationMessages } from 'src/app/ut
 
 import { Pagamento } from '../models/pagamento';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
-import { CurrencyUtils } from 'src/app/utils/currency-utils';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
 import { ToastrService } from 'ngx-toastr';
@@ -48,7 +46,6 @@ export class NovoComponent extends FormBaseComponent implements OnInit, AfterVie
   displayMessage: DisplayMessage;
 
 
-
   ngOnInit(): void {
     this.pagamentoForm = this.fb.group({
       descricaoFornecedor: ['', [Validators.required]],
@@ -73,22 +70,21 @@ export class NovoComponent extends FormBaseComponent implements OnInit, AfterVie
   }
 
   ngAfterViewInit(): void {
-
     this.tipoRecorrencia().valueChanges.subscribe(() => {
       this.tipoRecorrenciaValueChanges();
     });
 
   }
 
-
   tipoRecorrenciaValueChanges() {
     if (this.tipoRecorrencia().value === "1") {
       this.diaVencimento().clearValidators();
+      this.dtVencimento().clearValidators();
 
     }
     else {
       this.dtVencimento().clearValidators()
-
+      this.diaVencimento().clearValidators()
     }
   }
 
@@ -96,7 +92,6 @@ export class NovoComponent extends FormBaseComponent implements OnInit, AfterVie
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
 
       this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value )
-
       // this.pagamento = Object.assign({}, this.pagamento, this.pagamentoForm.value)
       // this.pagamento.dtVencimento = DateUtils.StringParaDate(this.pagamento.dtVencimento.toString());
       // this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);
@@ -124,7 +119,7 @@ export class NovoComponent extends FormBaseComponent implements OnInit, AfterVie
 
   processarFalha(fail: any) {
     this.errors = fail.error.errors;
-    this.toastr.error('Ocorreu um erro!', 'Opa :(');
+    this.toastr.error('Ocorreu um erro!', 'Opa :( ');
   }
 
 }
