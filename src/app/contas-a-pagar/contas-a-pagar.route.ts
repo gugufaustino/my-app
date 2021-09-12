@@ -18,7 +18,7 @@ const rotasContasAPagar: Routes = [{
             data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]// <<<--- permissao
         },
         {
-            path: 'editar/:id', component: EditarComponent, resolve: { contaPgamento: ContasAPagarResolve },
+            path: 'editar/:id', component: EditarComponent, resolve: { pagamento: ContasAPagarResolve },
             canActivate: [ContasAPagarGuard],
             data: [{ claim: { nome: 'PAGAMENTO', valor: 'EDITAR' } }] 
         },

@@ -10,6 +10,7 @@ import { DateUtils } from '../utils/date-utils';
 
 export abstract class FormBaseComponent {
 
+    errors: any = [];
     displayMessage: DisplayMessage = {};
     genericValidator: GenericValidator;
     validationMessages: ValidationMessages;
@@ -53,14 +54,14 @@ export abstract class FormBaseComponent {
                     let modelValue = model[propKey];
                     let parsed = null;
 
-                    if (mapType == "number") {
+                    if (mapType == "number" && modelValue != null) {
                         if (modelValue.indexOf(",") > 1) // temvirgula é decimal
                             parsed = CurrencyUtils.StringParaDecimal(modelValue);
                         else
                             parsed = parseFloat(modelValue);
 
                         model[propKey] = parsed;
-                    }else if(mapType == "Date" && modelValue != ""){
+                    }else if(mapType == "Date" && modelValue != "" && modelValue != null){
                         model[propKey] = DateUtils.StringParaDate(modelValue.toString());
                     }
                 }

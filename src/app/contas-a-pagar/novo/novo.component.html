@@ -7,7 +7,7 @@
         <div class="form-group">
             <label class="col-md-6 control-label">Descrição</label>
             <div class="col-md-12">
-                <input class="form-control bg-dark text-white" formControlName="descricaoFornecedor" id="descricaoFornecedor" placeholder="(obrigatório)"
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="descricaoFornecedor" id="descricaoFornecedor" 
                     [ngClass]="{'is-invalid': displayMessage?.descricaoFornecedor}" />
                 <span class="text-danger" *ngIf="displayMessage?.descricaoFornecedor">
                     <p [innerHTML]="displayMessage?.descricaoFornecedor"></p>
@@ -15,17 +15,17 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label class="col-md-6 control-label">Fornecedor</label>
             <div class="col-md-12">
-                <!-- formControlName="descricaoFornecedor" id="descricaoFornecedor" -->
-                <input class="form-control bg-dark text-white"  placeholder="(obrigatório)"
+                
+                <input class="form-control bg-dark text-white"  placeholder="(obrigatório)"  formControlName="descricaoFornecedor" id="descricaoFornecedor" 
                     [ngClass]="{'is-invalid': displayMessage?.descricaoFornecedor}" />
                 <span class="text-danger" *ngIf="displayMessage?.descricaoFornecedor">
                     <p [innerHTML]="displayMessage?.descricaoFornecedor"></p>
                 </span>
             </div>
-        </div>
+        </div> -->
 
         <h1 class="col display-8">Pagamento</h1>
         <div class="col-md-12">

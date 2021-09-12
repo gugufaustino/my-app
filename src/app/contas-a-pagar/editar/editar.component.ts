@@ -2,13 +2,13 @@ import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { fromEvent, merge, Observable } from 'rxjs';
 
 import { CustomValidators } from 'ng2-validation';
-import { DisplayMessage, GenericValidator, ValidationMessages } from 'src/app/utils/generic-form-validation';
 
 import { Pagamento } from '../models/pagamento';
-import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import { ContasPagarBase } from '../contas-a-pagar-form.base.component';
+
+import { NgBrazilValidators } from 'ng-brazil';
 import { CurrencyUtils } from 'src/app/utils/currency-utils';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
@@ -18,34 +18,23 @@ import { ToastAppService } from 'src/app/services/toastapp.service';
   selector: 'app-editar',
   templateUrl: './editar.component.html'
 })
-export class EditarComponent implements OnInit {
+export class EditarComponent extends ContasPagarBase implements OnInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-  contaPagamento: Pagamento;
-  pagamentoForm!: FormGroup;
-
-  MASKS: any = MASKS;
-  DateMask = DateUtils.DataMask;
-
-  errors: any = [];
-
-
-  validationMessages: ValidationMessages;
-  genericValidatior: GenericValidator;
-  displayMessage: DisplayMessage;
+  pagamento: Pagamento;
+  //pagamentoForm!: FormGroup;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private toastr: ToastAppService,
     private contasAPagarService: ContasAPagarService) {
-
-    this.contaPagamento = this.route.snapshot.data["contaPgamento"];
+    super();
+    this.pagamento = this.route.snapshot.data["pagamento"];
 
   }
 
   ngOnInit(): void {
-
     this.pagamentoForm = this.fb.group({
       descricaoFornecedor: ['', [Validators.required]],
       valor: ['', [Validators.required, NgBrazilValidators.currency]],
@@ -54,9 +43,9 @@ export class EditarComponent implements OnInit {
 
 
     this.pagamentoForm.patchValue({
-      descricaoFornecedor: this.contaPagamento.descricaoFornecedor,
-      valor: CurrencyUtils.DecimalParaString(this.contaPagamento.valor),
-      dtVencimento: DateUtils.Format(this.contaPagamento.dtVencimento),
+      descricaoFornecedor: this.pagamento.descricaoFornecedor,
+      valor: CurrencyUtils.DecimalParaString(this.pagamento.valor),
+      dtVencimento: DateUtils.Format(this.pagamento.dtVencimento),
     });
   }
 
@@ -64,11 +53,9 @@ export class EditarComponent implements OnInit {
 
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
 
-      this.contaPagamento = Object.assign({}, this.contaPagamento, this.pagamentoForm.value)
-      this.contaPagamento.dtVencimento = DateUtils.StringParaDate(this.contaPagamento.dtVencimento.toString());
-      this.contaPagamento.valor = CurrencyUtils.StringParaDecimal(this.contaPagamento.valor);
+      this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value)
 
-      this.contasAPagarService.editar(this.contaPagamento)
+      this.contasAPagarService.editar(this.pagamento)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
           falha => { this.processarFalha(falha) }
@@ -83,7 +70,7 @@ export class EditarComponent implements OnInit {
     let toast = this.toastr.success('Salvo com sucesso!', "", () => {
       this.router.navigate(['/contas-a-pagar/lista']);
     });
-     
+
   }
 
   processarFalha(falha: any) {
