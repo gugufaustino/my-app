@@ -199,3 +199,6 @@ h1 {
  .hidden-disabled[disabled]{
     display: none!important;
  }
+ input[disabled]{
+    opacity: 0.5  !important;
+ }

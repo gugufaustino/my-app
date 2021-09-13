@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 export class GenericValidator {
     constructor(private validationMessages: ValidationMessages) { }
 
-    processaMensgens(container: FormGroup): { [key: string]: string } {
+    processaMensgens(container: FormGroup, allControls : boolean = false): { [key: string]: string } {
 
         let messages: { [key: string]: string } = {};
 
@@ -19,7 +19,7 @@ export class GenericValidator {
                 } else {
                     if (this.validationMessages[controlKey]) {
                         messages[controlKey] = '';
-                        if ((c.dirty || c.touched) && c.errors) {
+                        if ((c.dirty || c.touched || allControls) && c.errors && c.enabled) {
                             Object.keys(c.errors).map(messageKey => { 
                                 if(this.validationMessages[controlKey][messageKey]){
                                     messages[controlKey] += this.validationMessages[controlKey][messageKey]

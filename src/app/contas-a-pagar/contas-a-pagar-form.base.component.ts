@@ -1,5 +1,5 @@
 import { ElementRef } from "@angular/core";
-import { AbstractControl, AbstractControlOptions, FormGroup, Validators } from "@angular/forms";
+import { FormGroup, Validators } from "@angular/forms";
 import { MASKS } from "ng-brazil";
 import { FormBaseComponent } from "../base-components/form-base.components";
 import { DateUtils } from "../utils/date-utils";
@@ -13,8 +13,8 @@ export abstract class ContasPagarBase extends FormBaseComponent {
     DataDayMask = DateUtils.DataDayMask;
  
     controlsFormBase: any;
-    dtVencValidators: any;
-    diaVencValidators: any;
+    protected dtVencValidators: any;
+    protected diaVencValidators: any;
      
     constructor() {
         super();
@@ -22,18 +22,40 @@ export abstract class ContasPagarBase extends FormBaseComponent {
         this.controlsFormBase = {
             descricaoFornecedor: ['', [Validators.required]],
             tipoRecorrencia: ['', [Validators.required]],
-            valor: ['', [Validators.required]],    
-            dtVencimento : []  ,
-            diaVencimento : []    
+            valor: ['', [Validators.required]],                
           };
-          this.dtVencValidators = ['', [Validators.required]]
-          this.diaVencValidators = ['', [Validators.required]]
+          this.dtVencValidators = [Validators.required, Validators.required];          
+          this.diaVencValidators = [Validators.required, Validators.min(1), Validators.max(31)];
+
+
+          this.validationMessages = {
+            descricaoFornecedor: {
+                required: 'campo requerido',
+            },
+            tipoRecorrencia: {
+                required: 'campo requerido'
+            },
+            valor: {
+                required: 'campo requerido'                
+            },
+            dtVencimento: {
+                required: 'campo requerido'                
+            },
+            diaVencimento: {
+                required: 'campo requerido'                
+            },
+            
+        }
         
 
-        super.configurarMensagensValidacaoBase(this.validationMessages);
+       
     }
 
     protected configurarValidacaoFormulario(formInputElements: ElementRef[]) {
         super.configurarValidacaoFormularioBase(formInputElements, this.pagamentoForm);
+    }
+
+    protected configurarMensagensValidacaoBase(){
+        super.configurarMensagensValidacaoBase(this.validationMessages);
     }
 }
