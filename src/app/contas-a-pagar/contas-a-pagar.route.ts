@@ -6,6 +6,7 @@ import { ListaComponent } from "./lista/lista.component";
 import { NovoComponent } from "./novo/novo.component";
 import { ContasAPagarGuard } from "./services/contas-a-pagar.guard";
 import { ContasAPagarResolve } from "./services/contas-a-pagar.resolve";
+import { ContasAPagarService } from "./services/contas-a-pagar.service";
 
 
 const rotasContasAPagar: Routes = [{
@@ -32,7 +33,7 @@ const rotasContasAPagar: Routes = [{
 
 @NgModule({
     imports: [RouterModule.forChild(rotasContasAPagar)],
-    exports: [RouterModule],
+    exports: [RouterModule] 
 })
 
 export class ContasAPagarRouteModule {

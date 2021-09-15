@@ -16,7 +16,7 @@ export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewI
   constructor(private router: Router,
     private fb: FormBuilder,
     private toastr: ToastAppService,
-    private contasAPagarService: ContasAPagarService) {
+    private contasAPagarService: ContasAPagarService<Pagamento>) {
     super();
   }
 

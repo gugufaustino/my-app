@@ -1,5 +1,6 @@
-import { IMappingModel } from "src/app/base-models/IMappingModel";
-export class Pagamento implements IMappingModel {
+import { MappingModel } from "src/app/base-contracts/models/mapping.model";
+
+export class Pagamento implements MappingModel {
     constructor() {
         this.toMap();
     }

@@ -29,7 +29,7 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private toastr: ToastAppService,
-    private contasAPagarService: ContasAPagarService) {
+    private contasAPagarService: ContasAPagarService<Pagamento>) {
     super();
     this.pagamento = this.route.snapshot.data["pagamento"];
 

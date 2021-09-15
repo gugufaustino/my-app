@@ -3,7 +3,7 @@ import { throwError } from "rxjs";
 import { LocalStorageUtils } from "../utils/localstorage";
 
 
-export abstract class BaserService {
+    export abstract class BaserService {
     protected UrlServiceV1: string = "https://localhost:44390/api/";
     public LocalStorage = new LocalStorageUtils();
 

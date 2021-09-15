@@ -4,7 +4,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { Observable, fromEvent, merge } from 'rxjs';
 
 import { GenericValidator, DisplayMessage, ValidationMessages } from '../utils/generic-form-validation';
-import { IMappingModel } from '../base-models/IMappingModel';
+import { MappingModel } from '../base-contracts/models/mapping.model';
 import { CurrencyUtils } from '../utils/currency-utils';
 import { DateUtils } from '../utils/date-utils';
 
@@ -39,7 +39,7 @@ export abstract class FormBaseComponent {
         this.mudancasNaoSalvas = true;
     }
 
-    protected mapToModel(source1: IMappingModel, source2: any): any {
+    protected mapToModel(source1: MappingModel, source2: any): any {
         /*
            this.pagamento = Object.assign({}, this.pagamento, this.pagamentoForm.value)
             this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);

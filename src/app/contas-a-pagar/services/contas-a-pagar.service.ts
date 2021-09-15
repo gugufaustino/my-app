@@ -3,12 +3,15 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { BaserService } from "src/app/services/base.service";
+import { IObter } from "src/app/base-contracts/services/iobter.service";
 import { Pagamento } from "../models/pagamento";
 
 
 
 @Injectable()
-export class ContasAPagarService extends BaserService {
+export class ContasAPagarService<TEntity> extends BaserService
+    implements IObter<TEntity> {
+
     constructor(private http: HttpClient) { super(); }
 
     public listarTodos(): Observable<Pagamento[]> {
@@ -17,12 +20,12 @@ export class ContasAPagarService extends BaserService {
             .pipe(catchError(this.serviceError));
     }
 
-    public obterPorId(id: string): Observable<Pagamento> {
+    public obterPorId(id: string): Observable<TEntity> {
         return this.http
-            .get<Pagamento>(this.UrlServiceV1 + 'pagamento/' + id, this.ObterHeaderAuthJson())
+            .get<TEntity>(this.UrlServiceV1 + 'pagamento/' + id, this.ObterHeaderAuthJson())
             .pipe(catchError(this.serviceError));
     }
-
+    
     public editar(pagamento: Pagamento): Observable<Pagamento> {
         let response = this.http
             .put(this.UrlServiceV1 + 'pagamento/' + pagamento.id, pagamento, this.ObterHeaderAuthJson())
@@ -43,7 +46,7 @@ export class ContasAPagarService extends BaserService {
 
     public inserir(conta: Pagamento): Observable<any> {
         let response = this.http.post(this.UrlServiceV1 + 'conta/', conta, this.ObterHeaderAuthJson())
-            .pipe( 
+            .pipe(
                 catchError(this.serviceError));
         return response;
     }
@@ -56,6 +59,10 @@ export class ContasAPagarService extends BaserService {
                 catchError(this.serviceError));
         return response;
     }
+}
 
+export abstract class ServiceResolver<TEntity> implements IObter<TEntity> {
+    
+     obterPorId: (id: string) => Observable<TEntity>
 
 }

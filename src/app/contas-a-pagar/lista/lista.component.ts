@@ -14,7 +14,7 @@ export class ListaComponent implements OnInit {
   public contasPagamento: Pagamento[];
   public localStorageUtils = new LocalStorageUtils();
 
-  constructor(private contasAPagarService: ContasAPagarService,
+  constructor(private contasAPagarService: ContasAPagarService<Pagamento>,
     private toastr: ToastAppService) { }
 
   ngOnInit(): void {

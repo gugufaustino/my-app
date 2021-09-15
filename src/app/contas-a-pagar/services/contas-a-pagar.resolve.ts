@@ -1,14 +1,13 @@
 import { Injectable } from "@angular/core"
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
-import { Pagamento } from "../models/pagamento";
-import { ContasAPagarService } from "./contas-a-pagar.service";
+import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
+import { ServiceResolver } from "./contas-a-pagar.service";
 
 @Injectable()
-export class ContasAPagarResolve implements Resolve<Pagamento> {
+export class ContasAPagarResolve<TEntity> implements Resolve<TEntity> {
 
-    constructor(private contasAPagarService: ContasAPagarService) {    }
+    constructor(private serviceObter: ServiceResolver<TEntity>) { }
 
-    resolve(route: ActivatedRouteSnapshot)  {
-        return this.contasAPagarService.obterPorId(route.params["id"]);
+    resolve(route: ActivatedRouteSnapshot) {
+        return this.serviceObter.obterPorId(route.params["id"]);
     }
 }

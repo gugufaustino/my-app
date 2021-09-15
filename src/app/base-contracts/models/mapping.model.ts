@@ -1,5 +1,5 @@
-export interface IMappingModel {
-    mappings: any[];
+export interface MappingModel {
+    mappings: any[];    
     toMap(T: any): void;
 }
 
