@@ -6,8 +6,12 @@ export class ToastAppService {
 
     constructor(private toastr: ToastrService) { }
 
-    public success(mensagem?: string, titulo?: string, observer?: any): void {
-        let toast = this.toastr.success(mensagem, titulo);
+    public success(mensagem: string[] | any, titulo?: string, observer?: any): void {
+        
+        let mens =  mensagem != undefined ? mensagem : 'Operação realizada!';
+        mens = mensagem[0] ?? ''.toString();
+
+        let toast = this.toastr.success(mens, titulo);
         if (toast && observer != null) {
             toast.onHidden.subscribe(observer);
         }

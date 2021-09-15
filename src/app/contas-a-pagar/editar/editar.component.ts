@@ -13,6 +13,7 @@ import { CurrencyUtils } from 'src/app/utils/currency-utils';
 import { DateUtils } from 'src/app/utils/date-utils';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
 import { ToastAppService } from 'src/app/services/toastapp.service';
+import { titulo } from 'ng-brazil/titulo/validator';
 
 @Component({
   selector: 'app-editar',
@@ -64,10 +65,11 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
   }
 
   processarSucesso(response: any) {
-    this.pagamentoForm.reset();
+    //this.pagamentoForm.reset();
     this.errors = [];
-
-    let toast = this.toastr.success('Salvo com sucesso!', "", () => {
+    
+    let toast = this.toastr.success(response.message, "", () => {
+      this.pagamentoForm.reset();
       this.router.navigate(['/contas-a-pagar/lista']);
     });
 

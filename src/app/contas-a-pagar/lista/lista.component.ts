@@ -1,8 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 import { LocalStorageUtils } from 'src/app/utils/localstorage';
-import { isThisTypeNode } from 'typescript';
 import { Pagamento } from '../models/pagamento';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
 
@@ -37,7 +35,7 @@ export class ListaComponent implements OnInit {
 
     this.contasAPagarService.editarPago(idPagamento, input.checked)
       .subscribe(
-        () => { this.toastr.success('Salvo com sucesso!') },
+        () => { this.toastr.success([], 'Sucesso!') },
         (error) => {
           input.checked = !input.checked;
           this.toastr.error(error, 'Erro');
@@ -47,9 +45,12 @@ export class ListaComponent implements OnInit {
 
   excluir(pagamento: Pagamento): void {
     
+
+    let mens: string[] = ['Excluído com sucesso!'];
+
     this.contasAPagarService.excluir(pagamento.id)
       .subscribe(
-        () => { this.toastr.success('Excluído com sucesso!'); this.listarTodos(); },
+        () => { this.toastr.success(mens); this.listarTodos(); },
         error => this.toastr.error(error)
       );
   }

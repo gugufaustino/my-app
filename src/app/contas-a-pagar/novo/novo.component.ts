@@ -95,11 +95,13 @@ export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewI
   }
 
   processarSucesso(response: any) {
-    this.pagamentoForm.reset();
+    //this.pagamentoForm.reset();
     this.errors = [];
     this.mudancasNaoSalvas = false;
+     
+    this.toastr.success(response.message, 'Sucesso!', () => {
 
-    this.toastr.success('Salvo com sucesso!', 'Sucesso!', () => {
+      this.pagamentoForm.reset();
       this.router.navigate(['/contas-a-pagar/lista']);
     });
   }

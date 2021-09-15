@@ -41,10 +41,9 @@ export class ContasAPagarService extends BaserService {
     }
 
 
-    public inserir(conta: Pagamento): Observable<Pagamento> {
+    public inserir(conta: Pagamento): Observable<any> {
         let response = this.http.post(this.UrlServiceV1 + 'conta/', conta, this.ObterHeaderAuthJson())
-            .pipe(
-                map(this.extractData),
+            .pipe( 
                 catchError(this.serviceError));
         return response;
     }
