@@ -11,14 +11,14 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let pagamento of contasPagamento">
-			<td class="text-right">{{ pagamento.dtVencimento | date:'dd'}}</td>
+			<td class="text-right">{{ pagamento.dtVencimento | date:'dd/MM'}}</td>
 			<td class="text-pink text-capitalize"> <a [routerLink]="['/contas-a-pagar/editar', pagamento.id]">{{pagamento.descricaoFornecedor}}</a> </td>
 			<td class="text-right">{{ pagamento.valor | currency:'BRL':true:'1.2-2':'pt' }}</td>
 			<td class="text-center content-checkbox">
 				<input type="checkbox" class="form-check-input" name="{{pagamento.indPago}}" [value]="pagamento.indPago" [checked]="pagamento.indPago" (change)="onChangePago($event, pagamento.id)"  >
 			</td>
 			<td class="text-center">
-				<a class="text-white" href="javascript:void(0)" (click)="excluir(pagamento)"  placement="top" ngbTooltip="Excluir '{{pagamento.descricaoFornecedor}}'" >
+				<a class="text-white" href="javascript:void(0)" (click)="excluir(pagamento)"  placement="left" ngbTooltip="Excluir '{{pagamento.descricaoFornecedor}}'" >
 					<i class="fas fa-trash-alt yellow"></i>
 				</a>
 			</td>
