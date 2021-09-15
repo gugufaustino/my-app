@@ -15,12 +15,10 @@ import { ContasAPagarService } from './services/contas-a-pagar.service';
 import { AppResolve } from '../services/app.resolve';
 import { ContasAPagarGuard } from './services/contas-a-pagar.guard';
 
+import { ContasAPagarAppComponent } from './contas-a-pagar.app.component';
 import { ListaComponent } from './lista/lista.component';
 import { EditarComponent } from './editar/editar.component';
-import { ContasAPagarAppComponent } from './contas-a-pagar.app.component';
-import { NovoComponent } from './novo/novo.component';
-import { Observable } from 'rxjs';
-import { Pagamento } from './models/pagamento';
+import { InserirComponent } from './inserir/inserir.component';
 import { AppResolveService } from '../services/app.resolve.service';
 
 
@@ -29,7 +27,7 @@ import { AppResolveService } from '../services/app.resolve.service';
     ContasAPagarAppComponent,
     ListaComponent,
     EditarComponent,
-    NovoComponent],
+    InserirComponent],
   imports: [
     CommonModule,
     RouterModule,

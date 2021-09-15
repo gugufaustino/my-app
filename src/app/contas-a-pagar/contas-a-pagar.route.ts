@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ContasAPagarAppComponent } from "./contas-a-pagar.app.component";
 import { EditarComponent } from "./editar/editar.component";
 import { ListaComponent } from "./lista/lista.component";
-import { NovoComponent } from "./novo/novo.component";
+import { InserirComponent } from "./inserir/inserir.component";
 import { ContasAPagarGuard } from "./services/contas-a-pagar.guard";
 import { AppResolve } from "../services/app.resolve";
 
@@ -23,7 +23,7 @@ const rotasContasAPagar: Routes = [{
             data: [{ claim: { nome: 'PAGAMENTO', valor: 'EDITAR' } }] 
         },
         {
-            path: 'novo', component: NovoComponent,
+            path: 'inserir', component: InserirComponent,
             canActivate: [ContasAPagarGuard],
             data: [{ claim: { nome: 'PAGAMENTO', valor: 'INSERIR' } }]
         },

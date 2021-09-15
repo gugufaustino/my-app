@@ -8,10 +8,10 @@ import { ContasPagarBase } from '../contas-a-pagar-form.base.component';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 
 @Component({
-  selector: 'app-novo',
-  templateUrl: './novo.component.html'
+  selector: 'app-inserir',
+  templateUrl: './inserir.component.html'
 })
-export class NovoComponent extends ContasPagarBase implements OnInit, AfterViewInit {
+export class InserirComponent extends ContasPagarBase implements OnInit, AfterViewInit {
 
   constructor(private router: Router,
     private fb: FormBuilder,
