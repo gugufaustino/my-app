@@ -6,7 +6,6 @@ import { ListaComponent } from "./lista/lista.component";
 import { NovoComponent } from "./novo/novo.component";
 import { ContasAPagarGuard } from "./services/contas-a-pagar.guard";
 import { AppResolve } from "../services/app.resolve";
-import { ContasAPagarService } from "./services/contas-a-pagar.service";
 
 
 const rotasContasAPagar: Routes = [{
@@ -16,7 +15,7 @@ const rotasContasAPagar: Routes = [{
         {
             path: 'lista', component: ListaComponent,
             canActivate: [ContasAPagarGuard],
-            data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]// <<<--- permissao
+            data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
         },
         {
             path: 'editar/:id', component: EditarComponent, resolve: { pagamento: AppResolve },
