@@ -5,7 +5,7 @@ import { EditarComponent } from "./editar/editar.component";
 import { ListaComponent } from "./lista/lista.component";
 import { NovoComponent } from "./novo/novo.component";
 import { ContasAPagarGuard } from "./services/contas-a-pagar.guard";
-import { ContasAPagarResolve } from "./services/contas-a-pagar.resolve";
+import { AppResolve } from "../services/app.resolve";
 import { ContasAPagarService } from "./services/contas-a-pagar.service";
 
 
@@ -19,7 +19,7 @@ const rotasContasAPagar: Routes = [{
             data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]// <<<--- permissao
         },
         {
-            path: 'editar/:id', component: EditarComponent, resolve: { pagamento: ContasAPagarResolve },
+            path: 'editar/:id', component: EditarComponent, resolve: { pagamento: AppResolve },
             canActivate: [ContasAPagarGuard],
             data: [{ claim: { nome: 'PAGAMENTO', valor: 'EDITAR' } }] 
         },

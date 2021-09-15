@@ -61,8 +61,3 @@ export class ContasAPagarService<TEntity> extends BaserService
     }
 }
 
-export abstract class ServiceResolver<TEntity> implements IObter<TEntity> {
-    
-     obterPorId: (id: string) => Observable<TEntity>
-
-}
