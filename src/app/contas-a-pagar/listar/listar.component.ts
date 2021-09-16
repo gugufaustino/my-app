@@ -6,8 +6,8 @@ import { ContasAPagarService } from '../services/contas-a-pagar.service';
 
 @Component({
   selector: 'app-lista',
-  templateUrl: './lista.component.html',
-  styleUrls: ['./lista.component.css']
+  templateUrl: './listar.component.html',
+  styleUrls: ['./listar.component.css']
 })
 export class ListaComponent implements OnInit {
 

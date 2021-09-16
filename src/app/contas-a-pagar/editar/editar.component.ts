@@ -70,7 +70,7 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
     
     let toast = this.toastr.success(response.message, "", () => {
       this.pagamentoForm.reset();
-      this.router.navigate(['/contas-a-pagar/lista']);
+      this.router.navigate(['/contas-a-pagar/listar']);
     });
 
   }

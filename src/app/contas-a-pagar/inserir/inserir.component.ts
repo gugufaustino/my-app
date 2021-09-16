@@ -102,7 +102,7 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
     this.toastr.success(response.message, 'Sucesso!', () => {
 
       this.pagamentoForm.reset();
-      this.router.navigate(['/contas-a-pagar/lista']);
+      this.router.navigate(['/contas-a-pagar/listar']);
     });
   }
 

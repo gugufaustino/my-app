@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ContasAPagarAppComponent } from "./contas-a-pagar.app.component";
 
 import { EditarComponent } from "./editar/editar.component";
-import { ListaComponent } from "./lista/lista.component";
+import { ListaComponent } from "./listar/listar.component";
 import { InserirComponent } from "./inserir/inserir.component";
 import { ContasAPagarGuard } from "./services/contas-a-pagar.guard";
 import { AppResolve } from "../services/app.resolve";

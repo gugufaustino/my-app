@@ -16,7 +16,7 @@ import { AppResolve } from '../services/app.resolve';
 import { ContasAPagarGuard } from './services/contas-a-pagar.guard';
 
 import { ContasAPagarAppComponent } from './contas-a-pagar.app.component';
-import { ListaComponent } from './lista/lista.component';
+import { ListaComponent } from './listar/listar.component';
 import { EditarComponent } from './editar/editar.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { AppResolveService } from '../services/app.resolve.service';
