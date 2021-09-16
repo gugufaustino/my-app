@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ContasAPagarAppComponent } from "./contas-a-pagar.app.component";
+
 import { EditarComponent } from "./editar/editar.component";
 import { ListaComponent } from "./lista/lista.component";
 import { InserirComponent } from "./inserir/inserir.component";
@@ -8,7 +9,7 @@ import { ContasAPagarGuard } from "./services/contas-a-pagar.guard";
 import { AppResolve } from "../services/app.resolve";
 
 
-const rotasContasAPagar: Routes = [{
+const routes: Routes = [{
     path: '',
     component: ContasAPagarAppComponent,
     children: [
@@ -20,7 +21,7 @@ const rotasContasAPagar: Routes = [{
         {
             path: 'editar/:id', component: EditarComponent, resolve: { pagamento: AppResolve },
             canActivate: [ContasAPagarGuard],
-            data: [{ claim: { nome: 'PAGAMENTO', valor: 'EDITAR' } }] 
+            data: [{ claim: { nome: 'PAGAMENTO', valor: 'EDITAR' } }]
         },
         {
             path: 'inserir', component: InserirComponent,
@@ -31,10 +32,8 @@ const rotasContasAPagar: Routes = [{
 }];
 
 @NgModule({
-    imports: [RouterModule.forChild(rotasContasAPagar)],
-    exports: [RouterModule] 
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 
-export class ContasAPagarRouteModule {
-
-}
+export class ContasAPagarRouteModule { }

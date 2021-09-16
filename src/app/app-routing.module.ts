@@ -6,24 +6,28 @@ import { HomeComponent } from './navegacao/home/home.component';
 import { NotFoundComponent } from './navegacao/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent,
-        canActivate: [ContasAPagarGuard],
-        data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: 'home', component: HomeComponent,
+    canActivate: [ContasAPagarGuard],
+    data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
   },
-  { path: 'conta', 
-    loadChildren: () => import ('./conta/conta.module')
-                                .then(m=> m.ContaModule)
+  {
+    path: 'conta', loadChildren: () => import('./conta/conta.module')
+      .then(m => m.ContaModule)
   },
-  { path: 'contas-a-pagar', 
-    loadChildren: () => import ('./contas-a-pagar/contas-a-pagar.module')
-                                .then(m=> m.ContasAPagarModule)
+  {
+    path: 'contas-a-pagar', loadChildren: () => import('./contas-a-pagar/contas-a-pagar.module')
+      .then(m => m.ContasAPagarModule)
+  },
+  {
+    path: 'fornecedores', loadChildren: () => import('./fornecedores/fornecedores.module')
+      .then(m => m.FornecedoresModule)
   },
 
-  { path: 'acesso-negado', component: AcessoNegadoComponent},
-  { path: 'nao-encontrado', component: NotFoundComponent},
-  { path: '**', component: NotFoundComponent},
-  
+  { path: 'acesso-negado', component: AcessoNegadoComponent },
+  { path: 'nao-encontrado', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

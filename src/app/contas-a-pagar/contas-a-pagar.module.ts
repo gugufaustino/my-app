@@ -10,7 +10,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
-import { ContasAPagarRouteModule } from './contas-a-pagar.route';
+import { ContasAPagarRouteModule } from './contas-a-pagar-routing.module';
 import { ContasAPagarService } from './services/contas-a-pagar.service';
 import { AppResolve } from '../services/app.resolve';
 import { ContasAPagarGuard } from './services/contas-a-pagar.guard';
@@ -30,10 +30,11 @@ import { AppResolveService } from '../services/app.resolve.service';
     InserirComponent],
   imports: [
     CommonModule,
+    ContasAPagarRouteModule,
+    
     RouterModule,
     NgbModule,
 
-    ContasAPagarRouteModule,
     FormsModule,
     ReactiveFormsModule,
     NgBrazil,
