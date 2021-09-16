@@ -27,6 +27,7 @@ const routes: Routes = [
 
   { path: 'acesso-negado', component: AcessoNegadoComponent },
   { path: 'nao-encontrado', component: NotFoundComponent },
+  { path: 'clientes', loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule) },
   { path: '**', component: NotFoundComponent }
 ];
 

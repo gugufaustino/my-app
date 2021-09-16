@@ -41,8 +41,7 @@ import { AppResolveService } from '../services/app.resolve.service';
     TextMaskModule,
   ],
   providers: [
-    ContasAPagarService,
-    ContasAPagarGuard,
+    ContasAPagarService,   
     AppResolve,
     { provide: AppResolveService, useExisting: ContasAPagarService },
   ]

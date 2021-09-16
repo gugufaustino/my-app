@@ -48,7 +48,7 @@ export class MenuLoginComponent implements OnInit {
   }
 
   private processaSucesso(response: any){
-    this.apelido = response.apelido;
+    this.apelido = response.apelido ?? '';
   }
 
 
