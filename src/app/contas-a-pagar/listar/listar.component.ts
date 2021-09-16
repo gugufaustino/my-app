@@ -9,7 +9,7 @@ import { ContasAPagarService } from '../services/contas-a-pagar.service';
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
 })
-export class ListaComponent implements OnInit {
+export class ListarComponent implements OnInit {
 
   public contasPagamento: Pagamento[];
   public localStorageUtils = new LocalStorageUtils();

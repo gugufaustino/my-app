@@ -16,7 +16,7 @@ import { AppResolve } from '../services/app.resolve';
 import { ContasAPagarGuard } from './services/contas-a-pagar.guard';
 
 import { ContasAPagarAppComponent } from './contas-a-pagar.app.component';
-import { ListaComponent } from './listar/listar.component';
+import { ListarComponent } from './listar/listar.component';
 import { EditarComponent } from './editar/editar.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { AppResolveService } from '../services/app.resolve.service';
@@ -25,7 +25,7 @@ import { AppResolveService } from '../services/app.resolve.service';
 @NgModule({
   declarations: [
     ContasAPagarAppComponent,
-    ListaComponent,
+    ListarComponent,
     EditarComponent,
     InserirComponent],
   imports: [

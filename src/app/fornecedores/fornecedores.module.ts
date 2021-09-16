@@ -12,12 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import localePt from '@angular/common/locales/pt';
+import { ListarComponent } from './listar/listar.component';
 registerLocaleData(localePt);
 
 
 @NgModule({
   declarations: [
-    FornecedoresComponent
+    FornecedoresComponent,
+    ListarComponent
   ],
   imports: [
     CommonModule,
