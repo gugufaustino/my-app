@@ -9,6 +9,8 @@ import { ContasAPagarGuard } from "./services/contas-a-pagar.guard";
 import { AppResolve } from "../services/app.resolve";
 
 
+
+const clmaimAcesso :string = 'PAGAMENTO';
 const routes: Routes = [{
     path: '',
     component: ContasAPagarAppComponent,
@@ -16,17 +18,17 @@ const routes: Routes = [{
         {
             path: 'listar', component: ListarComponent,
             canActivate: [ContasAPagarGuard],
-            data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
+            data: [{ claim: { nome: clmaimAcesso, valor: 'CONSULTAR' } }]
         },
         {
             path: 'editar/:id', component: EditarComponent, resolve: { pagamento: AppResolve },
             canActivate: [ContasAPagarGuard],
-            data: [{ claim: { nome: 'PAGAMENTO', valor: 'EDITAR' } }]
+            data: [{ claim: { nome: clmaimAcesso, valor: 'EDITAR' } }]
         },
         {
             path: 'inserir', component: InserirComponent,
             canActivate: [ContasAPagarGuard],
-            data: [{ claim: { nome: 'PAGAMENTO', valor: 'INSERIR' } }]
+            data: [{ claim: { nome: clmaimAcesso, valor: 'INSERIR' } }]
         },
     ]
 }];

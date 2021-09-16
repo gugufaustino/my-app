@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseGuard } from 'src/app/services/base.guard';
-import { CanActivate, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class ContasAPagarGuard extends BaseGuard implements CanActivate

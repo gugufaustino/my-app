@@ -13,13 +13,17 @@ import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import localePt from '@angular/common/locales/pt';
 import { ListarComponent } from './listar/listar.component';
+import { InserirComponent } from './inserir/inserir.component';
+import { EditarComponent } from './editar/editar.component';
 registerLocaleData(localePt);
 
 
 @NgModule({
   declarations: [
     FornecedoresComponent,
-    ListarComponent
+    ListarComponent,
+    InserirComponent,
+    EditarComponent
   ],
   imports: [
     CommonModule,
