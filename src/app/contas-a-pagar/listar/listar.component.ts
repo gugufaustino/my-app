@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastAppService } from 'src/app/services/toastapp.service';
+
 import { LocalStorageUtils } from 'src/app/utils/localstorage';
-import { Pagamento } from '../models/pagamento';
+import { ToastAppService } from 'src/app/services/toastapp.service';
+
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
+import { Pagamento } from '../models/pagamento';
 
 @Component({
   selector: 'app-lista',

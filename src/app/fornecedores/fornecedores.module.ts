@@ -15,6 +15,7 @@ import localePt from '@angular/common/locales/pt';
 import { ListarComponent } from './listar/listar.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { EditarComponent } from './editar/editar.component';
+import { FornecedorService } from './services/fornecedor.service';
 registerLocaleData(localePt);
 
 
@@ -37,6 +38,8 @@ registerLocaleData(localePt);
     NgBrazil,
     TextMaskModule,
   ],
-  providers: []
+  providers: [
+    FornecedorService
+  ]
 })
 export class FornecedoresModule { }
