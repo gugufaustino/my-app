@@ -1,6 +1,6 @@
 export interface MappingModel {
     mappings: any[];    
-    toMap(T: any): void;
+    toMap(): void;
 }
 
  

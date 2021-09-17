@@ -56,12 +56,13 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
+              "outputPath": "/inetpub/wwwroot-sevennd/fin",
               "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",

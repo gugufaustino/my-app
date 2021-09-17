@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BaseGuard } from 'src/app/services/base.guard';
-import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, Router, CanDeactivate } from '@angular/router';
+import { InserirComponent } from '../inserir/inserir.component';
 
 @Injectable()
-export class ContasAPagarGuard extends BaseGuard implements CanActivate
-//, CanDeactivate<unknown> 
+export class ContasAPagarGuard extends BaseGuard implements CanActivate, CanDeactivate<InserirComponent>
 {
   constructor(protected router: Router) { super(router); }
 
@@ -12,12 +12,12 @@ export class ContasAPagarGuard extends BaseGuard implements CanActivate
     return super.validarClaim(routeAc);
   }
 
-  // canDeactivate(
-  //   component: unknown,
-  //   currentRoute: ActivatedRouteSnapshot,
-  //   currentState: RouterStateSnapshot,
-  //   nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   return true;
-  // }
+  canDeactivate(component: InserirComponent) {
+    if (component.mudancasNaoSalvas) {
+      return window.confirm('Tem certeza que deseja abandonar o preenchimento do formulario?');
+    }
+    return true
+  }
+
 
 }
