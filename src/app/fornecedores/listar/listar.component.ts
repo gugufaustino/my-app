@@ -15,7 +15,7 @@ export class ListarComponent implements OnInit {
 
   public lstModels: Fornecedor[];
   public storage = new LocalStorageUtils();
-  public componentRoute : string  = '/contas-a-pagar';
+  public componentRoute : string  = '/fornecedores';
 
   constructor(
     private toastr: ToastAppService,

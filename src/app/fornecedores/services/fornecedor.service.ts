@@ -27,8 +27,8 @@ export class FornecedorService<TEntity> extends BaserService
       .pipe(catchError(this.serviceError));
   }
 
-  public inserir(conta: TEntity): Observable<any> {
-    let response = this.http.post(this.UrlServiceV1 + this.apiUrl, conta, this.ObterHeaderAuthJson())
+  public inserir(model: TEntity): Observable<any> {
+    let response = this.http.post(this.UrlServiceV1 + this.apiUrl, model, this.ObterHeaderAuthJson())
       .pipe(catchError(this.serviceError));
     return response;
   }
