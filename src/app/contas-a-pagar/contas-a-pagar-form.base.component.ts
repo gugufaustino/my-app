@@ -1,5 +1,5 @@
 import { ElementRef } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormGroup, Validators } from "@angular/forms";
 import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { FormBaseComponent } from "../base-components/form-base.components";
 import { DateUtils } from "../utils/date-utils";
