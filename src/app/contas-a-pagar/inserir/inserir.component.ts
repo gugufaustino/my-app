@@ -34,6 +34,7 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
    
     // Valores Default
     this.pagamentoForm.patchValue({ tipoRecorrencia: '1' });
+    this.tipoRecorrenciaValueChanges();
   }
 
   ngAfterViewInit(): void {

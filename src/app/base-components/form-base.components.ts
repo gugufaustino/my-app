@@ -62,7 +62,7 @@ export abstract class FormBaseComponent {
                     let modelValue = model[propKey];
                     let parsed = null;
 
-                    if (mapType == "number" && modelValue != null) {
+                    if (mapType == "number" && modelValue != "" && modelValue != null) {
                         if (modelValue.indexOf(",") > 0) // temvirgula é decimal
                             parsed = CurrencyUtils.StringParaDecimal(modelValue);
                         else

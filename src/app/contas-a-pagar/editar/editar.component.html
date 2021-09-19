@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Descrição</label>
                 <div class="col-md-12">
-                    <input disabled="disabled" class="form-control bg-dark text-white" formControlName="descricaoFornecedor" id="descricaoFornecedor" placeholder="(requerido)"
+                    <input [disabled]="true" class="form-control bg-dark text-white" formControlName="descricaoFornecedor" id="descricaoFornecedor" placeholder="(requerido)"
                         [ngClass]="{'is-invalid': displayMessage?.descricaoFornecedor}" />
                     <span class="text-danger" *ngIf="displayMessage?.descricaoFornecedor">
                         <p [innerHTML]="displayMessage?.descricaoFornecedor"></p>
@@ -19,11 +19,11 @@
                     <label class=" control-label" for="TipoRecorrencia">Tipo Recorrência</label>
                     <div class="form-group ">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" readonly="readonly" value="1" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
+                            <input class="form-check-input" type="radio" [disabled]="true" value="1" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
                             <label class="form-check-label" for="">Único</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" disabled="disabled" value="2" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
+                            <input class="form-check-input" type="radio" [disabled]="true" value="2" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
                             <label class="form-check-label" for="">Mensal</label>
                         </div>                   
                     </div>
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="form-group col">
 
-                    <div  [hidden]="this.tipoRecorrencia().value != 1">
+                    <div>
                         <label class="col-md-12 control-label">Data Vencimento</label>
                         <div class="col-md-12">
                             <input class="form-control bg-dark text-white text-center" formControlName="dtVencimento" id="dtVencimento" placeholder="(requerido)"
