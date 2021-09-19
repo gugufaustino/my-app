@@ -34,8 +34,7 @@ export class InserirComponent extends FornecedorBase implements OnInit, AfterVie
     this.componentForm.patchValue({  });
   }
 
-  ngAfterViewInit(): void {
- 
+  ngAfterViewInit(): void { 
 
     super.configurarMensagensValidacaoBase();
     super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
@@ -61,7 +60,6 @@ export class InserirComponent extends FornecedorBase implements OnInit, AfterVie
     this.mudancasNaoSalvas = false;
      
     this.toastr.success(response.message, 'Sucesso!', () => {
-
       this.componentForm.reset();
       this.router.navigate(['/fornecedores/listar']);
     });

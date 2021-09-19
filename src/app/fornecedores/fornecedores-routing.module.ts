@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppResolve } from '../services/app.resolve';
 import { EditarComponent } from './editar/editar.component';
 import { FornecedoresComponent } from './fornecedores.component';
 import { InserirComponent } from './inserir/inserir.component';
@@ -20,7 +21,7 @@ const routes: Routes = [{
         //  data: [{ claim: { nome: clmaimAcesso, valor: 'INSERIR' } }]
     },
     {
-         path: 'editar', component: EditarComponent,
+         path: 'editar/:id', component: EditarComponent, resolve: { model: AppResolve }
         //  canActivate: [ContasAPagarGuard],
         //  data: [{ claim: { nome: clmaimAcesso, valor: 'EDITAR' } }]
     },

@@ -16,6 +16,8 @@ import { ListarComponent } from './listar/listar.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { EditarComponent } from './editar/editar.component';
 import { FornecedorService } from './services/fornecedor.service';
+import { AppResolve } from '../services/app.resolve';
+import { AppResolveService } from '../services/app.resolve.service';
 registerLocaleData(localePt);
 
 
@@ -39,7 +41,9 @@ registerLocaleData(localePt);
     TextMaskModule,
   ],
   providers: [
-    FornecedorService
+    FornecedorService,
+    AppResolve,
+    { provide: AppResolveService, useExisting: FornecedorService },
   ]
 })
 export class FornecedoresModule { }

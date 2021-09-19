@@ -5,8 +5,6 @@ import { FormBaseComponent } from "../base-components/form-base.components";
 import { DateUtils } from "../utils/date-utils";
 
 export abstract class FornecedorBase extends FormBaseComponent {
-
-
     MASKS: any = MASKS;
     DateMask = DateUtils.DataMask;
     DataDayMask = DateUtils.DataDayMask;
@@ -27,12 +25,9 @@ export abstract class FornecedorBase extends FormBaseComponent {
           this.validationMessages = {
             razaoSocial: {
                 required: 'campo requerido',
-            },
-             
+            }
             
         }
-        
-
        
     }
 
