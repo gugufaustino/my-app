@@ -24,6 +24,7 @@ export class CurrencyUtils {
     }
     
     public static ExtractNumber(input: any): number {
+        input = input.replaceAll('.', '');
         return parseFloat(input.match(/(\d+)/)[0]);
     }
     

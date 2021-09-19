@@ -1,11 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+ @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     line-height: 1.42em;
     color: #A7A1AE;
     background-color: #1F2739 !important;
-    /*background-color: #6c757dcc;*/
+    
    
     text-size-adjust: initial !important;
     -webkit-tap-highlight-color:initial !important;
@@ -17,13 +17,12 @@ html{
 app-menu-login{display: contents; }
 
 h1 {
-    /* font-size:3em;  */
+    
     font-weight: 300; 
     color: #4DC3FA;
   }
   
   h2 {
-    /* font-size:1em;  */
     font-weight: 300;
     text-align: center;
     display: block; 
@@ -84,13 +83,10 @@ h1 {
     padding-right: 2%;
 }
 
-/* Background-color of the odd rows */
 
 .container-table tr:nth-child(odd) {
     background-color: #323C50;
 }
-
-/* Background-color of the even rows */
 
 .container-table tr:nth-child(even) {
     background-color: #2C3446;
@@ -136,9 +132,7 @@ h1 {
 }
 
 @media (max-width: 800px) {
-    /* .container-table td:nth-child(4), .container-table th:nth-child(4) {
-        display: none;
-    } */
+    
 }
 
 .bt-conta {
@@ -199,6 +193,24 @@ h1 {
  .hidden-disabled[disabled]{
     display: none!important;
  }
- input[disabled]{
+
+  input[type=text]:disabled{
     opacity: 0.5  !important;
- }
+ } 
+
+ input[type="radio"]:disabled {
+    -webkit-appearance: none;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    padding: 0px;
+    background-clip: content-box;
+    border: 2px solid #fffcfc26;
+    background-color: #fffcfc26;
+    border-radius: 50%;
+}
+
+input[type="radio"]:checked {
+    background-color: #11141b;
+    border-color: #fcfcff7a;
+}

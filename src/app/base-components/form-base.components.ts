@@ -83,20 +83,15 @@ export abstract class FormBaseComponent {
     }
 
     protected desabilitaCampo(form: any, name: string, dfaultVal?: string) {
-
-        //desabilita //limpa valores.
-        // this.dtVencimento().clearValidators();
-        // this.dtVencimento().disable();
-        // this.dtVencimento().value = '';  
-
+        
+        //Reseta atributos ao estado original, value, touched, dirty, 
         form.get(name)?.clearValidators();
         form.get(name)?.disable();
         form.get(name).value = dfaultVal;
-        form.patchValue({ [name]: dfaultVal });
-        // let field = Object.defineProperty({}, name, {value: ''});
-        // form.patchValue(field);
-        // let ob1 = { "diaVencimento": '' };
-        // form.patchValue(ob1);           
+        form.get(name).touched = false;
+        form.get(name).pristine= true;
+        form.patchValue({ [name]: dfaultVal });        
+                
     }
 
 }

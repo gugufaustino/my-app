@@ -33,12 +33,12 @@
                 <label class=" control-label" for="TipoRecorrencia">Tipo Recorrência</label>
                 <div class="form-group ">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" value="1" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
-                        <label class="form-check-label" for="">Único</label>
+                        <input class="form-check-input" type="radio" value="1" id="tipoRecorrencia-1" formControlName="tipoRecorrencia" name="tipoRecorrencia">
+                        <label class="form-check-label" for="tipoRecorrencia-1" >Único</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" value="2" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
-                        <label class="form-check-label" for="">Mensal</label>
+                        <input class="form-check-input" type="radio" value="2" id="tipoRecorrencia-2" formControlName="tipoRecorrencia" name="tipoRecorrencia">
+                        <label class="form-check-label" for="tipoRecorrencia-2">Mensal</label>
                     </div>
                     <!-- <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" value="3" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
@@ -68,7 +68,7 @@
                 <div [hidden]="this.tipoRecorrencia().value != 2">
                     <label class="col-md-12 control-label">Dia Vencimento</label>
                     <div class="col-md-12">
-                        <input class="form-control bg-dark text-white text-center" formControlName="diaVencimento"
+                        <input class="form-control bg-dark text-white text-center" formControlName="diaVencimento"  
                             id="diaVencimento" placeholder="(dia obrigatório)" [textMask]="{mask: DataDayMask}" max="31" [ngClass]="{'is-invalid': displayMessage?.diaVencimento}" />
                         <span class="text-danger" *ngIf="displayMessage?.diaVencimento">
                             <p [innerHTML]="displayMessage?.diaVencimento"></p>

@@ -31,27 +31,30 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
 
   ngOnInit(): void {
     
-    this.pagamentoForm = this.fb.group(this.controlsFormBase); // obrigatário uso de this aqui nesso ponto   
+    this.pagamentoForm = this.fb.group(this.controlsFormBase); // obrigatório uso de this aqui nesso ponto   
     this.pagamentoForm.addControl('dtVencimento', new FormControl('', this.dtVencValidators));
 
     this.pagamentoForm.patchValue({
       descricaoFornecedor: this.pagamento.descricaoFornecedor,
       valor: CurrencyUtils.DecimalParaString(this.pagamento.valor),
       tipoRecorrencia: this.pagamento.tipoRecorrencia.toString(),
-      dtVencimento: DateUtils.Format(this.pagamento.dtVencimento),
+      dtVencimento: DateUtils.Format(this.pagamento.dtVencimento)
     });
+
+      this.pagamentoForm.get('tipoRecorrencia')?.disable();
   }
 
   ngAfterViewInit(): void {
 
-     
-
-
     super.configurarMensagensValidacaoBase();
-    super.configurarValidacaoFormularioBase(this.formInputElements, this.pagamentoForm)
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.pagamentoForm);
+
+    
+         
   }
 
   submitForm() {
+ 
 
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
       this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value)
