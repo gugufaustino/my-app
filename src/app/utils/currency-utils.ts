@@ -16,8 +16,15 @@ export class CurrencyUtils {
             if (decArr.length > 1) {
                 var dec = decArr[1].length;
                 if (dec === 1) { ret += "0"; }
+            }else if(decArr.length === 1){
+                ret += ",00"
             }
         }
         return ret;
     }
+    
+    public static ExtractNumber(input: any): number {
+        return parseFloat(input.match(/(\d+)/)[0]);
+    }
+    
 }

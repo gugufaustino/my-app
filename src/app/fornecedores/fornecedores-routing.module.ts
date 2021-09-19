@@ -5,7 +5,7 @@ import { FornecedoresComponent } from './fornecedores.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { ListarComponent } from './listar/listar.component';
 
-const clmaimAcesso :string = 'd';
+const clmaimAcesso :string = 'FORNECEDOR';
 const routes: Routes = [{
   path: '', component: FornecedoresComponent,
   children: [

@@ -1,0 +1,28 @@
+<table class="container-table">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Ação</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let model of lstModels">
+			<td class="text-pink text-capitalize"> <a [routerLink]="[componentRoute + '/editar', model.id]">{{model.nome}}</a> </td>			
+
+			<td class="text-center">
+				<a class="text-white" href="javascript:void(0)" (click)="excluir(model)"  placement="left" ngbTooltip="Excluír '{{model.id}}'" >
+					<i class="fas fa-trash-alt yellow"></i>
+				</a>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="5" class="text-right">
+				<button class="bt yellow" [routerLink]="[componentRoute + '/inserir']"   >
+					<i class="fas fa-plus yellow"></i> <span class="yellow">Novo</span>
+				</button>
+			</td>
+		</tr>
+	</tfoot>
+</table>

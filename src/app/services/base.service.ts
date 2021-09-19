@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { throwError } from "rxjs";
+import { CustomResponse } from "../base-contracts/models/custom-response";
 import { LocalStorageUtils } from "../utils/localstorage";
 
 
@@ -21,6 +22,9 @@ import { LocalStorageUtils } from "../utils/localstorage";
         };
     }
 
+    protected extractDefault(response: any): CustomResponse {
+        return Object.assign(new CustomResponse(),response);
+    }
     protected extractData(response: any) {
         console.log(response)
         return response.data || {};
@@ -38,7 +42,7 @@ import { LocalStorageUtils } from "../utils/localstorage";
             }
         }
         if (response.status === 500) {
-            customError.push("Ocorreu um erro no processamento, tente novamente mais tarde ou contate o nosso suporte.");
+            customError.push("Ocorreu um erro interno na aplicação, por favor informe o nosso suporte.");
             // Erros do tipo 500 não possuem uma lista de erros
             // A lista de erros do HttpErrorResponse é readonly                
             customResponse.error.errors = customError;

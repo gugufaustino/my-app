@@ -7,6 +7,7 @@ import { GenericValidator, DisplayMessage, ValidationMessages } from '../utils/g
 import { MappingModel } from '../base-contracts/models/mapping.model';
 import { CurrencyUtils } from '../utils/currency-utils';
 import { DateUtils } from '../utils/date-utils';
+ 
 
 export abstract class FormBaseComponent {
 
@@ -33,7 +34,7 @@ export abstract class FormBaseComponent {
         });
     }
 
-    protected validarFormulario(formGroup: FormGroup, allControls : boolean = false) {
+    protected validarFormulario(formGroup: FormGroup, allControls: boolean = false) {
 
         this.displayMessage = this.genericValidator.processaMensgens(formGroup, allControls);
         this.mudancasNaoSalvas = true;
@@ -62,11 +63,15 @@ export abstract class FormBaseComponent {
                     let parsed = null;
 
                     if (mapType == "number" && modelValue != null) {
-                        if (modelValue.indexOf(",") > 1) // temvirgula é decimal
+                        if (modelValue.indexOf(",") > 0) // temvirgula é decimal
                             parsed = CurrencyUtils.StringParaDecimal(modelValue);
                         else
-                            parsed = parseFloat(modelValue);
-
+                            parsed = CurrencyUtils.ExtractNumber(modelValue);
+                           
+                            if (isNaN(parsed)){
+                                throw "Erro na conversao em 'mapToModel()'";
+                            }
+                      
                         model[propKey] = parsed;
                     } else if (mapType == "Date" && modelValue != "" && modelValue != null) {
                         model[propKey] = DateUtils.StringParaDate(modelValue.toString());

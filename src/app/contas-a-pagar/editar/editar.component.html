@@ -1,11 +1,11 @@
 <div class="container main-container">
-    <h5></h5>
+    <h1 class="display-7 text-uppercase">Editar Pagamento</h1>
     <form novalidate [formGroup]="pagamentoForm" (ngSubmit)="submitForm()">
         <div class="">
             <div class="form-group">
                 <label class="col-md-6 control-label">Descrição</label>
                 <div class="col-md-12">
-                    <input class="form-control bg-dark text-white" formControlName="descricaoFornecedor" id="descricaoFornecedor" placeholder="(requerido)"
+                    <input disabled="disabled" class="form-control bg-dark text-white" formControlName="descricaoFornecedor" id="descricaoFornecedor" placeholder="(requerido)"
                         [ngClass]="{'is-invalid': displayMessage?.descricaoFornecedor}" />
                     <span class="text-danger" *ngIf="displayMessage?.descricaoFornecedor">
                         <p [innerHTML]="displayMessage?.descricaoFornecedor"></p>
@@ -13,25 +13,44 @@
                 </div>
             </div>
 
-            <div class="row">
-
-                <div class="form-group col">
-                    <label class="col-md-12 control-label">Data Vencimento</label>
-                    <div class="col-md-12">
-                    <input class="form-control bg-dark text-white text-center" formControlName="dtVencimento" id="dtVencimento" placeholder="(requerido)"                              
-                        [textMask]="{mask: DateMask}"
-                        [ngClass]="{'is-invalid': displayMessage?.dtVencimento}" />
-                        <span class="text-danger" *ngIf="displayMessage?.dtVencimento">
-                            <p [innerHTML]="displayMessage?.dtVencimento"></p>
-                        </span>
+            <h1 class="col display-8">Pagamento</h1>
+            <div class="col-md-12">
+                <div class="formg-group">
+                    <label class=" control-label" for="TipoRecorrencia">Tipo Recorrência</label>
+                    <div class="form-group ">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" readonly="readonly" value="1" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
+                            <label class="form-check-label" for="">Único</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" disabled="disabled" value="2" id="tipoRecorrencia" formControlName="tipoRecorrencia" name="tipoRecorrencia">
+                            <label class="form-check-label" for="">Mensal</label>
+                        </div>                   
                     </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+
+                    <div  [hidden]="this.tipoRecorrencia().value != 1">
+                        <label class="col-md-12 control-label">Data Vencimento</label>
+                        <div class="col-md-12">
+                            <input class="form-control bg-dark text-white text-center" formControlName="dtVencimento" id="dtVencimento" placeholder="(requerido)"
+                                [textMask]="{mask: DateMask}" [ngClass]="{'is-invalid': displayMessage?.dtVencimento}" />
+                            <span class="text-danger" *ngIf="displayMessage?.dtVencimento">
+                                <p [innerHTML]="displayMessage?.dtVencimento"></p>
+                            </span>
+                        </div>
+                    </div>                
+
                 </div>
                 <div class="form-group col">
                     <label class="col-md-4 control-label">Valor (R$)</label>
                     <div class="col-md-12">
                         <input class="form-control bg-dark text-white text-right" formControlName="valor" id="valor" placeholder="(requerido)"
-                            [textMask]="{mask: MASKS?.currency.textMask}"
-                            [ngClass]="{'is-invalid': displayMessage?.valor}" />
+                            [textMask]="{mask: MASKS?.number.textMask}" [ngClass]="{'is-invalid': displayMessage?.valor}" />
                         <span class="text-danger" *ngIf="displayMessage?.valor">
                             <p [innerHTML]="displayMessage?.valor"></p>
                         </span>
@@ -43,7 +62,7 @@
                 <div class="form-group">
                     <div class="col-md-4 col-md-offset-2 ">
                         <span>
-                            <button [disabled]="!pagamentoForm.valid" class="btn btn-success" type="submit">Salvar</button>
+                            <button [disabled]="!pagamentoForm.valid" class="btn btn-primary" type="submit">Salvar</button>
                         </span>
 
                     </div>

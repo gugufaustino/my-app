@@ -2,23 +2,25 @@ import { Component, OnInit } from '@angular/core';
 
 import { LocalStorageUtils } from 'src/app/utils/localstorage';
 import { ToastAppService } from 'src/app/services/toastapp.service';
+import { Cliente } from '../models/cliente';
+import { ClienteService } from '../services/cliente.service';
 
-import { Fornecedor } from '../models/fornecedor';
-import { FornecedorService } from '../services/fornecedor.service';
+ 
 
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
+  styleUrls: ['./listar.component.css']
 })
 export class ListarComponent implements OnInit {
 
-  public lstModels: Fornecedor[];
+  public lstModels: Cliente[];
   public storage = new LocalStorageUtils();
-  public componentRoute : string  = '/fornecedores';
+  public componentRoute : string  = '/cliente';
 
   constructor(
     private toastr: ToastAppService,
-    private service: FornecedorService<Fornecedor>
+    private service: ClienteService<Cliente>
     ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class ListarComponent implements OnInit {
       )
   }
  
-  excluir(model: Fornecedor): void {    
+  excluir(model: Cliente): void {    
 
     let mens: string[] = ['Excluído com sucesso!'];
 

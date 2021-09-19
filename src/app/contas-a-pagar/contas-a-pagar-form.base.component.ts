@@ -1,6 +1,6 @@
 import { ElementRef } from "@angular/core";
-import { FormGroup, Validators } from "@angular/forms";
-import { MASKS } from "ng-brazil";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { FormBaseComponent } from "../base-components/form-base.components";
 import { DateUtils } from "../utils/date-utils";
 
@@ -22,9 +22,9 @@ export abstract class ContasPagarBase extends FormBaseComponent {
         this.controlsFormBase = {
             descricaoFornecedor: ['', [Validators.required]],
             tipoRecorrencia: ['', [Validators.required]],
-            valor: ['', [Validators.required]],                
+            valor: ['', [Validators.required, NgBrazilValidators.currency]],                
           };
-          this.dtVencValidators = [Validators.required, Validators.required];          
+          this.dtVencValidators = [Validators.required];          
           this.diaVencValidators = [Validators.required, Validators.min(1), Validators.max(31)];
 
 
@@ -43,12 +43,8 @@ export abstract class ContasPagarBase extends FormBaseComponent {
             },
             diaVencimento: {
                 required: 'campo requerido'                
-            },
-            
+            },            
         }
-        
-
-       
     }
 
     protected configurarValidacaoFormulario(formInputElements: ElementRef[]) {
@@ -57,5 +53,9 @@ export abstract class ContasPagarBase extends FormBaseComponent {
 
     protected configurarMensagensValidacaoBase(){
         super.configurarMensagensValidacaoBase(this.validationMessages);
+    }
+
+    tipoRecorrencia(): FormControl | any {
+        return this.pagamentoForm.get('tipoRecorrencia');
     }
 }

@@ -13,21 +13,18 @@ const routes: Routes = [
     data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
   },
   {
-    path: 'conta', loadChildren: () => import('./conta/conta.module')
-      .then(m => m.ContaModule)
+    path: 'conta', loadChildren: () => import('./conta/conta.module').then(m => m.ContaModule)
   },
   {
-    path: 'contas-a-pagar', loadChildren: () => import('./contas-a-pagar/contas-a-pagar.module')
-      .then(m => m.ContasAPagarModule)
+    path: 'contas-a-pagar', loadChildren: () => import('./contas-a-pagar/contas-a-pagar.module').then(m => m.ContasAPagarModule)
   },
   {
-    path: 'fornecedores', loadChildren: () => import('./fornecedores/fornecedores.module')
-      .then(m => m.FornecedoresModule)
+    path: 'fornecedores', loadChildren: () => import('./fornecedores/fornecedores.module').then(m => m.FornecedoresModule)
   },
+  { path: 'cliente', loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule) },
 
   { path: 'acesso-negado', component: AcessoNegadoComponent },
   { path: 'nao-encontrado', component: NotFoundComponent },
-  { path: 'clientes', loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule) },
   { path: '**', component: NotFoundComponent }
 ];
 

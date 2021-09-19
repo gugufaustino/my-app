@@ -49,9 +49,7 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
     super.configurarValidacaoFormularioBase(this.formInputElements, this.pagamentoForm)
   }
 
-  tipoRecorrencia(): FormControl | any {
-    return this.pagamentoForm.get('tipoRecorrencia');
-  }
+
   dtVencimento(): AbstractControl | any {
     return this.pagamentoForm.get('dtVencimento');
   }
@@ -100,7 +98,6 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
     this.mudancasNaoSalvas = false;
      
     this.toastr.success(response.message, 'Sucesso!', () => {
-
       this.pagamentoForm.reset();
       this.router.navigate(['/contas-a-pagar/listar']);
     });
