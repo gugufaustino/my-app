@@ -12,7 +12,7 @@ export class Cliente implements MappingModel {
     toMap(): void {
         this.mappings = [
             { id: "number" },
-            { nome: "stringr" },
+            { nome: "string" },
             ];
     }
 

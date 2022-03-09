@@ -14,9 +14,9 @@ export class Fornecedor implements MappingModel {
     toMap(): void {
         this.mappings = [
             { id: "number" },
-            { razaoSocial: "stringr" },
-            { atividade: "stringr" },
-            { informacoesAdicionais: "stringr" }];
+            { razaoSocial: "string" },
+            { atividade: "string" },
+            { informacoesAdicionais: "string" }];
     }
 
 
