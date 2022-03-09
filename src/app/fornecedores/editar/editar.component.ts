@@ -45,7 +45,7 @@ export class EditarComponent extends FornecedorBase implements OnInit, AfterView
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.model = super.mapToModel(this.model, this.componentForm.value)
 
-      this.service.inserir(this.model)
+      this.service.editar(this.model)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
           falha => this.toastr.error(falha)

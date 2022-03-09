@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { catchError, map } from "rxjs/operators";
+import { CustomResponse } from 'src/app/base-contracts/models/custom-response';
 import { IObter } from 'src/app/base-contracts/services/iobter.service';
 import { BaserService } from 'src/app/services/base.service';
 import { Cliente } from '../models/cliente';
@@ -27,9 +28,9 @@ export class ClienteService<TEntity> extends BaserService
       .pipe(catchError(this.serviceError));
   }
 
-  public inserir(conta: TEntity): Observable<any> {
+  public inserir(conta: TEntity): Observable<CustomResponse> {
     let response = this.http.post(this.UrlServiceV1 + this.apiUrl, conta, this.ObterHeaderAuthJson())
-      .pipe(catchError(this.serviceError));
+      .pipe(map(this.extractDefault), catchError(this.serviceError));
     return response;
   }
 
@@ -40,10 +41,10 @@ export class ClienteService<TEntity> extends BaserService
     return response;
   }
 
-  public editar(model: Cliente): Observable<TEntity> {
+  public editar(model: Cliente): Observable<CustomResponse> {
     let response = this.http
       .put(this.UrlServiceV1 + this.apiUrl + model.id, model, this.ObterHeaderAuthJson())
-      .pipe(map(this.extractData), catchError(this.serviceError));
+      .pipe(map(this.extractDefault), catchError(this.serviceError));
     return response;
   }
 

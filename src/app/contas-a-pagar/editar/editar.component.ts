@@ -48,14 +48,10 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
 
     super.configurarMensagensValidacaoBase();
     super.configurarValidacaoFormularioBase(this.formInputElements, this.pagamentoForm);
-
-    
-         
   }
 
-  submitForm() {
- 
-
+  submitForm() { 
+    super.validarFormulario(this.pagamentoForm, true);
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
       this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value)
 

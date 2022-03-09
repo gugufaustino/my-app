@@ -11,13 +11,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { EditarComponent } from './editar/editar.component';
+import { AppResolve } from '../services/app.resolve';
+import { AppResolveService } from '../services/app.resolve.service';
 
 
 @NgModule({
   declarations: [
     ClienteComponent,
     ListarComponent,
-    InserirComponent
+    InserirComponent,
+    EditarComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,9 @@ import { TextMaskModule } from 'angular2-text-mask';
     TextMaskModule,
   ],
   providers: [
-    ClienteService
+    ClienteService,
+    AppResolve, 
+    { provide: AppResolveService, useExisting: ClienteService }
   ]
 })
 export class ClienteModule { }
