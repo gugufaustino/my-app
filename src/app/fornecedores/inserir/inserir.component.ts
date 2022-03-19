@@ -7,12 +7,10 @@ import { FornecedorService } from '../services/fornecedor.service';
 import { Fornecedor } from '../models/fornecedor';
 import { FornecedorBase } from '../fornecedor-form.base.component';
 
-
 @Component({
   selector: 'app-inserir',
   templateUrl: './inserir.component.html',
 })
-
 export class InserirComponent extends FornecedorBase implements OnInit, AfterViewInit {
 
   constructor(private router: Router,
@@ -23,7 +21,6 @@ export class InserirComponent extends FornecedorBase implements OnInit, AfterVie
   }
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
-
   model: Fornecedor = new Fornecedor();
 
   ngOnInit(): void {
@@ -39,7 +36,7 @@ export class InserirComponent extends FornecedorBase implements OnInit, AfterVie
     super.configurarMensagensValidacaoBase();
     super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
   }
- 
+
   submitForm(): void {
 
     super.validarFormulario(this.componentForm, true);

@@ -5,7 +5,8 @@ import { LocalStorageUtils } from "../utils/localstorage";
 
 
     export abstract class BaserService {
-    protected UrlServiceV1: string = "https://localhost:44390/api/";
+    protected UrlServiceV1: string = "https://localhost:44390/api/"; // "https://myapi.cteclima.com.br/api/";
+    //protected UrlServiceV1: string = "https://localhost:5001/api/"; 
     public LocalStorage = new LocalStorageUtils();
 
     protected ObterHeaderJson() {

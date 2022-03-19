@@ -14,8 +14,29 @@
                 </span>
             </div>
         </div> 
+
+        <div class="form-group">
+            <label class="col-md-6 control-label">CNPJ</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="cnpj" id="cnpj" [ngClass]="{'is-invalid': displayMessage?.cnpj}"
+                [textMask]="{mask: MASKS?.cnpj.textMask}" />
+                <span class="text-danger" *ngIf="displayMessage?.cnpj">
+                    <p [innerHTML]="displayMessage?.cnpj"></p>
+                </span>
+            </div>
+        </div>
  
- 
+        <div>
+            <label class="col-md-6 control-label">Atividade</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="atividade" id="atividade" [ngClass]="{'is-invalid': displayMessage?.atividade}" />
+                <span class="text-danger" *ngIf="displayMessage?.atividade">
+                    <p [innerHTML]="displayMessage?.atividade"></p>
+                </span>
+            </div>
+        </div>
+
+        
         <div class="d-flex flex-row-reverse">
             <div class="form-group">
                 <div class="col-md-4 col-md-offset-2 ">

@@ -8,8 +8,9 @@ export class ToastAppService {
 
     public success(mensagem: string[] | any, titulo?: string, observer?: any): void {
         
-        let mens =  mensagem != undefined ? mensagem : 'Operação realizada!';
-        mens = mensagem[0] ?? ''.toString();
+        let mens =  mensagem == undefined 
+                    ? 'Operação realizada!' 
+                    : mensagem[0] ?? ''.toString();
 
         let toast = this.toastr.success(mens, titulo);
         if (toast && observer != null) {

@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { ToastAppService } from 'src/app/services/toastapp.service';
 import { FornecedorBase } from '../fornecedor-form.base.component';
 import { Fornecedor } from '../models/fornecedor';
@@ -11,7 +12,6 @@ import { FornecedorService } from '../services/fornecedor.service';
   templateUrl: './editar.component.html',
 })
 export class EditarComponent extends FornecedorBase implements OnInit, AfterViewInit {
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -21,18 +21,23 @@ export class EditarComponent extends FornecedorBase implements OnInit, AfterView
     super();
     this.model = Object.assign(this.model, this.route.snapshot.data["model"]);
   }
-  
+
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   model: Fornecedor = new Fornecedor();
 
   ngOnInit(): void {
 
-    this.componentForm = this.fb.group(this.controlsFormBase); 
-    this.componentForm.patchValue({  
+    this.componentForm = this.fb.group(this.controlsFormBase);
+
+    // Valores Default
+    this.componentForm.patchValue({
       razaoSocial: this.model.razaoSocial,
+      cnpj: this.model.cnpj,
+      atividade: this.model.atividade,
     });
   }
-  
-  ngAfterViewInit(): void { 
+
+  ngAfterViewInit(): void {
 
     super.configurarMensagensValidacaoBase();
     super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
@@ -56,7 +61,7 @@ export class EditarComponent extends FornecedorBase implements OnInit, AfterView
   processarSucesso(response: any) {
     this.errors = [];
     this.mudancasNaoSalvas = false;
-     
+
     this.toastr.success(response.message, 'Sucesso!', () => {
       this.componentForm.reset();
       this.router.navigate(['/fornecedores/listar']);
