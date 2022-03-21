@@ -37,6 +37,79 @@
         </div>
 
         
+        <div class="form-group">
+            <label class="col-md-6 control-label">CEP</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="cep" id="cep" [ngClass]="{'is-invalid': displayMessage?.cep}"
+                    [textMask]="{mask: MASKS?.cep.textMask}" />
+                <span class="text-danger" *ngIf="displayMessage?.cep">
+                    <p [innerHTML]="displayMessage?.cep"></p>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-6 control-label">Logradouro</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="logradouro" id="logradouro"
+                    [ngClass]="{'is-invalid': displayMessage?.logradouro}" />
+                <span class="text-danger" *ngIf="displayMessage?.logradouro">
+                    <p [innerHTML]="displayMessage?.logradouro"></p>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-6 control-label">Número</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="numero" id="numero" [textMask]="{mask: MASKS?.number.textMask}"
+                    [ngClass]="{'is-invalid': displayMessage?.numero}" />
+                <span class="text-danger" *ngIf="displayMessage?.numero">
+                    <p [innerHTML]="displayMessage?.numero"></p>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-6 control-label">Complemento</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="" formControlName="complemento" id="complemento"
+                    [ngClass]="{'is-invalid': displayMessage?.complemento}" />
+                <span class="text-danger" *ngIf="displayMessage?.complemento">
+                    <p [innerHTML]="displayMessage?.complemento"></p>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-6 control-label">Bairro</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="bairro" id="bairro"
+                    [ngClass]="{'is-invalid': displayMessage?.bairro}" />
+                <span class="text-danger" *ngIf="displayMessage?.bairro">
+                    <p [innerHTML]="displayMessage?.bairro"></p>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-6 control-label">Município</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="nomeMunicipio" id="nomeMunicipio"
+                    [ngClass]="{'is-invalid': displayMessage?.nomeMunicipio}" />
+                <span class="text-danger" *ngIf="displayMessage?.nomeMunicipio">
+                    <p [innerHTML]="displayMessage?.nomeMunicipio"></p>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-6 control-label">UF</label>
+            <div class="col-md-6">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="siglaUf" id="siglaUf"
+                    [ngClass]="{'is-invalid': displayMessage?.siglaUf}" />
+                <span class="text-danger" *ngIf="displayMessage?.siglaUf">
+                    <p [innerHTML]="displayMessage?.siglaUf"></p>
+                </span>
+            </div>
+        </div>
+
+
+
         <div class="d-flex flex-row-reverse">
             <div class="form-group">
                 <div class="col-md-4 col-md-offset-2 ">

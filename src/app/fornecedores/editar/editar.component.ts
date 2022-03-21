@@ -34,6 +34,13 @@ export class EditarComponent extends FornecedorBase implements OnInit, AfterView
       razaoSocial: this.model.razaoSocial,
       cnpj: this.model.cnpj,
       atividade: this.model.atividade,
+      cep: this.model.cep,
+      logradouro: this.model.logradouro,
+      numero: this.model.numero,
+      complemento: this.model.complemento,
+      bairro: this.model.bairro,
+      nomeMunicipio: this.model.nomeMunicipio ,
+      siglaUf: this.model.siglaUf,
     });
   }
 

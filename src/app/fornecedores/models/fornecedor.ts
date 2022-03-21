@@ -8,7 +8,15 @@ export class Fornecedor implements MappingModel {
     razaoSocial: string;
     cnpj: string;
     atividade: string;
-    informacoesAdicionais: string
+    informacoesAdicionais: string;
+    
+    cep: string;
+    logradouro: string;
+    numero: number;
+    complemento: string;
+    bairro: string;
+    siglaUf: string;
+    nomeMunicipio: string;
 
     mappings: any[];
     toMap(): void {
@@ -17,7 +25,14 @@ export class Fornecedor implements MappingModel {
             { razaoSocial: "string" },
             { cnpj: "string" },
             { atividade: "string" },
-            { informacoesAdicionais: "string" }];
+            { informacoesAdicionais: "string" },
+            { cep: "string" },
+            { numero: "string" },
+            { complemento: "string" },
+            { bairro: "string" },
+            { siglaUf: "string" },
+            { nomeMunicipio: "string" },
+        ];
     }
 
 
