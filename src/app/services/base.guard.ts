@@ -1,5 +1,6 @@
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { LocalStorageUtils } from 'src/app/utils/localstorage';
+import { IFormComponent } from '../base-components/iform.component';
 
 
 export abstract class BaseGuard {
@@ -25,4 +26,17 @@ export abstract class BaseGuard {
   private navegarAcessoNegado() {
     this.router.navigate(['/acesso-negado']);
   }
+
+
+  canActivate(routeAc: ActivatedRouteSnapshot) {
+    return this.validarClaim(routeAc);
+  }
+
+  canDeactivate(component: IFormComponent) {
+    if (component.mudancasNaoSalvas) {
+      return window.confirm('Tem certeza que deseja abandonar o preenchimento do formulário?');
+    }
+    return true;
+  }
+
 }

@@ -7,16 +7,17 @@ import { GenericValidator, DisplayMessage, ValidationMessages } from '../utils/g
 import { MappingModel } from '../base-contracts/models/mapping.model';
 import { CurrencyUtils } from '../utils/currency-utils';
 import { DateUtils } from '../utils/date-utils';
+import { IFormComponent } from './iform.component';
  
-
-export abstract class FormBaseComponent {
+export abstract class FormBaseComponent implements IFormComponent {
+    mudancasNaoSalvas: boolean;
 
     errors: any = [];
     displayMessage: DisplayMessage = {};
     genericValidator: GenericValidator;
     validationMessages: ValidationMessages;
 
-    mudancasNaoSalvas: boolean;
+   
 
     protected configurarMensagensValidacaoBase(validationMessages: ValidationMessages) {
         this.genericValidator = new GenericValidator(validationMessages);

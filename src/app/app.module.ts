@@ -17,6 +17,7 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
 import { ErrorInterceptor } from './services/error.handler.service';
 import { ToastAppService } from './services/toastapp.service';
 import { ContasAPagarGuard } from './contas-a-pagar/services/contas-a-pagar.guard';
+import { FornecedorGuard } from './fornecedores/services/fornecedor.guard';
 
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
@@ -41,7 +42,8 @@ export const httpInterceptorProviders = [
   providers: [
     httpInterceptorProviders,
     ToastAppService,
-    ContasAPagarGuard
+    ContasAPagarGuard,
+    FornecedorGuard
   ],
   bootstrap: [AppComponent]
 })

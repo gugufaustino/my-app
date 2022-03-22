@@ -5,6 +5,7 @@ import { EditarComponent } from './editar/editar.component';
 import { FornecedoresComponent } from './fornecedores.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { ListarComponent } from './listar/listar.component';
+import { FornecedorGuard } from './services/fornecedor.guard';
 
 const clmaimAcesso :string = 'FORNECEDOR';
 const routes: Routes = [{
@@ -12,18 +13,18 @@ const routes: Routes = [{
   children: [
     {
          path: 'listar', component: ListarComponent,
-        //  canActivate: [ContasAPagarGuard],
-        //  data: [{ claim: { nome: clmaimAcesso, valor: 'CONSULTAR' } }]
+          canActivate: [FornecedorGuard],
+          data: [{ claim: { nome: clmaimAcesso, valor: 'CONSULTAR' } }]
     },
     {
          path: 'inserir', component: InserirComponent,
-        //  canActivate: [ContasAPagarGuard],
-        //  data: [{ claim: { nome: clmaimAcesso, valor: 'INSERIR' } }]
+         canActivate: [FornecedorGuard], canDeactivate: [FornecedorGuard],
+         data: [{ claim: { nome: clmaimAcesso, valor: 'INSERIR' } }]
     },
     {
-         path: 'editar/:id', component: EditarComponent, resolve: { model: AppResolve }
-        //  canActivate: [ContasAPagarGuard],
-        //  data: [{ claim: { nome: clmaimAcesso, valor: 'EDITAR' } }]
+         path: 'editar/:id', component: EditarComponent, resolve: { model: AppResolve },
+         canActivate: [FornecedorGuard],
+         data: [{ claim: { nome: clmaimAcesso, valor: 'EDITAR' } }]
     },
   ]
 }];

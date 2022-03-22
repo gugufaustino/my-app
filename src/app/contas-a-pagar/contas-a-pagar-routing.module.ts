@@ -27,7 +27,7 @@ const routes: Routes = [{
         },
         {
             path: 'inserir', component: InserirComponent,
-            canActivate: [ContasAPagarGuard],
+            canActivate: [ContasAPagarGuard], canDeactivate: [ContasAPagarGuard],
             data: [{ claim: { nome: clmaimAcesso, valor: 'INSERIR' } }]
         },
     ]
