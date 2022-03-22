@@ -6,6 +6,8 @@ import { CatalogoComponent } from './catalogo.component';
 import { EditarComponent } from './editar/editar.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { ListarComponent } from './listar/listar.component';
+import { CatalogoGuard } from './services/catalogo-m.guard';
+
 
 const clmaimAcesso: string = 'CATALOGO';
 const routes: Routes = [{
@@ -13,7 +15,7 @@ const routes: Routes = [{
   children: [
     {
       path: 'listar', component: ListarComponent,
-      canActivate: [BaseGuard],
+      canActivate: [CatalogoGuard],
       data: [{ claim: { nome: clmaimAcesso, valor: 'CONSULTAR' } }]
     },
     {
