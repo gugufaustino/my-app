@@ -18,6 +18,8 @@ import { ErrorInterceptor } from './services/error.handler.service';
 import { ToastAppService } from './services/toastapp.service';
 import { ContasAPagarGuard } from './contas-a-pagar/services/contas-a-pagar.guard';
 import { FornecedorGuard } from './fornecedores/services/fornecedor.guard';
+import { CatalogoGuard } from './catalogo/services/catalogo.guard';
+
 
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
@@ -43,7 +45,8 @@ export const httpInterceptorProviders = [
     httpInterceptorProviders,
     ToastAppService,
     ContasAPagarGuard,
-    FornecedorGuard
+    FornecedorGuard,
+    CatalogoGuard
   ],
   bootstrap: [AppComponent]
 })
