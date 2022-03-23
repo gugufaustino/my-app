@@ -4,6 +4,17 @@
 
     <form novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
 
+        <div class="form-group">
+            <label class="control-label">Nome</label>
+            <div class="">
+                <input class="form-control bg-dark text-white" placeholder="(obrigatório)" formControlName="nome" id="nome"
+                    [ngClass]="{'is-invalid': displayMessage?.nome}" />
+                <span class="text-danger" *ngIf="displayMessage?.nome">
+                    <p [innerHTML]="displayMessage?.nome"></p>
+                </span>
+            </div>
+        </div>
+
 
     </form>
 </div>
