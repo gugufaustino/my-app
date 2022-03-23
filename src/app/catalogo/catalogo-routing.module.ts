@@ -6,7 +6,7 @@ import { CatalogoComponent } from './catalogo.component';
 import { EditarComponent } from './editar/editar.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { ListarComponent } from './listar/listar.component';
-import { CatalogoGuard } from './services/catalogo-m.guard';
+import { CatalogoGuard } from './services/catalogo.guard';
 
 
 const clmaimAcesso: string = 'CATALOGO';
@@ -20,12 +20,12 @@ const routes: Routes = [{
     },
     {
       path: 'editar/:id', component: EditarComponent, resolve: { pagamento: AppResolve },
-      //canActivate: [ContasAPagarGuard],
+      canActivate: [CatalogoGuard],
       data: [{ claim: { nome: clmaimAcesso, valor: 'EDITAR' } }]
     },
     {
       path: 'inserir', component: InserirComponent,
-      //canActivate: [ContasAPagarGuard], canDeactivate: [ContasAPagarGuard],
+      canActivate: [CatalogoGuard], canDeactivate: [CatalogoGuard],
       data: [{ claim: { nome: clmaimAcesso, valor: 'INSERIR' } }]
     },
   ]

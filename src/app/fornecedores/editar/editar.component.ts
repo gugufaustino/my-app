@@ -3,7 +3,7 @@ import { FormBuilder, FormControlName } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastAppService } from 'src/app/services/toastapp.service';
-import { FornecedorBase } from '../fornecedor-form.base.component';
+import { FornecedorBase } from '../fornecedor-base.component';
 import { Fornecedor } from '../models/fornecedor';
 import { FornecedorService } from '../services/fornecedor.service';
 

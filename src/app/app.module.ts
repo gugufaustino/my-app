@@ -18,7 +18,7 @@ import { ErrorInterceptor } from './services/error.handler.service';
 import { ToastAppService } from './services/toastapp.service';
 import { ContasAPagarGuard } from './contas-a-pagar/services/contas-a-pagar.guard';
 import { FornecedorGuard } from './fornecedores/services/fornecedor.guard';
-import { CatalogoGuard } from './catalogo/services/catalogo-m.guard';
+import { CatalogoGuard } from './catalogo/services/catalogo.guard';
 
 
 
