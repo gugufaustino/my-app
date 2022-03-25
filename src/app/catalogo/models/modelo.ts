@@ -13,7 +13,7 @@ export class Modelo implements MappingModel {
     //tipo de modelo
     diponibilidade: string;
     tipoCasting: Number[];
-    
+
     //contato
     email: string;
     telefone: string[];

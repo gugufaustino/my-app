@@ -18,8 +18,8 @@
         <!-- <div class="form-group">
             <label class="col-md-6 control-label">Fornecedor</label>
             <div class="col-md-12">
-                
-                <input class="form-control bg-dark text-white"  placeholder="(obrigatório)"  formControlName="descricaoFornecedor" id="descricaoFornecedor" 
+
+                <input class="form-control bg-dark text-white"  placeholder="(obrigatório)"  formControlName="descricaoFornecedor" id="descricaoFornecedor"
                     [ngClass]="{'is-invalid': displayMessage?.descricaoFornecedor}" />
                 <span class="text-danger" *ngIf="displayMessage?.descricaoFornecedor">
                     <p [innerHTML]="displayMessage?.descricaoFornecedor"></p>
@@ -56,7 +56,7 @@
 
                 <div [hidden]="this.tipoRecorrencia().value != 1">
                     <label class="col-md-12 control-label">Data Vencimento</label>
-                    <div class="col-md-12">                        
+                    <div class="col-md-12">
                         <input class="form-control bg-dark text-white text-center " formControlName="dtVencimento" id="dtVencimento"
                             placeholder="(data obrigatório)" [textMask]="{mask: DateMask}" [ngClass]="{'is-invalid': displayMessage?.dtVencimento}" />
                         <span class="text-danger" *ngIf="displayMessage?.dtVencimento">
@@ -68,7 +68,7 @@
                 <div [hidden]="this.tipoRecorrencia().value != 2">
                     <label class="col-md-12 control-label">Dia Vencimento</label>
                     <div class="col-md-12">
-                        <input class="form-control bg-dark text-white text-center" formControlName="diaVencimento"  
+                        <input class="form-control bg-dark text-white text-center" formControlName="diaVencimento"
                             id="diaVencimento" placeholder="(dia obrigatório)" [textMask]="{mask: DataDayMask}" max="31" [ngClass]="{'is-invalid': displayMessage?.diaVencimento}" />
                         <span class="text-danger" *ngIf="displayMessage?.diaVencimento">
                             <p [innerHTML]="displayMessage?.diaVencimento"></p>
@@ -96,20 +96,13 @@
         <div class="d-flex flex-row-reverse">
             <div class="form-group">
                 <div class="col-md-4 col-md-offset-2 ">
-                    <span>                        
+                    <span>
                         <button   class="btn btn-primary" type="submit">Salvar</button>
                     </span>
                     <!-- super.validarFormulario(this.fornecedorForm); -->
                 </div>
             </div>
-            <!-- <div class="form-group">
-                <div class="col-md-4 col-md-offset-2">
-                    <p>Formulario valido: {{ pagamentoForm.valid }}</p>
-                    <p>Formulario Tocado: {{ pagamentoForm.touched }}</p>
-                    <p>Formulario Sujo: {{ pagamentoForm.dirty }}</p><br>
-                    <p>Formulario: {{ formResult }}</p>
-                </div>
-            </div> -->
+
         </div>
 
     </form>

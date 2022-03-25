@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { FormBaseComponent } from "../base-components/form-base.components";
 import { DateUtils } from "../utils/date-utils";
+import { FormValidations } from "../utils/form-validations";
 
 export abstract class ContasPagarBase extends FormBaseComponent {
 
@@ -11,20 +12,20 @@ export abstract class ContasPagarBase extends FormBaseComponent {
     MASKS: any = MASKS;
     DateMask = DateUtils.DataMask;
     DataDayMask = DateUtils.DataDayMask;
- 
+
     controlsFormBase: any;
     protected dtVencValidators: any;
     protected diaVencValidators: any;
-     
+
     constructor() {
         super();
 
         this.controlsFormBase = {
             descricaoFornecedor: ['', [Validators.required]],
             tipoRecorrencia: ['', [Validators.required]],
-            valor: ['', [Validators.required, NgBrazilValidators.currency]],                
+            valor: ['', [Validators.required, NgBrazilValidators.currency]],
           };
-          this.dtVencValidators = [Validators.required];          
+          this.dtVencValidators = [Validators.required,  FormValidations.dataValidator];
           this.diaVencValidators = [Validators.required, Validators.min(1), Validators.max(31)];
 
 
@@ -36,14 +37,15 @@ export abstract class ContasPagarBase extends FormBaseComponent {
                 required: 'campo requerido'
             },
             valor: {
-                required: 'campo requerido'                
+                required: 'campo requerido'
             },
             dtVencimento: {
-                required: 'campo requerido'                
+                required: 'campo requerido',
+                dataValidator: 'formato inválido'
             },
             diaVencimento: {
-                required: 'campo requerido'                
-            },            
+                required: 'campo requerido'
+            },
         }
     }
 

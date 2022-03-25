@@ -32,8 +32,10 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
     super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
   }
 
-  
+
   submitForm(): void {
+
+    console.log(this.componentForm.controls.dtNascimento)
 
     super.validarFormulario(this.componentForm, true);
 

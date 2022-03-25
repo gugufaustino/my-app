@@ -218,3 +218,12 @@ input[type="radio"]:checked {
 .text-underline{
     text-decoration: underline;
 }
+
+.form-bg input.form-control {
+    color: #fff!important;
+    background-color: #343a40!important;
+    
+}
+.form-bg .form-group span{
+    color: #dc3545!important;
+}

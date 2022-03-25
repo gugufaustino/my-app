@@ -49,6 +49,7 @@ export abstract class FornecedorBase extends FormBaseComponent {
                 required: 'campo requerido',
                 maxlength: 'tamanho máximo inválido',
             },
+         
             cep: {
                 required: 'campo requerido',
                 cep: 'formato de CEP inválido',
