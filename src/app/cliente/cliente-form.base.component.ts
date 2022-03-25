@@ -10,11 +10,11 @@ export abstract class ClienteBase extends FormBaseComponent {
     MASKS: any = MASKS;
     DateMask = DateUtils.DataMask;
     DataDayMask = DateUtils.DataDayMask;
-    
+
     componentForm: FormGroup;
     controlsFormBase: any;
     protected dtVencValidators: any;
-     
+
     constructor() {
         super();
 
@@ -22,16 +22,6 @@ export abstract class ClienteBase extends FormBaseComponent {
             nome: ['', [Validators.required]],
 
           };
-
-
-          this.validationMessages = {
-            nome: {
-                required: 'campo requerido',
-            },
-             
-            
-        }
-       
     }
 
     protected configurarValidacaoFormulario(formInputElements: ElementRef[]) {

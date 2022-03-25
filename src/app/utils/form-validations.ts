@@ -25,7 +25,7 @@ export class FormValidations {
     const cep = control.value;
     if (cep && cep !== '') {
       const validacep = /^[0-9]{8}$/;
-      return validacep.test(cep) ? null : { cepInvalido : true };
+      return validacep.test(cep) ? null : { cepInvalido: true };
     }
     return null;
   }
@@ -47,7 +47,7 @@ export class FormValidations {
       }
 
       if (field.value !== formControl.value) {
-        return { equalsTo : otherField };
+        return { equalsTo: otherField };
       }
 
       return null;
@@ -55,17 +55,17 @@ export class FormValidations {
     return validator;
   }
 
-  static dataValidator(control: FormControl) {
+  static data(control: FormControl) {
 
     const valor = control.value;
     if (valor && valor !== '') {
-      return DateUtils.DataValida(valor) ? null : { dataValidator : true };
+      return DateUtils.DataValida(valor) ? null : { data: true };
     }
     return null;
   }
 
-  static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any):string {
-    const config : any = {
+  static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any): string {
+    const config: any = {
       'required': `${fieldName} é obrigatório.`,
       'minlength': `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,
       'maxlength': `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,

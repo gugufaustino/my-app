@@ -23,7 +23,7 @@ export abstract class CatalogoBase extends FormBaseComponent {
 
     this.controlsFormBase = {
       nome: ['', [Validators.required, CustomValidators.rangeLength([3, 250])]],
-      dtNascimento: ['', [Validators.required, FormValidations.dataValidator]],
+      dtNascimento: ['', [Validators.required, FormValidations.data]],
       rg: ['', [Validators.required]],
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
 
@@ -44,52 +44,6 @@ export abstract class CatalogoBase extends FormBaseComponent {
     };
 
     this.validationMessages = {
-
-      nome: {
-        required: 'campo requerido'
-      },
-      dtNascimento: {
-        required: 'campo requerido',
-        dataValidator: 'formato inválido'
-
-      },
-      rg: { required: 'campo requerido' },
-      cpf: {
-        required: 'campo requerido',
-        cpf: 'CPF no formáto inválido'
-      },
-      diponibilidade: { required: 'campo requerido' },
-      tipoCasting: { required: 'campo requerido' },
-      email: {
-        required: 'campo requerido',
-        email: 'email no formato inválido'
-      },
-      telefone: {
-        required: 'campo requerido',
-        telefone: 'telefone no formato inválido'
-      },
-
-      cep: {
-        required: 'campo requerido',
-        cep: 'formato de CEP inválido',
-      },
-      logradouro: {
-        required: 'campo requerido',
-        maxlength: 'tamanho máximo inválido',
-      },
-      numero: {
-        required: 'campo requerido',
-        number: 'formato inválido',
-      },
-      bairro: {
-        required: 'campo requerido',
-      },
-      siglaUf: {
-        required: 'campo requerido',
-      },
-      nomeMunicipio: {
-        required: 'campo requerido',
-      }
     }
   }
 

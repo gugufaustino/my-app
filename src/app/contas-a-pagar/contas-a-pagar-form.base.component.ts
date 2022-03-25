@@ -25,26 +25,14 @@ export abstract class ContasPagarBase extends FormBaseComponent {
             tipoRecorrencia: ['', [Validators.required]],
             valor: ['', [Validators.required, NgBrazilValidators.currency]],
           };
-          this.dtVencValidators = [Validators.required,  FormValidations.dataValidator];
+          this.dtVencValidators = [Validators.required,  FormValidations.data];
           this.diaVencValidators = [Validators.required, Validators.min(1), Validators.max(31)];
 
 
           this.validationMessages = {
-            descricaoFornecedor: {
-                required: 'campo requerido',
-            },
-            tipoRecorrencia: {
-                required: 'campo requerido'
-            },
-            valor: {
-                required: 'campo requerido'
-            },
-            dtVencimento: {
-                required: 'campo requerido',
-                dataValidator: 'formato inválido'
-            },
             diaVencimento: {
-                required: 'campo requerido'
+                min: 'valor míninmo inválido',
+                max: 'valor maximo inválido',
             },
         }
     }
