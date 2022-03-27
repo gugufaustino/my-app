@@ -7,9 +7,9 @@ import { DateUtils } from "../utils/date-utils";
 export abstract class ClienteBase extends FormBaseComponent {
 
 
-    MASKS: any = MASKS;
-    DateMask = DateUtils.DataMask;
-    DataDayMask = DateUtils.DataDayMask;
+    // MASKS: any = MASKS;
+    // DateMask = DateUtils.DataMask;
+    // DataDayMask = DateUtils.DataDayMask;
 
     componentForm: FormGroup;
     controlsFormBase: any;

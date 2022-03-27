@@ -2,7 +2,7 @@
     <h4>Login</h4>
     <hr />
 
-    <form novalidate [formGroup]="loginForm" (ngSubmit)="login()">
+    <form novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
         <div class="form-horizontal">
 
             <div class="form-group">
@@ -18,19 +18,19 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Password</label>
                 <div class="col-md-8"  >
-                    <input class="form-control" id="password" type="text" placeholder="Password (requerido)" formControlName="password"
+                    <input class="form-control" id="password" type="password" placeholder="Password (requerido)" formControlName="password"
                         [ngClass]="{'is-invalid': displayMessage?.password}" />
                     <span class="text-danger" *ngIf="displayMessage?.password">
                         <p [innerHTML]="displayMessage?.password"></p>
                     </span>
                 </div>
             </div>
- 
+
             <!-- <div class="alert alert-danger" *ngIf="errors?.length > 0">
                 <h5 id="msgRetorno">Erros:</h5>
                 <ul>
                     <li *ngFor="let error of errors">
-                         {{ error }} 
+                         {{ error }}
                     </li>
                 </ul>
             </div> -->
@@ -38,11 +38,11 @@
             <div class="form-group">
                 <div class="col-md-4 col-md-offset-2">
                     <span>
-                        <button [disabled]="!loginForm.valid" class="btn btn-primary " id="Login" type="submit">Login</button>
+                        <button  class="btn btn-primary " id="Login" type="submit">Login</button>
                     </span>
-                    
+
                 </div>
-            </div> 
-        </div> 
+            </div>
+        </div>
     </form>
 </div>

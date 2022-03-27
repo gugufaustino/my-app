@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
+import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 
 import { fromEvent, merge, Observable } from 'rxjs';
 
-import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import * as ngBrazil from 'ng-brazil';
 import { CustomValidators } from 'ng2-validation';
 import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
 import { ToastrService } from 'ngx-toastr';
@@ -12,63 +12,58 @@ import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { Router } from '@angular/router';
 
+import { FormBaseComponent } from 'src/app/base-components/form-base.components';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends FormBaseComponent implements OnInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-  loginForm!: FormGroup;
+  controlsFormBase: any;
+  componentForm: FormGroup;
   usuario: Usuario
   formResult: string = '';
-  MASKS: any = MASKS;
-  errors: any = [];
-
-  validationMessages: ValidationMessages;
-  genericValidatior: GenericValidator;
-  displayMessage: DisplayMessage;
 
   constructor(private fb: FormBuilder,
     private contaService: ContaService,
     private toastr: ToastrService,
     private router: Router) {
+    super()
+
+
+    this.controlsFormBase = {
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, CustomValidators.rangeLength([6, 15])]],
+    };
+
     this.validationMessages = {
-      email: {
-        required: 'Requerido',
-        email: 'formato inválido',
-      },
       password: {
-        required: 'Requerido',
         rangeLength: 'Tamanho deve ser entre 6 e 15 caracteres',
       },
     }
 
-    this.genericValidatior = new GenericValidator(this.validationMessages);
+
   }
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, CustomValidators.rangeLength([6, 15])]],
-    });
+    this.componentForm = this.fb.group(this.controlsFormBase);
   }
 
   ngAfterViewInit(): void {
-    let controlBlurs: Observable<any>[] = this.formInputElements
-      .map((formContro: ElementRef) => fromEvent(formContro.nativeElement, 'blur'));
-
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessage = this.genericValidatior.processaMensgens(this.loginForm);
-    });
-
+    super.configurarMensagensValidacaoBase(this.validationMessages);
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
   }
 
-  login() {
-    if (this.loginForm.dirty && this.loginForm.valid) {
-      this.usuario = Object.assign({}, this.usuario, this.loginForm.value)
-      
+  submitForm() {
+
+    super.validarFormulario(this.componentForm, true);
+
+    if (this.componentForm.dirty && this.componentForm.valid) {
+      this.usuario = Object.assign({}, this.usuario, this.componentForm.value)
+
       this.contaService.login(this.usuario)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
@@ -78,7 +73,7 @@ export class LoginComponent implements OnInit {
   }
 
   private processarSucesso(response: any) {
-    this.loginForm.reset();
+    this.componentForm.reset();
     this.errors = [];
     this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 

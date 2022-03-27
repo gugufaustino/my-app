@@ -1,5 +1,5 @@
 import { ElementRef } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { Observable, fromEvent, merge } from 'rxjs';
 
@@ -7,8 +7,10 @@ import { GenericValidator, DisplayMessage, ValidationMessages } from '../utils/g
 import { MappingModel } from '../base-contracts/models/mapping.model';
 import { CurrencyUtils } from '../utils/currency-utils';
 import { DateUtils } from '../utils/date-utils';
+import { MASKS } from "ng-brazil";
+
 import { IFormComponent } from './iform.component';
- 
+
 export abstract class FormBaseComponent implements IFormComponent {
     mudancasNaoSalvas: boolean;
 
@@ -17,7 +19,9 @@ export abstract class FormBaseComponent implements IFormComponent {
     genericValidator: GenericValidator;
     validationMessages: ValidationMessages;
 
-   
+    MASKS: any = MASKS;
+    DateMask = DateUtils.DataMask;
+    DataDayMask = DateUtils.DataDayMask;
 
     protected configurarMensagensValidacaoBase(validationMessages: ValidationMessages) {
         this.genericValidator = new GenericValidator(validationMessages);
@@ -47,7 +51,7 @@ export abstract class FormBaseComponent implements IFormComponent {
             this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);
             this.pagamento.tipoRecorrencia = parseInt(this.pagamento.tipoRecorrencia.toString());
             this.pagamento.dtVencimento = DateUtils.StringParaDate(this.pagamento.dtVencimento.toString());
-        
+
         */
         let model = Object.assign({}, source1, source2);
         var propertys = Reflect.ownKeys(source2)
@@ -68,11 +72,11 @@ export abstract class FormBaseComponent implements IFormComponent {
                             parsed = CurrencyUtils.StringParaDecimal(modelValue);
                         else
                             parsed = CurrencyUtils.ExtractNumber(modelValue);
-                           
+
                             if (isNaN(parsed)){
                                 throw "Erro na conversao em 'mapToModel()'";
                             }
-                      
+
                         model[propKey] = parsed;
                     } else if (mapType == "Date" && modelValue != "" && modelValue != null) {
                         model[propKey] = DateUtils.StringParaDate(modelValue.toString());
@@ -84,15 +88,15 @@ export abstract class FormBaseComponent implements IFormComponent {
     }
 
     protected desabilitaCampo(form: any, name: string, dfaultVal?: string) {
-        
-        //Reseta atributos ao estado original, value, touched, dirty, 
+
+        //Reseta atributos ao estado original, value, touched, dirty,
         form.get(name)?.clearValidators();
         form.get(name)?.disable();
         form.get(name).value = dfaultVal;
         form.get(name).touched = false;
         form.get(name).pristine= true;
-        form.patchValue({ [name]: dfaultVal });        
-                
+        form.patchValue({ [name]: dfaultVal });
+
     }
 
 }

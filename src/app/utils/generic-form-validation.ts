@@ -5,7 +5,7 @@ export class GenericValidator {
   baseMessages: any;
 
   constructor(private validationMessages: ValidationMessages) {
-    this.baseMessages = this.getBaseMessages();
+    this.baseMessages = this.getBaseMessages;
   }
 
   processaMensgens(container: FormGroup, allControls: boolean = false): { [key: string]: string } {
