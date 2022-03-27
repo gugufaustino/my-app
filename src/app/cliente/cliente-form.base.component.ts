@@ -1,8 +1,8 @@
 import { ElementRef } from "@angular/core";
 import { FormGroup, Validators } from "@angular/forms";
 import { MASKS } from "ng-brazil";
-import { FormBaseComponent } from "../base-components/form-base.components";
-import { DateUtils } from "../utils/date-utils";
+import { FormBaseComponent } from "../app-core/components/form-base.component";
+import { DateUtils } from "../app-core/utils/date-utils";
 
 export abstract class ClienteBase extends FormBaseComponent {
 

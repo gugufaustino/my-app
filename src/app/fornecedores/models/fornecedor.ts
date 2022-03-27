@@ -1,4 +1,4 @@
-import { MappingModel } from "src/app/base-contracts/models/mapping.model";
+import { MappingModel } from "src/app/app-core/interfaces/models/mapping.model";
 
 
 export class Fornecedor implements MappingModel {
@@ -9,7 +9,7 @@ export class Fornecedor implements MappingModel {
     cnpj: string;
     atividade: string;
     informacoesAdicionais: string;
-    
+
     cep: string;
     logradouro: string;
     numero: number;

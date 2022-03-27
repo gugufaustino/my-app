@@ -4,8 +4,8 @@ import { FormGroup, Validators } from "@angular/forms";
 import { MASKS, NgBrazilValidators, NgBrDirectives } from "ng-brazil";
 import { CustomValidators } from "ng2-validation";
 
-import { FormBaseComponent } from "../base-components/form-base.components";
-import { DateUtils } from "../utils/date-utils";
+import { FormBaseComponent } from "../app-core/components/form-base.component";
+import { DateUtils } from "../app-core/utils/date-utils";
 
 export abstract class FornecedorBase extends FormBaseComponent {
   MASKS: any = MASKS;

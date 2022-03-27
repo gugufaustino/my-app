@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { LocalStorageUtils } from "src/app/utils/localstorage";
+import { LocalStorageUtils } from "src/app/app-core/utils/localstorage";
 
 @Component({
     selector: 'app-home',

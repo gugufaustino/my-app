@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LocalStorageUtils } from 'src/app/utils/localstorage';
+import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
@@ -46,7 +46,7 @@ export class ListarComponent implements OnInit {
   }
 
   excluir(pagamento: Pagamento): void {
-    
+
 
     let mens: string[] = ['Excluído com sucesso!'];
 

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/conta/models/usuario';
-import { LocalStorageUtils } from 'src/app/utils/localstorage';
+import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { NavegacaoService } from '../services/navegacao.service';
 
 @Component({
   selector: 'app-menu-login',
-  templateUrl: './menu-login.component.html',  
+  templateUrl: './menu-login.component.html',
 })
 export class MenuLoginComponent implements OnInit {
 
@@ -38,9 +38,9 @@ export class MenuLoginComponent implements OnInit {
   obterPerfil(){
     let usuario: Usuario
     let tokeUser = this.localStorageUtil.obterUsuario();
-      
+
     usuario = Object.assign({}, tokeUser)
-      
+
      this.navegacaoService.obterApelido(usuario)
           .subscribe(
               sucesso => {  this.processaSucesso(sucesso) },

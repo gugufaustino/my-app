@@ -4,12 +4,12 @@ import { FormGroup } from '@angular/forms';
 import { Observable, fromEvent, merge } from 'rxjs';
 
 import { GenericValidator, DisplayMessage, ValidationMessages } from '../utils/generic-form-validation';
-import { MappingModel } from '../base-contracts/models/mapping.model';
+import { MappingModel } from '../interfaces/models/mapping.model';
 import { CurrencyUtils } from '../utils/currency-utils';
 import { DateUtils } from '../utils/date-utils';
 import { MASKS } from "ng-brazil";
 
-import { IFormComponent } from './iform.component';
+import { IFormComponent } from '../interfaces/components/iform.component';
 
 export abstract class FormBaseComponent implements IFormComponent {
     mudancasNaoSalvas: boolean;

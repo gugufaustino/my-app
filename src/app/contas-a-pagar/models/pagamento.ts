@@ -1,8 +1,8 @@
-import { MappingModel } from "src/app/base-contracts/models/mapping.model";
+import { MappingModel } from "src/app/app-core/interfaces/models/mapping.model";
 
 export class Pagamento implements MappingModel {
     constructor( ) {
- 
+
         this.toMap();
     }
     mappings: any[];

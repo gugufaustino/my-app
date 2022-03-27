@@ -3,7 +3,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { LocalStorageUtils } from "../utils/localstorage";
+import { LocalStorageUtils } from "../app-core/utils/localstorage";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

@@ -5,14 +5,14 @@ import { fromEvent, merge, Observable } from 'rxjs';
 
 import * as ngBrazil from 'ng-brazil';
 import { CustomValidators } from 'ng2-validation';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
+import { DisplayMessage, GenericValidator, ValidationMessages } from '../../app-core/utils/generic-form-validation';
 import { ToastrService } from 'ngx-toastr';
 
 import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { Router } from '@angular/router';
 
-import { FormBaseComponent } from 'src/app/base-components/form-base.components';
+import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
 
 @Component({
   selector: 'app-login',

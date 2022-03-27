@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LocalStorageUtils } from 'src/app/utils/localstorage';
+import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 import { Cliente } from '../models/cliente';
 import { ClienteService } from '../services/cliente.service';
 
- 
+
 
 @Component({
   selector: 'app-listar',
@@ -25,7 +25,7 @@ export class ListarComponent implements OnInit {
   ngOnInit(): void {
     this.listar();
   }
-  
+
   listar(): void {
     this.service.listarTodos()
       .subscribe(
@@ -33,8 +33,8 @@ export class ListarComponent implements OnInit {
         falha => this.toastr.error(falha)
       )
   }
- 
-  excluir(model: Cliente): void {    
+
+  excluir(model: Cliente): void {
 
     let mens: string[] = ['Excluído com sucesso!'];
 

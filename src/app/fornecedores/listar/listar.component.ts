@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LocalStorageUtils } from 'src/app/utils/localstorage';
+import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 
 import { Fornecedor } from '../models/fornecedor';
@@ -24,7 +24,7 @@ export class ListarComponent implements OnInit {
   ngOnInit(): void {
     this.listar();
   }
-  
+
   listar(): void {
     this.service.listarTodos()
       .subscribe(
@@ -32,8 +32,8 @@ export class ListarComponent implements OnInit {
         falha => this.toastr.error(falha)
       )
   }
- 
-  excluir(model: Fornecedor): void {    
+
+  excluir(model: Fornecedor): void {
 
     let mens: string[] = ['Excluído com sucesso!'];
 

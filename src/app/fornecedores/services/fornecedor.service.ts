@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
-import { IObter } from 'src/app/base-contracts/services/iobter.service';
+import { IObter } from 'src/app/app-core/interfaces/services/iobter.service';
 import { BaserService } from 'src/app/services/base.service';
 import { Fornecedor } from '../models/fornecedor';
 

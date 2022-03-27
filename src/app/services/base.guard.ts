@@ -1,6 +1,6 @@
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
-import { LocalStorageUtils } from 'src/app/utils/localstorage';
-import { IFormComponent } from '../base-components/iform.component';
+import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
+import { IFormComponent } from '../app-core/interfaces/components/iform.component';
 
 
 export abstract class BaseGuard {

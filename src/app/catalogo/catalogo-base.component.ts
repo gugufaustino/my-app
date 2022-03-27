@@ -4,9 +4,9 @@ import { FormGroup, PatternValidator, Validators } from "@angular/forms";
 import { MASKS, NgBrazilValidators, NgBrDirectives } from "ng-brazil";
 import { CustomValidators } from "ng2-validation";
 
-import { FormBaseComponent } from "../base-components/form-base.components";
-import { DateUtils } from "../utils/date-utils";
-import { FormValidations } from "../utils/form-validations";
+import { FormBaseComponent } from "../app-core/components/form-base.component";
+import { DateUtils } from "../app-core/utils/date-utils";
+import { FormValidations } from "../app-core/utils/form-validations";
 
 export abstract class CatalogoBase extends FormBaseComponent {
 

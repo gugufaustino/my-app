@@ -6,8 +6,8 @@ import { Pagamento } from '../models/pagamento';
 import { ContasPagarBase } from '../contas-a-pagar-form.base.component';
 
 import { NgBrazilValidators } from 'ng-brazil';
-import { CurrencyUtils } from 'src/app/utils/currency-utils';
-import { DateUtils } from 'src/app/utils/date-utils';
+import { CurrencyUtils } from 'src/app/app-core/utils/currency-utils';
+import { DateUtils } from 'src/app/app-core/utils/date-utils';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 
@@ -30,8 +30,8 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.pagamentoForm = this.fb.group(this.controlsFormBase); // obrigatório uso de this aqui nesso ponto   
+
+    this.pagamentoForm = this.fb.group(this.controlsFormBase); // obrigatório uso de this aqui nesso ponto
     this.pagamentoForm.addControl('dtVencimento', new FormControl('', this.dtVencValidators));
 
     this.pagamentoForm.patchValue({
@@ -50,7 +50,7 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
     super.configurarValidacaoFormularioBase(this.formInputElements, this.pagamentoForm);
   }
 
-  submitForm() { 
+  submitForm() {
     super.validarFormulario(this.pagamentoForm, true);
     if (this.pagamentoForm.dirty && this.pagamentoForm.valid) {
       this.pagamento = super.mapToModel(this.pagamento, this.pagamentoForm.value)
@@ -74,5 +74,5 @@ export class EditarComponent extends ContasPagarBase implements OnInit {
 
   }
 
-  
+
 }

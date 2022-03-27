@@ -5,7 +5,7 @@ import { fromEvent, merge, Observable } from 'rxjs';
 
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { CustomValidators } from 'ng2-validation';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
+import { DisplayMessage, GenericValidator, ValidationMessages } from '../../app-core/utils/generic-form-validation';
 import { ToastrService } from 'ngx-toastr';
 
 import { Usuario } from '../models/usuario';
@@ -25,7 +25,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   formResult: string = '';
   MASKS: any = MASKS;
 
-  errors: any = [];  
+  errors: any = [];
 
   validationMessages: ValidationMessages;
   genericValidatior: GenericValidator;

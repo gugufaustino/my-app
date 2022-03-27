@@ -3,9 +3,9 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { BaserService } from "src/app/services/base.service";
-import { IObter } from "src/app/base-contracts/services/iobter.service";
+import { IObter } from "src/app/app-core/interfaces/services/iobter.service";
 import { Pagamento } from "../models/pagamento";
-import { CustomResponse } from "src/app/base-contracts/models/custom-response";
+import { CustomResponse } from "src/app/app-core/models/custom-response";
 
 
 
