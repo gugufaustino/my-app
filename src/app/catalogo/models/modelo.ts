@@ -16,7 +16,7 @@ export class Modelo implements MappingModel {
 
     //contato
     email: string;
-    telefone: string[];
+    telefone: string
 
     //endereço
     cep: string;
