@@ -3,110 +3,153 @@
   <h1 class="display-7 text-uppercase">Novo Modelo</h1>
 
   <form novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
-    <div class="">
-      <div class="form-group">
-        <label class="control-label">Nome</label>
-        <input class="form-control" placeholder="(obrigatório)" formControlName="nome" id="nome" [ngClass]="{'is-invalid': displayMessage?.nome}" />
+    <h1 class="display-9 legend">dados básicos</h1>
+    <div class="row">
+      <div class="form-group col-md-9">
+        <app-label [required]="true">Nome</app-label>
+        <input class="form-control" formControlName="nome" id="nome" [ngClass]="{'is-invalid': displayMessage?.nome}" />
         <span *ngIf="displayMessage?.nome">
           <p [innerHTML]="displayMessage?.nome"></p>
         </span>
       </div>
-      <div class="form-group">
-        <label class="control-label">Nascimento</label>
-        <input class="form-control" placeholder="(obrigatório)" formControlName="dtNascimento" id="dtNascimento" [ngClass]="{'is-invalid': displayMessage?.dtNascimento}"
-          [textMask]="{mask: DateMask}" />
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Nascimento</app-label>
+        <input class="form-control" formControlName="dtNascimento" id="dtNascimento" [ngClass]="{'is-invalid': displayMessage?.dtNascimento}" [textMask]="{mask: DateMask}" />
         <span *ngIf="displayMessage?.dtNascimento">
           <p [innerHTML]="displayMessage?.dtNascimento"></p>
         </span>
       </div>
-      <div class="form-group">
-        <label class="control-label">RG</label>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">RG</app-label>
         <div class="">
-          <input class="form-control" placeholder="(obrigatório)" formControlName="rg" id="rg" [ngClass]="{'is-invalid': displayMessage?.rg}" />
+          <input class="form-control" formControlName="rg" id="rg" [ngClass]="{'is-invalid': displayMessage?.rg}" />
           <span *ngIf="displayMessage?.rg">
             <p [innerHTML]="displayMessage?.rg"></p>
           </span>
         </div>
       </div>
-      <div class="form-group">
-        <label class="control-label">CPF</label>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">CPF</app-label>
         <div class="">
-          <input class="form-control" placeholder="(obrigatório)" formControlName="cpf" id="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}"
-            [textMask]="{mask: MASKS?.cpf.textMask}" />
+          <input class="form-control" formControlName="cpf" id="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
           <span *ngIf="displayMessage?.cpf">
             <p [innerHTML]="displayMessage?.cpf"></p>
           </span>
         </div>
       </div>
+    </div>
 
 
-      <div class="form-group">
-        <label class="control-label">Diponibilidade</label>
+    <div class="row">
+      <div class="form-group  col-md-4">
+        <app-label [required]="true">Diponibilidade</app-label>
         <div class="">
-          <input class="form-control" placeholder="(obrigatório)" formControlName="diponibilidade" id="diponibilidade" [ngClass]="{'is-invalid': displayMessage?.diponibilidade}" />
+          <input class="form-control" formControlName="diponibilidade" id="diponibilidade" [ngClass]="{'is-invalid': displayMessage?.diponibilidade}" />
           <span *ngIf="displayMessage?.diponibilidade">
             <p [innerHTML]="displayMessage?.diponibilidade"></p>
           </span>
         </div>
       </div>
-      <div class="form-group">
-        <label class="control-label">Casting</label>
-        <div class="">
-          <input class="form-control" placeholder="(obrigatório)" formControlName="tipoCasting" id="tipoCasting" [ngClass]="{'is-invalid': displayMessage?.tipoCasting}" />
-          <span *ngIf="displayMessage?.tipoCasting">
-            <p [innerHTML]="displayMessage?.tipoCasting"></p>
-          </span>
+      <div class="form-group  col-md-8">
+        <app-label [required]="true">Casting</app-label>
+        <div class="row">
+          <div class="checkbox" class="col-sm-3" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
+            <label class="checkbox-inline">
+              <input type="checkbox" [formControlName]="i"> {{ tipoCasting[i].desc }}
+            </label>
+          </div>
         </div>
+
+        <span *ngIf="displayMessage?.tipoCasting">
+          <p [innerHTML]="displayMessage?.tipoCasting"></p>
+        </span>
+
       </div>
 
 
-      <div class="form-group">
-        <label class="control-label">E-mail</label>
+    </div>
+
+    <h1 class="display-9 legend">contato</h1>
+    <div class="row">
+      <div class="form-group  col-md-3">
+        <app-label [required]="true">Telefone</app-label>
         <div class="">
-          <input class="form-control" placeholder="(obrigatório)" formControlName="email" id="email" [ngClass]="{'is-invalid': displayMessage?.email}" />
-          <span *ngIf="displayMessage?.email">
-            <p [innerHTML]="displayMessage?.email"></p>
-          </span>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Telefones</label>
-        <div class="">
-          <input class="form-control" placeholder="(obrigatório)" formControlName="telefone" id="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}" />
+          <input class="form-control" formControlName="telefone" id="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}"
+            [textMask]="{mask: MASKS.telefone.textMaskFunction}" />
           <span *ngIf="displayMessage?.telefone">
             <p [innerHTML]="displayMessage?.telefone"></p>
           </span>
         </div>
       </div>
+      <div class="form-group  col-md-3">
+        <app-label>Telefone</app-label>
+        <div class="">
+          <input class="form-control" formControlName="telefone" id="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}"
+            [textMask]="{mask: MASKS.telefone.textMaskFunction}" />
+          <span *ngIf="displayMessage?.telefone">
+            <p [innerHTML]="displayMessage?.telefone"></p>
+          </span>
+        </div>
+      </div>
+      <div class="form-group  col-md-6">
+        <app-label [required]="true">E-mail</app-label>
+        <div class="">
+          <input class="form-control" formControlName="email" id="email" [ngClass]="{'is-invalid': displayMessage?.email}" />
+          <span *ngIf="displayMessage?.email">
+            <p [innerHTML]="displayMessage?.email"></p>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group  col-md-5">
+        <app-label [required]="true">Instagram</app-label>
+        <div class="">
+          <input class="form-control" formControlName="instagram" id="instagram" [ngClass]="{'is-invalid': displayMessage?.instagram}"
+            placeholder="https://www.instagram.com/usuario/" />
+          <span *ngIf="displayMessage?.instagram">
+            <p [innerHTML]="displayMessage?.instagram"></p>
+          </span>
+        </div>
+      </div>
+      <div class="form-group  col-md-5">
+        <app-label>Facebook</app-label>
+        <div class="">
+          <input class="form-control" formControlName="facebook" id="facebook" [ngClass]="{'is-invalid': displayMessage?.facebook}"
+            placeholder="https://www.facebook.com/usuario/" />
+          <span *ngIf="displayMessage?.facebook">
+            <p [innerHTML]="displayMessage?.facebook"></p>
+          </span>
+        </div>
+      </div>
     </div>
+
+    <h1 class="display-9 legend">endereço</h1>
     <div class="row">
       <div class="form-group col-md-3">
-        <label class="control-label">CEP</label>
-        <input class="form-control" placeholder="(obrigatório)" formControlName="cep" id="cep" [ngClass]="{'is-invalid': displayMessage?.cep}"
-          [textMask]="{mask: MASKS?.cep.textMask}" />
+        <app-label [required]="true">CEP</app-label>
+        <input class="form-control" formControlName="cep" id="cep" [ngClass]="{'is-invalid': displayMessage?.cep}" [textMask]="{mask: MASKS?.cep.textMask}" />
         <span *ngIf="displayMessage?.cep">
           <p [innerHTML]="displayMessage?.cep"></p>
         </span>
       </div>
       <div class="form-group col-md-7">
-        <label class="control-label">Logradouro</label>
+        <app-label [required]="true">Logradouro</app-label>
 
-        <input class="form-control" placeholder="(obrigatório)" formControlName="logradouro" id="logradouro" [ngClass]="{'is-invalid': displayMessage?.logradouro}" />
+        <input class="form-control" formControlName="logradouro" id="logradouro" [ngClass]="{'is-invalid': displayMessage?.logradouro}" />
         <span *ngIf="displayMessage?.logradouro">
           <p [innerHTML]="displayMessage?.logradouro"></p>
         </span>
       </div>
       <div class="form-group col-md-2">
-        <label class="control-label">Número</label>
+        <app-label [required]="true">Número</app-label>
 
-        <input class="form-control" placeholder="(obrigatório)" formControlName="numero" id="numero" [ngClass]="{'is-invalid': displayMessage?.numero}"
-          [textMask]="{mask: MASKS?.number.textMask}" />
+        <input class="form-control" formControlName="numero" id="numero" [ngClass]="{'is-invalid': displayMessage?.numero}" [textMask]="{mask: MASKS?.number.textMask}" />
         <span *ngIf="displayMessage?.numero">
           <p [innerHTML]="displayMessage?.numero"></p>
         </span>
       </div>
       <div class="form-group col-md">
-        <label class="control-label">Complemento</label>
+        <app-label>Complemento</app-label>
 
         <input class="form-control" placeholder="" formControlName="complemento" id="complemento" [ngClass]="{'is-invalid': displayMessage?.complemento}" />
         <span *ngIf="displayMessage?.complemento">
@@ -114,50 +157,50 @@
         </span>
       </div>
       <div class="form-group col-md">
-        <label class="control-label">Bairro</label>
+        <app-label [required]="true">Bairro</app-label>
 
-        <input class="form-control" placeholder="(obrigatório)" formControlName="bairro" id="bairro" [ngClass]="{'is-invalid': displayMessage?.bairro}" />
+        <input class="form-control" formControlName="bairro" id="bairro" [ngClass]="{'is-invalid': displayMessage?.bairro}" />
         <span *ngIf="displayMessage?.bairro">
           <p [innerHTML]="displayMessage?.bairro"></p>
         </span>
       </div>
       <div class="form-group col-md">
-        <label class="control-label">Município</label>
+        <app-label [required]="true">Município</app-label>
 
-        <input class="form-control" placeholder="(obrigatório)" formControlName="nomeMunicipio" id="nomeMunicipio" [ngClass]="{'is-invalid': displayMessage?.nomeMunicipio}" />
+        <input class="form-control" formControlName="nomeMunicipio" id="nomeMunicipio" [ngClass]="{'is-invalid': displayMessage?.nomeMunicipio}" />
         <span *ngIf="displayMessage?.nomeMunicipio">
           <p [innerHTML]="displayMessage?.nomeMunicipio"></p>
         </span>
       </div>
       <div class="form-group col-md">
-        <label class="control-label">UF</label>
+        <app-label [required]="true">UF</app-label>
 
-        <input class="form-control" placeholder="(obrigatório)" formControlName="siglaUf" id="siglaUf" [ngClass]="{'is-invalid': displayMessage?.siglaUf}" />
+        <input class="form-control" formControlName="siglaUf" id="siglaUf" [ngClass]="{'is-invalid': displayMessage?.siglaUf}" />
         <span *ngIf="displayMessage?.siglaUf">
           <p [innerHTML]="displayMessage?.siglaUf"></p>
         </span>
 
       </div>
 
-      <div class="d-flex flex-row-reverse">
-        <div class="form-group">
-          <div class="col-md-4 col-md-offset-2 ">
-            <span>
-              <button class="btn btn-primary" type="submit">Salvar</button>
-            </span>
-
-          </div>
-        </div>
-        <!-- <div class="form-group">
-            <div class="col-md-4 col-md-offset-2">
-                <p>Formulario valido: {{ pagamentoForm.valid }}</p>
-                <p>Formulario Tocado: {{ pagamentoForm.touched }}</p>
-                <p>Formulario Sujo: {{ pagamentoForm.dirty }}</p><br>
-                <p>Formulario: {{ formResult }}</p>
-            </div>
-        </div> -->
-      </div>
     </div>
 
+    <div class="d-flex flex-row-reverse">
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-2 ">
+          <span>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+          </span>
+
+        </div>
+      </div>
+      <!-- <div class="form-group">
+          <div class="col-md-4 col-md-offset-2">
+              <p>Formulario valido: {{ pagamentoForm.valid }}</p>
+              <p>Formulario Tocado: {{ pagamentoForm.touched }}</p>
+              <p>Formulario Sujo: {{ pagamentoForm.dirty }}</p><br>
+              <p>Formulario: {{ formResult }}</p>
+          </div>
+      </div> -->
+    </div>
   </form>
 </div>

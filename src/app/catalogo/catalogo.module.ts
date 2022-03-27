@@ -8,9 +8,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+
 import { ListarComponent } from './listar/listar.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { EditarComponent } from './editar/editar.component';
+import { LabelComponent } from '../app-core/components/label.component/label.component';
 
 
 @NgModule({
@@ -18,7 +20,7 @@ import { EditarComponent } from './editar/editar.component';
     CatalogoComponent,
     ListarComponent,
     InserirComponent,
-    EditarComponent
+    EditarComponent, LabelComponent
   ],
   imports: [
     CommonModule,

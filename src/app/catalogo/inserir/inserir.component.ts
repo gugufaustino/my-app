@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormBuilder, FormControlName } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormArray, FormBuilder, FormControlName } from '@angular/forms';
+import { DropdownService } from 'src/app/app-core/services/dropdown.service';
 
-import { ToastAppService } from 'src/app/services/toastapp.service';
 import { CatalogoBase } from '../catalogo-base.component';
 import { Modelo } from '../models/modelo';
 
@@ -12,19 +11,19 @@ import { Modelo } from '../models/modelo';
 })
 export class InserirComponent extends CatalogoBase implements OnInit, AfterViewInit {
 
-  constructor(private router: Router,
+  constructor(
     private fb: FormBuilder,
-    private toastr: ToastAppService,) {
-    super();
+    dropdownService: DropdownService) {
+    super(fb, dropdownService);
   }
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   model: Modelo = new Modelo();
+  tipoCasting: any[];
 
   ngOnInit(): void {
 
     this.componentForm = this.fb.group(this.controlsFormBase);
-    // Valores Default
-    this.componentForm.patchValue({  });
+
   }
 
   ngAfterViewInit(): void {
@@ -35,7 +34,7 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
 
   submitForm(): void {
 
-    console.log(this.componentForm.controls.dtNascimento)
+    console.log(this.componentForm.controls)
 
     super.validarFormulario(this.componentForm, true);
 
@@ -48,6 +47,12 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
       //     falha => this.toastr.error(falha)
       //   );
     }
+  }
+
+
+
+  getTipoCastingControls() {
+    return this.componentForm.get('tipoCasting') ? (<FormArray>this.componentForm.get('tipoCasting')).controls : null;
   }
 
 }

@@ -1,10 +1,11 @@
 import { ElementRef } from "@angular/core";
 
-import { FormGroup, PatternValidator, Validators } from "@angular/forms";
-import { MASKS, NgBrazilValidators, NgBrDirectives } from "ng-brazil";
+import { FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from "@angular/forms";
+import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { CustomValidators } from "ng2-validation";
 
 import { FormBaseComponent } from "../app-core/components/form-base.component";
+import { DropdownService } from "../app-core/services/dropdown.service";
 import { DateUtils } from "../app-core/utils/date-utils";
 import { FormValidations } from "../app-core/utils/form-validations";
 
@@ -16,10 +17,14 @@ export abstract class CatalogoBase extends FormBaseComponent {
 
   componentForm: FormGroup;
   controlsFormBase: any;
+  tipoCasting: any[];
 
-
-  constructor() {
+  constructor(
+    protected formBuilder: FormBuilder,
+    protected dropdownService: DropdownService) {
     super();
+
+    this.tipoCasting = dropdownService.getTipoCasting();
 
     this.controlsFormBase = {
       nome: ['', [Validators.required, CustomValidators.rangeLength([3, 250])]],
@@ -28,10 +33,13 @@ export abstract class CatalogoBase extends FormBaseComponent {
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
 
       diponibilidade: ['', [Validators.required]],
-      tipoCasting: ['', [Validators.required]],
+      tipoCasting: this.buildFrameworks(),
 
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, NgBrazilValidators.telefone]],
+
+      instagram: ['', [Validators.required]],
+      facebook: [''],
 
       cep: ['', [Validators.required, NgBrazilValidators.cep]],
       logradouro: ['', [Validators.required, Validators.maxLength(250)]],
@@ -53,5 +61,12 @@ export abstract class CatalogoBase extends FormBaseComponent {
 
   protected configurarMensagensValidacaoBase() {
     super.configurarMensagensValidacaoBase(this.validationMessages);
+  }
+
+  buildFrameworks() {
+
+    const values = this.tipoCasting.map(v => new FormControl(false));
+    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
+
   }
 }

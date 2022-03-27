@@ -1,9 +1,9 @@
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { DateUtils } from './date-utils';
 
 export class FormValidations {
 
-  static requiredMinCheckbox(min = 1) {
+  static requiredMinCheckbox(min = 1): any {
     const validator = (formArray: FormArray) => {
       /* const values = formArray.controls;
       let totalChecked = 0;
