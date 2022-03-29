@@ -5,9 +5,11 @@ import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { CustomValidators } from "ng2-validation";
 
 import { FormBaseComponent } from "../app-core/components/form-base.component";
+import { OptionSelect } from "../app-core/models/option-select";
 import { DropdownService } from "../app-core/services/dropdown.service";
 import { DateUtils } from "../app-core/utils/date-utils";
 import { FormValidations } from "../app-core/utils/form-validations";
+import { Modelo } from "./models/modelo";
 
 export abstract class CatalogoBase extends FormBaseComponent {
 
@@ -17,14 +19,18 @@ export abstract class CatalogoBase extends FormBaseComponent {
 
   componentForm: FormGroup;
   controlsFormBase: any;
-  tipoCasting: any[];
+
+  model: Modelo = new Modelo();
+  tipoCasting: OptionSelect[] = Modelo.tipoCastingEnum;
+  corOlhosEnum: OptionSelect[] = Modelo.corOlhosEnum;
+  corCabeloEnum: OptionSelect[] = Modelo.corCabeloEnum;
+
+  tipoCabelo: OptionSelect[] = Modelo.tipoCabeloEnum;
 
   constructor(
-    protected formBuilder: FormBuilder,
-    protected dropdownService: DropdownService) {
+    protected formBuilder: FormBuilder) {
     super();
 
-    this.tipoCasting = dropdownService.getTipoCasting();
 
     this.controlsFormBase = {
       nome: ['', [Validators.required, CustomValidators.rangeLength([3, 250])]],
@@ -33,13 +39,15 @@ export abstract class CatalogoBase extends FormBaseComponent {
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
 
       diponibilidade: ['', [Validators.required]],
-      tipoCasting: this.buildFrameworks(),
+      tipoCasting: this.buildTipoCasting(),
 
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, NgBrazilValidators.telefone]],
+      telefone2: ['', [NgBrazilValidators.telefone]],
 
       instagram: ['', [Validators.required]],
       facebook: [''],
+      linkedin: [''],
 
       cep: ['', [Validators.required, NgBrazilValidators.cep]],
       logradouro: ['', [Validators.required, Validators.maxLength(250)]],
@@ -49,11 +57,25 @@ export abstract class CatalogoBase extends FormBaseComponent {
       siglaUf: ['', [Validators.required]],
       nomeMunicipio: ['', [Validators.required]],
 
+      corOlhos: [null, [Validators.required]],
+      corCabelo: [null, [Validators.required]],
+      tipoCabelo: [null, [Validators.required]],
+
+
+
     };
 
     this.validationMessages = {
     }
   }
+
+  buildTipoCasting() {
+    return this.formBuilder
+      .array(this.tipoCasting.map(v => new FormControl(false)),
+        FormValidations.requiredMinCheckbox(1));
+
+  }
+
 
   protected configurarValidacaoFormulario(formInputElements: ElementRef[]) {
     super.configurarValidacaoFormularioBase(formInputElements, this.componentForm);
@@ -61,12 +83,5 @@ export abstract class CatalogoBase extends FormBaseComponent {
 
   protected configurarMensagensValidacaoBase() {
     super.configurarMensagensValidacaoBase(this.validationMessages);
-  }
-
-  buildFrameworks() {
-
-    const values = this.tipoCasting.map(v => new FormControl(false));
-    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
-
   }
 }

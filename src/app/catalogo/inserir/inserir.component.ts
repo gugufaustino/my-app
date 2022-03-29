@@ -12,13 +12,11 @@ import { Modelo } from '../models/modelo';
 export class InserirComponent extends CatalogoBase implements OnInit, AfterViewInit {
 
   constructor(
-    private fb: FormBuilder,
-    dropdownService: DropdownService) {
-    super(fb, dropdownService);
+    private fb: FormBuilder) {
+    super(fb);
   }
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
-  model: Modelo = new Modelo();
-  tipoCasting: any[];
+
 
   ngOnInit(): void {
 

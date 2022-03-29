@@ -44,9 +44,9 @@
       <div class="form-group  col-md-12">
         <app-label [required]="true">Tipo</app-label>
         <div class="row">
-          <div class="checkbox" class="col" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
+          <div class="checkbox col" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
             <label class="checkbox-inline">
-              <input type="checkbox" [formControlName]="i"> {{ tipoCasting[i].desc }}
+              <input type="checkbox" [formControlName]="i"> {{ tipoCasting[i].text }}
             </label>
           </div>
         </div>
@@ -83,10 +83,10 @@
       <div class="form-group  col-md-3">
         <app-label>Telefone</app-label>
         <div class="">
-          <input class="form-control" formControlName="telefone" id="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}"
+          <input class="form-control" formControlName="telefone2" id="telefone2" [ngClass]="{'is-invalid': displayMessage?.telefone2}"
             [textMask]="{mask: MASKS.telefone.textMaskFunction}" />
-          <span *ngIf="displayMessage?.telefone">
-            <p [innerHTML]="displayMessage?.telefone"></p>
+          <span *ngIf="displayMessage?.telefone2">
+            <p [innerHTML]="displayMessage?.telefone2"></p>
           </span>
         </div>
       </div>
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="form-group  col-md-5">
+      <div class="form-group col-md-4">
         <app-label [required]="true">Instagram</app-label>
         <div class="">
           <input class="form-control" formControlName="instagram" id="instagram" [ngClass]="{'is-invalid': displayMessage?.instagram}"
@@ -110,7 +110,7 @@
           </span>
         </div>
       </div>
-      <div class="form-group  col-md-5">
+      <div class="form-group col-md-4">
         <app-label>Facebook</app-label>
         <div class="">
           <input class="form-control" formControlName="facebook" id="facebook" [ngClass]="{'is-invalid': displayMessage?.facebook}"
@@ -120,6 +120,19 @@
           </span>
         </div>
       </div>
+
+      <div class="form-group col-md-4">
+        <app-label>Linkedin</app-label>
+        <div class="">
+          <input class="form-control" formControlName="linkedin" id="linkedin" [ngClass]="{'is-invalid': displayMessage?.linkedin}"
+            placeholder="https://www.linkedin.com/usuario/" />
+          <span *ngIf="displayMessage?.linkedin">
+            <p [innerHTML]="displayMessage?.linkedin"></p>
+          </span>
+        </div>
+      </div>
+
+
     </div>
 
     <h1 class="display-9 legend">endereço</h1>
@@ -165,21 +178,69 @@
       </div>
       <div class="form-group col-md">
         <app-label [required]="true">Município</app-label>
-
         <input class="form-control" formControlName="nomeMunicipio" id="nomeMunicipio" [ngClass]="{'is-invalid': displayMessage?.nomeMunicipio}" />
         <span *ngIf="displayMessage?.nomeMunicipio">
           <p [innerHTML]="displayMessage?.nomeMunicipio"></p>
         </span>
       </div>
+
       <div class="form-group col-md">
         <app-label [required]="true">UF</app-label>
-
         <input class="form-control" formControlName="siglaUf" id="siglaUf" [ngClass]="{'is-invalid': displayMessage?.siglaUf}" />
         <span *ngIf="displayMessage?.siglaUf">
           <p [innerHTML]="displayMessage?.siglaUf"></p>
         </span>
+      </div>
+
+    </div>
+
+    <h1 class="display-9 legend">caracteristicas físicas</h1>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Cor dos Olhos</app-label>
+        <div id="corOlhos" class="row">
+          <div class="col" *ngFor="let item of corOlhosEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="corOlhos" [ngClass]="{'is-invalid': displayMessage?.corOlhos}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.corOlhos">
+          <p [innerHTML]="displayMessage?.corOlhos"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Cor do Cabelo</app-label>
+        <div id="corCabelo" class="row">
+          <div class="col-md-3" *ngFor="let item of corCabeloEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="corCabelo" [ngClass]="{'is-invalid': displayMessage?.corCabelo}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.corCabelo">
+          <p [innerHTML]="displayMessage?.corCabelo"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Tipo Cabelo</app-label>
+        <div id="tipoCabelo" class="row">
+          <div class="col" *ngFor="let item of tipoCabelo">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="tipoCabelo" [ngClass]="{'is-invalid': displayMessage?.tipoCabelo}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.tipoCabelo">
+          <p [innerHTML]="displayMessage?.tipoCabelo"></p>
+        </span>
 
       </div>
+
+
+
 
     </div>
 
