@@ -57,7 +57,7 @@
                 <div [hidden]="this.tipoRecorrencia().value != 1">
                     <label class="col-md-12 control-label">Data Vencimento</label>
                     <div class="col-md-12">
-                        <input class="form-control bg-dark text-white text-center " formControlName="dtVencimento" id="dtVencimento"
+                        <input class="form-control bg-dark text-white " formControlName="dtVencimento" id="dtVencimento"
                             placeholder="(data obrigatório)" [textMask]="{mask: DateMask}" [ngClass]="{'is-invalid': displayMessage?.dtVencimento}" />
                         <span class="text-danger" *ngIf="displayMessage?.dtVencimento">
                             <p [innerHTML]="displayMessage?.dtVencimento"></p>
@@ -68,7 +68,7 @@
                 <div [hidden]="this.tipoRecorrencia().value != 2">
                     <label class="col-md-12 control-label">Dia Vencimento</label>
                     <div class="col-md-12">
-                        <input class="form-control bg-dark text-white text-center" formControlName="diaVencimento"
+                        <input class="form-control bg-dark text-white text-center " formControlName="diaVencimento"
                             id="diaVencimento" placeholder="(dia obrigatório)" [textMask]="{mask: DataDayMask}" max="31" [ngClass]="{'is-invalid': displayMessage?.diaVencimento}" />
                         <span class="text-danger" *ngIf="displayMessage?.diaVencimento">
                             <p [innerHTML]="displayMessage?.diaVencimento"></p>
@@ -83,7 +83,7 @@
             <div class="form-group col">
                 <label class="col-md-4 control-label">Valor (R$)</label>
                 <div class="col-md-12">
-                    <input class="form-control bg-dark text-white text-right" formControlName="valor" id="valor" placeholder="(obrigatório)"
+                    <input class="form-control bg-dark text-white" formControlName="valor" id="valor" placeholder="(obrigatório)"
                         [textMask]="{mask: MASKS?.number.textMask}" [ngClass]="{'is-invalid': displayMessage?.valor}" />
                     <span class="text-danger" *ngIf="displayMessage?.valor">
                         <p [innerHTML]="displayMessage?.valor"></p>

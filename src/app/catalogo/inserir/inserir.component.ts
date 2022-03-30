@@ -26,13 +26,14 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
 
   ngAfterViewInit(): void {
     super.configurarMensagensValidacaoBase();
-    super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm);
+
   }
 
 
   submitForm(): void {
 
-    console.log(this.componentForm.controls)
+    console.log(this.componentForm, this.formInputElements);
 
     super.validarFormulario(this.componentForm, true);
 
@@ -49,8 +50,6 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
 
 
 
-  getTipoCastingControls() {
-    return this.componentForm.get('tipoCasting') ? (<FormArray>this.componentForm.get('tipoCasting')).controls : null;
-  }
+
 
 }

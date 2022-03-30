@@ -1,4 +1,4 @@
-import { FormArray, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { DateUtils } from './date-utils';
 
 export class FormValidations {
@@ -55,13 +55,23 @@ export class FormValidations {
     return validator;
   }
 
-  static data(control: FormControl) {
-
-    const valor = control.value;
-    if (valor && valor !== '') {
-      return DateUtils.DataValida(valor) ? null : { data: true };
+  static data():ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const valor = control.value;
+      if (valor && valor !== '') {
+        return DateUtils.DataValida(valor) ? null : { data: true };
+      }
+      return null;
     }
-    return null;
+  }
+  static dataFn(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const valor = control.value;
+      if (valor && valor !== '') {
+        return DateUtils.DataValida(valor) ? null : { data: true };
+      }
+      return null;
+    }
   }
 
   static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any): string {

@@ -26,12 +26,12 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
 
   ngOnInit(): void {
 
-    this.pagamentoForm = this.fb.group(this.controlsFormBase); // obrigatário uso de this aqui nesso ponto   
+    this.pagamentoForm = this.fb.group(this.controlsFormBase); // obrigatário uso de this aqui nesso ponto
 
     this.pagamentoForm.addControl('dtVencimento', new FormControl('', this.dtVencValidators));
     this.pagamentoForm.addControl('diaVencimento', new FormControl(''));
     //this.pagamentoForm.get('dtVencimento')?.setValidators(this.dtVencValidators);
-   
+
     // Valores Default
     this.pagamentoForm.patchValue({ tipoRecorrencia: '1' });
     this.tipoRecorrenciaValueChanges();
@@ -47,7 +47,7 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
 
 
     super.configurarMensagensValidacaoBase();
-    super.configurarValidacaoFormularioBase(this.formInputElements, this.pagamentoForm)
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.pagamentoForm);
   }
 
 
@@ -59,7 +59,7 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
     return this.pagamentoForm.get('diaVencimento');
   }
 
-  tipoRecorrenciaValueChanges() {    
+  tipoRecorrenciaValueChanges() {
 
     this.desabilitaCampo(this.pagamentoForm, 'dtVencimento');
     this.desabilitaCampo(this.pagamentoForm, 'diaVencimento');
@@ -97,7 +97,7 @@ export class InserirComponent extends ContasPagarBase implements OnInit, AfterVi
     //this.pagamentoForm.reset();
     this.errors = [];
     this.mudancasNaoSalvas = false;
-     
+
     this.toastr.success(response.message, 'Sucesso!', () => {
       this.pagamentoForm.reset();
       this.router.navigate(['/contas-a-pagar/listar']);

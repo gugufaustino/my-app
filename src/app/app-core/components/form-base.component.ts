@@ -7,96 +7,125 @@ import { GenericValidator, DisplayMessage, ValidationMessages } from '../utils/g
 import { MappingModel } from '../interfaces/models/mapping.model';
 import { CurrencyUtils } from '../utils/currency-utils';
 import { DateUtils } from '../utils/date-utils';
-import { MASKS } from "ng-brazil";
+import { MASKS, NgBrazilValidators } from "ng-brazil";
 
 import { IFormComponent } from '../interfaces/components/iform.component';
+import { CustomValidators } from 'ng2-validation';
+import { FormValidations } from '../utils/form-validations';
 
 export abstract class FormBaseComponent implements IFormComponent {
-    mudancasNaoSalvas: boolean;
+  mudancasNaoSalvas: boolean;
 
-    errors: any = [];
-    displayMessage: DisplayMessage = {};
-    genericValidator: GenericValidator;
-    validationMessages: ValidationMessages;
+  errors: any = [];
+  displayMessage: DisplayMessage = {};
+  genericValidator: GenericValidator;
+  validationMessages: ValidationMessages;
 
-    MASKS: any = MASKS;
-    DateMask = DateUtils.DataMask;
-    DataDayMask = DateUtils.DataDayMask;
+  MASKS: any = MASKS;
+  DateMask = DateUtils.DataMask;
+  DataDayMask = DateUtils.DataDayMask;
 
-    protected configurarMensagensValidacaoBase(validationMessages: ValidationMessages) {
-        this.genericValidator = new GenericValidator(validationMessages);
+  protected configurarMensagensValidacaoBase(validationMessages: ValidationMessages) {
+    this.genericValidator = new GenericValidator(validationMessages);
+  }
+
+  protected configurarValidacaoFormularioBase(formInputElements: ElementRef[], formGroup: FormGroup) {
+
+    let controlBlurs: Observable<any>[] = formInputElements
+      .map((formControl: ElementRef) => {
+        this.configurarCssClass(formControl, formGroup);
+        return fromEvent(formControl.nativeElement, 'blur');
+      });
+
+    merge(...controlBlurs).subscribe(() => {
+      this.validarFormulario(formGroup)
+    });
+
+
+
+  }
+
+  protected validarFormulario(formGroup: FormGroup, allControls: boolean = false) {
+
+    this.displayMessage = this.genericValidator.processaMensgens(formGroup, allControls);
+    this.mudancasNaoSalvas = true;
+  }
+
+
+  protected configurarCssClass(formControl: ElementRef, formGroup: FormGroup) {
+
+    const formcontrolname = formControl.nativeElement.attributes['formcontrolname']?.value;
+    let control = formGroup.get(formcontrolname);
+
+    if (control?.hasValidator(CustomValidators.number) || control?.hasValidator(NgBrazilValidators.currency)) {
+      this.addClass(formControl, 'text-right')
     }
 
-    protected configurarValidacaoFormularioBase(
-        formInputElements: ElementRef[],
-        formGroup: FormGroup) {
-
-        let controlBlurs: Observable<any>[] = formInputElements
-            .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
-
-        merge(...controlBlurs).subscribe(() => {
-            this.validarFormulario(formGroup)
-        });
+    if (control?.hasValidator(FormValidations.data)) {
+      this.addClass(formControl, 'text-center')
     }
 
-    protected validarFormulario(formGroup: FormGroup, allControls: boolean = false) {
+    //console.log(formControl.nativeElement.attributes["ng-reflect-text-mask-config"]?.value)
+    //nativeElement.attributes[formcontrolname]
+  }
 
-        this.displayMessage = this.genericValidator.processaMensgens(formGroup, allControls);
-        this.mudancasNaoSalvas = true;
-    }
+  protected mapToModel(source1: MappingModel, source2: any): any {
+    /*
+       this.pagamento = Object.assign({}, this.pagamento, this.pagamentoForm.value)
+        this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);
+        this.pagamento.tipoRecorrencia = parseInt(this.pagamento.tipoRecorrencia.toString());
+        this.pagamento.dtVencimento = DateUtils.StringParaDate(this.pagamento.dtVencimento.toString());
 
-    protected mapToModel(source1: MappingModel, source2: any): any {
-        /*
-           this.pagamento = Object.assign({}, this.pagamento, this.pagamentoForm.value)
-            this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);
-            this.pagamento.tipoRecorrencia = parseInt(this.pagamento.tipoRecorrencia.toString());
-            this.pagamento.dtVencimento = DateUtils.StringParaDate(this.pagamento.dtVencimento.toString());
+    */
+    let model = Object.assign({}, source1, source2);
+    var propertys = Reflect.ownKeys(source2)
 
-        */
-        let model = Object.assign({}, source1, source2);
-        var propertys = Reflect.ownKeys(source2)
+    for (let i = 0; i < propertys.length; i++) {
+      const propKey = propertys[i];
+      const propDescr: PropertyDescriptor | undefined = Reflect.getOwnPropertyDescriptor(source2, propKey)
+      if (propDescr !== undefined) {
+        let mapProperty = source1?.mappings.filter(i => i[propKey] != undefined);
+        if (mapProperty.length == 1) {
 
-        for (let i = 0; i < propertys.length; i++) {
-            const propKey = propertys[i];
-            const propDescr: PropertyDescriptor | undefined = Reflect.getOwnPropertyDescriptor(source2, propKey)
-            if (propDescr !== undefined) {
-                let mapProperty = source1?.mappings.filter(i => i[propKey] != undefined);
-                if (mapProperty.length == 1) {
+          let mapType = mapProperty[0][propKey];
+          let modelValue = model[propKey];
+          let parsed = null;
 
-                    let mapType = mapProperty[0][propKey];
-                    let modelValue = model[propKey];
-                    let parsed = null;
+          if (mapType == "number" && modelValue != "" && modelValue != null) {
+            if (modelValue.indexOf(",") > 0) // temvirgula é decimal
+              parsed = CurrencyUtils.StringParaDecimal(modelValue);
+            else
+              parsed = CurrencyUtils.ExtractNumber(modelValue);
 
-                    if (mapType == "number" && modelValue != "" && modelValue != null) {
-                        if (modelValue.indexOf(",") > 0) // temvirgula é decimal
-                            parsed = CurrencyUtils.StringParaDecimal(modelValue);
-                        else
-                            parsed = CurrencyUtils.ExtractNumber(modelValue);
-
-                            if (isNaN(parsed)){
-                                throw "Erro na conversao em 'mapToModel()'";
-                            }
-
-                        model[propKey] = parsed;
-                    } else if (mapType == "Date" && modelValue != "" && modelValue != null) {
-                        model[propKey] = DateUtils.StringParaDate(modelValue.toString());
-                    }
-                }
+            if (isNaN(parsed)) {
+              throw "Erro na conversao em 'mapToModel()'";
             }
+
+            model[propKey] = parsed;
+          } else if (mapType == "Date" && modelValue != "" && modelValue != null) {
+            model[propKey] = DateUtils.StringParaDate(modelValue.toString());
+          }
         }
-        return model;
+      }
     }
+    return model;
+  }
 
-    protected desabilitaCampo(form: any, name: string, dfaultVal?: string) {
+  protected desabilitaCampo(form: any, name: string, dfaultVal?: string) {
 
-        //Reseta atributos ao estado original, value, touched, dirty,
-        form.get(name)?.clearValidators();
-        form.get(name)?.disable();
-        form.get(name).value = dfaultVal;
-        form.get(name).touched = false;
-        form.get(name).pristine= true;
-        form.patchValue({ [name]: dfaultVal });
+    //Reseta atributos ao estado original, value, touched, dirty,
+    form.get(name)?.clearValidators();
+    form.get(name)?.disable();
+    form.get(name).value = dfaultVal;
+    form.get(name).touched = false;
+    form.get(name).pristine = true;
+    form.patchValue({ [name]: dfaultVal });
 
-    }
+  }
+
+  private addClass(formControl: ElementRef, cssClass: string) {
+
+    formControl.nativeElement.classList.add(cssClass);
+  }
 
 }

@@ -1,12 +1,11 @@
 import { ElementRef } from "@angular/core";
 
-import { FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from "@angular/forms";
 import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { CustomValidators } from "ng2-validation";
 
 import { FormBaseComponent } from "../app-core/components/form-base.component";
 import { OptionSelect } from "../app-core/models/option-select";
-import { DropdownService } from "../app-core/services/dropdown.service";
 import { DateUtils } from "../app-core/utils/date-utils";
 import { FormValidations } from "../app-core/utils/form-validations";
 import { Modelo } from "./models/modelo";
@@ -25,7 +24,8 @@ export abstract class CatalogoBase extends FormBaseComponent {
   corOlhosEnum: OptionSelect[] = Modelo.corOlhosEnum;
   corCabeloEnum: OptionSelect[] = Modelo.corCabeloEnum;
 
-  tipoCabelo: OptionSelect[] = Modelo.tipoCabeloEnum;
+  tipoCabeloEnum: OptionSelect[] = Modelo.tipoCabeloEnum;
+  tipoCabeloComprimentoEnum: OptionSelect[] = Modelo.tipoCabeloComprimentoEnum;
 
   constructor(
     protected formBuilder: FormBuilder) {
@@ -57,9 +57,15 @@ export abstract class CatalogoBase extends FormBaseComponent {
       siglaUf: ['', [Validators.required]],
       nomeMunicipio: ['', [Validators.required]],
 
+      altura: ['', [Validators.required, CustomValidators.number]],
+      peso: ['', [Validators.required, CustomValidators.number]],
+      manequim: ['', [Validators.required, CustomValidators.number]],
+      sapato: ['', [Validators.required, CustomValidators.number]],
+
       corOlhos: [null, [Validators.required]],
       corCabelo: [null, [Validators.required]],
       tipoCabelo: [null, [Validators.required]],
+      tipoCabeloComprimento: [null, [Validators.required]],
 
 
 
@@ -73,7 +79,10 @@ export abstract class CatalogoBase extends FormBaseComponent {
     return this.formBuilder
       .array(this.tipoCasting.map(v => new FormControl(false)),
         FormValidations.requiredMinCheckbox(1));
+  }
 
+  getTipoCastingControls() {
+    return this.componentForm.get('tipoCasting') ? (<FormArray>this.componentForm.get('tipoCasting')).controls : null;
   }
 
 
