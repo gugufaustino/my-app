@@ -237,6 +237,12 @@
 
  }
 
+ .form-bg input.as-label{
+  background-color: #343a4000 !important;
+    text-align: center;
+    color: #bbbbbb !important;
+}
+
  .form-bg .form-group span {
    color: #dc3545 !important;
  }
@@ -269,3 +275,5 @@
 h1.grey {
   border-bottom: solid 1px #495057;
 }
+
+

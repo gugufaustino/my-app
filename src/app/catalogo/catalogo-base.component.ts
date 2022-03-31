@@ -1,6 +1,6 @@
 import { ElementRef } from "@angular/core";
 
-import { FormArray, FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { CustomValidators } from "ng2-validation";
 
@@ -67,8 +67,10 @@ export abstract class CatalogoBase extends FormBaseComponent {
       tipoCabelo: [null, [Validators.required]],
       tipoCabeloComprimento: [null, [Validators.required]],
 
-
-
+      //controles
+      situacao: ['ATIVADO'],
+      dthInclusao: ['01/01/2022'],
+      dthAtualizacao: ['15/03/2022'],
     };
 
     this.validationMessages = {

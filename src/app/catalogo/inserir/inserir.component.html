@@ -3,41 +3,70 @@
   <h1 class="display-7 text-uppercase">Novo Modelo</h1>
 
   <form novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
-    <h1 class="display-9 legend">dados básicos</h1>
+
     <div class="row">
-      <div class="form-group col-md-9">
-        <app-label [required]="true">Nome</app-label>
-        <input class="form-control" formControlName="nome" id="nome" [ngClass]="{'is-invalid': displayMessage?.nome}" />
-        <span *ngIf="displayMessage?.nome">
-          <p [innerHTML]="displayMessage?.nome"></p>
-        </span>
-      </div>
-      <div class="form-group col-md-3">
-        <app-label [required]="true">Nascimento</app-label>
-        <input class="form-control" formControlName="dtNascimento" id="dtNascimento" [ngClass]="{'is-invalid': displayMessage?.dtNascimento}" [textMask]="{mask: DateMask}" />
-        <span *ngIf="displayMessage?.dtNascimento">
-          <p [innerHTML]="displayMessage?.dtNascimento"></p>
-        </span>
-      </div>
-      <div class="form-group col-md-3">
-        <app-label [required]="true">RG</app-label>
-        <div class="">
-          <input class="form-control" formControlName="rg" id="rg" [ngClass]="{'is-invalid': displayMessage?.rg}" />
-          <span *ngIf="displayMessage?.rg">
-            <p [innerHTML]="displayMessage?.rg"></p>
-          </span>
+
+      <div class="col-md-9">
+        <h1 class="display-9 legend">dados básicos</h1>
+        <div class="row">
+          <div class="form-group col-md-9">
+            <app-label [required]="true">Nome</app-label>
+            <input class="form-control" formControlName="nome" id="nome" [ngClass]="{'is-invalid': displayMessage?.nome}" />
+            <span *ngIf="displayMessage?.nome">
+              <p [innerHTML]="displayMessage?.nome"></p>
+            </span>
+          </div>
+          <div class="form-group col-md-3">
+            <app-label [required]="true">Nascimento</app-label>
+            <input class="form-control" formControlName="dtNascimento" id="dtNascimento" [ngClass]="{'is-invalid': displayMessage?.dtNascimento}" [textMask]="{mask: DateMask}" />
+            <span *ngIf="displayMessage?.dtNascimento">
+              <p [innerHTML]="displayMessage?.dtNascimento"></p>
+            </span>
+          </div>
+          <div class="form-group col-md-3">
+            <app-label [required]="true">RG</app-label>
+            <div class="">
+              <input class="form-control" formControlName="rg" id="rg" [ngClass]="{'is-invalid': displayMessage?.rg}" />
+              <span *ngIf="displayMessage?.rg">
+                <p [innerHTML]="displayMessage?.rg"></p>
+              </span>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <app-label [required]="true">CPF</app-label>
+            <div class="">
+              <input class="form-control" formControlName="cpf" id="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
+              <span *ngIf="displayMessage?.cpf">
+                <p [innerHTML]="displayMessage?.cpf"></p>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-group col-md-3">
-        <app-label [required]="true">CPF</app-label>
-        <div class="">
-          <input class="form-control" formControlName="cpf" id="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
-          <span *ngIf="displayMessage?.cpf">
-            <p [innerHTML]="displayMessage?.cpf"></p>
-          </span>
+
+      <div class="col-md-3 ">
+        <h1 class="display-9 legend">controle</h1>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <app-label>Situação</app-label>
+            <input [attr.disabled]="true" class="form-control as-label" formControlName="situacao" />
+          </div>
+
+          <div class="form-group col-md pr-0">
+            <app-label>Data Inclusão</app-label>
+            <input [attr.disabled]="true" class="form-control as-label" formControlName="dthInclusao" />
+          </div>
+
+          <div class="form-group col">
+            <app-label>Atualização</app-label>
+            <input [attr.disabled]="true" class="form-control as-label" formControlName="dthAtualizacao" />
+
+          </div>
         </div>
+
       </div>
     </div>
+
 
     <h1 class="display-9 legend">casting</h1>
     <div class="row">
