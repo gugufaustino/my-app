@@ -27,7 +27,9 @@ export const httpInterceptorProviders = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +39,7 @@ export const httpInterceptorProviders = [
     TextMaskModule,
     CustomFormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot({ // ToastrModule added    
+    ToastrModule.forRoot({ // ToastrModule added
       positionClass: 'toast-center-center'
     }),
     HttpClientModule
@@ -48,7 +50,7 @@ export const httpInterceptorProviders = [
     ContasAPagarGuard,
     FornecedorGuard,
     CatalogoGuard
-    
+
   ],
   bootstrap: [AppComponent]
 })

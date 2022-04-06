@@ -1,8 +1,8 @@
+import { AppModule } from './../app.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 
 import { TextMaskModule } from 'angular2-text-mask'
@@ -13,9 +13,10 @@ import { ContaAppComponent } from './conta.app.component';
 
 import { ContaRoutingModulo } from './conta.route';
 import { ContaService } from './services/conta.service';
-import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DiretivesModule } from '../app-core/diretives/diretives.module';
 
- 
+
 
 @NgModule({
   declarations: [
@@ -24,13 +25,14 @@ import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent
   ],
   imports: [
+    DiretivesModule,
     CommonModule,
     RouterModule,
     NgbModule,
-    
+
     ContaRoutingModulo,
     FormsModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
     TextMaskModule,
   ],
   providers :[
