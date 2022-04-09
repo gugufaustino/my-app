@@ -33,7 +33,6 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
     private router: Router) {
     super()
 
-
     this.controlsFormBase = {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, CustomValidators.rangeLength([6, 15])]],

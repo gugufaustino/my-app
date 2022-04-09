@@ -6,8 +6,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let model of lstModels">
-			<td class="text-pink text-capitalize"> <a [routerLink]="[componentRoute + '/editar', model.id]">{{model.nome}}</a> </td>			
+		<tr *ngFor="let model of models$ | async">
+			<td class="text-pink text-capitalize"> <a [routerLink]="[componentRoute + '/editar', model.id]">{{model.nome}}</a> </td>
 
 			<td class="text-center">
 				<a class="text-white" href="javascript:void(0)" (click)="excluir(model)"  placement="left" ngbTooltip="Excluír '{{model.id}}'" >
