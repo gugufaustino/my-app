@@ -5,19 +5,15 @@ import { BaseGuard } from '../services/base.guard';
 import { CatalogoComponent } from './catalogo.component';
 import { EditarComponent } from './editar/editar.component';
 import { InserirComponent } from './inserir/inserir.component';
-import { ListarComponent } from './listar/listar.component';
+import { HomeComponent } from './home/home.component';
 import { CatalogoGuard } from './services/catalogo.guard';
 
 
 const clmaimAcesso: string = 'CATALOGO';
 const routes: Routes = [{
-  path: '', component: CatalogoComponent,
+  path: '', component: HomeComponent,
+  canActivate: [CatalogoGuard], data: [{ claim: { nome: clmaimAcesso, valor: 'CONSULTAR' } }],
   children: [
-    {
-      path: 'listar', component: ListarComponent,
-      canActivate: [CatalogoGuard],
-      data: [{ claim: { nome: clmaimAcesso, valor: 'CONSULTAR' } }]
-    },
     {
       path: 'editar/:id', component: EditarComponent, resolve: { pagamento: AppResolve },
       canActivate: [CatalogoGuard],

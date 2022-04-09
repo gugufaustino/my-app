@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 
-import { ListarComponent } from './listar/listar.component';
+import { HomeComponent } from './home/home.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { EditarComponent } from './editar/editar.component';
 import { LabelComponent } from '../app-core/components/label.component/label.component';
@@ -18,7 +18,7 @@ import { LabelComponent } from '../app-core/components/label.component/label.com
 @NgModule({
   declarations: [
     CatalogoComponent,
-    ListarComponent,
+    HomeComponent,
     InserirComponent,
     EditarComponent, LabelComponent
   ],
