@@ -1,0 +1,15 @@
+.card{
+  background-color: #1b1f31;
+
+}
+
+.card-header {
+  background-color: rgba(0,0,0,0.2);
+  margin-top: 10px;
+  border-radius: 0;
+}
+
+.input-pesquisar{
+  background-color: #151827;
+  margin-right: 5px;
+}

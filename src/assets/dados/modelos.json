@@ -1,0 +1,42 @@
+[{
+   "mappings":[
+      
+   ],
+   "nome":"Wellington Leal Faustino",
+   "dtNascimento":"01/12/1987",
+   "rg":"5100033322",
+   "cpf":"018.667.980-73",
+   "diponibilidade":"horário comercial",
+   "tipoCasting":[
+      true,
+      true,
+      false,
+      false,
+      false
+   ],
+   "email":"well.faustino@hotmail.com",
+   "telefone":"(51) 98182-8315",
+   "telefone2":"",
+   "instagram":"www.insta.com.br/gugufaustino",
+   "facebook":"",
+   "linkedin":"",
+   "cep":"88.056-820",
+   "logradouro":"ENNIO DEMARIA CAVALLAZZI",
+   "numero":"250",
+   "complemento":"",
+   "bairro":"PRAIA BRAVA",
+   "siglaUf":"sc",
+   "nomeMunicipio":"Florianópolis",
+   "altura":"172",
+   "peso":"81",
+   "manequim":"55",
+   "sapato":"42",
+   "corOlhos":"castanho escuro",
+   "corCabelo":"castanho escuro",
+   "tipoCabelo":"crespo",
+   "tipoCabeloComprimento":"curto",
+   "situacao":"ATIVADO",
+   "dthInclusao":"01/01/2022",
+   "dthAtualizacao":"15/03/2022"
+}
+]

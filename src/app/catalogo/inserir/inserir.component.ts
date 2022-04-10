@@ -32,7 +32,7 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
 
 
   submitForm(): void {
-
+debugger;
     console.log(this.componentForm, this.formInputElements);
 
     super.validarFormulario(this.componentForm, true);

@@ -13,6 +13,9 @@ import { HomeComponent } from './home/home.component';
 import { InserirComponent } from './inserir/inserir.component';
 import { EditarComponent } from './editar/editar.component';
 import { LabelComponent } from '../app-core/components/label.component/label.component';
+import { CatalogoService } from './services/catalogo.service';
+import { AppResolve } from '../services/app.resolve';
+import { AppResolveService } from '../services/app.resolve.service';
 
 
 @NgModule({
@@ -33,6 +36,11 @@ import { LabelComponent } from '../app-core/components/label.component/label.com
     ReactiveFormsModule,
     NgBrazil,
     TextMaskModule,
+  ],
+  providers: [
+    CatalogoService,
+    AppResolve,
+    { provide: AppResolveService, useExisting: CatalogoService },
   ]
 })
 export class CatalogoModule { }
