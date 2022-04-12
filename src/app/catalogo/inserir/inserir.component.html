@@ -97,6 +97,98 @@
 
     </div>
 
+    <h1 class="display-9 legend">caracteristicas físicas</h1>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Altura</app-label>
+        <input class="form-control" formControlName="altura" id="altura" [ngClass]="{'is-invalid': displayMessage?.altura}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.altura">
+          <p [innerHTML]="displayMessage?.altura"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Peso</app-label>
+        <input class="form-control" formControlName="peso" id="peso" [ngClass]="{'is-invalid': displayMessage?.peso}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.peso">
+          <p [innerHTML]="displayMessage?.peso"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Manequim</app-label>
+        <input class="form-control" formControlName="manequim" id="manequim" [ngClass]="{'is-invalid': displayMessage?.manequim}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.manequim">
+          <p [innerHTML]="displayMessage?.manequim"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Sapato</app-label>
+        <input class="form-control" formControlName="sapato" id="sapato" [ngClass]="{'is-invalid': displayMessage?.sapato}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.sapato">
+          <p [innerHTML]="displayMessage?.sapato"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Cor dos Olhos</app-label>
+        <h1 class="grey"></h1>
+        <div id="corOlhos" class="row">
+          <div class="col" *ngFor="let item of corOlhosEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="corOlhos" [ngClass]="{'is-invalid': displayMessage?.corOlhos}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.corOlhos">
+          <p [innerHTML]="displayMessage?.corOlhos"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Cor do Cabelo</app-label>
+        <h1 class="grey"></h1>
+        <div id="corCabelo" class="row">
+          <div class="col-md-3" *ngFor="let item of corCabeloEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="corCabelo" [ngClass]="{'is-invalid': displayMessage?.corCabelo}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.corCabelo">
+          <p [innerHTML]="displayMessage?.corCabelo"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Tipo Cabelo</app-label>
+        <h1 class="grey"></h1>
+        <div id="tipoCabelo" class="row">
+          <div class="col" *ngFor="let item of tipoCabeloEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="tipoCabelo" [ngClass]="{'is-invalid': displayMessage?.tipoCabelo}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.tipoCabelo">
+          <p [innerHTML]="displayMessage?.tipoCabelo"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Comprimento do Cabelo</app-label>
+        <h1 class="grey"></h1>
+        <div id="tipoCabelo" class="row">
+          <div class="col" *ngFor="let item of tipoCabeloComprimentoEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="tipoCabeloComprimento" [ngClass]="{'is-invalid': displayMessage?.tipoCabeloComprimento}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.tipoCabeloComprimento">
+          <p [innerHTML]="displayMessage?.tipoCabeloComprimento"></p>
+        </span>
+      </div>
+    </div>
+
     <h1 class="display-9 legend">contato</h1>
     <div class="row">
       <div class="form-group  col-md-3">
@@ -223,105 +315,7 @@
 
     </div>
 
-    <h1 class="display-9 legend">caracteristicas físicas</h1>
-    <div class="row">
 
-      <div class="form-group col-md-3">
-        <app-label [required]="true">Altura</app-label>
-        <input class="form-control" formControlName="altura" id="altura" [ngClass]="{'is-invalid': displayMessage?.altura}" [textMask]="{mask: MASKS?.number.textMask}" />
-        <span *ngIf="displayMessage?.altura">
-          <p [innerHTML]="displayMessage?.altura"></p>
-        </span>
-      </div>
-      <div class="form-group col-md-3">
-        <app-label [required]="true">Peso</app-label>
-        <input class="form-control" formControlName="peso" id="peso" [ngClass]="{'is-invalid': displayMessage?.peso}" [textMask]="{mask: MASKS?.number.textMask}" />
-        <span *ngIf="displayMessage?.peso">
-          <p [innerHTML]="displayMessage?.peso"></p>
-        </span>
-      </div>
-      <div class="form-group col-md-3">
-        <app-label [required]="true">Manequim</app-label>
-        <input class="form-control" formControlName="manequim" id="manequim" [ngClass]="{'is-invalid': displayMessage?.manequim}" [textMask]="{mask: MASKS?.number.textMask}" />
-        <span *ngIf="displayMessage?.manequim">
-          <p [innerHTML]="displayMessage?.manequim"></p>
-        </span>
-      </div>
-      <div class="form-group col-md-3">
-        <app-label [required]="true">Sapato</app-label>
-        <input class="form-control" formControlName="sapato" id="sapato" [ngClass]="{'is-invalid': displayMessage?.sapato}" [textMask]="{mask: MASKS?.number.textMask}" />
-        <span *ngIf="displayMessage?.sapato">
-          <p [innerHTML]="displayMessage?.sapato"></p>
-        </span>
-      </div>
-
-
-
-    </div>
-
-    <div class="row">
-      <div class="form-group col-md-12">
-        <app-label [required]="true">Cor dos Olhos</app-label>
-        <h1 class="grey"></h1>
-        <div id="corOlhos" class="row">
-          <div class="col" *ngFor="let item of corOlhosEnum">
-            <label class="radio-inline">
-              <input type="radio" [value]="item.value" formControlName="corOlhos" [ngClass]="{'is-invalid': displayMessage?.corOlhos}" /> {{ item.text }}
-            </label>
-          </div>
-        </div>
-        <span *ngIf="displayMessage?.corOlhos">
-          <p [innerHTML]="displayMessage?.corOlhos"></p>
-        </span>
-      </div>
-
-      <div class="form-group col-md-12">
-        <app-label [required]="true">Cor do Cabelo</app-label>
-        <h1 class="grey"></h1>
-        <div id="corCabelo" class="row">
-          <div class="col-md-3" *ngFor="let item of corCabeloEnum">
-            <label class="radio-inline">
-              <input type="radio" [value]="item.value" formControlName="corCabelo" [ngClass]="{'is-invalid': displayMessage?.corCabelo}" /> {{ item.text }}
-            </label>
-          </div>
-        </div>
-        <span *ngIf="displayMessage?.corCabelo">
-          <p [innerHTML]="displayMessage?.corCabelo"></p>
-        </span>
-      </div>
-
-      <div class="form-group col-md-12">
-        <app-label [required]="true">Tipo Cabelo</app-label>
-        <h1 class="grey"></h1>
-        <div id="tipoCabelo" class="row">
-          <div class="col" *ngFor="let item of tipoCabeloEnum">
-            <label class="radio-inline">
-              <input type="radio" [value]="item.value" formControlName="tipoCabelo" [ngClass]="{'is-invalid': displayMessage?.tipoCabelo}" /> {{ item.text }}
-            </label>
-          </div>
-        </div>
-        <span *ngIf="displayMessage?.tipoCabelo">
-          <p [innerHTML]="displayMessage?.tipoCabelo"></p>
-        </span>
-      </div>
-
-      <div class="form-group col-md-12">
-        <app-label [required]="true">Comprimento do Cabelo</app-label>
-        <h1 class="grey"></h1>
-        <div id="tipoCabelo" class="row">
-          <div class="col" *ngFor="let item of tipoCabeloComprimentoEnum">
-            <label class="radio-inline">
-              <input type="radio" [value]="item.value" formControlName="tipoCabeloComprimento" [ngClass]="{'is-invalid': displayMessage?.tipoCabeloComprimento}" /> {{ item.text }}
-            </label>
-          </div>
-        </div>
-        <span *ngIf="displayMessage?.tipoCabeloComprimento">
-          <p [innerHTML]="displayMessage?.tipoCabeloComprimento"></p>
-        </span>
-      </div>
-
-
-    </div>
 
     <div class="d-flex flex-row-reverse">
       <div class="form-group">
