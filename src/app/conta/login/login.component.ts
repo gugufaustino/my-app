@@ -1,18 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 
-import { fromEvent, merge, Observable } from 'rxjs';
-
-import * as ngBrazil from 'ng-brazil';
 import { CustomValidators } from 'ng2-validation';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../app-core/utils/generic-form-validation';
-import { ToastrService } from 'ngx-toastr';
 
 import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { Router } from '@angular/router';
 
 import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
+import { ToastAppService } from 'src/app/services/toastapp.service';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +25,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private contaService: ContaService,
-    private toastr: ToastrService,
+    private toastr: ToastAppService,
     private router: Router) {
     super()
 
@@ -57,9 +53,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
   }
 
   submitForm() {
-
     super.validarFormulario(this.componentForm, true);
-
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.usuario = Object.assign({}, this.usuario, this.componentForm.value)
 
@@ -76,15 +70,11 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
     this.errors = [];
     this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
-    let toastSucesso = this.toastr.success("Login realizado com sucesso", "Bem vindo!");
-    if (toastSucesso) {
-      toastSucesso.onHidden.subscribe(() => {
-        this.router.navigate(['/home']);
-      });
-    }
-
-
+    this.toastr.success(["Login realizado com sucesso"], "Bem vindo!", () => {
+      this.router.navigate(['/home'])
+    });
   }
+
   processarFalha(fail: any) {
     this.errors = fail.error.errors;
     this.toastr.error(fail.error.errors.join(), "Erro");

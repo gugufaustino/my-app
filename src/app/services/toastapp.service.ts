@@ -1,18 +1,23 @@
 import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
+import { IndividualConfig, ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class ToastAppService {
 
     constructor(private toastr: ToastrService) { }
 
-    public success(mensagem: string[] | any, titulo?: string, observer?: any): void {
-        
-        let mens =  mensagem == undefined 
-                    ? 'Operação realizada!' 
+    public success(mensagem: string[], titulo?: string, observer?: any): void {
+
+        let config = {
+          timeOut : 500
+        } as IndividualConfig;
+
+
+        let mens =  mensagem == undefined
+                    ? 'Operação realizada!'
                     : mensagem[0] ?? ''.toString();
 
-        let toast = this.toastr.success(mens, titulo);
+        let toast = this.toastr.success(mens, titulo, config );
         if (toast && observer != null) {
             toast.onHidden.subscribe(observer);
         }
