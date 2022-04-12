@@ -1,4 +1,4 @@
-<div class="container main-container form-bg">
+<div class="container-lg form-bg">
   <br>
   <br>
   <div class="row">
@@ -29,6 +29,7 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, est!
           </p>
           <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">Disponível: {{modelo.diponibilidade}}</span><br>
+          <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">Idade: {{modelo.dtNascimento | age}}</span>
           <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">Nascimento: {{modelo.dtNascimento | date:'dd/MM/YYYY'}}</span>
         </div>
         <div class="card-footer border-top d-flex  ">
@@ -36,7 +37,7 @@
           <i class="fab fa-instagram font-medium-2 cursor-pointer" style="padding-top: 3px;padding-right: 5px;"></i>
           <small class="text-truncate">
             <a href=" " class="success darken-4" target="_blank">
-              @accounts
+              @{{modelo.instagram}}
             </a>
           </small>
 

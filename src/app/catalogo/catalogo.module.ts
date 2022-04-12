@@ -1,13 +1,8 @@
+import { AppCoreModule } from '../app-core/app-core.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import { RouterModule } from '@angular/router';
 import { CatalogoRoutingModule } from './catalogo-routing.module';
 import { CatalogoComponent } from './catalogo.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgBrazil } from 'ng-brazil';
-import { TextMaskModule } from 'angular2-text-mask';
 
 import { HomeComponent } from './home/home.component';
 import { InserirComponent } from './inserir/inserir.component';
@@ -26,16 +21,11 @@ import { AppResolveService } from '../services/app.resolve.service';
     EditarComponent, LabelComponent
   ],
   imports: [
-    CommonModule,
+    AppCoreModule,
     CatalogoRoutingModule,
 
-    RouterModule,
-    NgbModule,
 
-    FormsModule,
-    ReactiveFormsModule,
-    NgBrazil,
-    TextMaskModule,
+
   ],
   providers: [
     CatalogoService,

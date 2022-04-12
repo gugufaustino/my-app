@@ -11,12 +11,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { Router } from '@angular/router';
+import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
 })
-export class CadastroComponent implements OnInit, AfterViewInit {
+export class CadastroComponent extends FormBaseComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
@@ -35,6 +36,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
     private contaService: ContaService,
     private toastr: ToastrService,
     private router: Router ) {
+      super();
+
     this.validationMessages = {
       nome: {
         required: 'Requerido',
@@ -79,16 +82,21 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    let controlBlurs: Observable<any>[] = this.formInputElements
-      .map((formContro: ElementRef) => fromEvent(formContro.nativeElement, 'blur'));
+    // let controlBlurs: Observable<any>[] = this.formInputElements
+    //   .map((formContro: ElementRef) => fromEvent(formContro.nativeElement, 'blur'));
 
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessage = this.genericValidatior.processaMensgens(this.cadastroForm);
-    });
+    // merge(...controlBlurs).subscribe(() => {
+    //   this.displayMessage = this.genericValidatior.processaMensgens(this.cadastroForm);
+    // });
+
+    super.configurarMensagensValidacaoBase(this.validationMessages);
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.cadastroForm);
 
   }
 
   adicionarUsuario() {
+
+    super.validarFormulario(this.cadastroForm, true);
     if (this.cadastroForm.dirty && this.cadastroForm.valid) {
       this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value)
       this.contaService.registraUsuario(this.usuario)

@@ -1,7 +1,6 @@
-import { OptionSelect } from './../../app-core/models/option-select';
 import { CatalogoService } from './../services/catalogo.service';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControlName } from '@angular/forms';
 
 import { CatalogoBase } from '../catalogo-base.component';
 import { Modelo } from '../models/modelo';
@@ -38,7 +37,6 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
 
   submitForm(): void {
 
-    this.model = super.mapToModel(this.model, this.componentForm.value);
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.model = super.mapToModel(this.model, this.componentForm.value)

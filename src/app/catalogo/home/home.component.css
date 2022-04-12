@@ -1,6 +1,6 @@
 .card{
   background-color: #1b1f31;
-
+  min-height: 100%;
 }
 
 .card-header {

@@ -1,5 +1,4 @@
 import * as moment from 'moment';
-import { Pagamento } from '../../contas-a-pagar/models/pagamento';
 
 export class DateUtils {
 
