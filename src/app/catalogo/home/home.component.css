@@ -1,15 +1,60 @@
 .card{
   background-color: #1b1f31;
-  min-height: 100%;
+  min-height: 500px;
 }
-
+.card-body{
+  position: relative;
+}
 .card-header {
   background-color: rgba(0,0,0,0.2);
   margin-top: 10px;
   border-radius: 0;
+  height: 208px;
+
+  padding-bottom: 0px;
 }
 
 .input-pesquisar{
   background-color: #151827;
   margin-right: 5px;
+}
+
+.card-modelo-caracteristica{
+  position: absolute;bottom: 5px;
+}
+
+.card-modelo-caracteristica span.label-carac{
+  font-size: 13px;
+}
+
+.box-img-perfil{
+  width: 70%;
+  margin: auto;
+}
+.img-circle {
+  border-radius: 50%;
+
+  background-color: #1e1f20;
+    border: 1px solid #000000;
+}
+
+.ratio {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.font14{
+  font-size: 14px !important;
 }

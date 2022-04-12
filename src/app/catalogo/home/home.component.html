@@ -1,10 +1,9 @@
 <div class="container-lg form-bg">
   <br>
-  <br>
-  <div class="row">
+   <div class="row">
     <div class="col-12">
       <div class="input-group mb-3">
-        <input type="text" class="form-control form-control-lg rounded input-pesquisar" placeholder="escreva as caracteristicas..." aria-label="Recipient's username"
+        <input type="text" class="form-control form-control-lg rounded input-pesquisar" placeholder="descreva as caracteristicas..." aria-label="Recipient's username"
           aria-describedby="button-addon2">
         <button class="btn btn-primary  search-btn " type="button" id="button-addon2" placeholder="Search">
           <span class="d-none d-sm-block">Pesquisar</span>
@@ -15,22 +14,39 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-3" *ngFor="let modelo of models | async">
+    <div class="col-sm-3" *ngFor="let modelo of models | async; let i = index">
       <div class="card ">
-        <div class="card-header">
-          <h4 class="card-title cursor-pointer">
+        <div class="card-header pt-2">
+         <div class="box-img-perfil">
+           <img style="background-image: url(assets/avatar/avatar{{i}}.jpg); " class="ratio img-responsive img-circle">
+         </div>
+
+          <h5 class="card-title cursor-pointer">
             <a href="" target="_blank">
               {{modelo.nome}}
             </a>
-          </h4>
+          </h5>
         </div>
-        <div class="card-body">
-          <p class="card-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, est!
-          </p>
-          <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">Disponível: {{modelo.diponibilidade}}</span><br>
-          <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">Idade: {{modelo.dtNascimento | age}}</span>
-          <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">Nascimento: {{modelo.dtNascimento | date:'dd/MM/YYYY'}}</span>
+        <div class="card-body p-3" >
+
+          <div *ngFor="let item of modelo.nomeTipoCasting"  >
+            <span>{{item}}</span>
+          </div>
+
+          <div class="card-modelo-caracteristica">
+            <span class="card-text mb-1 font14" >
+              Disponível: {{modelo.diponibilidade}}
+            </span><br>
+             <span class="label-carac">Cor dos Olhos:</span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeCorOlhos}}</span><br>
+             <span class="label-carac">Cor do Cabelo: </span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeCorCabelo}}</span><br>
+             <span class="label-carac">Tipo Cabelo: </span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeTipoCabelo}}</span><br>
+             <span class="label-carac">Comprimento: </span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeTipoCabeloComprimento}}</span><br>
+
+             <span class="label-carac">Idade: </span>
+              <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.dtNascimento | age}}</span>
+             <span class="label-carac">Nascimento: </span>
+                <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.dtNascimento | date:'dd/MM/YYYY'}}</span>
+          </div>
         </div>
         <div class="card-footer border-top d-flex  ">
 
@@ -59,10 +75,10 @@
             <i class="fas fa-arrow-left "></i>
           </a>
         </li>
-        <li class="page-item"><a class="bg-dark page-link" href="javascript:void(0);">1</a></li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="javascript:void(0);">1</a></li>
         <li class="page-item"><a class="bg-dark page-link" href="javascript:void(0);">2</a></li>
         <li class="page-item"><a class="bg-dark page-link" href="javascript:void(0);">3</a></li>
-        <li class="page-item active" aria-current="page"><a class="page-link" href="javascript:void(0);">4</a></li>
+        <li class="page-item"><a class="bg-dark page-link" href="javascript:void(0);">4</a></li>
 
         <li class="page-item next">
           <a class="page-link bg-dark" href="javascript:void(0);">

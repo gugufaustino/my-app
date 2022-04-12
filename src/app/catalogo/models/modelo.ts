@@ -14,14 +14,15 @@ export class Modelo implements MappingModel {
   //tipo de modelo
   diponibilidade: string;
   tipoCasting: Number[];
+  nomeTipoCasting : string[];
 
   //contato
   email: string;
-  telefone: string
+  telefone: string;
 
-  instagram: string
-  facebook: string
-  linkedin: string
+  instagram: string;
+  facebook: string;
+  linkedin: string;
 
   //endereço
   cep: string;
@@ -42,6 +43,12 @@ export class Modelo implements MappingModel {
   corCabelo: Number;
   tipoCabelo: Number;
   tipoCabeloComprimento: Number;
+
+  nomeCorOlhos: string;
+  nomeCorCabelo: string;
+  nomeTipoCabelo: string;
+  nomeTipoCabeloComprimento: string;
+
   tipoPele: string;
   medidaMascTorax: Number;
   medidaMascCamisa: Number;
