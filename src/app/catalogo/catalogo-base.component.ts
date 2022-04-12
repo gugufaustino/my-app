@@ -49,13 +49,15 @@ export abstract class CatalogoBase extends FormBaseComponent {
       facebook: [''],
       linkedin: [''],
 
-      cep: ['', [Validators.required, NgBrazilValidators.cep]],
-      logradouro: ['', [Validators.required, Validators.maxLength(250)]],
-      numero: ['', [Validators.required, CustomValidators.number]],
-      complemento: [''],
-      bairro: ['', [Validators.required]],
-      siglaUf: ['', [Validators.required]],
-      nomeMunicipio: ['', [Validators.required]],
+      endereco: this.formBuilder.group({
+        cep: ['', [Validators.required, NgBrazilValidators.cep]],
+        logradouro: ['', [Validators.required, Validators.maxLength(250)]],
+        numero: ['', [Validators.required, CustomValidators.number]],
+        complemento: [''],
+        bairro: ['', [Validators.required]],
+        siglaUf: ['', [Validators.required]],
+        nomeMunicipio: ['', [Validators.required]],
+      }),
 
       altura: ['', [Validators.required, CustomValidators.number]],
       peso: ['', [Validators.required, CustomValidators.number]],

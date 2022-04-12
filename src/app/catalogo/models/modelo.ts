@@ -19,6 +19,10 @@ export class Modelo implements MappingModel {
   email: string;
   telefone: string
 
+  instagram: string
+  facebook: string
+  linkedin: string
+
   //endereço
   cep: string;
   logradouro: string;
@@ -34,10 +38,10 @@ export class Modelo implements MappingModel {
   manequim: Number;
   sapato: Number;
 
-  corOlhos: Number[];
-  corCabelo: Number[];
-  tipoCabelo: Number[];
-  tipoCabeloComprimento: Number[];
+  corOlhos: Number;
+  corCabelo: Number;
+  tipoCabelo: Number;
+  tipoCabeloComprimento: Number;
   tipoPele: string;
   medidaMascTorax: Number;
   medidaMascCamisa: Number;
@@ -52,62 +56,69 @@ export class Modelo implements MappingModel {
   mappings: any[];
   toMap(): void {
     this.mappings = [
-
+      {
+        dtNascimento: "Date",
+        tipoCasting: "number[]",
+        corOlhos: "number",
+        corCabelo: "number",
+        tipoCabelo: "number",
+        tipoCabeloComprimento: "number",
+      },
 
     ]
   }
 
   public static get tipoCastingEnum(): OptionSelect[] {
     return [
-      new OptionSelect('comercial', 'Comercial'),
-      new OptionSelect('eventos', 'Eventos'),
-      new OptionSelect('fashion', 'Fashion'),
-      new OptionSelect('fashioncomercial', 'Fashion Comercial'),
-      new OptionSelect('atoratriz', 'Ator/Atriz'),
+      new OptionSelect(1, 'Comercial'),
+      new OptionSelect(2, 'Eventos'),
+      new OptionSelect(3, 'Fashion'),
+      new OptionSelect(4, 'Fashion Comercial'),
+      new OptionSelect(5, 'Ator/Atriz'),
 
     ];
   }
 
   public static get corOlhosEnum(): OptionSelect[] {
     return [
-      new OptionSelect('azul', 'Azul'),
-      new OptionSelect('verde', 'Verde'),
-      new OptionSelect('castanho claro', 'Castanho claro'),
-      new OptionSelect('castanho escuro', 'Castanho escuro'),
-      new OptionSelect('preto', 'Preto'),
+      new OptionSelect(1, 'Azul'),
+      new OptionSelect(2, 'Verde'),
+      new OptionSelect(3, 'Castanho claro'),
+      new OptionSelect(4, 'Castanho escuro'),
+      new OptionSelect(5, 'Preto'),
     ]
   }
 
   public static get corCabeloEnum(): OptionSelect[] {
     return [
-      new OptionSelect('preto', 'Preto'),
-      new OptionSelect('castanho claro', 'Castanho claro'),
-      new OptionSelect('castanho escuro', 'Castanho escuro'),
-      new OptionSelect('grisalho', 'Grisalho'),
-      new OptionSelect('loiro claro', 'Loiro claro'),
-      new OptionSelect('loiro escuro', 'Loiro escuro'),
-      new OptionSelect('ruivo', 'Ruivo'),
-      new OptionSelect('mechas', 'Mechas'),
-      new OptionSelect('colorido', 'Colorido'),
+      new OptionSelect(1, 'Preto'),
+      new OptionSelect(2, 'Castanho claro'),
+      new OptionSelect(3, 'Castanho escuro'),
+      new OptionSelect(4, 'Grisalho'),
+      new OptionSelect(5, 'Loiro claro'),
+      new OptionSelect(6, 'Loiro escuro'),
+      new OptionSelect(7, 'Ruivo'),
+      new OptionSelect(8, 'Mechas'),
+      new OptionSelect(9, 'Colorido'),
     ]
   }
 
   public static get tipoCabeloEnum(): OptionSelect[] {
     return [
-      new OptionSelect('cacheado', 'Cacheado'),
-      new OptionSelect('liso', 'Liso'),
-      new OptionSelect('ondulado', 'Ondulado'),
-      new OptionSelect('crespo', 'Crespo'),
+      new OptionSelect(1, 'Cacheado'),
+      new OptionSelect(2, 'Liso'),
+      new OptionSelect(3, 'Ondulado'),
+      new OptionSelect(4, 'Crespo'),
     ]
   }
 
   public static get tipoCabeloComprimentoEnum(): OptionSelect[] {
     return [
-      new OptionSelect('raspado', 'Raspado'),
-      new OptionSelect('curto', 'Curto'),
-      new OptionSelect('medio', 'Médio'),
-      new OptionSelect('longo', 'Longo'),
-      new OptionSelect('muito longo', 'Muito longo'),
+      new OptionSelect(1, 'Raspado'),
+      new OptionSelect(2, 'Curto'),
+      new OptionSelect(3, 'Médio'),
+      new OptionSelect(4, 'Longo'),
+      new OptionSelect(5, 'Muito longo'),
     ]
   }
 

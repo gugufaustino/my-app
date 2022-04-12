@@ -1,8 +1,8 @@
 export class OptionSelect {
-  constructor(value: string, text: string) {
+  constructor(value: number, text: string) {
     this.value = value;
     this.text = text;
   }
-  value: string;
+  value: number;
   text: string;
 }

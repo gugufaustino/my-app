@@ -12,6 +12,8 @@ import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { IFormComponent } from '../interfaces/components/iform.component';
 import { CustomValidators } from 'ng2-validation';
 import { FormValidations } from '../utils/form-validations';
+import { OptionSelect } from '../models/option-select';
+import { Modelo } from 'src/app/catalogo/models/modelo';
 
 export abstract class FormBaseComponent implements IFormComponent {
   mudancasNaoSalvas: boolean;
@@ -70,13 +72,7 @@ export abstract class FormBaseComponent implements IFormComponent {
   }
 
   protected mapToModel(source1: MappingModel, source2: any): any {
-    /*
-       this.pagamento = Object.assign({}, this.pagamento, this.pagamentoForm.value)
-        this.pagamento.valor = CurrencyUtils.StringParaDecimal(this.pagamento.valor);
-        this.pagamento.tipoRecorrencia = parseInt(this.pagamento.tipoRecorrencia.toString());
-        this.pagamento.dtVencimento = DateUtils.StringParaDate(this.pagamento.dtVencimento.toString());
 
-    */
     let model = Object.assign({}, source1, source2);
     var propertys = Reflect.ownKeys(source2)
 
@@ -91,7 +87,7 @@ export abstract class FormBaseComponent implements IFormComponent {
           let modelValue = model[propKey];
           let parsed = null;
 
-          if (mapType == "number" && modelValue != "" && modelValue != null) {
+          if (mapType == "number" && modelValue != "" && modelValue != null && isNaN(modelValue)) {
             if (modelValue.indexOf(",") > 0) // temvirgula é decimal
               parsed = CurrencyUtils.StringParaDecimal(modelValue);
             else
@@ -102,6 +98,10 @@ export abstract class FormBaseComponent implements IFormComponent {
             }
 
             model[propKey] = parsed;
+          } else if (mapType == "number[]" && modelValue != "" && modelValue != null) {
+
+            parsed = this.parseFormArrayToValues(modelValue);
+            model[propKey] = parsed;
           } else if (mapType == "Date" && modelValue != "" && modelValue != null) {
             model[propKey] = DateUtils.StringParaDate(modelValue.toString());
           }
@@ -109,6 +109,14 @@ export abstract class FormBaseComponent implements IFormComponent {
       }
     }
     return model;
+  }
+
+  parseFormArrayToValues(values: Number[]): string[] {
+
+    const optiosSelect =  Modelo.tipoCastingEnum;
+    const lstTipoCastinEnum = optiosSelect.map((op: OptionSelect) => op.value);
+    return Object.assign([], values.map((value: any, i: number) => value ? lstTipoCastinEnum[i] : null)
+                                                          .filter((value: any) => value !== null));
   }
 
   protected desabilitaCampo(form: any, name: string, dfaultVal?: string) {

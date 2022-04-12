@@ -165,7 +165,7 @@
     </div>
 
     <h1 class="display-9 legend">endereço</h1>
-    <div class="row">
+    <div class="row" formGroupName="endereco">
       <div class="form-group col-md-3">
         <app-label [required]="true">CEP</app-label>
         <input class="form-control" formControlName="cep" id="cep" [ngClass]="{'is-invalid': displayMessage?.cep}" [textMask]="{mask: MASKS?.cep.textMask}" />
