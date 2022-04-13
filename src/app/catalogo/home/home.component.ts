@@ -44,8 +44,7 @@ export class HomeComponent extends FormBaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.componentForm = this.formBuilder.group(this.controlsFormBase);
-
-    this.models = this.service.listarTodos();
+    this.models = this.service.listarTodos(this.modelFiltro);
   }
 
   getTipoCastingControls() {
@@ -58,8 +57,9 @@ export class HomeComponent extends FormBaseComponent implements OnInit {
   }
 
   submitForm(){
-    debugger;
-    this.modelFiltro = super.mapToModel(this.modelFiltro, this.componentForm.value)
+
+    this.modelFiltro = super.mapToModel(this.modelFiltro, this.componentForm.value);
+    this.models = this.service.listarTodos(this.modelFiltro);
   }
 
 }
