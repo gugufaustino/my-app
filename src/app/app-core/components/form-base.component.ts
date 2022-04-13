@@ -49,7 +49,8 @@ export abstract class FormBaseComponent implements IFormComponent {
 
   protected validarFormulario(formGroup: FormGroup, allControls: boolean = false) {
 
-    this.displayMessage = this.genericValidator.processaMensgens(formGroup, allControls);
+    const reavaliadas = this.genericValidator.processaMensgens(formGroup, allControls);
+    this.displayMessage = Object.assign(this.displayMessage, reavaliadas);
     this.mudancasNaoSalvas = true;
   }
 

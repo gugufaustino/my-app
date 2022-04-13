@@ -23,17 +23,19 @@ export class GenericValidator {
           Object.assign(messages, childMessages);
         } else {
           //if (this.validationMessages[controlKey]) {
-          messages[controlKey] = '';
           if ((c.dirty || c.touched || allControls) && c.errors && c.enabled) {
+            messages[controlKey] = '';
             Object.keys(c.errors).map(messageKey => {
 
               if (this.baseMessages[messageKey]) {
-                messages[controlKey] += this.baseMessages[messageKey];
+                messages[controlKey] = this.baseMessages[messageKey];
               } else if (this.validationMessages[controlKey][messageKey]) {
-                messages[controlKey] += this.validationMessages[controlKey][messageKey]
+                messages[controlKey] = this.validationMessages[controlKey][messageKey]
               }
 
             });
+          }else if(c.dirty && !c.errors){ //se já foi preenchido e está sem erro, então limpa erro(manda '')
+            messages[controlKey] = '';
           }
         }
         //}
