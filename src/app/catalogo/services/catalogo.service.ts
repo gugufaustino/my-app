@@ -24,7 +24,7 @@ export class CatalogoService<TEntity> extends BaserService
 
   public listarTodos(modelo: CatalogoFiltro): Observable<TEntity[]> {
 
-    //TODO #2
+    //TODO #2 Transformar esse map em um metodo genérico, pode ser na classe Util. Validar se essa implementação funciona para todos os cast de objetos complexos e com aspas no texto
     let queryString = Object.keys(modelo).map(key => key + '=' + ((modelo) as any)[key] ).join('&');
 
     var options  = {
