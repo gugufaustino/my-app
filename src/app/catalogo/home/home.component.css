@@ -1,6 +1,6 @@
 .card{
   background-color: #1b1f31;
-  min-height: 500px;
+  min-height: 460px;
 }
 .card-body{
   position: relative;
@@ -9,7 +9,7 @@
   background-color: rgba(0,0,0,0.2);
   margin-top: 10px;
   border-radius: 0;
-  height: 208px;
+  height: 168px;
 
   padding-bottom: 0px;
 }
@@ -28,7 +28,7 @@
 }
 
 .box-img-perfil{
-  width: 70%;
+  width: 60%;
   margin: auto;
 }
 .img-circle {
