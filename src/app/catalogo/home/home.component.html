@@ -1,7 +1,9 @@
 <div class="container-lg form-bg">
   <br>
-  <div class="row" [formGroup]="componentForm">
-    <!-- <div class="col-12" >
+
+  <form novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
+    <div class="row">
+      <!-- <div class="col-12" >
       <div class="input-group mb-3">
         <input type="text" class="form-control form-control-lg rounded input-pesquisar" placeholder="descreva as caracteristicas..." aria-describedby="button-addon2">
         <button class="btn btn-primary  search-btn " type="button" id="button-addon2" placeholder="Search">
@@ -11,58 +13,60 @@
       </div>
     </div> -->
 
+      <div class="col-4">
+        <label class="control-label">Nome</label>
+        <input class="form-control rounded" formControlName="nome" placeholder="" />
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-2 pr-0 pl-3 form-group">
+            <label class="control-label ">Idade</label>
+            <input class="form-control rounded" placeholder="inicio" formControlName="idadeInicio" [textMask]="{mask: MASKS?.number.textMask}" />
+          </div>
+          <div class="col-2 pr-0 pl-1 form-group">
+            <label class="control-label">&nbsp;</label>
+            <input class="form-control rounded" placeholder="fim" formControlName="idadeFim" [textMask]="{mask: MASKS?.number.textMask}" />
+          </div>
 
-    <div class="col-4">
-      <label class="control-label">Nome</label>
-      <input class="form-control rounded" placeholder="" />
-    </div>
-    <div class="col-8">
-      <div class="row">
-        <div class="col-2 pr-0 pl-3 form-group">
-          <label class="control-label ">Idade</label>
-          <input class="form-control rounded" placeholder="inicio" />
-        </div>
-        <div class="col-2 pr-0 pl-1 form-group">
-          <label class="control-label">&nbsp;</label>
-          <input class="form-control rounded" placeholder="fim" />
-        </div>
-        <div class="col-2 pr-0 pl-2">
-          <label class="control-label ">Altura</label>
-          <input class="form-control rounded" placeholder="inicio" />
-        </div>
-        <div class="col-2 pr-0 pl-1">
-          <label class="control-label">&nbsp;</label>
-          <input class="form-control rounded" placeholder="fim" />
-        </div>
-        <div class="col-2 pr-0 pl-2">
-          <label class="control-label ">Peso</label>
-          <input class="form-control rounded" placeholder="inicio" />
-        </div>
-        <div class="col-2   pl-1">
-          <label class="control-label">&nbsp;</label>
-          <input class="form-control rounded" placeholder="fim" />
+          <div class="col-2 pr-0 pl-2">
+            <label class="control-label ">Altura</label>
+            <input class="form-control rounded" placeholder="inicio" formControlName="alturaInicio" [textMask]="{mask: MASKS?.number.textMask}" />
+          </div>
+          <div class="col-2 pr-0 pl-1">
+            <label class="control-label">&nbsp;</label>
+            <input class="form-control rounded" placeholder="fim" formControlName="alturaFim" [textMask]="{mask: MASKS?.number.textMask}" />
+          </div>
+
+          <div class="col-2 pr-0 pl-2">
+            <label class="control-label ">Peso</label>
+            <input class="form-control rounded" placeholder="inicio" formControlName="pesoInicio" [textMask]="{mask: MASKS?.number.textMask}" />
+          </div>
+          <div class="col-2   pl-1">
+            <label class="control-label">&nbsp;</label>
+            <input class="form-control rounded" placeholder="fim" formControlName="pesoFim" [textMask]="{mask: MASKS?.number.textMask}" />
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group  col-md-10">
-      <app-label class="sr-only">Tipo Casting</app-label>
-      <div class="row col-12 mr-0">
-        <div class="checkbox pr-0 mr-5" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
-          <label class="checkbox-inline font14">
-            <input type="checkbox" [formControlName]="i"> {{ tipoCasting[i].text }}
-          </label>
+      <div class="form-group  col-md-10">
+        <app-label class="sr-only">Tipo Casting</app-label>
+        <div class="row col-12 mr-0">
+          <div class="checkbox pr-0 mr-5" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
+            <label class="checkbox-inline font14">
+              <input type="checkbox" [formControlName]="i"> {{ tipoCasting[i].text }}
+            </label>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-2">
-      <button class="btn btn-primary form-control rounded" type="button">
-        <span class="d-none d-sm-block">Pesquisar</span>
-        <i class="fa fa-search d-block d-sm-none"></i>
-      </button>
-    </div>
+      <div class="col-2">
+        <button class="btn btn-primary form-control rounded" type="submit">
+          <span class="d-none d-sm-block">Pesquisar</span>
+          <i class="fa fa-search d-block d-sm-none"></i>
+        </button>
+      </div>
 
-  </div>
+    </div>
+  </form>
   <h1 class="display-9 legend mt-0"></h1>
   <br>
   <div class="row">

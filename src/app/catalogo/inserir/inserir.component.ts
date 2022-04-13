@@ -49,22 +49,6 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
     }
   }
 
-
- // this.model = Object.assign(this.model,
-      //   {
-      //     tipoCasting: this.parseFormArrayToValues((<FormArray>this.componentForm.get('tipoCasting')), this.tipoCasting)
-      //   });
-  //parseFormArrayToValues(formarray: FormArray, optiosSelect: OptionSelect[]): string[] {
-
-  //   let lstTipoCastinEnum = optiosSelect.map((op: OptionSelect) => op.value);
-  //   let checkSelectValues = Object.assign([],
-  //     formarray.value
-  //       .map((value: any, i: number) => value ? lstTipoCastinEnum[i] : null)
-  //       .filter((value: any) => value !== null)
-  //   );
-  //   return checkSelectValues;
-  // }
-
   processarSucesso(response: any) {
     this.errors = [];
     this.mudancasNaoSalvas = false;
