@@ -23,7 +23,8 @@ export class CatalogoService<TEntity> extends BaserService
   }
 
   public listarTodos(modelo: CatalogoFiltro): Observable<TEntity[]> {
-    //TODO #1
+
+    //TODO #2
     let queryString = Object.keys(modelo).map(key => key + '=' + ((modelo) as any)[key] ).join('&');
 
     var options  = {
