@@ -1,3 +1,4 @@
+import { CatalogoFiltro } from './../models/catalogo-filtro';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -21,9 +22,16 @@ export class CatalogoService<TEntity> extends BaserService
       .pipe(catchError(this.serviceError));
   }
 
-  public listarTodos(): Observable<TEntity[]> {
+  public listarTodos(modelo: CatalogoFiltro): Observable<TEntity[]> {
+    //TODO #1
+    let queryString = Object.keys(modelo).map(key => key + '=' + ((modelo) as any)[key] ).join('&');
+
+    var options  = {
+      headers: this.ObterHeaderAuthJson().headers,
+      //params : new HttpParams().set('nome', modelo.nome )
+    }
     return this.http
-      .get<TEntity[]>(this.UrlServiceV1 + this.apiUrl, this.ObterHeaderAuthJson())
+      .get<TEntity[]>(this.UrlServiceV1 + this.apiUrl + "?" + queryString,  options )
       .pipe(catchError(this.serviceError));
   }
 
