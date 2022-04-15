@@ -73,8 +73,8 @@
     <div class="col-sm-3" *ngFor="let modelo of models | async; let i = index">
       <div class="card ">
         <div class="card-header pt-2">
-          <div class="box-img-perfil">
-            <img style="background-image: url(assets/avatar/avatar{{i}}.jpg); " class="ratio img-responsive img-circle">
+          <div class="box-img-perfil img-responsive">
+            <img style="background-image: url(assets/avatar/avatar{{i}}.jpg); " class="ratio  img-circle">
           </div>
 
           <h5 class="card-title cursor-pointer">
@@ -83,8 +83,8 @@
             </a>
           </h5>
         </div>
-        <div class="card-body p-3">
 
+        <div class="card-body p-3">
           <div *ngFor="let item of modelo.nomeTipoCasting">
             <span>{{item}}</span>
           </div>
@@ -104,17 +104,16 @@
             <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.dtNascimento | date:'dd/MM/YYYY'}}</span>
           </div>
         </div>
-        <div class="card-footer border-top d-flex  ">
 
+        <div class="card-footer border-top d-flex  ">
           <i class="fab fa-instagram font-medium-2 cursor-pointer" style="padding-top: 3px;padding-right: 5px;"></i>
           <small class="text-truncate">
             <a href=" " class="success darken-4" target="_blank">
               @{{modelo.instagram}}
             </a>
           </small>
-
-
         </div>
+
       </div>
     </div>
 

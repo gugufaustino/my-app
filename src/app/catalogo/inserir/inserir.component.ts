@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-inserir',
   templateUrl: './inserir.component.html',
+  styleUrls: ['./inserir.component.css']
 })
 export class InserirComponent extends CatalogoBase implements OnInit, AfterViewInit {
 

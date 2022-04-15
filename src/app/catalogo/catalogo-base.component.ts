@@ -38,7 +38,7 @@ export abstract class CatalogoBase extends FormBaseComponent {
       rg: ['', [Validators.required]],
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
 
-      diponibilidade: ['', [Validators.required]],
+      diponibilidade: ['' ],
       tipoCasting: this.buildTipoCasting(),
 
       email: ['', [Validators.required, Validators.email]],

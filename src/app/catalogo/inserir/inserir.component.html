@@ -6,45 +6,56 @@
 
     <div class="row">
 
-      <div class="col-md-9">
+      <div class="col-md-7">
         <h1 class="display-9 legend">dados básicos</h1>
         <div class="row">
-          <div class="form-group col-md-9">
+          <div class="form-group col-md-12">
             <app-label [required]="true">Nome</app-label>
             <input class="form-control" formControlName="nome" id="nome" [ngClass]="{'is-invalid': displayMessage?.nome}" />
             <span *ngIf="displayMessage?.nome">
               <p [innerHTML]="displayMessage?.nome"></p>
             </span>
           </div>
-          <div class="form-group col-md-3">
+
+          <div class="form-group col-md-4">
             <app-label [required]="true">Nascimento</app-label>
             <input class="form-control" formControlName="dtNascimento" id="dtNascimento" [ngClass]="{'is-invalid': displayMessage?.dtNascimento}" [textMask]="{mask: DateMask}" />
             <span *ngIf="displayMessage?.dtNascimento">
               <p [innerHTML]="displayMessage?.dtNascimento"></p>
             </span>
           </div>
-          <div class="form-group col-md-3">
+
+          <div class="form-group col-md-4">
             <app-label [required]="true">RG</app-label>
-            <div class="">
-              <input class="form-control" formControlName="rg" id="rg" [ngClass]="{'is-invalid': displayMessage?.rg}" />
-              <span *ngIf="displayMessage?.rg">
-                <p [innerHTML]="displayMessage?.rg"></p>
-              </span>
-            </div>
+            <input class="form-control" formControlName="rg" id="rg" [ngClass]="{'is-invalid': displayMessage?.rg}" />
+            <span *ngIf="displayMessage?.rg">
+              <p [innerHTML]="displayMessage?.rg"></p>
+            </span>
           </div>
-          <div class="form-group col-md-3">
+
+          <div class="form-group col-md-4">
             <app-label [required]="true">CPF</app-label>
-            <div class="">
-              <input class="form-control" formControlName="cpf" id="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
-              <span *ngIf="displayMessage?.cpf">
-                <p [innerHTML]="displayMessage?.cpf"></p>
-              </span>
+            <input class="form-control" formControlName="cpf" id="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
+            <span *ngIf="displayMessage?.cpf">
+              <p [innerHTML]="displayMessage?.cpf"></p>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <h1 class="display-9 legend">foto do perfil</h1>
+        <div class="card ">
+          <div class="card-header p-1">
+            <div class="box-img-perfil img-responsive">
+              <img style="background-image: url(assets/avatar/avatar1.jpg); " class="ratio img-circle">
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-md-3 ">
+      <div class="col-md-2">
         <h1 class="display-9 legend">controle</h1>
         <div class="row">
           <div class="form-group col-md-12">
@@ -52,16 +63,16 @@
             <input [attr.disabled]="true" class="form-control as-label" formControlName="situacao" />
           </div>
 
-          <div class="form-group col-md pr-0">
+          <div class="form-group col-md  ">
             <app-label>Data Inclusão</app-label>
             <input [attr.disabled]="true" class="form-control as-label" formControlName="dthInclusao" />
           </div>
 
-          <div class="form-group col">
+          <!-- <div class="form-group col">
             <app-label>Atualização</app-label>
             <input [attr.disabled]="true" class="form-control as-label" formControlName="dthAtualizacao" />
 
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -86,7 +97,7 @@
       </div>
 
       <div class="form-group  col-md-4">
-        <app-label [required]="true">Disponibilidade</app-label>
+        <app-label>Disponibilidade</app-label>
         <div class="">
           <input class="form-control" formControlName="diponibilidade" id="diponibilidade" [ngClass]="{'is-invalid': displayMessage?.diponibilidade}" />
           <span *ngIf="displayMessage?.diponibilidade">
