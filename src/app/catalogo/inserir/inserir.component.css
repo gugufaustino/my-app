@@ -12,5 +12,14 @@
 .box-img-perfil{
   width: 160px;
   margin: auto;
-  cursor: pointer;
 }
+
+.img-no-profile {
+  border-radius: 50%;
+  background-color: transparent;
+  color: #415364;
+  border: 1px solid #9f1c1c00;
+  font-size: 150px;
+
+}
+

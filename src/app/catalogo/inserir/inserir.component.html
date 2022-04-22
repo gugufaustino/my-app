@@ -49,7 +49,15 @@
         <div class="card ">
           <div class="card-header p-1">
             <div class="box-img-perfil img-responsive">
-              <img style="background-image: url(assets/avatar/avatar1.jpg); " class="ratio img-circle">
+              <i class="fas fa-user-circle img-no-profile cursor-pointer" *ngIf="imagemNome == null" onclick="document.getElementById('imgFotoPerfil').click()"
+                aria-hidden="true"></i>
+              <img class="ratio img-circle cursor-pointer" style="background-image: url({{this.croppedImage}});" *ngIf="imagemNome != null"
+                onclick="document.getElementById('imgFotoPerfil').click()">
+              <input type="file" style="display: none;" id="imgFotoPerfil" accept="image/jpeg,image/png" formControlName="imagem" #fileInput
+                (change)="fileChangeEvent($event, modalcropper)" [ngClass]="{'is-invalid': displayMessage.imagem }" />
+              <span *ngIf="displayMessage?.imagem">
+                <p class="text-danger" [innerHTML]="displayMessage?.imagem"></p>
+              </span>
             </div>
           </div>
         </div>
@@ -76,6 +84,7 @@
         </div>
 
       </div>
+
     </div>
 
 
@@ -347,4 +356,28 @@
       </div> -->
     </div>
   </form>
+
+  <ng-template #modalcropper let-c="close" let-d="dismiss">
+    <!-- <div class="modal-header">
+      <h5 class="modal-title h4" id="exampleModalFullscreenLabel">Full screen modal</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div> -->
+
+    <div class="modal-body">
+      <div class="col-md-12">
+
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 4"
+          [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'"
+          [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
+          (loadImageFailed)="loadImageFailed()">
+        </image-cropper>
+      </div>
+    </div>
+<!--
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div> -->
+
+  </ng-template>
+
 </div>

@@ -60,6 +60,9 @@ export class Modelo implements MappingModel {
   piercing: string;
   tatuagem: string;
 
+  imagemPerfilUpload : string;
+  imagemPerfilNome: string;
+
   mappings: any[];
   toMap(): void {
     this.mappings = [

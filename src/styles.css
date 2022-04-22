@@ -289,6 +289,7 @@ h1.grey {
   height: auto;
   max-width: 100%;
   overflow: hidden;
+  text-align: center;
 }
 
 img.img-circle {
@@ -308,5 +309,31 @@ img.ratio {
   width: 100%;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
 
+/* .modal-dialog.modal-xl{
+  width: 100vw;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+} */
 
+.modalcropper{
+  background-color: #1b1f319e;
+
+}
+.modalcropper .modal-content{
+  background-color: #1b1f319e;
+  border: 0;
+  /* max-height: 700px */
+  ;
+}
+.modalcropper .modal-content .modal-body{
+  /* text-align: center; */
+}
+.modalcropper image-cropper{
+  /* text-align: center !important; */
+  background-color: white;
+}

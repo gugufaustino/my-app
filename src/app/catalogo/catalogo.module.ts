@@ -12,6 +12,7 @@ import { CatalogoService } from './services/catalogo.service';
 import { AppResolve } from '../services/app.resolve';
 import { AppResolveService } from '../services/app.resolve.service';
 
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,7 @@ import { AppResolveService } from '../services/app.resolve.service';
   imports: [
     AppCoreModule,
     CatalogoRoutingModule,
-
-
+    ImageCropperModule,
 
   ],
   providers: [
