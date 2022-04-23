@@ -8,6 +8,7 @@ import { ToastAppService } from 'src/app/services/toastapp.service';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MASKS } from 'ng-brazil';
 import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,8 @@ export class HomeComponent extends FormBaseComponent implements OnInit {
   componentForm: FormGroup;
   controlsFormBase: any;
   tipoCasting: OptionSelect[] = Modelo.tipoCastingEnum;
+
+  pathImagensPerfil: string = environment.imagensPerfil;
 
   constructor(
     protected formBuilder: FormBuilder,

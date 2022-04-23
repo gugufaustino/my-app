@@ -4,11 +4,13 @@
 
 export const environment = {
   production: false,
-  urlServiceV1: "https://localhost:44390/api/"
+  urlServiceV1: "https://localhost:44390/api/",
   /*
     "https://myapi.cteclima.com.br/api/";
     "https://localhost:5001/api/";
   */
+    imagensPerfil: "https://localhost:44390/images/profile/",
+
 };
 
 /*

@@ -37,11 +37,8 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
   imageURL: string;
   imagemNome: string;
 
-
   ngOnInit(): void {
-
     this.componentForm = this.fb.group(this.controlsFormBase);
-
   }
 
   ngAfterViewInit(): void {
@@ -56,6 +53,10 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.model = super.mapToModel(this.model, this.componentForm.value)
+
+      this.model.imagemPerfilNome = this.imagemNome;
+      this.model.imagemPerfilUpload = this.croppedImage.split(',')[1];
+
 
       this.service.inserir(this.model)
         .subscribe(
@@ -79,22 +80,18 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
   imageBase64: any;
   imagemPreview: any;
 
-  upload(file: any) {
-    this.imagemNome = file[0].name;
+  // upload(file: any) {
+  //   this.imagemNome = file[0].name;
+  //   var reader = new FileReader();
+  //   reader.onload = this.manipularReader.bind(this);
+  //   reader.readAsBinaryString(file[0]);
+  // }
 
-    var reader = new FileReader();
-    reader.onload = this.manipularReader.bind(this);
-    reader.readAsBinaryString(file[0]);
-
-
-  }
-
-  manipularReader(readerEvt: any) {
-    var binaryString = readerEvt.target.result;
-    this.imageBase64 = btoa(binaryString);
-    this.imagemPreview = "data:image/jpeg;base64," + this.imageBase64;
-
-  }
+  // manipularReader(readerEvt: any) {
+  //   var binaryString = readerEvt.target.result;
+  //   this.imageBase64 = btoa(binaryString);
+  //   this.imagemPreview = "data:image/jpeg;base64," + this.imageBase64;
+  // }
 
   fileChangeEvent(event: any, content: any): void {
     this.imageChangedEvent = event;
