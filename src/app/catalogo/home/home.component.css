@@ -1,6 +1,7 @@
 .card{
   background-color: #1b1f31;
   min-height: 460px;
+  margin-bottom: 12px;
 }
 .card-header {
   background-color: rgba(0,0,0,0.2);

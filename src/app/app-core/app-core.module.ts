@@ -8,12 +8,14 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { EncodePipe } from './pipes/encode.pipe';
 
 
 @NgModule({
   declarations: [
     AgePipe,
-    ButtonDisableDirective
+    ButtonDisableDirective,
+    EncodePipe
 
   ],
   imports: [
@@ -22,6 +24,7 @@ import { TextMaskModule } from 'angular2-text-mask';
   exports:[
     CommonModule,
     AgePipe,
+    EncodePipe,
     ButtonDisableDirective,
 
     RouterModule,
