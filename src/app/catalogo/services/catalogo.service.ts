@@ -28,7 +28,8 @@ export class CatalogoService<TEntity> extends BaserService
     delete objectSerialize["mappings"];
 
     //TODO #2 Transformar esse map em um metodo genérico, pode ser na classe Util. Validar se essa implementação funciona para todos os cast de objetos complexos e com aspas no texto
-    let queryString = this.serialize(objectSerialize);
+    let queryString = this.serializeToQueryString(objectSerialize);
+    console.log(queryString);
 
     const options = {
       headers: this.ObterHeaderAuthJson().headers,
@@ -45,17 +46,4 @@ export class CatalogoService<TEntity> extends BaserService
     return response;
   }
 
-  public serialize (obj: any, prefix: string = ''): string {
-    let str = [],
-      p;
-    for (p in obj) {
-      if (obj.hasOwnProperty(p)) {
-        let k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-        str.push((v !== null && typeof v === "object") ?
-          this.serialize(v, k) :
-          encodeURIComponent(k) + "=" + encodeURIComponent(v));
-      }
-    }
-    return str.join("&");
-  }
 }
