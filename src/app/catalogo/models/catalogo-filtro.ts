@@ -1,6 +1,6 @@
 import { MappingModel } from "src/app/app-core/interfaces/models/mapping.model";
 
-export class CatalogoFiltro implements MappingModel {
+export class CatalogoModeloFilter implements MappingModel {
   constructor() { this.toMap(); }
   nome:string;
 
@@ -21,10 +21,8 @@ export class CatalogoFiltro implements MappingModel {
       {
         alturaInicio: "number",
         alturaFim: "number",
-
-        // pesoInicio: "number",
-        // pesoFim: "number",
-
+        pesoInicio: "number",
+        pesoFim: "number",
         tipoCasting: "number[]",
       },
 

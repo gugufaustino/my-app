@@ -1,4 +1,4 @@
-import { CatalogoFiltro } from './../models/catalogo-filtro';
+import { CatalogoModeloFilter } from './../models/catalogo-filtro';
 import { OptionSelect } from './../../app-core/models/option-select';
 import { Observable } from 'rxjs';
 import { CatalogoService } from './../services/catalogo.service';
@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent extends FormBaseComponent implements OnInit {
 
   MASKS: any = MASKS;
-  modelFiltro: CatalogoFiltro = new CatalogoFiltro();
+  modelFiltro: CatalogoModeloFilter = new CatalogoModeloFilter();
   models : Observable<Modelo[]>;
   componentForm: FormGroup;
   controlsFormBase: any;

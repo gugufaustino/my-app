@@ -1,4 +1,4 @@
-import { CatalogoFiltro } from './../models/catalogo-filtro';
+import { CatalogoModeloFilter } from './../models/catalogo-filtro';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class CatalogoService<TEntity> extends BaserService
       .pipe(catchError(this.serviceError));
   }
 
-  public listarTodos(modelo: CatalogoFiltro): Observable<TEntity[]> {
+  public listarTodos(modelo: CatalogoModeloFilter): Observable<TEntity[]> {
 
     let objectSerialize = Object.assign({} as any, modelo);
     delete objectSerialize["mappings"];
