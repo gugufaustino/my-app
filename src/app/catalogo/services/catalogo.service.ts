@@ -24,25 +24,13 @@ export class CatalogoService<TEntity> extends BaserService
 
   public listarTodos(modelo: CatalogoFiltro): Observable<TEntity[]> {
 
-   let serialize = function(obj:any, prefix:string='') : string {
-      var str = [],
-        p;
-      for (p in obj) {
-        if (obj.hasOwnProperty(p)) {
-          var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-          str.push((v !== null && typeof v === "object") ?
-            serialize(v, k) :
-            encodeURIComponent(k) + "=" + encodeURIComponent(v));
-        }
-      }
-      return str.join("&");
-    }
+    let objectSerialize = Object.assign({} as any, modelo);
+    delete objectSerialize["mappings"];
 
     //TODO #2 Transformar esse map em um metodo genérico, pode ser na classe Util. Validar se essa implementação funciona para todos os cast de objetos complexos e com aspas no texto
-    let queryString = serialize(modelo);
-    console.log(queryString);
+    let queryString = this.serialize(objectSerialize);
 
-    var options = {
+    const options = {
       headers: this.ObterHeaderAuthJson().headers,
       //params : new HttpParams().set('nome', modelo.nome )
     }
@@ -57,4 +45,17 @@ export class CatalogoService<TEntity> extends BaserService
     return response;
   }
 
+  public serialize (obj: any, prefix: string = ''): string {
+    let str = [],
+      p;
+    for (p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        let k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+        str.push((v !== null && typeof v === "object") ?
+          this.serialize(v, k) :
+          encodeURIComponent(k) + "=" + encodeURIComponent(v));
+      }
+    }
+    return str.join("&");
+  }
 }
