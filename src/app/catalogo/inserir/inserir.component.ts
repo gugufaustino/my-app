@@ -34,7 +34,7 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
   showCropper = false;
   containWithinAspectRatio = false;
   transform: ImageTransform = {};
-  imageURL: string;
+  //imageURL: string;
   imagemNome: string;
 
   ngOnInit(): void {

@@ -35,12 +35,12 @@ export class HomeComponent extends FormBaseComponent implements OnInit {
 
       this.controlsFormBase = {
         nome: ['',],
-        idadeInicio: ['',],
-        idadeFim: ['',],
-        alturaInicio: ['',],
-        alturaFim: ['',],
-        pesoInicio: ['',],
-        pesoFim: ['',],
+        idadeDe: ['',],
+        idadeAte: ['',],
+        alturaDe: ['',],
+        alturaAte: ['',],
+        pesoDe: ['',],
+        pesoAte: ['',],
         tipoCasting: this.buildTipoCasting(),
       }
      }
@@ -60,7 +60,6 @@ export class HomeComponent extends FormBaseComponent implements OnInit {
   }
 
   submitForm(){
-
     this.modelFiltro = super.mapToModel(this.modelFiltro, this.componentForm.value);
     this.models = this.service.listarTodos(this.modelFiltro);
   }

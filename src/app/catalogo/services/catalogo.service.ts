@@ -24,15 +24,30 @@ export class CatalogoService<TEntity> extends BaserService
 
   public listarTodos(modelo: CatalogoFiltro): Observable<TEntity[]> {
 
-    //TODO #2 Transformar esse map em um metodo genérico, pode ser na classe Util. Validar se essa implementação funciona para todos os cast de objetos complexos e com aspas no texto
-    let queryString = Object.keys(modelo).map(key => key + '=' + ((modelo) as any)[key] ).join('&');
+   let serialize = function(obj:any, prefix:string='') : string {
+      var str = [],
+        p;
+      for (p in obj) {
+        if (obj.hasOwnProperty(p)) {
+          var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+          str.push((v !== null && typeof v === "object") ?
+            serialize(v, k) :
+            encodeURIComponent(k) + "=" + encodeURIComponent(v));
+        }
+      }
+      return str.join("&");
+    }
 
-    var options  = {
+    //TODO #2 Transformar esse map em um metodo genérico, pode ser na classe Util. Validar se essa implementação funciona para todos os cast de objetos complexos e com aspas no texto
+    let queryString = serialize(modelo);
+    console.log(queryString);
+
+    var options = {
       headers: this.ObterHeaderAuthJson().headers,
       //params : new HttpParams().set('nome', modelo.nome )
     }
     return this.http
-      .get<TEntity[]>(this.UrlServiceV1 + this.apiUrl + "?" + queryString,  options )
+      .get<TEntity[]>(this.UrlServiceV1 + this.apiUrl + "?" + queryString, options)
       .pipe(catchError(this.serviceError));
   }
 

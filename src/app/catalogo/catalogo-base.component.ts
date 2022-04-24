@@ -72,7 +72,6 @@ export abstract class CatalogoBase extends FormBaseComponent {
       //controles
       situacao: ['ATIVADO'],
       dthInclusao: [DateUtils.Format(new Date())],
-      dthAtualizacao: ['15/03/2022'],
 
       imagem: ['', [Validators.required]]
     };

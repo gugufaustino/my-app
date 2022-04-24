@@ -4,16 +4,16 @@ export class CatalogoFiltro implements MappingModel {
   constructor() { this.toMap(); }
   nome:string;
 
-  idadeInicio:Number;
-  idadeFim:Number;
+  idadeDe:number;
+  idadeAte:number;
 
-  alturaInicio:Number;
-  alturaFim:Number;
+  alturaDe:number;
+  alturaAte:number;
 
-  pesoInicio:Number;
-  pesoFim:Number;
+  pesoDe:number;
+  pesoAte:number;
 
-  tipoCasting: Number[];
+  tipoCasting: number[];
 
   mappings: any[];
   toMap(): void {

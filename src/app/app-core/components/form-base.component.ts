@@ -109,6 +109,7 @@ export abstract class FormBaseComponent implements IFormComponent {
         }
       }
     }
+    delete model['mappings'];
     return model;
   }
 
