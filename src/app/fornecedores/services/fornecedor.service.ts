@@ -33,7 +33,6 @@ export class FornecedorService<TEntity> extends BaserService
     return response;
   }
 
-
   public excluir(id: number): Observable<TEntity> {
     let response = this.http.delete(this.UrlServiceV1 + this.apiUrl + id, this.ObterHeaderAuthJson())
       .pipe(map(this.extractData), catchError(this.serviceError));

@@ -39,8 +39,8 @@ export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewI
        rg: this.model.rg,
        cpf: this.model.cpf,
        diponibilidade: this.model.diponibilidade,
-       tipoCasting: this.model.tipoCasting,
-       nomeTipoCasting: this.model.nomeTipoCasting,
+       tipoCasting: this.model.nomeTipoCasting,
+
        email: this.model.email,
        telefone: this.model.telefone,
        instagram: this.model.instagram,
@@ -101,7 +101,7 @@ export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewI
       this.model.imagemPerfilUpload = this.croppedImage.split(',')[1];
 
 
-      this.service.inserir(this.model)
+      this.service.editar(this.model)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
           falha => this.toastr.error(falha)

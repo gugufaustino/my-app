@@ -2,10 +2,11 @@ import { CatalogoModeloFilter } from './../models/catalogo-filtro';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { IObter } from 'src/app/app-core/interfaces/services/iobter.service';
 import { CustomResponse } from 'src/app/app-core/models/custom-response';
 import { BaserService } from 'src/app/services/base.service';
+import { Modelo } from '../models/modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,6 @@ export class CatalogoService<TEntity> extends BaserService
   }
 
   public listarTodos(modelo: CatalogoModeloFilter): Observable<TEntity[]> {
-
     let objectSerialize = Object.assign({} as any, modelo);
     delete objectSerialize["mappings"];
 
@@ -31,10 +31,7 @@ export class CatalogoService<TEntity> extends BaserService
     let queryString = this.serializeToQueryString(objectSerialize);
     console.log(queryString);
 
-    const options = {
-      headers: this.ObterHeaderAuthJson().headers,
-      //params : new HttpParams().set('nome', modelo.nome )
-    }
+    const options = { headers: this.ObterHeaderAuthJson().headers }   /*params : new HttpParams().set('nome', modelo.nome )*/
     return this.http
       .get<TEntity[]>(this.UrlServiceV1 + this.apiUrl + "?" + queryString, options)
       .pipe(catchError(this.serviceError));
@@ -43,6 +40,19 @@ export class CatalogoService<TEntity> extends BaserService
   public inserir(modelo: TEntity): Observable<CustomResponse> {
     let response = this.http.post<CustomResponse>(this.UrlServiceV1 + this.apiUrl, modelo, this.ObterHeaderAuthJson())
       .pipe(catchError(this.serviceError));
+    return response;
+  }
+
+  public excluir(id: number): Observable<TEntity> {
+    let response = this.http.delete(this.UrlServiceV1 + this.apiUrl + id, this.ObterHeaderAuthJson())
+      .pipe(map(this.extractData), catchError(this.serviceError));
+    return response;
+  }
+
+  public editar(model: Modelo): Observable<TEntity> {
+    let response = this.http
+      .put(this.UrlServiceV1 + this.apiUrl + model.id, model, this.ObterHeaderAuthJson())
+      .pipe(map(this.extractData), catchError(this.serviceError));
     return response;
   }
 
