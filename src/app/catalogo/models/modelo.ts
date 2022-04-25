@@ -24,14 +24,14 @@ export class Modelo implements MappingModel {
   facebook: string;
   linkedin: string;
 
-  //endereço
-  cep: string;
-  logradouro: string;
-  numero: number;
-  complemento: string;
-  bairro: string;
-  siglaUf: string;
-  nomeMunicipio: string;
+  endereco : any
+  // cep: string;
+  // logradouro: string;
+  // numero: number;
+  // complemento: string;
+  // bairro: string;
+  // siglaUf: string;
+  // nomeMunicipio: string;
 
   //caracteristicas fisicas
   altura: Number;
@@ -43,6 +43,9 @@ export class Modelo implements MappingModel {
   corCabelo: Number;
   tipoCabelo: Number;
   tipoCabeloComprimento: Number;
+
+  imagemPerfilUpload : string;
+  imagemPerfilNome: string;
 
   nomeCorOlhos: string;
   nomeCorCabelo: string;
@@ -60,8 +63,7 @@ export class Modelo implements MappingModel {
   piercing: string;
   tatuagem: string;
 
-  imagemPerfilUpload : string;
-  imagemPerfilNome: string;
+
 
   mappings: any[];
   toMap(): void {

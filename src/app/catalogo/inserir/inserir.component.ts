@@ -21,21 +21,12 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
     private fb: FormBuilder,
     private toastr: ToastAppService,
     private service: CatalogoService<Modelo>,
-    private modalService: NgbModal) {
-    super(fb);
+    private modal: NgbModal) {
+    super(fb, modal);
   }
+
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-  canvasRotation = 0;
-  rotation = 0;
-  scale = 1;
-  showCropper = false;
-  containWithinAspectRatio = false;
-  transform: ImageTransform = {};
-  //imageURL: string;
-  imagemNome: string;
 
   ngOnInit(): void {
     this.componentForm = this.fb.group(this.controlsFormBase);
@@ -93,31 +84,6 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
   //   this.imagemPreview = "data:image/jpeg;base64," + this.imageBase64;
   // }
 
-  fileChangeEvent(event: any, content: any): void {
-    this.imageChangedEvent = event;
-    this.imagemNome = event.currentTarget.files[0].name;
-
-    const ngbModalOptions : NgbModalOptions = {
-      size : 'lg',
-      modalDialogClass : 'modal-fullscreen',
-      windowClass : 'modalcropper',
-      centered: true,
-
-        };
-    this.modalService.open(content, ngbModalOptions);
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-  imageLoaded() {
-    this.showCropper = true;
-  }
-  cropperReady(sourceImageDimensions: Dimensions) {
-    console.log('Cropper ready', sourceImageDimensions);
-  }
-  loadImageFailed() {
-    this.errors.push('O formato do arquivo ' + this.imagemNome + ' não é aceito.');
-  }
 
 
 

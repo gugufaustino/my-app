@@ -1,8 +1,10 @@
 import { ElementRef } from "@angular/core";
 
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 import { MASKS, NgBrazilValidators } from "ng-brazil";
 import { CustomValidators } from "ng2-validation";
+import { Dimensions, ImageCroppedEvent, ImageTransform } from "ngx-image-cropper";
 
 import { FormBaseComponent } from "../app-core/components/form-base.component";
 import { OptionSelect } from "../app-core/models/option-select";
@@ -27,8 +29,20 @@ export abstract class CatalogoBase extends FormBaseComponent {
   tipoCabeloEnum: OptionSelect[] = Modelo.tipoCabeloEnum;
   tipoCabeloComprimentoEnum: OptionSelect[] = Modelo.tipoCabeloComprimentoEnum;
 
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  canvasRotation = 0;
+  rotation = 0;
+  scale = 1;
+  showCropper = false;
+  containWithinAspectRatio = false;
+  transform: ImageTransform = {};
+  imagemNome: string;
+
   constructor(
-    protected formBuilder: FormBuilder) {
+    protected formBuilder: FormBuilder,
+    private modalService: NgbModal) {
     super();
 
 
@@ -98,4 +112,34 @@ export abstract class CatalogoBase extends FormBaseComponent {
   protected configurarMensagensValidacaoBase() {
     super.configurarMensagensValidacaoBase(this.validationMessages);
   }
+
+
+
+  fileChangeEvent(event: any, content: any): void {
+    this.imageChangedEvent = event;
+    this.imagemNome = event.currentTarget.files[0].name;
+
+    const ngbModalOptions : NgbModalOptions = {
+      size : 'lg',
+      modalDialogClass : 'modal-fullscreen',
+      windowClass : 'modalcropper',
+      centered: true,
+
+        };
+    this.modalService.open(content, ngbModalOptions);
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+    this.showCropper = true;
+  }
+  cropperReady(sourceImageDimensions: Dimensions) {
+    console.log('Cropper ready', sourceImageDimensions);
+  }
+  loadImageFailed() {
+    this.errors.push('O formato do arquivo ' + this.imagemNome + ' não é aceito.');
+  }
+
+
 }

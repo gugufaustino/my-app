@@ -11,7 +11,7 @@ import { ClienteService } from '../services/cliente.service';
   templateUrl: './editar.component.html',
 })
 export class EditarComponent extends ClienteBase implements OnInit, AfterViewInit {
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -23,25 +23,23 @@ export class EditarComponent extends ClienteBase implements OnInit, AfterViewIni
   }
 
   model: Cliente = new Cliente();
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   ngOnInit(): void {
-    
-    this.componentForm = this.fb.group(this.controlsFormBase); 
 
+    this.componentForm = this.fb.group(this.controlsFormBase);
     // Valores Default
-    this.componentForm.patchValue({ 
+    this.componentForm.patchValue({
       nome : this.model.nome,
      });
   }
 
   ngAfterViewInit(): void {
- 
-
     super.configurarMensagensValidacaoBase();
     super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
   }
 
-  
+
   submitForm(): void {
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
@@ -58,7 +56,7 @@ export class EditarComponent extends ClienteBase implements OnInit, AfterViewIni
   processarSucesso(response: any) {
     this.errors = [];
     this.mudancasNaoSalvas = false;
-     
+
     this.toastr.success(response.message, 'Sucesso!', () => {
       this.componentForm.reset();
       this.router.navigate(['/cliente/listar']);

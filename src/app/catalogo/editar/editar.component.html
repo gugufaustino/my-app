@@ -1,1 +1,365 @@
-<p>editar works!</p>
+<div class="container main-container form-bg">
+
+  <h1 class="display-7 text-uppercase">Novo Modelo</h1>
+
+  <form novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
+
+    <div class="row">
+
+      <div class="col-md-7">
+        <h1 class="display-9 legend">dados básicos</h1>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <app-label [required]="true">Nome</app-label>
+            <input class="form-control" formControlName="nome" id="nome" [ngClass]="{'is-invalid': displayMessage?.nome}" />
+            <span *ngIf="displayMessage?.nome">
+              <p [innerHTML]="displayMessage?.nome"></p>
+            </span>
+          </div>
+
+          <div class="form-group col-md-4">
+            <app-label [required]="true">Nascimento</app-label>
+            <input class="form-control" formControlName="dtNascimento" id="dtNascimento" [ngClass]="{'is-invalid': displayMessage?.dtNascimento}" [textMask]="{mask: DateMask}" />
+            <span *ngIf="displayMessage?.dtNascimento">
+              <p [innerHTML]="displayMessage?.dtNascimento"></p>
+            </span>
+          </div>
+
+          <div class="form-group col-md-4">
+            <app-label [required]="true">RG</app-label>
+            <input class="form-control" formControlName="rg" id="rg" [ngClass]="{'is-invalid': displayMessage?.rg}" />
+            <span *ngIf="displayMessage?.rg">
+              <p [innerHTML]="displayMessage?.rg"></p>
+            </span>
+          </div>
+
+          <div class="form-group col-md-4">
+            <app-label [required]="true">CPF</app-label>
+            <input class="form-control" formControlName="cpf" id="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
+            <span *ngIf="displayMessage?.cpf">
+              <p [innerHTML]="displayMessage?.cpf"></p>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <h1 class="display-9 legend">foto do perfil</h1>
+        <div class="card ">
+          <div class="card-header p-1">
+            <div class="box-img-perfil img-responsive">
+              <i class="fas fa-user-circle img-no-profile cursor-pointer" *ngIf="imagemNome == null" onclick="document.getElementById('imgFotoPerfil').click()"
+                aria-hidden="true"></i>
+              <img class="ratio img-circle cursor-pointer" style="background-image: url({{this.croppedImage}});" *ngIf="imagemNome != null"
+                onclick="document.getElementById('imgFotoPerfil').click()">
+              <input type="file" style="display: none;" id="imgFotoPerfil" accept="image/jpeg,image/png" formControlName="imagem" #fileInput
+                (change)="fileChangeEvent($event, modalcropper)" [ngClass]="{'is-invalid': displayMessage.imagem }" />
+              <span *ngIf="displayMessage?.imagem">
+                <p class="text-danger" [innerHTML]="displayMessage?.imagem"></p>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <h1 class="display-9 legend">controle</h1>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <app-label>Situação</app-label>
+            <input [attr.disabled]="true" class="form-control as-label" formControlName="situacao" />
+          </div>
+
+          <div class="form-group col-md  ">
+            <app-label>Data Inclusão</app-label>
+            <input [attr.disabled]="true" class="form-control as-label" formControlName="dthInclusao" />
+          </div>
+
+          <!-- <div class="form-group col">
+            <app-label>Atualização</app-label>
+            <input [attr.disabled]="true" class="form-control as-label" formControlName="dthAtualizacao" />
+
+          </div> -->
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <h1 class="display-9 legend">casting</h1>
+    <div class="row">
+      <div class="form-group  col-md-12">
+        <app-label [required]="true">Tipo</app-label>
+        <div class="row">
+          <div class="checkbox col" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
+            <label class="checkbox-inline">
+              <input type="checkbox" [formControlName]="i"> {{ tipoCasting[i].text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.tipoCasting">
+          <p [innerHTML]="displayMessage?.tipoCasting"></p>
+        </span>
+
+      </div>
+
+      <div class="form-group  col-md-4">
+        <app-label>Disponibilidade</app-label>
+        <div class="">
+          <input class="form-control" formControlName="diponibilidade" id="diponibilidade" [ngClass]="{'is-invalid': displayMessage?.diponibilidade}" />
+          <span *ngIf="displayMessage?.diponibilidade">
+            <p [innerHTML]="displayMessage?.diponibilidade"></p>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <h1 class="display-9 legend">caracteristicas físicas</h1>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Altura</app-label>
+        <input class="form-control" formControlName="altura" id="altura" [ngClass]="{'is-invalid': displayMessage?.altura}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.altura">
+          <p [innerHTML]="displayMessage?.altura"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Peso</app-label>
+        <input class="form-control" formControlName="peso" id="peso" [ngClass]="{'is-invalid': displayMessage?.peso}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.peso">
+          <p [innerHTML]="displayMessage?.peso"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Manequim</app-label>
+        <input class="form-control" formControlName="manequim" id="manequim" [ngClass]="{'is-invalid': displayMessage?.manequim}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.manequim">
+          <p [innerHTML]="displayMessage?.manequim"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-3">
+        <app-label [required]="true">Sapato</app-label>
+        <input class="form-control" formControlName="sapato" id="sapato" [ngClass]="{'is-invalid': displayMessage?.sapato}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.sapato">
+          <p [innerHTML]="displayMessage?.sapato"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Cor dos Olhos</app-label>
+        <h1 class="grey"></h1>
+        <div id="corOlhos" class="row">
+          <div class="col" *ngFor="let item of corOlhosEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="corOlhos" [ngClass]="{'is-invalid': displayMessage?.corOlhos}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.corOlhos">
+          <p [innerHTML]="displayMessage?.corOlhos"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Cor do Cabelo</app-label>
+        <h1 class="grey"></h1>
+        <div id="corCabelo" class="row">
+          <div class="col-md-3" *ngFor="let item of corCabeloEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="corCabelo" [ngClass]="{'is-invalid': displayMessage?.corCabelo}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.corCabelo">
+          <p [innerHTML]="displayMessage?.corCabelo"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Tipo Cabelo</app-label>
+        <h1 class="grey"></h1>
+        <div id="tipoCabelo" class="row">
+          <div class="col" *ngFor="let item of tipoCabeloEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="tipoCabelo" [ngClass]="{'is-invalid': displayMessage?.tipoCabelo}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.tipoCabelo">
+          <p [innerHTML]="displayMessage?.tipoCabelo"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md-12">
+        <app-label [required]="true">Comprimento do Cabelo</app-label>
+        <h1 class="grey"></h1>
+        <div id="tipoCabelo" class="row">
+          <div class="col" *ngFor="let item of tipoCabeloComprimentoEnum">
+            <label class="radio-inline">
+              <input type="radio" [value]="item.value" formControlName="tipoCabeloComprimento" [ngClass]="{'is-invalid': displayMessage?.tipoCabeloComprimento}" /> {{ item.text }}
+            </label>
+          </div>
+        </div>
+        <span *ngIf="displayMessage?.tipoCabeloComprimento">
+          <p [innerHTML]="displayMessage?.tipoCabeloComprimento"></p>
+        </span>
+      </div>
+    </div>
+
+    <h1 class="display-9 legend">contato</h1>
+    <div class="row">
+      <div class="form-group  col-md-3">
+        <app-label [required]="true">Telefone</app-label>
+        <div class="">
+          <input class="form-control" formControlName="telefone" id="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}"
+            [textMask]="{mask: MASKS.telefone.textMaskFunction}" />
+          <span *ngIf="displayMessage?.telefone">
+            <p [innerHTML]="displayMessage?.telefone"></p>
+          </span>
+        </div>
+      </div>
+      <div class="form-group  col-md-3">
+        <app-label>Telefone</app-label>
+        <div class="">
+          <input class="form-control" formControlName="telefone2" id="telefone2" [ngClass]="{'is-invalid': displayMessage?.telefone2}"
+            [textMask]="{mask: MASKS.telefone.textMaskFunction}" />
+          <span *ngIf="displayMessage?.telefone2">
+            <p [innerHTML]="displayMessage?.telefone2"></p>
+          </span>
+        </div>
+      </div>
+      <div class="form-group  col-md-6">
+        <app-label [required]="true">E-mail</app-label>
+        <div class="">
+          <input class="form-control" formControlName="email" id="email" [ngClass]="{'is-invalid': displayMessage?.email}" />
+          <span *ngIf="displayMessage?.email">
+            <p [innerHTML]="displayMessage?.email"></p>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <app-label [required]="true">Instagram</app-label>
+        <div class="">
+          <input class="form-control" formControlName="instagram" id="instagram" [ngClass]="{'is-invalid': displayMessage?.instagram}"
+            placeholder="https://www.instagram.com/usuario/" />
+          <span *ngIf="displayMessage?.instagram">
+            <p [innerHTML]="displayMessage?.instagram"></p>
+          </span>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <app-label>Facebook</app-label>
+        <div class="">
+          <input class="form-control" formControlName="facebook" id="facebook" [ngClass]="{'is-invalid': displayMessage?.facebook}"
+            placeholder="https://www.facebook.com/usuario/" />
+          <span *ngIf="displayMessage?.facebook">
+            <p [innerHTML]="displayMessage?.facebook"></p>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <app-label>Linkedin</app-label>
+        <div class="">
+          <input class="form-control" formControlName="linkedin" id="linkedin" [ngClass]="{'is-invalid': displayMessage?.linkedin}"
+            placeholder="https://www.linkedin.com/usuario/" />
+          <span *ngIf="displayMessage?.linkedin">
+            <p [innerHTML]="displayMessage?.linkedin"></p>
+          </span>
+        </div>
+      </div>
+
+
+    </div>
+
+    <h1 class="display-9 legend">endereço</h1>
+    <div class="row" formGroupName="endereco">
+      <div class="form-group col-md-3">
+        <app-label [required]="true">CEP</app-label>
+        <input class="form-control" formControlName="cep" id="cep" [ngClass]="{'is-invalid': displayMessage?.cep}" [textMask]="{mask: MASKS?.cep.textMask}" />
+        <span *ngIf="displayMessage?.cep">
+          <p [innerHTML]="displayMessage?.cep"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-7">
+        <app-label [required]="true">Logradouro</app-label>
+
+        <input class="form-control" formControlName="logradouro" id="logradouro" [ngClass]="{'is-invalid': displayMessage?.logradouro}" />
+        <span *ngIf="displayMessage?.logradouro">
+          <p [innerHTML]="displayMessage?.logradouro"></p>
+        </span>
+      </div>
+      <div class="form-group col-md-2">
+        <app-label [required]="true">Número</app-label>
+
+        <input class="form-control" formControlName="numero" id="numero" [ngClass]="{'is-invalid': displayMessage?.numero}" [textMask]="{mask: MASKS?.number.textMask}" />
+        <span *ngIf="displayMessage?.numero">
+          <p [innerHTML]="displayMessage?.numero"></p>
+        </span>
+      </div>
+      <div class="form-group col-md">
+        <app-label>Complemento</app-label>
+
+        <input class="form-control" placeholder="" formControlName="complemento" id="complemento" [ngClass]="{'is-invalid': displayMessage?.complemento}" />
+        <span *ngIf="displayMessage?.complemento">
+          <p [innerHTML]="displayMessage?.complemento"></p>
+        </span>
+      </div>
+      <div class="form-group col-md">
+        <app-label [required]="true">Bairro</app-label>
+
+        <input class="form-control" formControlName="bairro" id="bairro" [ngClass]="{'is-invalid': displayMessage?.bairro}" />
+        <span *ngIf="displayMessage?.bairro">
+          <p [innerHTML]="displayMessage?.bairro"></p>
+        </span>
+      </div>
+      <div class="form-group col-md">
+        <app-label [required]="true">Município</app-label>
+        <input class="form-control" formControlName="nomeMunicipio" id="nomeMunicipio" [ngClass]="{'is-invalid': displayMessage?.nomeMunicipio}" />
+        <span *ngIf="displayMessage?.nomeMunicipio">
+          <p [innerHTML]="displayMessage?.nomeMunicipio"></p>
+        </span>
+      </div>
+
+      <div class="form-group col-md">
+        <app-label [required]="true">UF</app-label>
+        <input class="form-control" formControlName="siglaUf" id="siglaUf" [ngClass]="{'is-invalid': displayMessage?.siglaUf}" />
+        <span *ngIf="displayMessage?.siglaUf">
+          <p [innerHTML]="displayMessage?.siglaUf"></p>
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="d-flex flex-row-reverse">
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-2 ">
+          <span>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+          </span>
+
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <ng-template #modalcropper let-c="close" let-d="dismiss">
+    <div class="modal-body">
+      <div class="col-md-12">
+
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 4"
+          [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'"
+          [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
+          (loadImageFailed)="loadImageFailed()">
+        </image-cropper>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

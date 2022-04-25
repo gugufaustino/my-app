@@ -18,7 +18,7 @@ const routes: Routes = [{
       data: [{ claim: { nome: clmaimAcesso, valor: 'CONSULTAR' } }]
     },
     {
-      path: 'editar/:id', component: EditarComponent, resolve: { pagamento: AppResolve },
+      path: 'editar/:id', component: EditarComponent, resolve: { model: AppResolve },
       canActivate: [CatalogoGuard],
       data: [{ claim: { nome: clmaimAcesso, valor: 'EDITAR' } }]
     },
