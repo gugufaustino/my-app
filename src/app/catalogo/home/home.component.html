@@ -85,7 +85,7 @@
           </div>
 
           <h5 class="card-title cursor-pointer text-center">
-            <a href="" target="_blank">
+            <a [routerLink]="[componentRoute + '/editar', modelo.id]" >
               {{modelo.nome}}
             </a>
           </h5>
@@ -100,15 +100,15 @@
             <span class="card-text mb-1 font14">
               Disponível: {{modelo.diponibilidade}}
             </span><br>
-            <span class="label-carac">Cor dos Olhos:</span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeCorOlhos}}</span><br>
-            <span class="label-carac">Cor do Cabelo: </span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeCorCabelo}}</span><br>
-            <span class="label-carac">Tipo Cabelo: </span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeTipoCabelo}}</span><br>
-            <span class="label-carac">Comprimento: </span><span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.nomeTipoCabeloComprimento}}</span><br>
+            <span class="label-carac d-inline-block">Cor dos Olhos:</span><span class="badge badge-light-primary mb-sm-0 ">{{modelo.nomeCorOlhos}}</span><br>
+            <span class="label-carac d-inline-block">Cor do Cabelo: </span><span class="badge badge-light-primary mb-sm-0 ">{{modelo.nomeCorCabelo}}</span><br>
+            <span class="label-carac d-inline-block">Tipo Cabelo: </span><span class="badge badge-light-primary mb-sm-0 ">{{modelo.nomeTipoCabelo}}</span><br>
+            <span class="label-carac d-inline-block">Comprimento: </span><span class="badge badge-light-primary mb-sm-0 ">{{modelo.nomeTipoCabeloComprimento}}</span><br>
             <span class="label-carac">Peso: </span>
-            <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.peso}}</span>
+            <span class="badge badge-light-primary mb-sm-0 mr-3">{{modelo.peso}} Kg</span>
 
             <span class="label-carac">Idade: </span>
-            <span class="badge badge-light-primary mb-sm-0 mb-25 mr-50">{{modelo.dtNascimento | age}}</span>
+            <span class="badge badge-light-primary mb-sm-0">{{modelo.dtNascimento | age}}</span>
             <span class="label-carac">({{modelo.dtNascimento | date:'dd/MM/YYYY'}})</span>
           </div>
         </div>

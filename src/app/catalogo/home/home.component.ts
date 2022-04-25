@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent extends FormBaseComponent implements OnInit {
 
+  public componentRoute: string = '/catalogo';
   MASKS: any = MASKS;
   modelFiltro: CatalogoModeloFilter = new CatalogoModeloFilter();
   models : Observable<Modelo[]>;
