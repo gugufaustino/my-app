@@ -53,7 +53,7 @@ export abstract class CatalogoBase extends FormBaseComponent {
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
 
       diponibilidade: ['' ],
-      tipoCasting: this.buildTipoCasting(),
+      modeloTipoCasting: this.buildTipoCasting(),
 
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, NgBrazilValidators.telefone]],
@@ -103,7 +103,7 @@ export abstract class CatalogoBase extends FormBaseComponent {
   }
 
   getTipoCastingControls() {
-    return this.componentForm.get('tipoCasting') ? (<FormArray>this.componentForm.get('tipoCasting')).controls : null;
+    return this.componentForm.get('modeloTipoCasting') ? (<FormArray>this.componentForm.get('modeloTipoCasting')).controls : null;
   }
 
 

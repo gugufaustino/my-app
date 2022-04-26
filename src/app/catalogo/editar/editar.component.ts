@@ -43,7 +43,7 @@ export class EditarComponent extends CatalogoBase implements OnInit, AfterViewIn
       rg: this.model.rg,
       cpf: this.model.cpf,
       diponibilidade: this.model.diponibilidade,
-      tipoCasting: this.tipoCastingEnum.map(x => this.model.modeloTipoCasting.indexOf(x.value) >= 0),
+      modeloTipoCasting: this.tipoCastingEnum.map(x => this.model.modeloTipoCasting.indexOf(x.value) >= 0),
 
       email: this.model.email,
       telefone: this.model.telefone,

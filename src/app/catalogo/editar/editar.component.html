@@ -93,14 +93,14 @@
       <div class="form-group  col-md-12">
         <app-label [required]="true">Tipo</app-label>
         <div class="row">
-          <div class="checkbox col" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
+          <div class="checkbox col" formArrayName="modeloTipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
             <label class="checkbox-inline">
               <input type="checkbox" [formControlName]="i"> {{ tipoCastingEnum[i].text }}
             </label>
           </div>
         </div>
-        <span *ngIf="displayMessage?.tipoCasting">
-          <p [innerHTML]="displayMessage?.tipoCasting"></p>
+        <span *ngIf="displayMessage?.modeloTipoCasting">
+          <p [innerHTML]="displayMessage?.modeloTipoCasting"></p>
         </span>
 
       </div>
