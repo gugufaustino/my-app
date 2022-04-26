@@ -44,10 +44,7 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.model = super.mapToModel(this.model, this.componentForm.value)
-
-      this.model.imagemPerfilNome = this.imagemNome;
       this.model.imagemPerfilUpload = this.croppedImage.split(',')[1];
-
 
       this.service.inserir(this.model)
         .subscribe(

@@ -22,7 +22,7 @@ export abstract class CatalogoBase extends FormBaseComponent {
   controlsFormBase: any;
 
   model: Modelo = new Modelo();
-  tipoCasting: OptionSelect[] = Modelo.tipoCastingEnum;
+  tipoCastingEnum: OptionSelect[] = Modelo.tipoCastingEnum;
   corOlhosEnum: OptionSelect[] = Modelo.corOlhosEnum;
   corCabeloEnum: OptionSelect[] = Modelo.corCabeloEnum;
 
@@ -83,11 +83,13 @@ export abstract class CatalogoBase extends FormBaseComponent {
       tipoCabelo: [null, [Validators.required]],
       tipoCabeloComprimento: [null, [Validators.required]],
 
-      //controles
+      imagemPerfilNome: ['', [Validators.required]],
+
+      //controles valor do inserir
       situacao: ['ATIVADO'],
       dthInclusao: [DateUtils.Format(new Date())],
+      dthAtualizacao: [''],
 
-      imagem: ['', [Validators.required]]
     };
 
     this.validationMessages = {
@@ -96,7 +98,7 @@ export abstract class CatalogoBase extends FormBaseComponent {
 
   buildTipoCasting() {
     return this.formBuilder
-      .array(this.tipoCasting.map(v => new FormControl(false)),
+      .array(this.tipoCastingEnum.map(v => new FormControl(false)),
         FormValidations.requiredMinCheckbox(1));
   }
 
@@ -118,6 +120,7 @@ export abstract class CatalogoBase extends FormBaseComponent {
   fileChangeEvent(event: any, content: any): void {
     this.imageChangedEvent = event;
     this.imagemNome = event.currentTarget.files[0].name;
+    this.componentForm.get('imagemPerfilNome')?.setValue(event.currentTarget.files[0].name)
 
     const ngbModalOptions : NgbModalOptions = {
       size : 'lg',
@@ -135,9 +138,10 @@ export abstract class CatalogoBase extends FormBaseComponent {
     this.showCropper = true;
   }
   cropperReady(sourceImageDimensions: Dimensions) {
-    console.log('Cropper ready', sourceImageDimensions);
+    //console.log('Cropper ready', sourceImageDimensions);
   }
   loadImageFailed() {
+    this.componentForm.get('imagemPerfilNome')?.setValue('')
     this.errors.push('O formato do arquivo ' + this.imagemNome + ' não é aceito.');
   }
 

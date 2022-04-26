@@ -9,6 +9,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MASKS } from 'ng-brazil';
 import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
 import { environment } from 'src/environments/environment';
+import { Catalogo } from '../models/catalogo';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomeComponent extends FormBaseComponent implements OnInit {
   public componentRoute: string = '/catalogo';
   MASKS: any = MASKS;
   modelFiltro: CatalogoModeloFilter = new CatalogoModeloFilter();
-  models : Observable<Modelo[]>;
+  models : Observable<Catalogo[]>;
   componentForm: FormGroup;
   controlsFormBase: any;
   tipoCasting: OptionSelect[] = Modelo.tipoCastingEnum;
@@ -30,7 +31,7 @@ export class HomeComponent extends FormBaseComponent implements OnInit {
   constructor(
     protected formBuilder: FormBuilder,
     private toastr: ToastAppService,
-    private service: CatalogoService<Modelo>
+    private service: CatalogoService<Catalogo>
     ) {
       super();
 

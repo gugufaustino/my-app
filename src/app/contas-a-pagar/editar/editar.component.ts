@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Pagamento } from '../models/pagamento';
 import { ContasPagarBase } from '../contas-a-pagar-form.base.component';
 
-import { NgBrazilValidators } from 'ng-brazil';
 import { CurrencyUtils } from 'src/app/app-core/utils/currency-utils';
 import { DateUtils } from 'src/app/app-core/utils/date-utils';
 import { ContasAPagarService } from '../services/contas-a-pagar.service';

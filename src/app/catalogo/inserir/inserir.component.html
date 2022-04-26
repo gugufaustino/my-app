@@ -95,7 +95,7 @@
         <div class="row">
           <div class="checkbox col" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
             <label class="checkbox-inline">
-              <input type="checkbox" [formControlName]="i"> {{ tipoCasting[i].text }}
+              <input type="checkbox" [formControlName]="i"> {{ tipoCastingEnum[i].text }}
             </label>
           </div>
         </div>

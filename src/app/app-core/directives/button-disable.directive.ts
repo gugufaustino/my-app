@@ -14,7 +14,7 @@ export class ButtonDisableDirective {
   }
 
   @HostListener('click') onClick() {
-    //console.log('rambou');
+
     //console.log(this._elementRef)
     this._elementRef.nativeElement.innerHTML = '<span class="spinner-border spinner-border-sm" style="vertical-align: -2px"></span> Login'
     this._rendered.addClass(this._elementRef.nativeElement, 'disabled');

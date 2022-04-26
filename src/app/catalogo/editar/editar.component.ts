@@ -1,9 +1,13 @@
+import { DatePipe, formatDate } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ImageTransform } from 'ngx-image-cropper';
+import { EncodePipe } from 'src/app/app-core/pipes/encode.pipe';
+import { DateUtils } from 'src/app/app-core/utils/date-utils';
 import { ToastAppService } from 'src/app/services/toastapp.service';
+import { environment } from 'src/environments/environment';
 import { CatalogoBase } from '../catalogo-base.component';
 import { Modelo } from '../models/modelo';
 import { CatalogoService } from '../services/catalogo.service';
@@ -13,7 +17,7 @@ import { CatalogoService } from '../services/catalogo.service';
   templateUrl: './editar.component.html',
   styleUrls: ['../inserir/inserir.component.css']
 })
-export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewInit {
+export class EditarComponent extends CatalogoBase implements OnInit, AfterViewInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -29,38 +33,39 @@ export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewI
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
+
   ngOnInit(): void {
     this.componentForm = this.fb.group(this.controlsFormBase);
-
     //Valores Default
     this.componentForm.patchValue({
-       nome: this.model.nome,
-       dtNascimento: this.model.dtNascimento,
-       rg: this.model.rg,
-       cpf: this.model.cpf,
-       diponibilidade: this.model.diponibilidade,
-       tipoCasting: this.model.nomeTipoCasting,
+      nome: this.model.nome,
+      dtNascimento: DateUtils.Format(this.model.dtNascimento),
+      rg: this.model.rg,
+      cpf: this.model.cpf,
+      diponibilidade: this.model.diponibilidade,
+      tipoCasting: this.tipoCastingEnum.map(x => this.model.modeloTipoCasting.indexOf(x.value) >= 0),
 
-       email: this.model.email,
-       telefone: this.model.telefone,
-       instagram: this.model.instagram,
-       facebook: this.model.facebook,
-       linkedin: this.model.linkedin,
+      email: this.model.email,
+      telefone: this.model.telefone,
+      instagram: this.model.instagram,
+      facebook: this.model.facebook,
+      linkedin: this.model.linkedin,
 
-       altura: this.model.altura,
-       peso: this.model.peso,
-       manequim: this.model.manequim,
-       sapato: this.model.sapato,
+      altura: this.model.altura,
+      peso: this.model.peso,
+      manequim: this.model.manequim,
+      sapato: this.model.sapato,
 
-       corOlhos: this.model.corOlhos,
-       corCabelo: this.model.corCabelo,
-       tipoCabelo: this.model.tipoCabelo,
-       tipoCabeloComprimento: this.model.tipoCabeloComprimento,
+      corOlhos: this.model.corOlhos,
+      corCabelo: this.model.corCabelo,
+      tipoCabelo: this.model.tipoCabelo,
+      tipoCabeloComprimento: this.model.tipoCabeloComprimento,
 
-       imagemPerfilNome: this.model.imagemPerfilNome,
+      imagemPerfilNome: this.model.imagemPerfilNome,
+      dthAtualizacao: [DateUtils.Format(this.model.dthAtualizacao)],
+      dthInclusao: [DateUtils.Format(this.model.dthInclusao)],
 
-
-       endereco :  this.controlsFormBase.endereco.patchValue({
+      endereco: this.controlsFormBase.endereco.patchValue({
         cep: this.model.endereco.cep,
         logradouro: this.model.endereco.logradouro,
         numero: this.model.endereco.numero,
@@ -68,20 +73,13 @@ export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewI
         bairro: this.model.endereco.bairro,
         siglaUf: this.model.endereco.siglaUf,
         nomeMunicipio: this.model.endereco.nomeMunicipio,
-       }),
+      }),
+
+      situacao: [this.model.nomeTipoSituacao],
 
     });
-
-
-    // this.componentForm.endereco = this.controlsFormBase.endereco.patchValue({
-    //   cep: this.model.cep,
-    //   logradouro: this.model.logradouro,
-    //   numero: this.model.numero,
-    //   complemento: this.model.complemento,
-    //   bairro: this.model.bairro,
-    //   siglaUf: this.model.siglaUf,
-    //   nomeMunicipio: this.model.nomeMunicipio,
-    //  }),
+    this.imagemNome = this.model.imagemPerfilNome;
+    this.croppedImage = environment.imagensPerfil + '/' + new EncodePipe().transform(this.model.imagemPerfilNome, 'URI');
 
   }
 
@@ -92,14 +90,13 @@ export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewI
   }
 
   submitForm(): void {
-
     super.validarFormulario(this.componentForm, true);
-    if (this.componentForm.dirty && this.componentForm.valid) {
+    if ((this.componentForm.dirty || this.model.imagemPerfilNome != this.componentForm.get('imagemPerfilNome')?.value) && this.componentForm.valid) {
+
+      if (this.model.imagemPerfilNome != this.componentForm.get('imagemPerfilNome')?.value) {
+        this.model.imagemPerfilUpload = this.croppedImage.split(',')[1];
+      }
       this.model = super.mapToModel(this.model, this.componentForm.value)
-
-      this.model.imagemPerfilNome = this.imagemNome;
-      this.model.imagemPerfilUpload = this.croppedImage.split(',')[1];
-
 
       this.service.editar(this.model)
         .subscribe(
@@ -108,6 +105,8 @@ export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewI
         );
     }
   }
+
+
 
   processarSucesso(response: any) {
     this.errors = [];
@@ -118,6 +117,5 @@ export class EditarComponent  extends CatalogoBase implements OnInit, AfterViewI
       this.router.navigate(['/catalogo']);
     });
   }
-
 
 }

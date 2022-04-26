@@ -5,6 +5,11 @@ export class Modelo implements MappingModel {
   constructor() { this.toMap(); }
   id: string;
 
+  //campos controle
+  dthInclusao: Date;
+  dthAtualizacao: Date;
+  nomeTipoSituacao: string;
+  idTipoSituacao: number;
   //dados basicos
   nome: string;
   dtNascimento: Date;
@@ -13,8 +18,7 @@ export class Modelo implements MappingModel {
 
   //tipo de modelo
   diponibilidade: string;
-  tipoCasting: Number[];
-  nomeTipoCasting : string[];
+  modeloTipoCasting: number[];
 
   //contato
   email: string;
@@ -25,52 +29,40 @@ export class Modelo implements MappingModel {
   linkedin: string;
 
   endereco : any
-  // cep: string;
-  // logradouro: string;
-  // numero: number;
-  // complemento: string;
-  // bairro: string;
-  // siglaUf: string;
-  // nomeMunicipio: string;
 
   //caracteristicas fisicas
-  altura: Number;
-  peso: Number;
-  manequim: Number;
-  sapato: Number;
+  altura: number;
+  peso: number;
+  manequim: number;
+  sapato: number;
 
-  corOlhos: Number;
-  corCabelo: Number;
-  tipoCabelo: Number;
-  tipoCabeloComprimento: Number;
+  corOlhos: number;
+  corCabelo: number;
+  tipoCabelo: number;
+  tipoCabeloComprimento: number;
 
   imagemPerfilUpload : string;
   imagemPerfilNome: string;
 
-  nomeCorOlhos: string;
-  nomeCorCabelo: string;
-  nomeTipoCabelo: string;
-  nomeTipoCabeloComprimento: string;
-
-  tipoPele: string;
-  medidaMascTorax: Number;
-  medidaMascCamisa: Number;
-  medidaMascTerno: Number;
-  medidaFemQuadril: Number;
-  medidaFemBusto: Number;
-  medidaFemCintura: Number;
-  cicatrizes: string;
-  piercing: string;
-  tatuagem: string;
-
-
+  // tipoPele: string;
+  // medidaMascTorax: number;
+  // medidaMascCamisa: number;
+  // medidaMascTerno: number;
+  // medidaFemQuadril: number;
+  // medidaFemBusto: number;
+  // medidaFemCintura: number;
+  // cicatrizes: string;
+  // piercing: string;
+  // tatuagem: string;
 
   mappings: any[];
   toMap(): void {
     this.mappings = [
       {
         dtNascimento: "Date",
-        tipoCasting: "number[]",
+        dthInclusao: "Date",
+        dthAtualizacao: "Date",
+        modeloTipoCasting: "number[]",
         corOlhos: "number",
         corCabelo: "number",
         tipoCabelo: "number",
