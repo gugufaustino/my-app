@@ -19,7 +19,7 @@ export class GenericValidator {
         let c = container.controls[controlKey];
 
         if (c instanceof FormGroup) {
-          let childMessages = this.processaMensgens(c);
+          let childMessages = this.processaMensgens(c, allControls);
           Object.assign(messages, childMessages);
         } else {
           //if (this.validationMessages[controlKey]) {

@@ -86,9 +86,9 @@ export abstract class CatalogoBase extends FormBaseComponent {
       imagemPerfilNome: ['', [Validators.required]],
 
       //controles valor do inserir
-      situacao: ['ATIVADO'],
-      dthInclusao: [DateUtils.Format(new Date())],
-      dthAtualizacao: [''],
+      // situacao: ['ATIVADO'],
+      // dthInclusao: [DateUtils.Format(new Date())],
+      // dthAtualizacao: [''],
 
     };
 

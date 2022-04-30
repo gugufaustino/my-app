@@ -7,8 +7,7 @@ import { Modelo } from '../models/modelo';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 import { Router } from '@angular/router';
 
-import {ImageCroppedEvent, ImageTransform, Dimensions} from 'ngx-image-cropper'
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-inserir',
@@ -26,7 +25,7 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
   }
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
-
+  dateNow = new Date();
 
   ngOnInit(): void {
     this.componentForm = this.fb.group(this.controlsFormBase);
