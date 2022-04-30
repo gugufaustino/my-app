@@ -53,10 +53,10 @@
                 aria-hidden="true"></i>
               <img class="ratio img-circle cursor-pointer" style="background-image: url({{this.croppedImage}});" *ngIf="imagemNome != null"
                 onclick="document.getElementById('imgFotoPerfil').click()">
-              <input type="file" style="display: none;" id="imgFotoPerfil" accept="image/jpeg,image/png" formControlName="imagem" #fileInput
-                (change)="fileChangeEvent($event, modalcropper)" [ngClass]="{'is-invalid': displayMessage.imagem }" />
-              <span *ngIf="displayMessage?.imagem">
-                <p class="text-danger" [innerHTML]="displayMessage?.imagem"></p>
+              <input type="file" style="display: none;" id="imgFotoPerfil" accept="image/jpeg,image/png" #fileInput (change)="fileChangeEvent($event, modalcropper)" [ngClass]="{'is-invalid': displayMessage.imagemPerfilNome }" />
+              <input style="display: none;" formControlName="imagemPerfilNome" >
+              <span *ngIf="displayMessage?.imagemPerfilNome">
+                <p class="text-danger" [innerHTML]="displayMessage?.imagemPerfilNome"></p>
               </span>
             </div>
           </div>
@@ -68,12 +68,12 @@
         <div class="row">
           <div class="form-group col-md-12">
             <app-label>Situação</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" formControlName="situacao" />
+            <input [attr.disabled]="true" class="form-control as-label" value="ATIVADO" />
           </div>
 
           <div class="form-group col-md  ">
             <app-label>Data Inclusão</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" formControlName="dthInclusao" />
+            <input [attr.disabled]="true" class="form-control as-label" [value]="dateNow | date:'dd/MM/yyyy'" />
           </div>
 
           <!-- <div class="form-group col">
@@ -93,14 +93,14 @@
       <div class="form-group  col-md-12">
         <app-label [required]="true">Tipo</app-label>
         <div class="row">
-          <div class="checkbox col" formArrayName="tipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
+          <div class="checkbox col" formArrayName="modeloTipoCasting" *ngFor="let item of getTipoCastingControls(); let i = index">
             <label class="checkbox-inline">
               <input type="checkbox" [formControlName]="i"> {{ tipoCastingEnum[i].text }}
             </label>
           </div>
         </div>
-        <span *ngIf="displayMessage?.tipoCasting">
-          <p [innerHTML]="displayMessage?.tipoCasting"></p>
+        <span *ngIf="displayMessage?.modeloTipoCasting">
+          <p [innerHTML]="displayMessage?.modeloTipoCasting"></p>
         </span>
 
       </div>

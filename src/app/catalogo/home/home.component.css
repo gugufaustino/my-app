@@ -37,3 +37,7 @@
   background-color: #151827;
   margin-right: 5px;
 }
+
+.content-result{
+  min-height: 472px;
+}

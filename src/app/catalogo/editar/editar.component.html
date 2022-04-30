@@ -54,7 +54,7 @@
               <img class="ratio img-circle cursor-pointer" style="background-image: url({{this.croppedImage}});" *ngIf="imagemNome != null"
                 onclick="document.getElementById('imgFotoPerfil').click()">
               <input type="file" style="display: none;" id="imgFotoPerfil" accept="image/jpeg,image/png" #fileInput (change)="fileChangeEvent($event, modalcropper)" />
-                <input style="display: none;" formControlName="imagemPerfilNome" >
+              <input style="display: none;" formControlName="imagemPerfilNome" >
               <span *ngIf="displayMessage?.imagemPerfilNome">
                 <p class="text-danger" [innerHTML]="displayMessage?.imagemPerfilNome"></p>
               </span>
