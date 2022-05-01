@@ -8,6 +8,9 @@ export class Modelo implements MappingModel {
   //campos controle
   dthInclusao: Date;
   dthAtualizacao: Date;
+  usuarioInclusao: string
+  usuarioAtualizacao: string
+
   nomeTipoSituacao: string;
   idTipoSituacao: number;
   //dados basicos
@@ -28,7 +31,7 @@ export class Modelo implements MappingModel {
   facebook: string;
   linkedin: string;
 
-  endereco : any
+  endereco: any
 
   //caracteristicas fisicas
   altura: number;
@@ -41,7 +44,7 @@ export class Modelo implements MappingModel {
   tipoCabelo: number;
   tipoCabeloComprimento: number;
 
-  imagemPerfilUpload : string;
+  imagemPerfilUpload: string;
   imagemPerfilNome: string;
 
   // tipoPele: string;
