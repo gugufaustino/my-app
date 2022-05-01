@@ -54,7 +54,7 @@
               <img class="ratio img-circle cursor-pointer" style="background-image: url({{this.croppedImage}});" *ngIf="imagemNome != null"
                 onclick="document.getElementById('imgFotoPerfil').click()">
               <input type="file" style="display: none;" id="imgFotoPerfil" accept="image/jpeg,image/png" #fileInput (change)="fileChangeEvent($event, modalcropper)" />
-              <input style="display: none;" formControlName="imagemPerfilNome" >
+              <input style="display: none;" formControlName="imagemPerfilNome">
               <span *ngIf="displayMessage?.imagemPerfilNome">
                 <p class="text-danger" [innerHTML]="displayMessage?.imagemPerfilNome"></p>
               </span>
@@ -66,21 +66,46 @@
       <div class="col-md-2">
         <h1 class="display-9 legend">controle</h1>
         <div class="row">
-          <div class="form-group col-md-12">
-            <app-label>Situação</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" [value]="model.nomeTipoSituacao"  />
+          <div class="form-group mb-0 col-md-12">
+            <small>Situação</small>
+            <input [attr.disabled]="true" class="form-control form-control-sm as-label" [value]="model.nomeTipoSituacao" />
           </div>
 
-          <div class="form-group col-md  ">
-            <app-label>Data Inclusão</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" value="{{model.dthInclusao | date: 'dd/MM/YYYY'  }}"  />
+          <div class="form-group mb-0 col-md-12">
+            <small>Data Inclusão</small>
+            <div class="input-group input-group-sm">
+              <input [attr.disabled]="true" class="form-control form-control-sm as-label" value="{{model.dthInclusao | date: 'dd/MM/YYYY'  }}" />
+
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="far fa-clock text-info cursor-pointer" title="Hora: {{model.dthInclusao | date: 'HH:mm:ss'}}"></i>
+                </span>
+                <span class="input-group-text">
+                  <i class="far fa-address-book text-info cursor-pointer" title="Usuário: {{model.usuarioInclusao}}"></i>
+                </span>
+              </div>
+            </div>
+
+
           </div>
 
-          <!-- <div class="form-group col">
-            <app-label>Atualização</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" formControlName="dthAtualizacao" />
+          <div class="form-group mb-0 col-md-12">
+            <small>Data Atualização</small>
+            <div class="input-group input-group-sm">
+              <input [attr.disabled]="true" class="form-control form-control-sm as-label" value="{{model.dthAtualizacao | date: 'dd/MM/YYYY'}}" />
 
-          </div> -->
+              <div class="input-group-append">
+                <span class="input-group-text">
+                  <i class="far fa-clock text-info cursor-pointer" title="Hora: {{model.dthAtualizacao | date: 'HH:mm:ss'}}"></i>
+                </span>
+                <span class="input-group-text">
+                  <i class="far fa-address-book text-info cursor-pointer" title="Usuário: {{model.usuarioAtualizacao}}"></i>
+                </span>
+              </div>
+
+            </div>
+
+          </div>
         </div>
 
       </div>
@@ -243,9 +268,11 @@
 
       <div class="form-group col-md-4">
         <app-label [required]="true">Instagram</app-label>
-        <div class="">
-          <input class="form-control" formControlName="instagram" id="instagram" [ngClass]="{'is-invalid': displayMessage?.instagram}"
-            placeholder="https://www.instagram.com/usuario/" />
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text">www.instagram.com/</label>
+          </div>
+          <input class="form-control" formControlName="instagram" id="instagram" [ngClass]="{'is-invalid': displayMessage?.instagram}" placeholder="@usuario" />
           <span *ngIf="displayMessage?.instagram">
             <p [innerHTML]="displayMessage?.instagram"></p>
           </span>
@@ -253,9 +280,12 @@
       </div>
       <div class="form-group col-md-4">
         <app-label>Facebook</app-label>
-        <div class="">
-          <input class="form-control" formControlName="facebook" id="facebook" [ngClass]="{'is-invalid': displayMessage?.facebook}"
-            placeholder="https://www.facebook.com/usuario/" />
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text">www.facebook.com/</label>
+          </div>
+
+          <input class="form-control" formControlName="facebook" id="facebook" [ngClass]="{'is-invalid': displayMessage?.facebook}" placeholder="@usuario" />
           <span *ngIf="displayMessage?.facebook">
             <p [innerHTML]="displayMessage?.facebook"></p>
           </span>
@@ -264,9 +294,11 @@
 
       <div class="form-group col-md-4">
         <app-label>Linkedin</app-label>
-        <div class="">
-          <input class="form-control" formControlName="linkedin" id="linkedin" [ngClass]="{'is-invalid': displayMessage?.linkedin}"
-            placeholder="https://www.linkedin.com/usuario/" />
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text">www.linkedin.com/in/</label>
+          </div>
+          <input class="form-control" formControlName="linkedin" id="linkedin" [ngClass]="{'is-invalid': displayMessage?.linkedin}" placeholder="@usuario" />
           <span *ngIf="displayMessage?.linkedin">
             <p [innerHTML]="displayMessage?.linkedin"></p>
           </span>
@@ -354,9 +386,9 @@
       <div class="col-md-12">
 
         <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 4"
-          [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'"
-          [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
-          (loadImageFailed)="loadImageFailed()">
+          [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation" [transform]="transform"
+          [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()">
         </image-cropper>
       </div>
     </div>
