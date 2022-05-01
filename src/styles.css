@@ -165,7 +165,7 @@
    border-color: #FFF842;
  }
 
- .form-control {
+ .form-control, .input-group .form-control {
    border-radius: 0;
    border: 1px solid #495057;
  }
@@ -250,10 +250,25 @@ h1.grey {
    text-decoration: underline;
  }
 
- .form-bg input.form-control {
+ .form-bg input.form-control  {
    color: #fff !important;
    background-color: #343a40 !important;
 
+ }
+
+ .form-bg .input-group-text{
+  color: #fff !important;
+
+  border-radius: 0;
+  padding-right: 3px;
+  border: 1px solid #495057;
+  color: #636f77 !important;
+  font: 100;
+  background-color: #343a4000 !important;
+ }
+
+ .input-group-sm > .input-group-append > .input-group-text{
+  border-radius: 0;
  }
 
  .form-bg input.as-label{

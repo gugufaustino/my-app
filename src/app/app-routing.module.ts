@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'home', component: HomeComponent,
     canActivate: [ContasAPagarGuard],
-    data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
+    // data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
   },
   { path: 'conta', loadChildren: () => import('./conta/conta.module').then(m => m.ContaModule) },
   { path: 'contas-a-pagar', loadChildren: () => import('./contas-a-pagar/contas-a-pagar.module').then(m => m.ContasAPagarModule) },

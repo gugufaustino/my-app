@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
 
         if(!this.localStorageUtil.usuarioLogado()){
-         this.router.navigate(['/conta/login']);
+        // this.router.navigate(['/conta/login']);
         }
 
     }
