@@ -17,16 +17,16 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(catchError(error => {
 
             if(error instanceof HttpErrorResponse){
+
                 if(error.status === 401){
                     this.localStorageUtil.limparDadosLocaisUsuario();
-                    this.router.navigate(['conta/login'])
+                    this.router.navigate(['conta/login'], { queryParams: { returnUrl: this.router.url }})
                     return throwError(['Acesso expirou, faça login novamente']); // cancela toast
 
                 }else if(error.status === 403){
                     this.router.navigate(['acesso-negado'])
                     return throwError({}); // cancela toast
                 }
-
                 //400 BadRequest || Rns
             }
 

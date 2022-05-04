@@ -5,7 +5,7 @@ import { CustomValidators } from 'ng2-validation';
 
 import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
 import { ToastAppService } from 'src/app/services/toastapp.service';
@@ -22,11 +22,14 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
   componentForm: FormGroup;
   usuario: Usuario
   formResult: string = '';
+  returnUrl: string;
+
 
   constructor(private fb: FormBuilder,
     private contaService: ContaService,
     private toastr: ToastAppService,
-    private router: Router) {
+    private router: Router,
+    private route: ActivatedRoute) {
     super()
 
     this.controlsFormBase = {
@@ -40,6 +43,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
       },
     }
 
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
 
   }
 
@@ -71,7 +75,9 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
     this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
     this.toastr.success(["Login realizado com sucesso"], "Bem vindo!", () => {
-      this.router.navigate(['/welcome'])
+      this.returnUrl
+        ? this.router.navigate([this.returnUrl])
+        : this.router.navigate(['/welcome'])
     });
   }
 
