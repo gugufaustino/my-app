@@ -71,7 +71,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
     this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
     this.toastr.success(["Login realizado com sucesso"], "Bem vindo!", () => {
-      this.router.navigate(['/home'])
+      this.router.navigate(['/welcome'])
     });
   }
 

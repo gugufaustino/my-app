@@ -4,11 +4,16 @@ import { ContasAPagarGuard } from './contas-a-pagar/services/contas-a-pagar.guar
 import { AcessoNegadoComponent } from './navegacao/acesso-negado/acesso-negado.component';
 import { HomeComponent } from './navegacao/home/home.component';
 import { NotFoundComponent } from './navegacao/not-found/not-found.component';
+import { WelcomeComponent } from './navegacao/welcome/welcome/welcome.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home', component: HomeComponent,
+    canActivate: [ContasAPagarGuard],
+  },
+  {
+    path: 'welcome', component: WelcomeComponent,
     canActivate: [ContasAPagarGuard],
     // data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
   },

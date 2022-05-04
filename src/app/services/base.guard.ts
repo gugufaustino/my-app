@@ -10,6 +10,10 @@ export abstract class BaseGuard {
 
   protected validarClaim(routeAc: ActivatedRouteSnapshot): boolean {
 
+    if(!this.utilStorage.obterToken()){
+      this.router.navigate(['/conta/login/'], { queryParams: { returnUrl: this.router.url }});
+    }
+
     let claim: any = routeAc.data[0];
     if (claim !== undefined) {
       let claim = routeAc.data[0]['claim'];
