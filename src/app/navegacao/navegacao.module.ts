@@ -2,41 +2,41 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
-import { MenuComponent } from "./menu/menu.component";
+import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { MenuLoginComponent } from './menu-login/menu-login.component';
+import { MenuComponent } from './menu/menu.component';
 import { NavegacaoService } from "./services/navegacao.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { WelcomeComponent } from './welcome/welcome/welcome.component';
 
-@NgModule({    
+@NgModule({
     declarations: [
+        NavbarComponent,
         MenuComponent,
-        MenuLoginComponent,
         HomeComponent,
         FooterComponent,
-        
+
         NotFoundComponent,
         AcessoNegadoComponent,
         WelcomeComponent
-        
-    ], 
+
+    ],
     imports : [
         CommonModule,
         RouterModule,
         NgbModule,
-        
+
         HttpClientModule
     ],
     exports: [
-        MenuComponent,
+        NavbarComponent,
         HomeComponent,
         FooterComponent,
-        MenuLoginComponent                 
+        MenuComponent
     ] ,
     providers:[
         NavegacaoService

@@ -5,10 +5,10 @@ import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { NavegacaoService } from '../services/navegacao.service';
 
 @Component({
-  selector: 'app-menu-login',
-  templateUrl: './menu-login.component.html',
+  selector: 'app-user',
+  templateUrl: './user.component.html',
 })
-export class MenuLoginComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   token: string | null = "";
   user: any;
