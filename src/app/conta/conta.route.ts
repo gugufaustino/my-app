@@ -1,14 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { NotFoundComponent } from "../navegacao/not-found/not-found.component";
 import { CadastroComponent } from "./cadastro/cadastro.component";
 import { ContaAppComponent } from "./conta.app.component";
 import { LoginComponent } from "./login/login.component";
 
 const contaRouterConfig: Routes = [{
-    path: '',
-    component: ContaAppComponent,
+    path: '', component: ContaAppComponent,
     children: [
         { path: 'cadastro', component: CadastroComponent },
         { path: 'login', component: LoginComponent }

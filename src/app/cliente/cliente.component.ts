@@ -4,11 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-cliente',
   template: '<router-outlet></router-outlet>'
 })
-export class ClienteComponent implements OnInit {
-
+export class ClienteComponent   {
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
