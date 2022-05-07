@@ -72,12 +72,13 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
   private processarSucesso(response: any) {
     this.componentForm.reset();
     this.errors = [];
-    this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
+
 
     this.toastr.success(["Login realizado com sucesso"], "Bem vindo!", () => {
       this.returnUrl
         ? this.router.navigate([this.returnUrl])
-        : this.router.navigate(['/welcome'])
+        : this.router.navigate(['/welcome']);
+        this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
     });
   }
 
