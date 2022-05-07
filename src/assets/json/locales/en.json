@@ -141,5 +141,11 @@
   "Models" : "Models",
   "My Profile" : "My Profile",
   "Settings" : "Settings",
-  "Log Out" : "Log Out"
+  "Log Out" : "Log Out",
+
+  "Welcome" : "Welcome",
+  "Welcome-mens" : "Hello, welcome to the Onemodel.me platform",
+  "days-ago" : "days ago",
+  "Dark mode" : "Dark mode",
+  "Light mode" : "Light mode"
 }

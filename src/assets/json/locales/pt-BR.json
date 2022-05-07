@@ -7,5 +7,11 @@
   "Models" : "Modelos",
   "My Profile" : "Meu Perfil",
   "Settings" : "Configurações",
-  "Log Out" : "Sair"
+  "Log Out" : "Sair",
+
+  "Welcome" : "Bem vindo",
+  "Welcome-mens" : "Olá, seja muito bem vindo a plataforma Onemodel.me",
+  "days-ago" : "5 dias atrás",
+  "Dark mode" : "Modo escuro",
+  "Light mode" : "Modo claro"
 }

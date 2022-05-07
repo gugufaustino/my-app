@@ -148,7 +148,7 @@ let isRtl = window.Helpers.isRtl(),
     i18next
       .use(i18nextXHRBackend)
       .init({
-        lng: 'en',
+        lng: localStorage.getItem('currentLanguage') ?? 'en',
         debug: false,
         fallbackLng: 'en',
         backend: {
@@ -182,7 +182,7 @@ let isRtl = window.Helpers.isRtl(),
         this.classList.add('selected');
 
         languageDropdown[0].querySelector('.dropdown-toggle .fi').className = selectedLangFlag;
-
+        localStorage.setItem('currentLanguage', String(currentLanguage))
         i18next.changeLanguage(currentLanguage, (err, t) => {
           if (err) return console.log('something went wrong loading', err);
           localize();
