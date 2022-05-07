@@ -9,7 +9,10 @@ let isRtl = window.Helpers.isRtl(),
   menu,
   animate,
   isHorizontalLayout = false;
+
+
   function mainBuild() {
+    console.log('mainBuild')
 
   if (document.getElementById('layout-menu')) {
     isHorizontalLayout = document.getElementById('layout-menu').classList.contains('menu-horizontal');
@@ -17,7 +20,6 @@ let isRtl = window.Helpers.isRtl(),
 
   // Initialize menu
   //-----------------
-  console.log('Initialize menu')
   let layoutMenuEl = document.querySelectorAll('#layout-menu');
   layoutMenuEl.forEach(function (element) {
     menu = new Menu(element, {
@@ -44,8 +46,7 @@ let isRtl = window.Helpers.isRtl(),
       // Enable menu state with local storage support if enableMenuLocalStorage = true from config.js
       if (config.enableMenuLocalStorage && !window.Helpers.isSmallScreen()) {
         try {
-          localStorage.setItem(
-            'templateCustomizer-' + templateName + '--LayoutCollapsed',
+          localStorage.setItem('templateCustomizer-' + templateName + '--LayoutCollapsed',
             String(window.Helpers.isCollapsed())
           );
         } catch (e) {}

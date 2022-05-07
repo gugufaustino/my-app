@@ -1,18 +1,30 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { LocalStorageUtils } from "src/app/app-core/utils/localstorage";
+import { NavegacaoService } from "../services/navegacao.service";
 
 @Component({
-    selector    : 'app-navbar',
-    templateUrl: './navbar.component.html'
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html'
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
-    public isCollapsed : boolean;
+  user: any;
 
+  private localStorageUtils = new LocalStorageUtils()
 
-    constructor() {
-     this.isCollapsed = true;
+  constructor(private router: Router,
+    private navegacaoService: NavegacaoService) {
+
+  }
+  ngOnInit(): void {
+    this.user = this.localStorageUtils.obterUsuario();
+    if (this.user){
 
     }
+  }
+
+  usuarioLogado(): boolean { return this.localStorageUtils.usuarioLogado(); }
 
 }

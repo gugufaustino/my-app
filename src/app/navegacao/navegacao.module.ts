@@ -1,3 +1,4 @@
+import { UserComponent } from './user/user.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
@@ -17,6 +18,7 @@ import { WelcomeComponent } from './welcome/welcome/welcome.component';
     declarations: [
         NavbarComponent,
         MenuComponent,
+        UserComponent,
         HomeComponent,
         FooterComponent,
 
@@ -34,9 +36,10 @@ import { WelcomeComponent } from './welcome/welcome/welcome.component';
     ],
     exports: [
         NavbarComponent,
+        MenuComponent,
+        UserComponent,
         HomeComponent,
         FooterComponent,
-        MenuComponent
     ] ,
     providers:[
         NavegacaoService

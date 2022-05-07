@@ -10,11 +10,11 @@ import { NavegacaoService } from '../services/navegacao.service';
 })
 export class UserComponent implements OnInit {
 
-  token: string | null = "";
   user: any;
-  email: string = "";
-  apelido: string = "";
-  localStorageUtil = new LocalStorageUtils();
+  nome: string = "";
+  papel: string = "";
+  token: string | null = "";
+  localStorageUtils = new LocalStorageUtils();
 
   constructor(private router: Router,
               private navegacaoService: NavegacaoService) { }
@@ -23,21 +23,22 @@ export class UserComponent implements OnInit {
   }
 
   usuarioLogado(): boolean {
-    this.user = this.localStorageUtil.obterUsuario();
+    this.user = this.localStorageUtils.obterUsuario();
 
-    if (this.user)
-      this.email = this.user.nome + " " + this.apelido;
+    if (this.user){
+      this.nome = this.user.nome
+    }
 
-    return this.localStorageUtil.usuarioLogado();
+    return this.localStorageUtils.usuarioLogado();
   }
   logOut() {
-    this.localStorageUtil.limparDadosLocaisUsuario()
+    this.localStorageUtils.limparDadosLocaisUsuario()
     this.router.navigate(['/conta/login']);
   }
 
   obterPerfil(){
     let usuario: Usuario
-    let tokeUser = this.localStorageUtil.obterUsuario();
+    let tokeUser = this.localStorageUtils.obterUsuario();
 
     usuario = Object.assign({}, tokeUser)
 
@@ -48,7 +49,7 @@ export class UserComponent implements OnInit {
   }
 
   private processaSucesso(response: any){
-    this.apelido = response.apelido ?? '';
+   // this.apelido = response.apelido ?? '';
   }
 
 

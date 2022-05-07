@@ -29,7 +29,6 @@ export class CatalogoService<TEntity> extends BaserService
 
     //TODO #2 Transformar esse map em um metodo genérico, pode ser na classe Util. Validar se essa implementação funciona para todos os cast de objetos complexos e com aspas no texto
     let queryString = this.serializeToQueryString(objectSerialize);
-    console.log(queryString);
 
     const options = { headers: this.ObterHeaderAuthJson().headers }   /*params : new HttpParams().set('nome', modelo.nome )*/
     return this.http

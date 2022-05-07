@@ -1,25 +1,6 @@
-<!-- <header> -->
-<!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-
-    <a class="navbar-brand text-white" href="/">
-      <i style="font-size: x-large;" class="fas fa-hand-holding-usd yellow"></i>
-    </a>
-
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="navbar-collapse collapse" [ngbCollapse]="isCollapsed">
-      <app-menu-login></app-menu-login>
-    </div>
-
-  </nav> -->
-
-
 <!-- Navbar -->
 
-<nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+<nav [ngClass]="{'d-none' : !usuarioLogado()}" class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
   <div class="container-xxl">
     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
       <a href="index.html" class="app-brand-link gap-2">
@@ -107,140 +88,12 @@
         </li>
         <!--/ Style Switcher -->
 
-
-        <!-- Notification -->
-        <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
-          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-            <i class="bx bx-bell bx-sm"></i>
-            <span class="badge bg-danger rounded-pill badge-notifications">5</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end py-0">
-            <li class="dropdown-menu-header border-bottom">
-              <div class="dropdown-header d-flex align-items-center py-3">
-                <h5 class="text-body mb-0 me-auto" data-i18n="Notifications">Notification</h5>
-                <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i
-                    class="bx fs-4 bx-envelope-open"></i></a>
-              </div>
-            </li>
-            <li class="dropdown-notifications-list scrollable-container">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <span class="avatar-initial rounded-circle bg-label-warning"><i class="bx bx-error"></i></span>
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">Bem vindo</h6>
-                      <p class="mb-0">Olá, seja muito bem vindo a plataforma Onemodel.me </p>
-                      <small class="text-muted">5 dias atrás</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown-menu-footer border-top">
-              <a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center p-3" data-i18n="View-all-notifications">
-                View all notifications
-              </a>
-            </li>
-          </ul>
-        </li>
-        <!--/ Notification -->
-
-        <!-- User -->
-        <li class="nav-item navbar-dropdown dropdown-user dropdown">
-          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-            <div class="avatar avatar-online">
-              <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
-            </div>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item" href="pages-account-settings-account.html">
-                <div class="d-flex">
-                  <div class="flex-shrink-0 me-3">
-                    <div class="avatar avatar-online">
-                      <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
-                    </div>
-                  </div>
-                  <div class="flex-grow-1">
-                    <span class="fw-semibold d-block lh-1">John Doe</span>
-                    <small>Admin</small>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <div class="dropdown-divider"></div>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pages-profile-user.html">
-                <i class="bx bx-user me-2"></i>
-                <span class="align-middle">My Profile</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pages-account-settings-account.html">
-                <i class="bx bx-cog me-2"></i>
-                <span class="align-middle">Settings</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pages-account-settings-billing.html">
-                <span class="d-flex align-items-center align-middle">
-                  <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                  <span class="flex-grow-1 align-middle">Billing</span>
-                  <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                </span>
-              </a>
-            </li>
-            <li>
-              <div class="dropdown-divider"></div>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pages-help-center-landing.html">
-                <i class="bx bx-support me-2"></i>
-                <span class="align-middle">Help</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pages-faq.html">
-                <i class="bx bx-help-circle me-2"></i>
-                <span class="align-middle">FAQ</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="pages-pricing.html">
-                <i class="bx bx-dollar me-2"></i>
-                <span class="align-middle">Pricing</span>
-              </a>
-            </li>
-            <li>
-              <div class="dropdown-divider"></div>
-            </li>
-            <li>
-              <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
-                <i class="bx bx-power-off me-2"></i>
-                <span class="align-middle">Log Out</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <!--/ User -->
+        <app-user style="display: contents"></app-user>
       </ul>
+
     </div>
 
-    <!-- Search Small Screens -->
-    <div class="navbar-search-wrapper search-input-wrapper container-xxl d-none">
-      <input type="text" class="form-control search-input border-0" placeholder="Search..." aria-label="Search..." />
-      <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
-    </div>
+
   </div>
 </nav>
 

@@ -134,5 +134,9 @@
   "Leaflet Maps": "Leaflet Maps",
   "Support": "Support",
   "Documentation": "Documentation",
-  "View-all-notifications" : "View all notifications"
+
+  "View-all-notifications" : "View all notifications",
+  "Records" : "Records",
+  "Model Catalog" : "Model Catalog",
+  "Models" : "Models"
 }

@@ -4,7 +4,7 @@ const DELTA = 5
 
 class Menu {
   constructor(el, config = {}, _PS = null) {
-
+    console.log('constructor Menu');
     this._el = el
     this._horizontal = config.orientation === 'horizontal'
     this._animate = config.animate !== false
