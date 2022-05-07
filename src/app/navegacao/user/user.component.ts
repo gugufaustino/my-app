@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
 
   user: any;
   nome: string = "";
+  abreviatura: string = "";
   papel: string = "";
   token: string | null = "";
   localStorageUtils = new LocalStorageUtils();
@@ -26,7 +27,9 @@ export class UserComponent implements OnInit {
     this.user = this.localStorageUtils.obterUsuario();
 
     if (this.user){
-      this.nome = this.user.nome
+      this.nome = this.user.nome;
+      this.abreviatura = this.localStorageUtils.findClaim("abreviatura");
+      this.papel = "Administrador";
     }
 
     return this.localStorageUtils.usuarioLogado();

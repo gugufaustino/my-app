@@ -21,6 +21,11 @@ export class LocalStorageUtils {
         let lstClmaims = this.obterUsuario()["claims"]
         return lstClmaims;
     }
+    public findClaim(key: string): string {
+      var lstClaims: any[] = this.obterClaim();
+        const value = lstClaims?.find(i => i.type.toLowerCase() === key.toLowerCase());
+        return value?.value ?? "";
+    }
 
     public possuiPermissao(permissao: string, acao: string): boolean {
 
@@ -29,7 +34,7 @@ export class LocalStorageUtils {
 
         var lstClaims: any[] = this.obterClaim();
         var claim = lstClaims?.find(i => i.type === permissao);
- 
+
         if (!claim)
             return false;
 

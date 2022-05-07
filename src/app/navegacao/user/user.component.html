@@ -1,6 +1,6 @@
 
 
-<!-- //TODO colocar link de 'registro e logon' aqui para quando usuário não estiver logado
+<!-- //TODO #4 colocar link de 'registro e logon' aqui para quando usuário não estiver logado
 <div [ngSwitch]="usuarioLogado()" class="form-inline my-2 my-lg-0">
     <div *ngSwitchCase="true" class="nav-item">
         <a class="nav-link text-white" id="saudacaousuario" href="javascript:void(0)" (click)="obterPerfil()">{{email}}</a>
@@ -25,13 +25,13 @@
 <li *ngIf="usuarioLogado()" class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
     <i class="bx bx-bell bx-sm"></i>
-    <span class="badge bg-danger rounded-pill badge-notifications">5</span>
+    <span class="badge bg-danger rounded-pill badge-notifications">1</span>
   </a>
   <ul class="dropdown-menu dropdown-menu-end py-0">
     <li class="dropdown-menu-header border-bottom">
       <div class="dropdown-header d-flex align-items-center py-3">
         <h5 class="text-body mb-0 me-auto" data-i18n="Notifications">Notification</h5>
-        <span href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read">
+        <span href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title_="Mark all as read">
           <i class="bx fs-4 bx-envelope-open"></i></span>
       </div>
     </li>
@@ -69,18 +69,24 @@
 <!-- User -->
 <li *ngIf="usuarioLogado()" class="nav-item navbar-dropdown dropdown-user dropdown">
   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+
     <div class="avatar avatar-online">
-      <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
+      <!-- <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" /> -->
+      <span class="avatar-initial rounded-circle bg-label-success">{{abreviatura}}</span>
     </div>
+
   </a>
   <ul class="dropdown-menu dropdown-menu-end">
     <li>
       <a class="dropdown-item" href="pages-account-settings-account.html">
         <div class="d-flex">
           <div class="flex-shrink-0 me-3">
+
             <div class="avatar avatar-online">
-              <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" />
+              <!-- <img src="../../assets/img/avatars/1.png" alt class="rounded-circle" /> -->
+              <span class="avatar-initial rounded-circle bg-label-success">{{abreviatura}}</span>
             </div>
+
           </div>
           <div class="flex-grow-1">
             <span class="fw-semibold d-block lh-1">{{nome}}</span>
@@ -93,33 +99,24 @@
       <div class="dropdown-divider"></div>
     </li>
     <li>
-      <a class="dropdown-item" href="pages-profile-user.html">
+      <a class="dropdown-item" href="">
         <i class="bx bx-user me-2"></i>
-        <span class="align-middle">My Profile</span>
+        <span class="align-middle" data-i18n="My Profile">My Profile</span>
       </a>
     </li>
     <li>
-      <a class="dropdown-item" href="pages-account-settings-account.html">
+      <a class="dropdown-item" href="">
         <i class="bx bx-cog me-2"></i>
-        <span class="align-middle">Settings</span>
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="pages-account-settings-billing.html">
-        <span class="d-flex align-items-center align-middle">
-          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-          <span class="flex-grow-1 align-middle">Billing</span>
-          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-        </span>
+        <span class="align-middle" data-i18n="Settings">Settings</span>
       </a>
     </li>
     <li>
       <div class="dropdown-divider"></div>
     </li>
     <li>
-      <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+      <a class="dropdown-item" (click)="logOut()">
         <i class="bx bx-power-off me-2"></i>
-        <span class="align-middle">Log Out</span>
+        <span class="align-middle" data-i18n="Log Out">Log Out</span>
       </a>
     </li>
   </ul>
