@@ -2,15 +2,6 @@
 
 <!-- //TODO #4 colocar link de 'registro e logon' aqui para quando usuário não estiver logado
 <div [ngSwitch]="usuarioLogado()" class="form-inline my-2 my-lg-0">
-    <div *ngSwitchCase="true" class="nav-item">
-        <a class="nav-link text-white" id="saudacaousuario" href="javascript:void(0)" (click)="obterPerfil()">{{email}}</a>
-    </div>
-    <div *ngSwitchCase="true" class="nav-item">
-        <a class="nav-link text-white" href="javascript:void(0)" (click)="logOut()">
-            Sair <span class="fas fa-sign-out-alt"></span>
-        </a>
-    </div>
-
     <p *ngSwitchCase="false" class="nav-item" style="padding-right: 30px;">
         <a class="btn btn-secondary bt-conta" [routerLink]="['/conta/login']">Entrar</a>
     </p>
@@ -45,9 +36,9 @@
               </div>
             </div>
             <div class="flex-grow-1">
-              <h6 class="mb-1">Bem vindo</h6>
-              <p class="mb-0">Olá, seja muito bem vindo a plataforma Onemodel.me </p>
-              <small class="text-muted">5 dias atrás</small>
+              <h6 class="mb-1" data-i18n="Welcome">Welcome</h6>
+              <p class="mb-0" data-i18n="Welcome-mens">Hello, welcome to the Onemodel.me platform</p>
+              <small class="text-muted" data-i18n="days-ago">5 dias atrás</small>
             </div>
             <div class="flex-shrink-0 dropdown-notifications-actions">
               <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
@@ -114,7 +105,7 @@
       <div class="dropdown-divider"></div>
     </li>
     <li>
-      <a class="dropdown-item" (click)="logOut()">
+      <a class="dropdown-item"   (click)="logOut()">
         <i class="bx bx-power-off me-2"></i>
         <span class="align-middle" data-i18n="Log Out">Log Out</span>
       </a>
