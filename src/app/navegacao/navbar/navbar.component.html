@@ -3,7 +3,7 @@
 <nav [ngClass]="{'d-none' : !usuarioLogado()}" class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
   <div class="container-xxl">
     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-      <a href="index.html" class="app-brand-link gap-2">
+      <a [routerLink]="['/']" class="app-brand-link gap-2">
         <span class="app-brand-logo demo">
           <svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <title>icon</title>
