@@ -8,7 +8,7 @@ export class ToastAppService {
 
   public success(mensagem: string[], titulo?: string, observer?: any): void {
 
-    let config = { timeOut: 1200 } as IndividualConfig;
+    let config = { timeOut: 800 } as IndividualConfig;
 
     let mens = mensagem == undefined
       ? 'Operação realizada!'

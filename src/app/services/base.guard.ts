@@ -10,8 +10,8 @@ export abstract class BaseGuard {
 
   protected validarClaim(routeAc: ActivatedRouteSnapshot): boolean {
 
-    //TODO #3 Colocar aqui uma validação do token
-    if(!this.utilStorage.obterToken()){ 
+    //TODO #3 Colocar aqui uma validação do token no backend
+    if(!this.utilStorage.obterToken()){
       this.router.navigate(['/conta/login/'], { queryParams: { returnUrl: this.router.url }});
     }
 
