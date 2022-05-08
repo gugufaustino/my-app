@@ -4,7 +4,6 @@ const DELTA = 5
 
 class Menu {
   constructor(el, config = {}, _PS = null) {
-    console.log('constructor Menu');
     this._el = el
     this._horizontal = config.orientation === 'horizontal'
     this._animate = config.animate !== false
@@ -48,13 +47,13 @@ class Menu {
       this._inner = el.querySelector('.menu-inner')
       const container = this._inner.parentNode
 
-      this._prevBtn = el.querySelector('.menu-horizontal-prev')
-      if (!this._prevBtn) {
-        this._prevBtn = document.createElement('a')
-        this._prevBtn.href = '#'
-        this._prevBtn.className = 'menu-horizontal-prev'
-        container.appendChild(this._prevBtn)
-      }
+      // this._prevBtn = el.querySelector('.menu-horizontal-prev')
+      // if (!this._prevBtn) {
+      //   this._prevBtn = document.createElement('a')
+      //   this._prevBtn.href = '#'
+      //   this._prevBtn.className = 'menu-horizontal-prev'
+      //   container.appendChild(this._prevBtn)
+      // }
 
       this._wrapper = el.querySelector('.menu-horizontal-wrapper')
       if (!this._wrapper) {
@@ -64,13 +63,14 @@ class Menu {
         container.appendChild(this._wrapper)
       }
 
-      this._nextBtn = el.querySelector('.menu-horizontal-next')
-      if (!this._nextBtn) {
-        this._nextBtn = document.createElement('a')
-        this._nextBtn.href = '#'
-        this._nextBtn.className = 'menu-horizontal-next'
-        container.appendChild(this._nextBtn)
-      }
+      //
+      // this._nextBtn = el.querySelector('.menu-horizontal-next')
+      // if (!this._nextBtn) {
+      //   this._nextBtn = document.createElement('a')
+      //   this._nextBtn.href = '#'
+      //   this._nextBtn.className = 'menu-horizontal-next'
+      //   container.appendChild(this._nextBtn)
+      // }
 
       this._innerPosition = 0
       this.update()
@@ -139,14 +139,14 @@ class Menu {
         if (this._prevBtn.classList.contains('disabled')) return
         this._slide('prev')
       }
-      this._prevBtn.addEventListener('click', this._evntPrevBtnClick)
+      this._prevBtn?.addEventListener('click', this._evntPrevBtnClick)
 
       this._evntNextBtnClick = e => {
         e.preventDefault()
         if (this._nextBtn.classList.contains('disabled')) return
         this._slide('next')
       }
-      this._nextBtn.addEventListener('click', this._evntNextBtnClick)
+      this._nextBtn?.addEventListener('click', this._evntNextBtnClick)
 
       this._evntBodyClick = e => {
         if (!this._inner.contains(e.target) && this._el.querySelectorAll('.menu-inner > .menu-item.open').length)
@@ -727,19 +727,21 @@ class Menu {
     const _innerWidth = innerWidth !== null ? innerWidth : this._innerWidth
     const _position = position !== null ? position : this._innerPosition
 
-    if (_innerWidth < _wrapperWidth || window.innerWidth < window.Helpers.LAYOUT_BREAKPOINT) {
-      this._prevBtn.classList.add('d-none')
-      this._nextBtn.classList.add('d-none')
-    } else {
-      this._prevBtn.classList.remove('d-none')
-      this._nextBtn.classList.remove('d-none')
-    }
-    if (_innerWidth > _wrapperWidth && window.innerWidth > window.Helpers.LAYOUT_BREAKPOINT) {
-      if (_position === 0) this._prevBtn.classList.add('disabled')
-      else this._prevBtn.classList.remove('disabled')
+   if (this._nextBtn &&  this._prevBtn) {
+      if (_innerWidth < _wrapperWidth || window.innerWidth < window.Helpers.LAYOUT_BREAKPOINT) {
+        this._prevBtn.classList.add('d-none')
+        this._nextBtn.classList.add('d-none')
+      } else {
+        this._prevBtn.classList.remove('d-none')
+        this._nextBtn.classList.remove('d-none')
+      }
+      if (_innerWidth > _wrapperWidth && window.innerWidth > window.Helpers.LAYOUT_BREAKPOINT) {
+        if (_position === 0) this._prevBtn.classList.add('disabled')
+        else this._prevBtn.classList.remove('disabled')
 
-      if (_innerWidth + _position <= _wrapperWidth) this._nextBtn.classList.add('disabled')
-      else this._nextBtn.classList.remove('disabled')
+        if (_innerWidth + _position <= _wrapperWidth) this._nextBtn.classList.add('disabled')
+        else this._nextBtn.classList.remove('disabled')
+      }
     }
   }
 

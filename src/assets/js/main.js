@@ -12,11 +12,10 @@ let isRtl = window.Helpers.isRtl(),
 
 
   function mainBuild() {
-    console.log('mainBuild')
-
-  if (document.getElementById('layout-menu')) {
-    isHorizontalLayout = document.getElementById('layout-menu').classList.contains('menu-horizontal');
-  }
+    // console.log('mainBuild')
+    if (document.getElementById('layout-menu')) {
+      isHorizontalLayout = document.getElementById('layout-menu').classList.contains('menu-horizontal');
+    }
 
   // Initialize menu
   //-----------------
@@ -55,7 +54,6 @@ let isRtl = window.Helpers.isRtl(),
   });
 
   // Menu swipe gesture
-
   // Detect swipe gesture on the target element and call swipe In
   window.Helpers.swipeIn('.drag-target', function (e) {
     window.Helpers.setCollapsed(false);
@@ -79,51 +77,6 @@ let isRtl = window.Helpers.isRtl(),
     });
   }
 
-  // Style Switcher (Light/Dark Mode)
-  //---------------------------------
-
-  let styleSwitcherToggleEl = document.querySelector('.style-switcher-toggle');
-  if (window.templateCustomizer) {
-    // setStyle light/dark on click of styleSwitcherToggleEl
-    if (styleSwitcherToggleEl) {
-      styleSwitcherToggleEl.addEventListener('click', function () {
-        if (window.Helpers.isLightStyle()) {
-          window.templateCustomizer.setStyle('dark');
-        } else {
-          window.templateCustomizer.setStyle('light');
-        }
-      });
-    }
-    // Update style switcher icon and tooltip based on current style
-    if (window.Helpers.isLightStyle()) {
-      if (styleSwitcherToggleEl) {
-        styleSwitcherToggleEl.querySelector('i').classList.add('bx-moon');
-        new bootstrap.Tooltip(styleSwitcherToggleEl, {
-          title: 'Dark mode',
-          fallbackPlacements: ['bottom']
-        });
-      }
-      switchImage('light');
-    } else {
-      if (styleSwitcherToggleEl) {
-        styleSwitcherToggleEl.querySelector('i').classList.add('bx-sun');
-        new bootstrap.Tooltip(styleSwitcherToggleEl, {
-          title: 'Light mode',
-          fallbackPlacements: ['bottom']
-        });
-      }
-      switchImage('dark');
-    }
-  }
-
-  // Update light/dark image based on current style
-  function switchImage(style) {
-    const switchImagesList = [].slice.call(document.querySelectorAll('[data-app-' + style + '-img]'));
-    switchImagesList.map(function (imageEl) {
-      const setImage = imageEl.getAttribute('data-app-' + style + '-img');
-      imageEl.src = assetsPath + 'img/' + setImage; // Using window.assetsPath to get the exact relative path
-    });
-  }
 
   // Navbar Scroll class
   //---------------------
@@ -157,19 +110,19 @@ let isRtl = window.Helpers.isRtl(),
         returnObjects: true
       })
       .then(function (t) {
-        localize();
+        localize(true, t);
       });
   }
 
   let languageDropdown = document.getElementsByClassName('dropdown-language');
-
   if (languageDropdown.length) {
     let dropdownItems = languageDropdown[0].querySelectorAll('.dropdown-item');
 
     for (let i = 0; i < dropdownItems.length; i++) {
-      dropdownItems[i].addEventListener('click', function () {
-        let currentLanguage = this.getAttribute('data-language'),
-          selectedLangFlag = this.querySelector('.fi').getAttribute('class'),
+      dropdownItems[i].addEventListener('click', function (e) {
+        console.log('chamou function dropdownItems', this);
+        let currentLanguage = this.getAttribute('data-language');
+        let selectedLangFlag = this.querySelector('.fi').getAttribute('class'),
           startsWith = 'fs-',
           classes = selectedLangFlag.split(' ').filter(function (v) {
             return v.lastIndexOf(startsWith, 0) !== 0;
@@ -179,31 +132,96 @@ let isRtl = window.Helpers.isRtl(),
         for (let sibling of this.parentNode.children) {
           sibling.classList.remove('selected');
         }
-        this.classList.add('selected');
 
         languageDropdown[0].querySelector('.dropdown-toggle .fi').className = selectedLangFlag;
         localStorage.setItem('currentLanguage', String(currentLanguage))
-        i18next.changeLanguage(currentLanguage, (err, t) => {
-          if (err) return console.log('something went wrong loading', err);
-          localize();
-        });
+
+        i18next
+        .changeLanguage(currentLanguage)
+        .then((t) => { localize(false, t);})
+        .catch(error => console.log('something went wrong loading', error));
+
       });
     }
   }
 
-  function localize() {
-    let i18nList = document.querySelectorAll('[data-i18n]');
-    // Set the current language in dd
-    let currentLanguageEle = document.querySelector('.dropdown-item[data-language="' + i18next.language + '"]');
+  function localize(init, t) {
+ try {
 
-    if (currentLanguageEle) {
-      currentLanguageEle.click();
+      let i18nList = document.querySelectorAll('[data-i18n]');
+      // Set the current language in dd
+      let currentLanguageEle = document.querySelector('.dropdown-item[data-language="' + i18next.language + '"]');
+
+      if (currentLanguageEle && init) {
+        currentLanguageEle.click();
+      }
+
+      i18nList.forEach(function (item) {
+        item.innerHTML = t(item.dataset.i18n);
+      });
+
+      bindSwitcherToggle(document.querySelector('.style-switcher-toggle'));
+    } catch (error) {
+      console.error('localize:', error);
     }
+  }
 
-    i18nList.forEach(function (item) {
-      item.innerHTML = i18next.t(item.dataset.i18n);
+
+  // Style Switcher (Light/Dark Mode)
+  //---------------------------------
+  let styleSwitcherToggleEl = document.querySelector('.style-switcher-toggle');
+  if (window.templateCustomizer) {
+    // setStyle light/dark on click of styleSwitcherToggleEl
+    if (styleSwitcherToggleEl) {
+      styleSwitcherToggleEl.addEventListener('click', function () {
+        if (window.Helpers.isLightStyle()) {
+          window.templateCustomizer.setStyle('dark');
+        } else {
+          window.templateCustomizer.setStyle('light');
+        }
+      });
+    }
+    // Update style switcher icon and tooltip based on current style
+    if (window.Helpers.isLightStyle())
+      switchImage('light');
+    else
+      switchImage('dark');
+  }
+
+  function bindSwitcherToggle(styleSwitcherToggleEl)
+  {
+    if (window.Helpers.isLightStyle()) {
+      if (styleSwitcherToggleEl) {
+        styleSwitcherToggleEl.querySelector('i').classList.add('bx-moon');
+        const darkText = i18next.t('Dark mode') ?? 'Dark mode'; //
+        new bootstrap.Tooltip(styleSwitcherToggleEl, {
+          title: darkText,
+          fallbackPlacements: ['bottom']
+        });
+      }
+    } else {
+      if (styleSwitcherToggleEl) {
+        styleSwitcherToggleEl.querySelector('i').classList.add('bx-sun');
+        const lightText = i18next.t('Light mode') ?? 'Light mode';
+        new bootstrap.Tooltip(styleSwitcherToggleEl, {
+          title: lightText ,
+          fallbackPlacements: ['bottom']
+        });
+      }
+    }
+  }
+
+
+  // Update light/dark image based on current style
+  function switchImage(style) {
+    const switchImagesList = [].slice.call(document.querySelectorAll('[data-app-' + style + '-img]'));
+    switchImagesList.map(function (imageEl) {
+      const setImage = imageEl.getAttribute('data-app-' + style + '-img');
+      imageEl.src = assetsPath + 'img/' + setImage; // Using window.assetsPath to get the exact relative path
     });
   }
+
+
 
   // Notification
   // ------------
