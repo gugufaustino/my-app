@@ -10,9 +10,8 @@ let isRtl = window.Helpers.isRtl(),
   animate,
   isHorizontalLayout = false;
 
-
   function mainBuild() {
-    // console.log('mainBuild')
+
     if (document.getElementById('layout-menu')) {
       isHorizontalLayout = document.getElementById('layout-menu').classList.contains('menu-horizontal');
     }
@@ -112,6 +111,8 @@ let isRtl = window.Helpers.isRtl(),
       .then(function (t) {
         localize(true, t);
       });
+
+
   }
 
   let languageDropdown = document.getElementsByClassName('dropdown-language');
@@ -145,25 +146,22 @@ let isRtl = window.Helpers.isRtl(),
     }
   }
 
-  function localize(init, t) {
- try {
+   function localize(init, t) {
+    try {
 
-      let i18nList = document.querySelectorAll('[data-i18n]');
       // Set the current language in dd
       let currentLanguageEle = document.querySelector('.dropdown-item[data-language="' + i18next.language + '"]');
-
       if (currentLanguageEle && init) {
         currentLanguageEle.click();
       }
-
-      i18nList.forEach(function (item) {
-        item.innerHTML = t(item.dataset.i18n);
-      });
-
+      // Toggle on button
       bindSwitcherToggle(document.querySelector('.style-switcher-toggle'));
-    } catch (error) {
-      console.error('localize:', error);
-    }
+      translate(i18next)
+
+
+      } catch (error) {
+        console.error('localize:', error);
+      }
   }
 
 
@@ -363,6 +361,17 @@ let isRtl = window.Helpers.isRtl(),
     }
   }
   };
+
+  function translate(obji18next){
+    let i18nList = document.querySelectorAll('[data-i18n]');
+    i18nList.forEach(function (item) {
+      item.innerHTML = obji18next.t(item.dataset.i18n);
+    });
+  }
+
+  function translateAfterInit(){
+    translate(i18next);
+  }
 
  //export {Main}
 

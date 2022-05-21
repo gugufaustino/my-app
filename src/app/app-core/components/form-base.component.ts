@@ -15,9 +15,10 @@ import { FormValidations } from '../utils/form-validations';
 import { OptionSelect } from '../models/option-select';
 import { Modelo } from 'src/app/catalogo/models/modelo';
 
+declare function translateAfterInit(): any;
 export abstract class FormBaseComponent implements IFormComponent {
-  mudancasNaoSalvas: boolean;
 
+  mudancasNaoSalvas: boolean;
   errors: any = [];
   displayMessage: DisplayMessage = {};
   genericValidator: GenericValidator;
@@ -26,6 +27,7 @@ export abstract class FormBaseComponent implements IFormComponent {
   MASKS: any = MASKS;
   DateMask = DateUtils.DataMask;
   DataDayMask = DateUtils.DataDayMask;
+
 
   protected configurarMensagensValidacaoBase(validationMessages: ValidationMessages) {
     this.genericValidator = new GenericValidator(validationMessages);
@@ -42,9 +44,10 @@ export abstract class FormBaseComponent implements IFormComponent {
     merge(...controlBlurs).subscribe(() => {
       this.validarFormulario(formGroup)
     });
+  }
 
-
-
+  protected configurarBase() {
+    translateAfterInit();
   }
 
   protected validarFormulario(formGroup: FormGroup, allControls: boolean = false) {
@@ -136,5 +139,7 @@ export abstract class FormBaseComponent implements IFormComponent {
 
     formControl.nativeElement.classList.add(cssClass);
   }
+
+
 
 }

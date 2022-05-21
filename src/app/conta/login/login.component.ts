@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChildren, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 
 import { CustomValidators } from 'ng2-validation';
@@ -15,7 +15,8 @@ import { ToastAppService } from 'src/app/services/toastapp.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends FormBaseComponent implements OnInit {
+
+export class LoginComponent extends FormBaseComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
@@ -54,7 +55,8 @@ export class LoginComponent extends FormBaseComponent implements OnInit {
 
   ngAfterViewInit(): void {
     super.configurarMensagensValidacaoBase(this.validationMessages);
-    super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm)
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.componentForm);
+    super.configurarBase()
   }
 
   submitForm() {
