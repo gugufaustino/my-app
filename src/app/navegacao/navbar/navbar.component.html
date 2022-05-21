@@ -55,12 +55,12 @@
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
       <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-        <li class="nav-item me-3 me-xl-0" *ngIf="!usuarioLogado()">
-          <button class="btn btn-primary d-grid w-100" [routerLink]="['/conta/login']">Entrar</button>
+        <li class="nav-item p-2 me-3 me-xl-0 " *ngIf="!usuarioLogado()">
+          <button class="btn btn-primary d-grid w-100 btn-sm" [routerLink]="['/conta/login']">Entrar</button>
         </li>
 
-        <li class="nav-item me-3 me-xl-0" *ngIf="!usuarioLogado()">
-          <a class="btn btn-primary d-grid w-100" [routerLink]="['/conta/cadastro']">Registrar</a>
+        <li class="nav-item p-2 me-3 me-xl-0" *ngIf="!usuarioLogado()">
+          <a class="btn btn-primary d-grid w-100 btn-sm" [routerLink]="['/conta/cadastro']">Registrar</a>
         </li>
 
 
