@@ -15,5 +15,11 @@
   "Dark mode" : "Modo escuro",
   "Light mode" : "Modo claro",
 
-  "Create-an-account" : "Criar Conta"
+  "Create-an-account" : "Criar Conta",
+  "Please sign-in to": "Faça login na sua conta e comece a aventura",
+  "Email-or-Username": "E-mail",
+
+  "Sign in" : "Entrar",
+  "New-on-our-platform" : "Novo em nossa plataforma?"
+
 }

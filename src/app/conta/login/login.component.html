@@ -10,11 +10,11 @@
 
           <!-- /Logo -->
           <h4 class="mb-2" ><span data-i18n="Welcome">Welcome</span> 👋</h4>
-          <p class="mb-4">Please sign-in to your account and start the adventure</p>
+          <p class="mb-4" data-i18n="Please sign-in to" >Please sign-in to your account and start the adventure</p>
           <form class="mb-3" novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
 
             <div class="mb-3">
-              <label for="email" class="form-label">Email or Username</label>
+              <label for="email" class="form-label" data-i18n="Email-or-Username">Email or Username</label>
               <input formControlName="email" type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
             </div>
             <div class="mb-3 form-password-toggle">
@@ -38,13 +38,13 @@
             </div>
             <div class="mb-3">
               <br>
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <button class="btn btn-primary d-grid w-100" type="submit" data-i18n="Sign in">Sign in</button>
             </div>
           </form>
 
 
           <p class="text-center">
-            <span>New on our platform?</span>
+            <span data-i18n="New-on-our-platform">New on our platform?</span>
             <a href="auth-register-basic.html">
               <span data-i18n="Create-an-account">Create an account</span>
             </a>
