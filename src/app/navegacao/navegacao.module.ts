@@ -12,7 +12,7 @@ import { NavegacaoService } from "./services/navegacao.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
 import { NotFoundComponent } from "./not-found/not-found.component";
-import { WelcomeComponent } from './welcome/welcome/welcome.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
     declarations: [
