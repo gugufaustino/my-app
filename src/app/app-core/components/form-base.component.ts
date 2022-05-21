@@ -15,7 +15,7 @@ import { FormValidations } from '../utils/form-validations';
 import { OptionSelect } from '../models/option-select';
 import { Modelo } from 'src/app/catalogo/models/modelo';
 
-declare function translateAfterInit(): any;
+declare function translateWithI18next(): any;
 export abstract class FormBaseComponent implements IFormComponent {
 
   mudancasNaoSalvas: boolean;
@@ -47,7 +47,7 @@ export abstract class FormBaseComponent implements IFormComponent {
   }
 
   protected configurarBase() {
-    translateAfterInit();
+    translateWithI18next();
   }
 
   protected validarFormulario(formGroup: FormGroup, allControls: boolean = false) {

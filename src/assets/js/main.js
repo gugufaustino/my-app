@@ -109,7 +109,7 @@ let isRtl = window.Helpers.isRtl(),
         returnObjects: true
       })
       .then(function (t) {
-        localize(true, t);
+        localize(true);
       });
 
 
@@ -139,25 +139,27 @@ let isRtl = window.Helpers.isRtl(),
 
         i18next
         .changeLanguage(currentLanguage)
-        .then((t) => { localize(false, t);})
+        .then((t) => { localize(false);})
         .catch(error => console.log('something went wrong loading', error));
 
       });
     }
   }
 
-   function localize(init, t) {
+   function localize(init) {
     try {
 
       // Set the current language in dd
-      let currentLanguageEle = document.querySelector('.dropdown-item[data-language="' + i18next.language + '"]');
-      if (currentLanguageEle && init) {
-        currentLanguageEle.click();
+      if(init){
+        let currentLanguageEle = document.querySelector('.dropdown-item[data-language="' + i18next.language + '"]');
+        if (currentLanguageEle) {
+          currentLanguageEle.click();
+        }
       }
+
       // Toggle on button
       bindSwitcherToggle(document.querySelector('.style-switcher-toggle'));
-      translate(i18next)
-
+      translateWithI18next();
 
       } catch (error) {
         console.error('localize:', error);
@@ -362,16 +364,13 @@ let isRtl = window.Helpers.isRtl(),
   }
   };
 
-  function translate(obji18next){
+  function translateWithI18next(){
     let i18nList = document.querySelectorAll('[data-i18n]');
     i18nList.forEach(function (item) {
-      item.innerHTML = obji18next.t(item.dataset.i18n);
+      item.innerHTML = i18next.t(item.dataset.i18n);
     });
   }
 
-  function translateAfterInit(){
-    translate(i18next);
-  }
 
  //export {Main}
 
