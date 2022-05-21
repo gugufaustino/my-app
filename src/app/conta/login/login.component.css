@@ -31,13 +31,13 @@
   background: url("../../../assets/img/pages/auth-top-left.png");
   background-size: contain;
 }
-html:not([dir=rtl]) .authentication-wrapper.authentication-basic .authentication-inner:before {
-  left: -100px;
+div.authentication-wrapper.authentication-basic .authentication-inner:before {
+  left: -100px !important;
 }
-[dir=rtl] .authentication-wrapper.authentication-basic .authentication-inner:before {
+/* [dir=rtl] .authentication-wrapper.authentication-basic .authentication-inner:before {
   right: -100px;
   transform: rotate(90deg);
-}
+} */
 .authentication-wrapper.authentication-basic .authentication-inner:after {
   width: 7rem;
   height: 14.125rem;
@@ -47,13 +47,13 @@ html:not([dir=rtl]) .authentication-wrapper.authentication-basic .authentication
   background-image: url("../../../assets/img/pages/auth-right-bottom.png");
   background-size: contain;
 }
-html:not([dir=rtl]) .authentication-wrapper.authentication-basic .authentication-inner:after {
+.authentication-wrapper.authentication-basic .authentication-inner:after {
   right: 0;
 }
-[dir=rtl] .authentication-wrapper.authentication-basic .authentication-inner:after {
+/* [dir=rtl] .authentication-wrapper.authentication-basic .authentication-inner:after {
   left: 0;
   transform: rotate(180deg);
-}
+} */
 .authentication-wrapper.authentication-basic .authentication-inner .card {
   z-index: 1;
 }

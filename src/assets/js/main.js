@@ -101,7 +101,7 @@ let isRtl = window.Helpers.isRtl(),
     i18next
       .use(i18nextXHRBackend)
       .init({
-        lng: localStorage.getItem('currentLanguage') ?? 'en',
+        lng: localStorage.getItem('currentLanguage') ?? 'pt-br',
         debug: false,
         fallbackLng: 'en',
         backend: {
@@ -308,7 +308,8 @@ let isRtl = window.Helpers.isRtl(),
       }
       // Horizontal Layout : Update menu based on window size
       let horizontalMenuTemplate = document.querySelector("[data-template^='horizontal-menu']");
-      if (horizontalMenuTemplate) {
+      let menuWrapper = document.getElementById('wrapper-menu')
+      if (horizontalMenuTemplate && !isHidden(menuWrapper)) {
         setTimeout(function () {
           if (window.innerWidth < window.Helpers.LAYOUT_BREAKPOINT) {
             if (document.getElementById('layout-menu')) {
@@ -613,4 +614,9 @@ if (typeof $ !== 'undefined') {
       });
     }
   });
+}
+
+
+function isHidden(el) {
+  return (el.offsetParent === null)
 }

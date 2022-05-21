@@ -1,3 +1,4 @@
+import { NavigationBaseComponent } from 'src/app/app-core/components/navigation-base.component';
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { LocalStorageUtils } from "src/app/app-core/utils/localstorage";
@@ -8,15 +9,12 @@ import { NavegacaoService } from "../services/navegacao.service";
   templateUrl: './navbar.component.html'
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent extends NavigationBaseComponent implements OnInit {
 
   user: any;
-
-  private localStorageUtils = new LocalStorageUtils()
-
   constructor(private router: Router,
     private navegacaoService: NavegacaoService) {
-
+      super();
   }
   ngOnInit(): void {
     this.user = this.localStorageUtils.obterUsuario();
@@ -24,7 +22,5 @@ export class NavbarComponent implements OnInit {
 
     }
   }
-
-  usuarioLogado(): boolean { return this.localStorageUtils.usuarioLogado(); }
 
 }

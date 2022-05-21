@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavigationBaseComponent } from 'src/app/app-core/components/navigation-base.component';
 import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { NavegacaoService } from '../services/navegacao.service';
 
@@ -7,14 +8,10 @@ import { NavegacaoService } from '../services/navegacao.service';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
 })
-export class MenuComponent   {
+export class MenuComponent extends NavigationBaseComponent {
 
-  localStorageUtil = new LocalStorageUtils();
-
-  constructor() { }
-
-  usuarioLogado(): boolean {
-    return this.localStorageUtil.usuarioLogado();
-  }
+  constructor() {
+    super();
+   }
 
 }

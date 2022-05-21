@@ -1,32 +1,34 @@
 
-<aside [ngClass]="{'d-none' : !usuarioLogado()}" id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
-  <div class="container-xxl d-flex h-100">
-    <ul class="menu-inner">
+<div id="wrapper-menu" [ngClass]="{'d-none' : !usuarioLogado()}">
+  <aside  id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
+    <div class="container-xxl d-flex h-100">
+      <ul class="menu-inner">
 
-      <li class="menu-item">
-        <a href="javascript:void(0)" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
-          <div data-i18n="Records">Records</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a [routerLink]="['/modelos']" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-user-circle"></i>
-              <div data-i18n="Models">Models</div>
-            </a>
+        <li class="menu-item">
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
+            <div data-i18n="Records">Records</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a [routerLink]="['/modelos']" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                <div data-i18n="Models">Models</div>
+              </a>
 
-          </li>
+            </li>
 
-        </ul>
-      </li>
+          </ul>
+        </li>
 
-      <li class="menu-item">
-        <a  [routerLink]="['/catalogo']" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-collection"></i>
-          <div data-i18n="Model Catalog">Model Catalog</div>
-        </a>
-      </li>
+        <li class="menu-item">
+          <a  [routerLink]="['/catalogo']" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-collection"></i>
+            <div data-i18n="Model Catalog">Model Catalog</div>
+          </a>
+        </li>
 
-    </ul>
-  </div>
-</aside>
+      </ul>
+    </div>
+  </aside>
+</div>

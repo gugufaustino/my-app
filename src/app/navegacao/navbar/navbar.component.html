@@ -44,32 +44,45 @@
       </a>
     </div>
 
-    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-      <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-        <i class="bx bx-menu bx-sm"></i>
-      </a>
+    <div [ngClass]="{'d-none' : !usuarioLogado()}">
+      <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+          <i class="bx bx-menu bx-sm"></i>
+        </a>
+      </div>
     </div>
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
       <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+        <li class="nav-item me-3 me-xl-0" *ngIf="!usuarioLogado()">
+          <button class="btn btn-primary d-grid w-100" [routerLink]="['/conta/login']">Entrar</button>
+        </li>
+
+        <li class="nav-item me-3 me-xl-0" *ngIf="!usuarioLogado()">
+          <a class="btn btn-primary d-grid w-100" [routerLink]="['/conta/cadastro']">Registrar</a>
+        </li>
+
+
         <!-- Language -->
-        <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+        <li class="nav-item dropdown-language dropdown me-3 me-xl-0">
           <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-            <i class="fi fi-us fis rounded-circle fs-3 me-1"></i>
+            <i class="fi fi-br fis rounded-circle fs-3 me-1"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <a class="dropdown-item" href="javascript:void(0);" data-language="en">
-                <i class="fi fi-us fis rounded-circle fs-4 me-1"></i>
-                <span class="align-middle">English</span>
-              </a>
-            </li>
             <li>
               <a class="dropdown-item" href="javascript:void(0);" data-language="pt-BR">
                 <i class="fi fi-br fis rounded-circle fs-4 me-1"></i>
                 <span class="align-middle">Português</span>
               </a>
             </li>
+            <li>
+              <a class="dropdown-item disabled" disabled href="javascript:void(0);" data-language="_en">
+                <i class="fi fi-us fis rounded-circle fs-4 me-1"></i>
+                <span class="align-middle">English</span>
+              </a>
+            </li>
+
             <!-- <li>
               <a class="dropdown-item" href="javascript:void(0);" data-language="pt">
                 <i class="fi fi-pt fis rounded-circle fs-4 me-1"></i>
