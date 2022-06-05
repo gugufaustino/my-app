@@ -26,6 +26,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
   formResult: string = '';
   returnUrl: string;
 
+  testeData: Date;
 
   constructor(private fb: FormBuilder,
     private contaService: ContaService,

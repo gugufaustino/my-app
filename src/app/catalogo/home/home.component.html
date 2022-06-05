@@ -3,16 +3,6 @@
 
   <form novalidate [formGroup]="componentForm" (ngSubmit)="submitForm()">
     <div class="row">
-      <!-- <div class="col-12" >
-      <div class="input-group mb-3">
-        <input type="text" class="form-control form-control-lg rounded input-pesquisar" placeholder="descreva as caracteristicas..." aria-describedby="button-addon2">
-        <button class="btn btn-primary  search-btn " type="button" id="button-addon2" placeholder="Search">
-          <span class="d-none d-sm-block">Pesquisar</span>
-          <i class="bx bx-search d-block d-sm-none"></i>
-        </button>
-      </div>
-    </div> -->
-
       <div class="col-md-4">
         <label class="control-label">Nome</label>
         <input class="form-control rounded" formControlName="nome" placeholder="inicia com..." />
@@ -61,7 +51,7 @@
       </div>
 
       <div class="col-3">
-        <div class="btn-group float-md-right" role="group">
+        <div class="btn-group float-end" role="group">
           <button type="button" class="btn btn-secondary" (click)="resetForm()">
             <i class="fa fa-eraser"></i>
           </button>
@@ -105,11 +95,11 @@
             <span class="label-carac d-inline-block">Tipo Cabelo: </span><span class="badge badge-light-primary mb-sm-0 ">{{modelo.nomeTipoCabelo}}</span><br>
             <span class="label-carac d-inline-block">Comprimento: </span><span class="badge badge-light-primary mb-sm-0 ">{{modelo.nomeTipoCabeloComprimento}}</span><br>
             <span class="label-carac">Peso: </span>
-            <span class="badge badge-light-primary mb-sm-0 mr-3">{{modelo.peso}} Kg</span>
+            <span class="badge badge-light-primary text-lowercase mb-sm-0 mr-3 p-2 ">{{modelo.peso}} Kg</span>
 
             <span class="label-carac">Idade: </span>
-            <span class="badge badge-light-primary mb-sm-0">{{modelo.dtNascimento | age}}</span>
-            <span class="label-carac">({{modelo.dtNascimento | date:'dd/MM/YYYY'}})</span>
+            <span class="badge badge-light-primary mb-sm-0 p-2 ">{{modelo.dtNascimento | age}}</span>
+            <span class="label-carac fs-12">({{modelo.dtNascimento | date:'dd/MM/YYYY'}})</span>
           </div>
         </div>
 

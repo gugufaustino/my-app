@@ -41,3 +41,8 @@
 .content-result{
   min-height: 472px;
 }
+
+.checkbox {
+  width: initial !important;
+}
+

@@ -368,3 +368,8 @@ text-align: center;
   /* text-align: center !important; */
   background-color: white;
 }
+
+
+.fs-12{
+  font-size: 12px !important;
+}
