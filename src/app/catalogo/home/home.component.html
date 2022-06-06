@@ -70,15 +70,15 @@
     <div class="col-sm-3" *ngFor="let modelo of models | async; let i = index">
       <div class="card ">
         <div class="card-header pt-2">
-          <div class="box-img-perfil img-responsive">
-            <img class="ratio img-circle" [style.background-image]="'url(' + pathImagensPerfil + '/' + (modelo.imagemPerfilNome|encode:'URI') + ')'">
-          </div>
+          <a [routerLink]="[componentRoute + '/editar', modelo.id]">
+            <div class="box-img-perfil img-responsive">
+              <img class="ratio img-circle" [style.background-image]="'url(' + pathImagensPerfil + '/' + (modelo.imagemPerfilNome|encode:'URI') + ')'">
+            </div>
 
-          <h5 class="card-title cursor-pointer text-center">
-            <a [routerLink]="[componentRoute + '/editar', modelo.id]">
+            <h5 class="card-title cursor-pointer text-center">
               {{modelo.nome}}
-            </a>
-          </h5>
+            </h5>
+          </a>
         </div>
 
         <div class="card-body p-3">
@@ -105,7 +105,7 @@
         </div>
 
         <div class="card-footer border-top d-flex  ">
-          <i class="fab fa-instagram" style="padding-top: 3px;padding-right: 6px; font-size: 18px;"></i>
+          <i class="fab fa-instagram" style="padding-right: 6px; font-size: 18px;"></i>
           <small class="text-truncate cursor-pointer">
             <a href="https://www.instagram.com/{{modelo.instagram}}" class="success darken-4" target="_blank">
               @{{modelo.instagram}}
