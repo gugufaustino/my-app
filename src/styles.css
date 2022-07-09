@@ -70,9 +70,14 @@ h2 a {
   border-color: #FFF842;
 }
 
-.form-control, .input-group .form-control {
+.form-control, .input-group .form-control, .label-as-control {
   border-radius: 0;
   border: 1px solid #495057;
+}
+
+.label-as-control{
+  margin: 0;
+  background-color: initial;
 }
 
 .main-container {
@@ -269,7 +274,7 @@ input[type="radio"]:checked {
   border-color: #fcfcff7a;
 }
 
-/*
+/**/
 .form-bg input.form-control  {
   color: #fff !important;
   background-color: #343a40 !important;
@@ -310,8 +315,9 @@ input[type="radio"]:checked {
   color: #dc3545 !important;
   font-size: 18px;
   font-weight: 700;
+  line-height: 0;
 }
-*/
+
 .form-group {
   margin-bottom: 1.5rem;
 }

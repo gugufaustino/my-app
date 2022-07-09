@@ -23,3 +23,7 @@
 
 }
 
+.coluna-controles span.input-group-text{
+  background-color: #283144 !important;
+  padding: 3px 5px;
+}

@@ -63,7 +63,7 @@
         </div>
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-2 coluna-controles">
         <h1 class="display-9 legend">controle</h1>
         <div class="row">
           <div class="form-group mb-0 col-md-12">
@@ -77,11 +77,11 @@
               <input [attr.disabled]="true" class="form-control form-control-sm as-label" value="{{model.dthInclusao | date: 'dd/MM/YYYY'  }}" />
 
               <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="far fa-clock text-info cursor-pointer" title="Hora: {{model.dthInclusao | date: 'HH:mm:ss'}}"></i>
+                <span class="input-group-text d-inline-block">
+                  <i class="far fa-clock text-info cursor-pointer" ngbTooltip="Hora: {{model.dthInclusao | date: 'HH:mm:ss'}}" ></i>
                 </span>
-                <span class="input-group-text">
-                  <i class="far fa-address-book text-info cursor-pointer" title="Usuário: {{model.usuarioInclusao}}"></i>
+                <span class="input-group-text d-inline-block" style="border-left:0" >
+                  <i class="far fa-address-book text-info cursor-pointer" ngbTooltip="Usuário: {{model.usuarioInclusao}}"></i>
                 </span>
               </div>
             </div>
@@ -95,11 +95,11 @@
               <input [attr.disabled]="true" class="form-control form-control-sm as-label" value="{{model.dthAtualizacao | date: 'dd/MM/YYYY'}}" />
 
               <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="far fa-clock text-info cursor-pointer" title="Hora: {{model.dthAtualizacao | date: 'HH:mm:ss'}}"></i>
+                <span class="input-group-text d-inline-block">
+                  <i class="far fa-clock text-info cursor-pointer" ngbTooltip="Hora: {{model.dthAtualizacao | date: 'HH:mm:ss'}}"></i>
                 </span>
-                <span class="input-group-text">
-                  <i class="far fa-address-book text-info cursor-pointer" title="Usuário: {{model.usuarioAtualizacao}}"></i>
+                <span class="input-group-text d-inline-block"  style="border-left:0">
+                  <i class="far fa-address-book text-info cursor-pointer" ngbTooltip="Usuário: {{model.usuarioAtualizacao}}"></i>
                 </span>
               </div>
 
@@ -270,7 +270,7 @@
         <app-label [required]="true">Instagram</app-label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <label class="input-group-text">www.instagram.com/</label>
+            <label class="input-group-text label-as-control">www.instagram.com/</label>
           </div>
           <input class="form-control" formControlName="instagram" id="instagram" [ngClass]="{'is-invalid': displayMessage?.instagram}" placeholder="@usuario" />
           <span *ngIf="displayMessage?.instagram">
@@ -282,7 +282,7 @@
         <app-label>Facebook</app-label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <label class="input-group-text">www.facebook.com/</label>
+            <label class="input-group-text label-as-control">www.facebook.com/</label>
           </div>
 
           <input class="form-control" formControlName="facebook" id="facebook" [ngClass]="{'is-invalid': displayMessage?.facebook}" placeholder="@usuario" />
@@ -296,7 +296,7 @@
         <app-label>Linkedin</app-label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <label class="input-group-text">www.linkedin.com/in/</label>
+            <label class="input-group-text label-as-control">www.linkedin.com/in/</label>
           </div>
           <input class="form-control" formControlName="linkedin" id="linkedin" [ngClass]="{'is-invalid': displayMessage?.linkedin}" placeholder="@usuario" />
           <span *ngIf="displayMessage?.linkedin">

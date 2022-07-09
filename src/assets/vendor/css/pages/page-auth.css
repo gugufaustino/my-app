@@ -1,7 +1,8 @@
 .authentication-wrapper {
   display: flex;
   flex-basis: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  min-height: 200px;
   width: 100%;
 }
 .authentication-wrapper .authentication-inner {
@@ -16,7 +17,8 @@
   align-items: flex-start;
 }
 .authentication-wrapper.authentication-cover .authentication-inner {
-  height: 100vh;
+  /* height: 100vh; */
+   height: 200px;
 }
 .authentication-wrapper.authentication-basic .authentication-inner {
   max-width: 25rem;
