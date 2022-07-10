@@ -72,7 +72,7 @@ h2 a {
 
 .form-control, .input-group .form-control, .label-as-control {
   border-radius: 0;
-  border: 1px solid #495057;
+  /* border: 1px solid #495057; */
 }
 
 .label-as-control{

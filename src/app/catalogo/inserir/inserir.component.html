@@ -66,21 +66,15 @@
       <div class="col-md-2">
         <h1 class="display-9 legend">controle</h1>
         <div class="row">
-          <div class="form-group col-md-12">
-            <app-label>Situação</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" value="ATIVADO" />
+          <div class="form-group col-md-12 mb-0">
+            <small>Situação</small>
+            <input [attr.disabled]="true" class="form-control form-control-sm as-label" value="ATIVADO" />
           </div>
 
-          <div class="form-group col-md  ">
-            <app-label>Data Inclusão</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" [value]="dateNow | date:'dd/MM/yyyy'" />
+          <div class="form-group col-md mb-0 ">
+            <small>Data Inclusão</small>
+            <input [attr.disabled]="true" class="form-control form-control-sm as-label" [value]="dateNow | date:'dd/MM/yyyy'" />
           </div>
-
-          <!-- <div class="form-group col">
-            <app-label>Atualização</app-label>
-            <input [attr.disabled]="true" class="form-control as-label" formControlName="dthAtualizacao" />
-
-          </div> -->
         </div>
 
       </div>
@@ -243,17 +237,24 @@
 
       <div class="form-group col-md-4">
         <app-label [required]="true">Instagram</app-label>
-        <div class="">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text label-as-control">www.instagram.com/</label>
+          </div>
           <input class="form-control" formControlName="instagram" id="instagram" [ngClass]="{'is-invalid': displayMessage?.instagram}"
             placeholder="https://www.instagram.com/usuario/" />
-          <span *ngIf="displayMessage?.instagram">
+          <span *ngIf="displayMessage?.instagram" style="width: inherit;">
             <p [innerHTML]="displayMessage?.instagram"></p>
           </span>
         </div>
       </div>
+
       <div class="form-group col-md-4">
         <app-label>Facebook</app-label>
-        <div class="">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text label-as-control">www.facebook.com/</label>
+          </div>
           <input class="form-control" formControlName="facebook" id="facebook" [ngClass]="{'is-invalid': displayMessage?.facebook}"
             placeholder="https://www.facebook.com/usuario/" />
           <span *ngIf="displayMessage?.facebook">
