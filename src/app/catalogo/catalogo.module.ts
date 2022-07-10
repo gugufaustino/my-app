@@ -19,7 +19,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     CatalogoComponent,
     HomeComponent,
     InserirComponent,
-    EditarComponent, LabelComponent
+    EditarComponent
   ],
   imports: [
     AppCoreModule,

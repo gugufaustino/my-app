@@ -7,7 +7,4 @@ import { IFormComponent } from 'src/app/app-core/interfaces/components/iform.com
 export class CatalogoGuard extends BaseGuard implements CanActivate, CanDeactivate<IFormComponent>
 {
   constructor(protected router: Router) { super(router); }
-
-
-
 }

@@ -1,3 +1,4 @@
+import { LabelComponent } from './components/label.component/label.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +16,8 @@ import { EncodePipe } from './pipes/encode.pipe';
   declarations: [
     AgePipe,
     ButtonDisableDirective,
-    EncodePipe
+    EncodePipe,
+    LabelComponent
 
   ],
   imports: [
@@ -26,6 +28,7 @@ import { EncodePipe } from './pipes/encode.pipe';
     AgePipe,
     EncodePipe,
     ButtonDisableDirective,
+    LabelComponent,
 
     RouterModule,
     NgbModule,
