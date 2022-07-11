@@ -34,8 +34,6 @@ function appUserList(){
           // columns according to JSON
           { data: 'id' },
           { data: 'full_name' },
-          { data: 'role' },
-          { data: 'current_plan' },
           { data: 'billing' },
           { data: 'status' },
           { data: 'action' },
@@ -44,11 +42,11 @@ function appUserList(){
         columnDefs: [
           {
             // For Responsive
+            targets: 0,
             className: 'control',
             searchable: false,
             orderable: false,
             responsivePriority: 2,
-            targets: 0,
             render: function (data, type, full, meta) {
               return '';
             }
@@ -97,29 +95,10 @@ function appUserList(){
               return $row_output;
             }
           },
-          {
-            // User Role
-            targets: 2,
-            render: function (data, type, full, meta) {
-              var $role = full['role'];
-              var roleBadgeObj = {
-                Subscriber:
-                  '<span class="badge badge-center rounded-pill bg-label-warning w-px-30 h-px-30 me-2"><i class="bx bx-user bx-xs"></i></span>',
-                Author:
-                  '<span class="badge badge-center rounded-pill bg-label-success w-px-30 h-px-30 me-2"><i class="bx bx-cog bx-xs"></i></span>',
-                Maintainer:
-                  '<span class="badge badge-center rounded-pill bg-label-primary w-px-30 h-px-30 me-2"><i class="bx bx-pie-chart-alt bx-xs"></i></span>',
-                Editor:
-                  '<span class="badge badge-center rounded-pill bg-label-info w-px-30 h-px-30 me-2"><i class="bx bx-edit bx-xs"></i></span>',
-                Admin:
-                  '<span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30 me-2"><i class="bx bx-mobile-alt bx-xs"></i></span>'
-              };
-              return "<span class='text-truncate d-flex align-items-center'>" + roleBadgeObj[$role] + $role + '</span>';
-            }
-          },
+
           {
             // Plans
-            targets: 3,
+            targets: 2,
             render: function (data, type, full, meta) {
               var $plan = full['current_plan'];
 
@@ -128,7 +107,7 @@ function appUserList(){
           },
           {
             // User Status
-            targets: 5,
+            targets: 3,
             render: function (data, type, full, meta) {
               var $status = full['status'];
 
@@ -161,7 +140,7 @@ function appUserList(){
         order: [[1, 'desc']],
         dom:
           '<"row mx-2"' +
-            '<"col-md-5"<"container-filter text-xl-end text-lg-start text-md-end text-start  align-items-center justify-content-end  "f>>' +
+            '<"col-md-5"<"container-filter text-xl-end text-lg-start text-md-end text-start  align-items-center justify-content-end  mb-3 mb-md-0"f>>' +
             '<"col-md-7"<"container-btn dt-action-buttons dataTables_filter text-xl-end text-lg-start text-md-end text-start   align-items-center justify-content-end  mb-3 mb-md-0"B>>' +
             '>t' +
             '<"row mx-2"' +
@@ -172,14 +151,25 @@ function appUserList(){
         language: datatables_ptBr,
         // Buttons with Dropdown
         buttons: [
+          //Add-New
+          {
+            text: '<i class="bx bx-plus me-1"></i><span class="d-none d-lg-inline-block">Inserir</span>',
+            className: 'add-new btn btn-primary ps-3',
+            attr: {
+              'data-bs-toggle': 'offcanvas',
+              'data-bs-target': '#offcanvasAddUser'
+            }
+          },
+
+          //Export
           {
             extend: 'collection',
-            className: 'btn btn-label-secondary dropdown-toggle mx-3',
-            text: '<i class="bx bx-upload me-2"></i>Export',
+            className: 'btn btn-label-secondary dropdown-toggle mx-3 me-0',
+            text: '<i class="bx bx-upload me-2"></i>Exportar',
             buttons: [
               {
                 extend: 'print',
-                text: '<i class="bx bx-printer me-2" ></i>Print',
+                text: '<i class="bx bx-printer me-2" ></i>Imprimir',
                 className: 'dropdown-item',
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
@@ -264,7 +254,7 @@ function appUserList(){
               },
               {
                 extend: 'pdf',
-                text: '<i class="bx bxs-file-pdf me-2"></i>Pdf',
+                text: '<i class="bx bxs-file-pdf me-2"></i>PDF',
                 className: 'dropdown-item',
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
@@ -288,7 +278,7 @@ function appUserList(){
               },
               {
                 extend: 'copy',
-                text: '<i class="bx bx-copy me-2" ></i>Copy',
+                text: '<i class="bx bx-copy me-2" ></i>Copiar',
                 className: 'dropdown-item',
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
@@ -312,14 +302,7 @@ function appUserList(){
               }
             ]
           },
-          {
-            text: '<i class="bx bx-plus me-0 me-lg-2"></i><span class="d-none d-lg-inline-block">Add New User</span>',
-            className: 'add-new btn btn-primary',
-            attr: {
-              'data-bs-toggle': 'offcanvas',
-              'data-bs-target': '#offcanvasAddUser'
-            }
-          }
+
         ],
         // For responsive popup
         responsive: {
