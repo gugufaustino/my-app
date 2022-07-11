@@ -61,12 +61,7 @@ function appUserList(objData) {
                 $image = full["avatar"];
               if ($image) {
                 // For Avatar image
-                var $output =
-                  '<img src="' +
-                  assetsPath +
-                  "/img/avatars/" +
-                  $image +
-                  '" alt="Avatar" class="rounded-circle">';
+                var $output = '<img src="' + $image +'" alt="Avatar" class="rounded-circle">';
               } else {
                 // For Avatar badge
                 var stateNum = Math.floor(Math.random() * 6);
@@ -476,7 +471,7 @@ function appUserList(objData) {
 
     button = document.getElementById("btnInserir");
     button.addEventListener("click", (event) => {
-      window.location = "catalogo/inserir"
+      window.location = "catalogo/inserir";
     });
   });
 

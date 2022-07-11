@@ -16,6 +16,7 @@ import { Modelo } from '../models/modelo';
 export class CatalogoService<TEntity> extends BaserService
   implements IObter<TEntity> {
   private apiUrl: string = 'modelo/';
+
   constructor(private http: HttpClient) { super(); }
   obterPorId(id: string): Observable<TEntity> {
     return this.http
