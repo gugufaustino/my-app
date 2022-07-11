@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 
-declare function appUserList(): any;
+declare function appUserList(data:any): any;
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    appUserList()
+    let ob = [{
+      'id' : "1",
+      'nome_completo' : "Well",
+      'idade':99,
+      'situacao': 1 ,
+      'action':"",
+      'email' : "well.faustino",
+      "avatar": "12.png"
+      }
+
+  ]
+    appUserList(ob);
   }
 
 }

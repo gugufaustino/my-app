@@ -2,77 +2,95 @@
  * Page User List
  */
 
-'use strict';
+"use strict";
 
-function appUserList(){
-
+function appUserList(objData) {
   // Datatable (jquery)
   $(function () {
     // Variable declaration for table
-    var dt_user_table = $('.datatables-users'),
-      select2 = $('.select2'),
-      userView = 'modelo/editar',
+    var dt_user_table = $(".datatables-users"),
+      select2 = $(".select2"),
+      userView = "modelo/editar",
       statusObj = {
-        1: { title: 'Pending', class: 'bg-label-warning' },
-        2: { title: 'Active', class: 'bg-label-success' },
-        3: { title: 'Inactive', class: 'bg-label-secondary' }
+        1: { title: "Pending", class: "bg-label-warning" },
+        2: { title: "Active", class: "bg-label-success" },
+        3: { title: "Inactive", class: "bg-label-secondary" },
       };
 
     if (select2.length) {
       var $this = select2;
       $this.wrap('<div class="position-relative"></div>').select2({
-        placeholder: 'Select Country',
-        dropdownParent: $this.parent()
+        placeholder: "Select Country",
+        dropdownParent: $this.parent(),
       });
     }
 
     // Users datatable
     if (dt_user_table.length) {
       var dt_user = dt_user_table.DataTable({
-        ajax: assetsPath + 'json/user-list.json', // JSON file to add data
+        // ajax: assetsPath + 'json/user-list.json', // JSON file to add data
+        data: objData,
         columns: [
           // columns according to JSON
-          { data: 'id' },
-          { data: 'full_name' },
-          { data: 'billing' },
-          { data: 'status' },
-          { data: 'action' },
-
+          { data: "id" },
+          { data: "nome_completo" },
+          { data: "idade" },
+          { data: "situacao" },
+          { data: "action" },
         ],
         columnDefs: [
           {
             // For Responsive
             targets: 0,
-            className: 'control',
+            className: "control",
             searchable: false,
             orderable: false,
             responsivePriority: 2,
             render: function (data, type, full, meta) {
-              return '';
-            }
+              return "";
+            },
           },
           {
             // User full name and email
             targets: 1,
             responsivePriority: 4,
             render: function (data, type, full, meta) {
-              var $name = full['full_name'],
-                $email = full['email'],
-                $id = full['id'],
-                $image = full['avatar'];
+              var $name = full["nome_completo"],
+                $email = full["email"],
+                $id = full["id"],
+                $image = full["avatar"];
               if ($image) {
                 // For Avatar image
                 var $output =
-                  '<img src="' + assetsPath + '/img/avatars/' + $image + '" alt="Avatar" class="rounded-circle">';
+                  '<img src="' +
+                  assetsPath +
+                  "/img/avatars/" +
+                  $image +
+                  '" alt="Avatar" class="rounded-circle">';
               } else {
                 // For Avatar badge
                 var stateNum = Math.floor(Math.random() * 6);
-                var states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'];
+                var states = [
+                  "success",
+                  "danger",
+                  "warning",
+                  "info",
+                  "dark",
+                  "primary",
+                  "secondary",
+                ];
                 var $state = states[stateNum],
-                  $name = full['full_name'],
+                  $name = full["nome_completo"],
                   $initials = $name.match(/\b\w/g) || [];
-                $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
-                $output = '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';
+                $initials = (
+                  ($initials.shift() || "") + ($initials.pop() || "")
+                ).toUpperCase();
+                $output =
+                  '<span class="avatar-initial rounded-circle bg-label-' +
+                  $state +
+                  '">' +
+                  $initials +
+                  "</span>";
               }
               // Creates full output for row
               var $row_output =
@@ -80,44 +98,52 @@ function appUserList(){
                 '<div class="avatar-wrapper">' +
                 '<div class="avatar avatar-sm me-3">' +
                 $output +
-                '</div>' +
-                '</div>' +
+                "</div>" +
+                "</div>" +
                 '<div class="d-flex flex-column">' +
                 '<a href="' +
-                userView + '/' + $id + '" class="text-body text-truncate"><span class="fw-semibold">' +
+                userView +
+                "/" +
+                $id +
+                '" class="text-body text-truncate"><span class="fw-semibold">' +
                 $name +
-                '</span></a>' +
+                "</span></a>" +
                 '<small class="text-muted">' +
                 $email +
-                '</small>' +
-                '</div>' +
-                '</div>';
+                "</small>" +
+                "</div>" +
+                "</div>";
               return $row_output;
-            }
+            },
           },
 
           {
             // Plans
             targets: 2,
             render: function (data, type, full, meta) {
-              var $plan = full['current_plan'];
-
-              return '<span class="fw-semibold">' + $plan + '</span>';
-            }
+              var $plan = full["idade"];
+              return '<span class="fw-semibold">' + $plan + "</span>";
+            },
           },
           {
             // User Status
             targets: 3,
             render: function (data, type, full, meta) {
-              var $status = full['status'];
+              var $status = full["situacao"];
 
-              return '<span class="badge ' + statusObj[$status].class + '">' + statusObj[$status].title + '</span>';
-            }
+              return (
+                '<span class="badge ' +
+                statusObj[$status].class +
+                '">' +
+                statusObj[$status].title +
+                "</span>"
+              );
+            },
           },
           {
             // Actions
             targets: -1,
-            title: 'Actions',
+            title: "Actions",
             searchable: false,
             orderable: false,
             render: function (data, type, full, meta) {
@@ -131,46 +157,48 @@ function appUserList(){
                 userView +
                 '" class="dropdown-item">View</a>' +
                 '<a href="javascript:;" class="dropdown-item">Suspend</a>' +
-                '</div>' +
-                '</div>'
+                "</div>" +
+                "</div>"
               );
-            }
-          }
+            },
+          },
         ],
-        order: [[1, 'desc']],
+        order: [[1, "desc"]],
         dom:
           '<"row mx-2"' +
-            '<"col-md-5"<"container-filter text-xl-end text-lg-start text-md-end text-start  align-items-center justify-content-end  mb-3 mb-md-0"f>>' +
-            '<"col-md-7"<"container-btn dt-action-buttons dataTables_filter text-xl-end text-lg-start text-md-end text-start   align-items-center justify-content-end  mb-3 mb-md-0"B>>' +
-            '>t' +
-            '<"row mx-2"' +
-            '<"col-sm-12 col-md-1"<"me-3"l>>' +
-            '<"col-sm-12 col-md-6 ps-0"i>' +
-            '<"col-sm-12 col-md-5"p>' +
-          '>',
+          '<"col-md-5"<"container-filter text-xl-end text-lg-start text-md-end text-start  align-items-center justify-content-end  mb-3 mb-md-0"f>>' +
+          '<"col-md-7"<"container-btn dt-action-buttons dataTables_filter text-xl-end text-lg-start text-md-end text-start   align-items-center justify-content-end  mb-3 mb-md-0"B>>' +
+          ">t" +
+          '<"row mx-2"' +
+          '<"col-sm-12 col-md-1"<"me-3"l>>' +
+          '<"col-sm-12 col-md-6 ps-0"i>' +
+          '<"col-sm-12 col-md-5"p>' +
+          ">",
         language: datatables_ptBr,
         // Buttons with Dropdown
         buttons: [
           //Add-New
           {
-            text: '<i class="bx bx-plus me-1"></i><span class="d-none d-lg-inline-block">Inserir</span>',
-            className: 'add-new btn btn-primary ps-3',
+            text:
+              '<i class="bx bx-plus me-1"></i><span class="d-none d-lg-inline-block">Inserir</span>',
+            className: "add-new btn btn-primary ps-3",
             attr: {
-              'data-bs-toggle': 'offcanvas',
-              'data-bs-target': '#offcanvasAddUser'
-            }
+              // 'data-bs-toggle': 'offcanvas',
+              // 'data-bs-target': '#offcanvasAddUser'
+              id: "btnInserir",
+            },
           },
 
           //Export
           {
-            extend: 'collection',
-            className: 'btn btn-label-secondary dropdown-toggle mx-3 me-0',
+            extend: "collection",
+            className: "btn btn-label-secondary dropdown-toggle mx-3 me-0",
             text: '<i class="bx bx-upload me-2"></i>Exportar',
             buttons: [
               {
-                extend: 'print',
+                extend: "print",
                 text: '<i class="bx bx-printer me-2" ></i>Imprimir',
-                className: 'dropdown-item',
+                className: "dropdown-item",
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
                   // prevent avatar to be print
@@ -178,36 +206,40 @@ function appUserList(){
                     body: function (inner, coldex, rowdex) {
                       if (inner.length <= 0) return inner;
                       var el = $.parseHTML(inner);
-                      var result = '';
+                      var result = "";
                       $.each(el, function (index, item) {
-                        if (item.classList !== undefined && item.classList.contains('user-name')) {
-                          result = result + item.lastChild.firstChild.textContent;
+                        if (
+                          item.classList !== undefined &&
+                          item.classList.contains("user-name")
+                        ) {
+                          result =
+                            result + item.lastChild.firstChild.textContent;
                         } else if (item.innerText === undefined) {
                           result = result + item.textContent;
                         } else result = result + item.innerText;
                       });
                       return result;
-                    }
-                  }
+                    },
+                  },
                 },
                 customize: function (win) {
                   //customize print view for dark
                   $(win.document.body)
-                    .css('color', config.colors.headingColor)
-                    .css('border-color', config.colors.borderColor)
-                    .css('background-color', config.colors.body);
+                    .css("color", config.colors.headingColor)
+                    .css("border-color", config.colors.borderColor)
+                    .css("background-color", config.colors.body);
                   $(win.document.body)
-                    .find('table')
-                    .addClass('compact')
-                    .css('color', 'inherit')
-                    .css('border-color', 'inherit')
-                    .css('background-color', 'inherit');
-                }
+                    .find("table")
+                    .addClass("compact")
+                    .css("color", "inherit")
+                    .css("border-color", "inherit")
+                    .css("background-color", "inherit");
+                },
               },
               {
-                extend: 'csv',
+                extend: "csv",
                 text: '<i class="bx bx-file me-2" ></i>Csv',
-                className: 'dropdown-item',
+                className: "dropdown-item",
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
                   // prevent avatar to be display
@@ -215,23 +247,27 @@ function appUserList(){
                     body: function (inner, coldex, rowdex) {
                       if (inner.length <= 0) return inner;
                       var el = $.parseHTML(inner);
-                      var result = '';
+                      var result = "";
                       $.each(el, function (index, item) {
-                        if (item.classList !== undefined && item.classList.contains('user-name')) {
-                          result = result + item.lastChild.firstChild.textContent;
+                        if (
+                          item.classList !== undefined &&
+                          item.classList.contains("user-name")
+                        ) {
+                          result =
+                            result + item.lastChild.firstChild.textContent;
                         } else if (item.innerText === undefined) {
                           result = result + item.textContent;
                         } else result = result + item.innerText;
                       });
                       return result;
-                    }
-                  }
-                }
+                    },
+                  },
+                },
               },
               {
-                extend: 'excel',
-                text: 'Excel',
-                className: 'dropdown-item',
+                extend: "excel",
+                text: "Excel",
+                className: "dropdown-item",
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
                   // prevent avatar to be display
@@ -239,23 +275,27 @@ function appUserList(){
                     body: function (inner, coldex, rowdex) {
                       if (inner.length <= 0) return inner;
                       var el = $.parseHTML(inner);
-                      var result = '';
+                      var result = "";
                       $.each(el, function (index, item) {
-                        if (item.classList !== undefined && item.classList.contains('user-name')) {
-                          result = result + item.lastChild.firstChild.textContent;
+                        if (
+                          item.classList !== undefined &&
+                          item.classList.contains("user-name")
+                        ) {
+                          result =
+                            result + item.lastChild.firstChild.textContent;
                         } else if (item.innerText === undefined) {
                           result = result + item.textContent;
                         } else result = result + item.innerText;
                       });
                       return result;
-                    }
-                  }
-                }
+                    },
+                  },
+                },
               },
               {
-                extend: 'pdf',
+                extend: "pdf",
                 text: '<i class="bx bxs-file-pdf me-2"></i>PDF',
-                className: 'dropdown-item',
+                className: "dropdown-item",
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
                   // prevent avatar to be display
@@ -263,23 +303,27 @@ function appUserList(){
                     body: function (inner, coldex, rowdex) {
                       if (inner.length <= 0) return inner;
                       var el = $.parseHTML(inner);
-                      var result = '';
+                      var result = "";
                       $.each(el, function (index, item) {
-                        if (item.classList !== undefined && item.classList.contains('user-name')) {
-                          result = result + item.lastChild.firstChild.textContent;
+                        if (
+                          item.classList !== undefined &&
+                          item.classList.contains("user-name")
+                        ) {
+                          result =
+                            result + item.lastChild.firstChild.textContent;
                         } else if (item.innerText === undefined) {
                           result = result + item.textContent;
                         } else result = result + item.innerText;
                       });
                       return result;
-                    }
-                  }
-                }
+                    },
+                  },
+                },
               },
               {
-                extend: 'copy',
+                extend: "copy",
                 text: '<i class="bx bx-copy me-2" ></i>Copiar',
-                className: 'dropdown-item',
+                className: "dropdown-item",
                 exportOptions: {
                   columns: [1, 2, 3, 4, 5],
                   // prevent avatar to be display
@@ -287,22 +331,25 @@ function appUserList(){
                     body: function (inner, coldex, rowdex) {
                       if (inner.length <= 0) return inner;
                       var el = $.parseHTML(inner);
-                      var result = '';
+                      var result = "";
                       $.each(el, function (index, item) {
-                        if (item.classList !== undefined && item.classList.contains('user-name')) {
-                          result = result + item.lastChild.firstChild.textContent;
+                        if (
+                          item.classList !== undefined &&
+                          item.classList.contains("user-name")
+                        ) {
+                          result =
+                            result + item.lastChild.firstChild.textContent;
                         } else if (item.innerText === undefined) {
                           result = result + item.textContent;
                         } else result = result + item.innerText;
                       });
                       return result;
-                    }
-                  }
-                }
-              }
-            ]
+                    },
+                  },
+                },
+              },
+            ],
           },
-
         ],
         // For responsive popup
         responsive: {
@@ -310,140 +357,144 @@ function appUserList(){
             display: $.fn.dataTable.Responsive.display.modal({
               header: function (row) {
                 var data = row.data();
-                return 'Details of ' + data['full_name'];
-              }
+                return "Details of " + data["nome_completo"];
+              },
             }),
-            type: 'column',
+            type: "column",
             renderer: function (api, rowIdx, columns) {
               var data = $.map(columns, function (col, i) {
-                return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
+                return col.title !== "" // ? Do not show row in modal popup if title is blank (for check box)
                   ? '<tr data-dt-row="' +
                       col.rowIndex +
                       '" data-dt-column="' +
                       col.columnIndex +
                       '">' +
-                      '<td>' +
+                      "<td>" +
                       col.title +
-                      ':' +
-                      '</td> ' +
-                      '<td>' +
+                      ":" +
+                      "</td> " +
+                      "<td>" +
                       col.data +
-                      '</td>' +
-                      '</tr>'
-                  : '';
-              }).join('');
+                      "</td>" +
+                      "</tr>"
+                  : "";
+              }).join("");
 
-              return data ? $('<table class="table"/><tbody />').append(data) : false;
-            }
-          }
+              return data
+                ? $('<table class="table"/><tbody />').append(data)
+                : false;
+            },
+          },
         },
-        initComplete: function () {
-          // Adding role filter once table initialized
-          this.api()
-            .columns(2)
-            .every(function () {
-              var column = this;
-              var select = $(
-                '<select id="UserRole" class="form-select text-capitalize"><option value=""> Select Role </option></select>'
-              )
-                .appendTo('.user_role')
-                .on('change', function () {
-                  var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                  column.search(val ? '^' + val + '$' : '', true, false).draw();
-                });
+        //// FILTROS ESTÃO ESCONDIDOS
+        // initComplete: function () {
+        //   // Adding role filter once table initialized
+        //   this.api()
+        //     .columns(2)
+        //     .every(function () {
+        //       var column = this;
+        //       var select = $(
+        //         '<select id="UserRole" class="form-select text-capitalize"><option value=""> Select Role </option></select>'
+        //       )
+        //         .appendTo('.user_role')
+        //         .on('change', function () {
+        //           var val = $.fn.dataTable.util.escapeRegex($(this).val());
+        //           column.search(val ? '^' + val + '$' : '', true, false).draw();
+        //         });
 
-              column
-                .data()
-                .unique()
-                .sort()
-                .each(function (d, j) {
-                  select.append('<option value="' + d + '">' + d + '</option>');
-                });
-            });
-          // Adding plan filter once table initialized
-          this.api()
-            .columns(3)
-            .every(function () {
-              var column = this;
-              var select = $(
-                '<select id="UserPlan" class="form-select text-capitalize"><option value=""> Select Plan </option></select>'
-              )
-                .appendTo('.user_plan')
-                .on('change', function () {
-                  var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                  column.search(val ? '^' + val + '$' : '', true, false).draw();
-                });
+        //       column
+        //         .data()
+        //         .unique()
+        //         .sort()
+        //         .each(function (d, j) {
+        //           select.append('<option value="' + d + '">' + d + '</option>');
+        //         });
+        //     });
+        //   // Adding plan filter once table initialized
+        //   this.api()
+        //     .columns(3)
+        //     .every(function () {
+        //       var column = this;
+        //       var select = $(
+        //         '<select id="UserPlan" class="form-select text-capitalize"><option value=""> Select Plan </option></select>'
+        //       )
+        //         .appendTo('.user_plan')
+        //         .on('change', function () {
+        //           var val = $.fn.dataTable.util.escapeRegex($(this).val());
+        //           column.search(val ? '^' + val + '$' : '', true, false).draw();
+        //         });
 
-              column
-                .data()
-                .unique()
-                .sort()
-                .each(function (d, j) {
-                  select.append('<option value="' + d + '">' + d + '</option>');
-                });
-            });
-          // Adding status filter once table initialized
-          this.api()
-            .columns(5)
-            .every(function () {
-              var column = this;
-              var select = $(
-                '<select id="FilterTransaction" class="form-select text-capitalize"><option value=""> Select Status </option></select>'
-              )
-                .appendTo('.user_status')
-                .on('change', function () {
-                  var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                  column.search(val ? '^' + val + '$' : '', true, false).draw();
-                });
+        //       column
+        //         .data()
+        //         .unique()
+        //         .sort()
+        //         .each(function (d, j) {
+        //           select.append('<option value="' + d + '">' + d + '</option>');
+        //         });
+        //     });
+        //   // Adding status filter once table initialized
+        //   this.api()
+        //     .columns(3)
+        //     .every(function () {
+        //       var column = this;
+        //       var select = $(
+        //         '<select id="FilterTransaction" class="form-select text-capitalize"><option value=""> Select Status </option></select>'
+        //       )
+        //         .appendTo('.user_status')
+        //         .on('change', function () {
+        //           var val = $.fn.dataTable.util.escapeRegex($(this).val());
+        //           column.search(val ? '^' + val + '$' : '', true, false).draw();
+        //         });
 
-              column
-                .data()
-                .unique()
-                .sort()
-                .each(function (d, j) {
-                  select.append(
-                    '<option value="' +
-                      statusObj[d].title +
-                      '" class="text-capitalize">' +
-                      statusObj[d].title +
-                      '</option>'
-                  );
-                });
-            });
-        }
+        //       column
+        //         .data()
+        //         .unique()
+        //         .sort()
+        //         .each(function (d, j) {
+        //           select.append(
+        //             '<option value="' +  statusObj[d].title + '" class="text-capitalize">' +
+        //               statusObj[d].title +
+        //               '</option>'
+        //           );
+        //         });
+        //     });
+        // }
       });
     }
 
     // Delete Record
-    $('.datatables-users tbody').on('click', '.delete-record', function () {
-      dt_user.row($(this).parents('tr')).remove().draw();
+    $(".datatables-users tbody").on("click", ".delete-record", function () {
+      dt_user.row($(this).parents("tr")).remove().draw();
     });
 
     // Filter form control to default size
     // ? setTimeout used for multilingual table initialization
     setTimeout(() => {
-      $('.dataTables_filter .form-control').removeClass('form-control-sm');
-      $('.dataTables_length .form-select').removeClass('form-select-sm');
-    }, 300);
-  });
+      $(".dataTables_filter .form-control").removeClass("form-control-sm");
+      $(".dataTables_length .form-select").removeClass("form-select-sm");
+    }, 0);
 
+    button = document.getElementById("btnInserir");
+    button.addEventListener("click", (event) => {
+      window.location = "catalogo/inserir"
+    });
+  });
 
   validationForm();
 }
 
-
 // Validation & Phone mask
 validationForm = function () {
-  console.log('validationForm');
-  const phoneMaskList = document.querySelectorAll('.phone-mask'),
-    addNewUserForm = document.getElementById('addNewUserForm');
+  console.log("validationForm");
+  const phoneMaskList = document.querySelectorAll(".phone-mask"),
+    addNewUserForm = document.getElementById("addNewUserForm");
 
   // Phone Number
   if (phoneMaskList) {
     phoneMaskList.forEach(function (phoneMask) {
       new Cleave(phoneMask, {
         phone: true,
-        phoneRegionCode: 'US'
+        phoneRegionCode: "US",
       });
     });
   }
@@ -453,37 +504,35 @@ validationForm = function () {
       userFullname: {
         validators: {
           notEmpty: {
-            message: 'Please enter fullname '
-          }
-        }
+            message: "Please enter fullname ",
+          },
+        },
       },
       userEmail: {
         validators: {
           notEmpty: {
-            message: 'Please enter your email'
+            message: "Please enter your email",
           },
           emailAddress: {
-            message: 'The value is not a valid email address'
-          }
-        }
-      }
+            message: "The value is not a valid email address",
+          },
+        },
+      },
     },
     plugins: {
       trigger: new FormValidation.plugins.Trigger(),
       bootstrap5: new FormValidation.plugins.Bootstrap5({
         // Use this for enabling/changing valid/invalid class
-        eleValidClass: '',
+        eleValidClass: "",
         rowSelector: function (field, ele) {
           // field is the field name & ele is the field element
-          return '.mb-3';
-        }
+          return ".mb-3";
+        },
       }),
       submitButton: new FormValidation.plugins.SubmitButton(),
       // Submit the form when all fields are valid
       // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-      autoFocus: new FormValidation.plugins.AutoFocus()
-    }
+      autoFocus: new FormValidation.plugins.AutoFocus(),
+    },
   });
 };
-
-
