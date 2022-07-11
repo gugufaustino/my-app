@@ -379,3 +379,14 @@ text-align: center;
 .fs-12{
   font-size: 12px !important;
 }
+
+
+/* fix datatables */
+
+
+div.dataTables_length{
+  margin: 0 !important;
+}
+.container-filter .dataTables_filter{
+  text-align: left !important;
+}
