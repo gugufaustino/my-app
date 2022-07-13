@@ -390,3 +390,7 @@ div.dataTables_length{
 .container-filter .dataTables_filter{
   text-align: left !important;
 }
+
+.card {
+  position: initial;
+}
