@@ -13,7 +13,7 @@ import { IFormComponent } from '../interfaces/components/iform.component';
 import { CustomValidators } from 'ng2-validation';
 import { FormValidations } from '../utils/form-validations';
 import { OptionSelect } from '../models/option-select';
-import { Modelo } from 'src/app/catalogo/models/modelo';
+import { Modelo } from 'src/app/modelo/models/modelo';
 
 declare function translateWithI18next(): any;
 export abstract class FormBaseComponent implements IFormComponent {

@@ -1,16 +1,14 @@
-import { DatePipe, formatDate } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ImageTransform } from 'ngx-image-cropper';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EncodePipe } from 'src/app/app-core/pipes/encode.pipe';
 import { DateUtils } from 'src/app/app-core/utils/date-utils';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 import { environment } from 'src/environments/environment';
 import { CatalogoBase } from '../catalogo-base.component';
 import { Modelo } from '../models/modelo';
-import { CatalogoService } from '../services/catalogo.service';
+import { ModeloService } from '../services/modelo.service';
 
 @Component({
   selector: 'app-editar',
@@ -23,7 +21,7 @@ export class EditarComponent extends CatalogoBase implements OnInit, AfterViewIn
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private toastr: ToastAppService,
-    private service: CatalogoService<Modelo>,
+    private service: ModeloService<Modelo>,
     private modal: NgbModal) {
     super(fb, modal);
 
@@ -114,7 +112,7 @@ export class EditarComponent extends CatalogoBase implements OnInit, AfterViewIn
 
     this.toastr.success(response.message, 'Sucesso!', () => {
       this.componentForm.reset();
-      this.router.navigate(['/catalogo']);
+      this.router.navigate(['/models']);
     });
   }
 

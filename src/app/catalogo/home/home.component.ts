@@ -2,7 +2,7 @@ import { CatalogoModeloFilter } from './../models/catalogo-filtro';
 import { OptionSelect } from './../../app-core/models/option-select';
 import { Observable } from 'rxjs';
 import { CatalogoService } from './../services/catalogo.service';
-import { Modelo } from './../models/modelo';
+import { Modelo } from '../../modelo/models/modelo';
 import { Component, OnInit } from '@angular/core';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -18,7 +18,7 @@ import { Catalogo } from '../models/catalogo';
 })
 export class HomeComponent extends FormBaseComponent implements OnInit {
 
-  public componentRoute: string = '/catalogo';
+  public componentRoute: string = '/models';
   MASKS: any = MASKS;
   modelFiltro: CatalogoModeloFilter = new CatalogoModeloFilter();
   models : Observable<Catalogo[]>;

@@ -10,7 +10,8 @@ function appUserList(objData) {
     // Variable declaration for table
     var dt_user_table = $(".datatables-users"),
       select2 = $(".select2"),
-      userView = "modelo/editar",
+      userEditView = "models/edit",
+      userInsertView = "models/insert",
       statusObj = {
         1: { title: "Pending", class: "bg-label-warning" },
         2: { title: "Active", class: "bg-label-success" },
@@ -61,7 +62,10 @@ function appUserList(objData) {
                 $image = full["avatar"];
               if ($image) {
                 // For Avatar image
-                var $output = '<img src="' + $image +'" alt="Avatar" class="rounded-circle">';
+                var $output =
+                  '<img src="' +
+                  $image +
+                  '" alt="Avatar" class="rounded-circle">';
               } else {
                 // For Avatar badge
                 var stateNum = Math.floor(Math.random() * 6);
@@ -97,7 +101,7 @@ function appUserList(objData) {
                 "</div>" +
                 '<div class="d-flex flex-column">' +
                 '<a href="' +
-                userView +
+                userEditView +
                 "/" +
                 $id +
                 '" class="text-body text-truncate"><span class="fw-semibold">' +
@@ -144,15 +148,18 @@ function appUserList(objData) {
             render: function (data, type, full, meta) {
               return (
                 '<div class="d-inline-block text-nowrap">' +
-                '<button class="btn btn-sm btn-icon"><i class="bx bx-edit"></i></button>' +
-                '<button class="btn btn-sm btn-icon delete-record"><i class="bx bx-trash"></i></button>' +
+                // '<button class="btn btn-sm btn-icon"><i class="bx bx-edit"></i></button>' +
+                '<button class="btn btn-sm btn-icon delete-record" data-id="' +
+                full["id"] +
+                '"><i class="bx bx-trash"></i></button>' +
                 '<button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>' +
-                '<div class="dropdown-menu dropdown-menu-end m-0">' +
-                '<a href="' +
-                userView +
-                '" class="dropdown-item">View</a>' +
-                '<a href="javascript:;" class="dropdown-item">Suspend</a>' +
-                "</div>" +
+                // '<div class="dropdown-menu dropdown-menu-end m-0">' +
+                //   '<a href="' +
+                //   userEditView +
+                //   '" class="dropdown-item">Ver Perfil</a>' +
+                //   '<a href="javascript:;" class="dropdown-item">Ativar</a>' +
+                //   '<a href="javascript:;" class="dropdown-item">Desativar</a>' +
+                // "</div>" +
                 "</div>"
               );
             },
@@ -459,7 +466,11 @@ function appUserList(objData) {
 
     // Delete Record
     $(".datatables-users tbody").on("click", ".delete-record", function () {
-      dt_user.row($(this).parents("tr")).remove().draw();
+      let objRef = $(this);
+      deleteModel(objRef.data("id"), function () {
+        console.log("callback sucess", );
+        dt_user.row($(objRef).parents("tr")).remove().draw();
+      });
     });
 
     // Filter form control to default size
@@ -471,7 +482,7 @@ function appUserList(objData) {
 
     button = document.getElementById("btnInserir");
     button.addEventListener("click", (event) => {
-      window.location = "catalogo/inserir";
+      window.location = userInsertView;
     });
   });
 
@@ -480,7 +491,6 @@ function appUserList(objData) {
 
 // Validation & Phone mask
 validationForm = function () {
-  console.log("validationForm");
   const phoneMaskList = document.querySelectorAll(".phone-mask"),
     addNewUserForm = document.getElementById("addNewUserForm");
 
@@ -531,3 +541,9 @@ validationForm = function () {
     },
   });
 };
+
+function deleteModel(id, fncallbackSucess) {
+  window.angularComponentReference.zone.run(() => {
+      window.angularComponentReference.callNgDeleteModel(id, fncallbackSucess);
+  });
+}

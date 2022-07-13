@@ -7,6 +7,8 @@ import { AppResolveService } from '../services/app.resolve.service';
 import { ModeloService } from './services/modelo.service';
 import { HomeComponent } from './home/home.component';
 import { ModeloRoutingModule } from './modelo-routing.module';
+import { InserirComponent } from './inserir/inserir.component';
+import { EditarComponent } from './editar/editar.component';
 
 
 
@@ -14,6 +16,8 @@ import { ModeloRoutingModule } from './modelo-routing.module';
   declarations: [
     ModeloComponent,
     HomeComponent,
+    InserirComponent,
+    EditarComponent
 
   ],
   imports: [

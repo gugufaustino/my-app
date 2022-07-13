@@ -1,4 +1,3 @@
-import { CatalogoService } from './../services/catalogo.service';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName } from '@angular/forms';
 
@@ -8,6 +7,7 @@ import { ToastAppService } from 'src/app/services/toastapp.service';
 import { Router } from '@angular/router';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModeloService } from '../services/modelo.service';
 
 @Component({
   selector: 'app-inserir',
@@ -19,7 +19,7 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
   constructor(private router: Router,
     private fb: FormBuilder,
     private toastr: ToastAppService,
-    private service: CatalogoService<Modelo>,
+    private service: ModeloService<Modelo>,
     private modal: NgbModal) {
     super(fb, modal);
   }
@@ -59,7 +59,7 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
 
     this.toastr.success(response.message, 'Sucesso!', () => {
       this.componentForm.reset();
-      this.router.navigate(['/catalogo']);
+      this.router.navigate(['/models']);
     });
   }
 

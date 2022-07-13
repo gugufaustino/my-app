@@ -20,8 +20,8 @@ const routes: Routes = [
   // { path: 'contas-a-pagar', loadChildren: () => import('./contas-a-pagar/contas-a-pagar.module').then(m => m.ContasAPagarModule) },
   // { path: 'fornecedores', loadChildren: () => import('./fornecedores/fornecedores.module').then(m => m.FornecedoresModule) },
   // { path: 'cliente', loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule) },
-  { path: 'catalogo', loadChildren: () => import('./catalogo/catalogo.module').then(m => m.CatalogoModule) },
-  { path: 'modelo', loadChildren: () => import('./modelo/modelo.module').then(m => m.ModeloModule) },
+  { path: 'catalog', loadChildren: () => import('./catalogo/catalogo.module').then(m => m.CatalogoModule) },
+  { path: 'models', loadChildren: () => import('./modelo/modelo.module').then(m => m.ModeloModule) },
 
   { path: 'acesso-negado', component: AcessoNegadoComponent },
   { path: 'nao-encontrado', component: NotFoundComponent },

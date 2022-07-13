@@ -1,4 +1,4 @@
-import { OptionSelect } from './../../app-core/models/option-select';
+import { OptionSelect } from '../../app-core/models/option-select';
 import { MappingModel } from "src/app/app-core/interfaces/models/mapping.model";
 
 export class Modelo implements MappingModel {
