@@ -1,5 +1,6 @@
 import { OptionSelect } from '../../app-core/models/option-select';
 import { MappingModel } from "src/app/app-core/interfaces/models/mapping.model";
+import { Endereco } from 'src/app/app-core/models/endereco';
 
 export class Modelo implements MappingModel {
   constructor() { this.toMap(); }
@@ -31,7 +32,7 @@ export class Modelo implements MappingModel {
   facebook: string;
   linkedin: string;
 
-  endereco: any
+  endereco: Endereco
 
   //caracteristicas fisicas
   altura: number;

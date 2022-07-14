@@ -32,7 +32,7 @@ export class CatalogoService<TEntity> extends BaserService
 
     const options = { headers: this.ObterHeaderAuthJson().headers }   /*params : new HttpParams().set('nome', modelo.nome )*/
     return this.http
-      .get<TEntity[]>(this.UrlServiceV1 + this.apiUrl + "?" + queryString, options)
+      .get<TEntity[]>(this.UrlServiceV1 + this.apiUrl + "listar-catalogo" + "?" + queryString, options)
       .pipe(catchError(this.serviceError));
   }
 

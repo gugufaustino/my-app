@@ -25,7 +25,6 @@ function appUserList(objData) {
         dropdownParent: $this.parent(),
       });
     }
-
     // Users datatable
     if (dt_user_table.length) {
       var dt_user = dt_user_table.DataTable({
@@ -35,8 +34,10 @@ function appUserList(objData) {
           // columns according to JSON
           { data: "id" },
           { data: "nome_completo" },
-          { data: "idade" },
+          { data: "idade", className : "text-center fw-semibold" },
+          { data: "municipio", className : "text-capitalize" },
           { data: "situacao" },
+          { data: "dthAtualizacao" , className : "text-center" },
           { data: "action" },
         ],
         columnDefs: [
@@ -116,43 +117,29 @@ function appUserList(objData) {
             },
           },
 
+
           {
-            // Plans
-            targets: 2,
-            render: function (data, type, full, meta) {
-              var $plan = full["idade"];
-              return '<span class="fw-semibold">' + $plan + "</span>";
-            },
-          },
-          {
-            // User Status
-            targets: 3,
+            // situacao
+            targets: 4,
+            className: "text-center",
             render: function (data, type, full, meta) {
               var $status = full["situacao"];
-
-              return (
-                '<span class="badge ' +
-                statusObj[$status].class +
-                '">' +
-                statusObj[$status].title +
-                "</span>"
-              );
+              return ('<span class="badge ' + statusObj[$status].class + '">' +  full["situacaoNome"] +  "</span>" );
             },
           },
           {
             // Actions
             targets: -1,
-            title: "Actions",
+            className: "text-center",
+
             searchable: false,
             orderable: false,
             render: function (data, type, full, meta) {
               return (
                 '<div class="d-inline-block text-nowrap">' +
                 // '<button class="btn btn-sm btn-icon"><i class="bx bx-edit"></i></button>' +
-                '<button class="btn btn-sm btn-icon delete-record" data-id="' +
-                full["id"] +
-                '"><i class="bx bx-trash"></i></button>' +
-                '<button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>' +
+                '&nbsp; <button class="btn btn-sm btn-icon delete-record" data-id="' + full["id"] + '"><i class="bx bx-trash"></i></button>' +
+                // '<button class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>' +
                 // '<div class="dropdown-menu dropdown-menu-end m-0">' +
                 //   '<a href="' +
                 //   userEditView +

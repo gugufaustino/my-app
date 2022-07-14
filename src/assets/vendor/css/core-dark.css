@@ -6090,7 +6090,7 @@ a.invert-bg-dark:hover, a.invert-bg-dark:focus {
   }
 }
 .table th {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
   font-size: 0.75rem;
   letter-spacing: 1px;
   font-weight: bold;
