@@ -394,3 +394,15 @@ div.dataTables_length{
 .card {
   position: initial;
 }
+
+
+.hr-v{
+  position: absolute;
+    right: 13px;
+    top: 45px;
+    height: 86%;
+    width: 1px;
+    margin: 0;
+    padding: 0;
+    border: 2px #36445d solid;
+}
