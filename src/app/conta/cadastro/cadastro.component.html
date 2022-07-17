@@ -12,15 +12,6 @@
         </div>
         <div class="row">
           <div class="form-group col-md-6">
-            <app-label [required]="true">E-mail</app-label>
-            <div class="col-md-12">
-              <input class="form-control" id="email" type="text" placeholder="" formControlName="email" [ngClass]="{'is-invalid': displayMessage?.email}" />
-              <span class="text-danger" *ngIf="displayMessage?.email">
-                <p [innerHTML]="displayMessage?.email"></p>
-              </span>
-            </div>
-          </div>
-          <div class="form-group col-md-6">
             <app-label [required]="true">Telefone</app-label>
             <div class="col-md-12">
               <input class="form-control" id="telefone" type="text" placeholder="" formControlName="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}" />
@@ -29,13 +20,24 @@
               </span>
             </div>
           </div>
+
+          <div class="form-group col-md-6">
+            <app-label [required]="true">E-mail</app-label>
+            <div class="col-md-12">
+              <input class="form-control" id="email" type="text" placeholder="" formControlName="email" [ngClass]="{'is-invalid': displayMessage?.email}" />
+              <span class="text-danger" *ngIf="displayMessage?.email">
+                <p [innerHTML]="displayMessage?.email"></p>
+              </span>
+            </div>
+          </div>
+
         </div>
 
         <div class="row">
           <div class="form-group col-md-6">
             <app-label [required]="true">Password</app-label>
             <div class="col-md-12">
-              <input class="form-control" id="password" type="text" placeholder="" formControlName="password" [ngClass]="{'is-invalid': displayMessage?.password}" />
+              <input class="form-control" id="password" type="password" placeholder="" formControlName="password" [ngClass]="{'is-invalid': displayMessage?.password}" />
               <span class="text-danger" *ngIf="displayMessage?.password">
                 <p [innerHTML]="displayMessage?.password"></p>
               </span>
@@ -44,8 +46,7 @@
           <div class="form-group col-md-6">
             <app-label [required]="true">Confirmação</app-label>
             <div class="col-md-12">
-              <input class="form-control" id="confirmPassword" type="text" placeholder=" " formControlName="confirmPassword"
-                [ngClass]="{'is-invalid': displayMessage?.confirmPassword}" />
+              <input class="form-control" id="confirmPassword" type="password" placeholder=" " formControlName="confirmPassword" [ngClass]="{'is-invalid': displayMessage?.confirmPassword}" />
               <span class="text-danger" *ngIf="displayMessage?.confirmPassword">
                 <p [innerHTML]="displayMessage?.confirmPassword"></p>
               </span>
@@ -97,33 +98,39 @@
               </div>
 
               <div class="card-body">
-                <div class="row">
+                <div id="tipoCadastro" class="row">
+
+                  <div class="col-md p-1">
+                    <div class="form-check custom-option custom-option-icon">
+                      <label class="form-check-label custom-option-content  " for="customRadioIcon2">
+                        <span class="custom-option-body">
+                          <i class="bx bx-user"></i>
+                          <span class="custom-option-title"> Agente Autônomo </span>
+                          <small> sou um agente e não possuo empresa, mas quero ter meu catálogo na plataforma Onemodel.me</small>
+                        </span>
+                        <input  id="customRadioIcon2"  type="radio" class="form-check-input" [value]="CoreEnum.TipoCadastro.Agente" formControlName="tipoCadastro" [ngClass]="{'is-invalid': displayMessage?.tipoCadastro}" />
+                      </label>
+                    </div>
+                  </div>
+
                   <div class="col-md mb-md-0 mb-2 p-1">
                     <div class="form-check custom-option custom-option-icon">
-                      <label class="form-check-label custom-option-content" for="customRadioIcon1">
+                      <label class="form-check-label custom-option-content  " for="customRadioIcon1">
                         <span class="custom-option-body">
                           <i class="bx bx-rocket"></i>
                           <span class="custom-option-title">Empresa Agência</span>
                           <small> trabalho em uma agência de modelos e sou o responsável pelo catálogo na plataforma Onemodel.me</small>
                         </span>
-                        <input name="customRadioIcon" class="form-check-input" type="radio" value="" id="customRadioIcon1" checked />
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md p-1">
-                    <div class="form-check custom-option custom-option-icon">
-                      <label class="form-check-label custom-option-content" for="customRadioIcon2">
-                        <span class="custom-option-body">
-                          <i class="bx bx-user"></i>
-                          <span class="custom-option-title"> Agente autônomo </span>
-                          <small> sou um agente e não possuo empresa, mas quero ter meu catálogo na plataforma Onemodel.me</small>
-                        </span>
-                        <input name="customRadioIcon" class="form-check-input" type="radio" value="" id="customRadioIcon2" />
-                      </label>
-                    </div>
-                  </div>
 
+                        <input  id="customRadioIcon1"  type="radio" class="form-check-input" [value]="CoreEnum.TipoCadastro.Agencia" formControlName="tipoCadastro" [ngClass]="{'is-invalid': displayMessage?.tipoCadastro}" />
+                      </label>
+                    </div>
+                  </div>
                 </div>
+
+                <span class="validation" *ngIf="displayMessage?.tipoCadastro">
+                  <p [innerHTML]="displayMessage?.tipoCadastro"></p>
+                </span>
 
 
               </div>

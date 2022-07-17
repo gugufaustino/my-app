@@ -1,3 +1,4 @@
+import { ValidationMessages } from './../../app-core/utils/generic-form-validation';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 
@@ -5,13 +6,14 @@ import { fromEvent, merge, Observable } from 'rxjs';
 
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { CustomValidators } from 'ng2-validation';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../app-core/utils/generic-form-validation';
+import { DisplayMessage, GenericValidator } from '../../app-core/utils/generic-form-validation';
 import { ToastrService } from 'ngx-toastr';
 
 import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { Router } from '@angular/router';
 import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
+import { OptionSelect } from 'src/app/app-core/models/option-select';
 
 @Component({
   selector: 'app-cadastro',
@@ -25,8 +27,6 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
   usuario: Usuario
   cadastroForm!: FormGroup;
   formResult: string = '';
-  MASKS: any = MASKS;
-
   errors: any = [];
 
   validationMessages: ValidationMessages;
@@ -41,12 +41,10 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
     this.validationMessages = {
       nome: {
-        required: 'Requerido',
         minlength: 'Tamanho minimo inválido',
         maxlength: 'Tamanho máximo inválido'
       },
       cpf: {
-        required: 'Requerido',
         cpf: 'formato inválido',
       },
       email: {
@@ -58,29 +56,32 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
       confirmPassword: {
         rangeLength: 'Tamanho deve ser entre 6 e 15 caracteres',
         equalTo: 'As senhas não conferem'
+      },
+      tipoCadastro: {
+        required : 'selecione uma das opções'
       }
     }
 
     this.genericValidatior = new GenericValidator(this.validationMessages);
+
+
   }
 
   ngOnInit(): void {
 
     let senhaFg = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15])]);
-    //let senhaconfirmFg = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15]), CustomValidators.equalTo(senhaFg)]);
+    let senhaconfirmFg = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15]), CustomValidators.equalTo(senhaFg)]);
 
     this.cadastroForm = this.fb.group({
       nome: ['', Validators.required],
-      password: senhaFg,
-      confirmPassword: ['', Validators.required],
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, NgBrazilValidators.telefone]],
 
+      password: senhaFg,
+      confirmPassword: senhaconfirmFg,
 
-      razaoSocial: ['', Validators.required],
-      nomeFantasia: ['', Validators.required],
-      cnpj: ['', [Validators.required, NgBrazilValidators.cnpj]],
+      tipoCadastro: [null, Validators.required],
     });
   }
 
@@ -118,7 +119,7 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
   private processarFalha(fail: any) {
     this.errors = fail.error.errors;
-    this.toastr.error(fail.error.errors.join(), "Erro");
+    this.toastr.error("Verifique os motivos na lista de erros.", "Erro ao registrar-se.");
   }
 
 }

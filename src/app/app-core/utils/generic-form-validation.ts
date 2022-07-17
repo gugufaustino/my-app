@@ -22,15 +22,15 @@ export class GenericValidator {
           let childMessages = this.processaMensgens(c, allControls);
           Object.assign(messages, childMessages);
         } else {
-          //if (this.validationMessages[controlKey]) {
+
           if ((c.dirty || c.touched || allControls) && c.errors && c.enabled) {
             messages[controlKey] = '';
             Object.keys(c.errors).map(messageKey => {
 
-              if (this.baseMessages[messageKey]) {
+              if (this.validationMessages[controlKey] !== undefined && this.validationMessages[controlKey][messageKey]) {
+                messages[controlKey] = this.validationMessages[controlKey][messageKey];
+              } else if ( this.baseMessages[messageKey]) {
                 messages[controlKey] = this.baseMessages[messageKey];
-              } else if (this.validationMessages[controlKey][messageKey]) {
-                messages[controlKey] = this.validationMessages[controlKey][messageKey]
               }
 
             });
@@ -38,7 +38,7 @@ export class GenericValidator {
             messages[controlKey] = '';
           }
         }
-        //}
+
       }
     }
 

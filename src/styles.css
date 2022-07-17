@@ -302,16 +302,18 @@ input[type="radio"]:disabled {
    color: #bbbbbb !important;
 }
 
-.form-container .form-group span {
+.form-container .form-group span,
+span.validation {
   color: #dc3545 !important;
 }
 
-.form-container .form-group span p {
+.form-container .form-group span p,
+span.validation p {
   position: absolute;
   font-size: 14px;
 }
 
-.form-container .form-group .control-label span {
+.form-container .form-group .control-label span { /* asterisco obrigatrorio */
   color: #dc3545 !important;
   font-size: 18px;
   font-weight: 700;

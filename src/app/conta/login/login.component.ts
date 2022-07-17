@@ -25,8 +25,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
   usuario: Usuario
   formResult: string = '';
   returnUrl: string;
-
-  testeData: Date;
+  passwordType: boolean = true;
 
   constructor(private fb: FormBuilder,
     private contaService: ContaService,
@@ -89,6 +88,11 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
   processarFalha(fail: any) {
     this.errors = fail.error.errors;
     this.toastr.error(fail.error.errors.join(), "Erro");
+  }
+
+
+  togglePasswordType(){
+    this.passwordType = !this.passwordType;
   }
 
 }

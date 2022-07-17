@@ -17,8 +17,7 @@ import { EncodePipe } from './pipes/encode.pipe';
     AgePipe,
     ButtonDisableDirective,
     EncodePipe,
-    LabelComponent
-
+    LabelComponent,
   ],
   imports: [
     CommonModule,

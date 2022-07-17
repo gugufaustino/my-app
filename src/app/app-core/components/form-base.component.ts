@@ -14,6 +14,7 @@ import { CustomValidators } from 'ng2-validation';
 import { FormValidations } from '../utils/form-validations';
 import { OptionSelect } from '../models/option-select';
 import { Modelo } from 'src/app/modelo/models/modelo';
+import { CoreEnum } from '../utils/core-enum';
 
 declare function translateWithI18next(): any;
 export abstract class FormBaseComponent implements IFormComponent {
@@ -27,6 +28,8 @@ export abstract class FormBaseComponent implements IFormComponent {
   MASKS: any = MASKS;
   DateMask = DateUtils.DataMask;
   DataDayMask = DateUtils.DataDayMask;
+
+  readonly CoreEnum : CoreEnum = new CoreEnum();
 
 
   protected configurarMensagensValidacaoBase(validationMessages: ValidationMessages) {
