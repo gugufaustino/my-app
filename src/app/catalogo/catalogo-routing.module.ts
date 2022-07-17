@@ -6,7 +6,7 @@ import { CatalogoGuard } from './services/catalogo.guard';
 import { CatalogoComponent } from './catalogo.component';
 
 
-const clmaimAcesso: string = 'CATALOGO';
+const clmaimAcesso: string = 'MODELO';
 const routes: Routes = [{
   path: '', component: CatalogoComponent,
   children: [

@@ -9,8 +9,14 @@ export class AuthGuard extends BaseGuard implements CanActivate {
   constructor(protected router: Router) { super(router); }
   override canActivate()
   {
+    let encerrar = false;
 
-    this.verificarAutenticacao();
+    encerrar = this.verificarAutenticacao();
+    if(encerrar) return false;
+
+    encerrar = this.verificarCadastroAgenciaCompleto();
+    if (encerrar) return false;
+
     return true;
   }
 

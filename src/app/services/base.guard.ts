@@ -1,3 +1,4 @@
+import { TipoCadastroEnum } from 'src/app/conta/models/usuario';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { IFormComponent } from '../app-core/interfaces/components/iform.component';
@@ -9,10 +10,18 @@ export abstract class BaseGuard {
   constructor(protected router: Router) { }
 
   canActivate(routeAc: ActivatedRouteSnapshot) {
+    debugger;
+    let encerrar = false;
 
-    this.verificarAutenticacao();
+    encerrar = this.verificarAutenticacao();
+    if (encerrar) return false;
 
-    this.verificarAutorizacao(routeAc);
+    encerrar = this.verificarCadastroAgenciaCompleto();
+    if (encerrar) return false;
+
+    encerrar = this.verificarAutorizacao(routeAc);
+    if (encerrar) return false;
+
     return true;
 
   }
@@ -24,6 +33,16 @@ export abstract class BaseGuard {
     return true;
   }
 
+
+  protected verificarAutenticacao() {
+
+    if (!this.utilStorage.usuarioLogado()) {  //TODO #3 Colocar aqui uma validação do token no backend
+      this.navegarLogon();
+      return true;
+    }
+    return false;
+  }
+
   protected verificarAutorizacao(routeAc: ActivatedRouteSnapshot) {
     let claim: any = routeAc.data[0];
     if (claim !== undefined) {
@@ -31,19 +50,16 @@ export abstract class BaseGuard {
 
       if (claim) {
         let hasPermissao = this.utilStorage.possuiPermissao(claim.nome, claim.valor);
-        if (!hasPermissao)
+        if (!hasPermissao){
           this.navegarAcessoNegado();
+          return true;
+        }
       }
     }
+
+    return false;
   }
 
-
-  protected verificarAutenticacao() {
-    //TODO #3 Colocar aqui uma validação do token no backend
-    if (!this.utilStorage.usuarioLogado()) {
-      this.navegarLogon();
-    }
-  }
 
   private navegarLogon() {
     this.router.navigate(['/conta/login/'], { queryParams: { returnUrl: this.router.url } });
@@ -52,7 +68,16 @@ export abstract class BaseGuard {
     this.router.navigate(['/acesso-negado']);
   }
 
+  protected verificarCadastroAgenciaCompleto() {
 
+    const usuario = this.utilStorage.obterUsuario();
+    if (usuario.tipoCadastro == TipoCadastroEnum.Agencia && usuario.empresa === null) {
+      this.router.navigate(['/conta/cadastro-agencia']);
 
+      return true;
+    }
+
+    return false;
+  }
 
 }

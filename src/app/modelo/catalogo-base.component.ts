@@ -14,7 +14,7 @@ import { Modelo } from "./models/modelo";
 
 export abstract class CatalogoBase extends FormBaseComponent {
 
-  MASKS: any = MASKS;
+  //MASKS: any = MASKS;
   DateMask = DateUtils.DataMask;
   DataDayMask = DateUtils.DataDayMask;
 

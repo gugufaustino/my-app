@@ -8,7 +8,7 @@ import { ModeloComponent } from './modelo.component';
 import { ModeloGuard } from './services/modelo.guard';
 
 
-const clmaimAcesso: string = 'CATALOGO';
+const clmaimAcesso: string = 'MODELO';
 const routes: Routes = [{
   path: '', component: ModeloComponent,
   children: [
