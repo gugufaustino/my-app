@@ -15,13 +15,16 @@ export class ContaGuard extends BaseGuard implements CanActivate, CanDeactivate<
     if (!super.canActivate(routeAc))
       return false;
 
-
-    debugger;
     let usuario = this.utilStorage.obterUsuario();
 
-    if (usuario.tipoCadastro == TipoCadastroEnum.Agencia)
-      return true;
-    else if (usuario.tipoCadastro == TipoCadastroEnum.Agente)
+    if (usuario.tipoCadastro == TipoCadastroEnum.Agencia) {
+
+      if (usuario.empresa === null)
+        return true;
+      if (usuario.empresa !== null)
+        this.router.navigate(['/welcome']);
+
+    } else if (usuario.tipoCadastro == TipoCadastroEnum.Agente)
       this.router.navigate(['/welcome']);
 
     return false;

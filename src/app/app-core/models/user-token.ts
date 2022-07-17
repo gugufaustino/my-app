@@ -5,6 +5,7 @@ export class UserToken {
     email: string;
     nome: string;
     tipoCadastro: TipoCadastroEnum;
+    empresa: any;
     claims: string[];
 }
 

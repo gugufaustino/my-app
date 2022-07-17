@@ -112,7 +112,7 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
     let toastSucesso = this.toastr.success("cadastro realizado com sucesso.", "Bem vindo!");
     if (toastSucesso) {
       toastSucesso.onHidden.subscribe(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/conta/cadastro-agencia']);
       });
     }
   }
