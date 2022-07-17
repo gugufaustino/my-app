@@ -10,7 +10,7 @@ import { NavegacaoService } from '../services/navegacao.service';
 })
 export class UserComponent implements OnInit {
 
-  user: any;
+
   nome: string = "";
   abreviatura: string = "";
   papel: string = "";
@@ -18,16 +18,16 @@ export class UserComponent implements OnInit {
   localStorageUtils = new LocalStorageUtils();
 
   constructor(private router: Router,
-              private navegacaoService: NavegacaoService) { }
+    private navegacaoService: NavegacaoService) { }
 
   ngOnInit(): void {
   }
 
   usuarioLogado(): boolean {
-    this.user = this.localStorageUtils.obterUsuario();
+    const user = this.localStorageUtils.obterUsuario();
 
-    if (this.user){
-      this.nome = this.user.nome;
+    if (user) {
+      this.nome = user.nome;
       this.abreviatura = this.localStorageUtils.findClaim("abreviatura");
       this.papel = "Administrador";
     }
@@ -39,20 +39,18 @@ export class UserComponent implements OnInit {
     this.router.navigate(['/conta/login']);
   }
 
-  obterPerfil(){
-    let usuario: Usuario
+  obterPerfil() {
+
     let tokeUser = this.localStorageUtils.obterUsuario();
 
-    usuario = Object.assign({}, tokeUser)
-
-     this.navegacaoService.obterApelido(usuario)
-          .subscribe(
-              sucesso => {  this.processaSucesso(sucesso) },
-          );
+    this.navegacaoService.obterApelido(tokeUser.email)
+      .subscribe(
+        sucesso => { this.processaSucesso(sucesso) },
+      );
   }
 
-  private processaSucesso(response: any){
-   // this.apelido = response.apelido ?? '';
+  private processaSucesso(response: any) {
+    // this.apelido = response.apelido ?? '';
   }
 
 

@@ -13,9 +13,9 @@ export class NavegacaoService extends BaserService {
 
   constructor(private http: HttpClient) { super(); }
 
-  obterApelido(usuario: Usuario): Observable<Usuario> {
+  obterApelido(email: string): Observable<Usuario> {
 
-    let response = this.http.get(this.UrlServiceV1 + 'cadastro/obter-apelido/' + usuario.email, this.ObterHeaderAuthJson())
+    let response = this.http.get(this.UrlServiceV1 + 'cadastro/obter-apelido/' + email, this.ObterHeaderAuthJson())
       .pipe(
         map(this.extractData),
         catchError(this.serviceError)

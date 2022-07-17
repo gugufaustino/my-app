@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './app-core/services/auth.guard';
 import { ContasAPagarGuard } from './contas-a-pagar/services/contas-a-pagar.guard';
 import { AcessoNegadoComponent } from './navegacao/acesso-negado/acesso-negado.component';
 import { HomeComponent } from './navegacao/home/home.component';
@@ -13,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'welcome', component: WelcomeComponent,
-    canActivate: [ContasAPagarGuard],
+    canActivate: [AuthGuard],
     // data: [{ claim: { nome: 'PAGAMENTO', valor: 'CONSULTAR' } }]
   },
   { path: 'conta', loadChildren: () => import('./conta/conta.module').then(m => m.ContaModule) },

@@ -1,3 +1,5 @@
+import { UserToken } from "../models/user-token";
+
 export class LocalStorageUtils {
 
     readonly user: string = "userToken";
@@ -12,7 +14,7 @@ export class LocalStorageUtils {
         localStorage.setItem(this.user, JSON.stringify(user));
     }
 
-    public obterUsuario() {
+    public obterUsuario():UserToken {
         return JSON.parse(localStorage.getItem(this.user) || '{}');
     }
 
