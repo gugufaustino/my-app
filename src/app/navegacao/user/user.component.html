@@ -69,7 +69,12 @@
           </div>
           <div class="flex-grow-1">
             <span class="fw-semibold d-block lh-1">{{nome}}</span>
-            <small>{{papel}}</small>
+
+            <small *ngIf="!tipoAgencia" >{{papel}}</small>
+
+            <small *ngIf="tipoAgencia" class="d-block">{{papel}}</small>
+            <small *ngIf="tipoAgencia" class="d-block">{{nomeFantasia}}</small>
+
           </div>
         </div>
       </a>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/conta/models/usuario';
+import { TipoCadastroEnum, Usuario } from 'src/app/conta/models/usuario';
 import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { NavegacaoService } from '../services/navegacao.service';
 
@@ -14,6 +14,9 @@ export class UserComponent implements OnInit {
   nome: string = "";
   abreviatura: string = "";
   papel: string = "";
+  tipoAgencia: boolean = false;
+  nomeFantasia: string = "";
+
   token: string | null = "";
   localStorageUtils = new LocalStorageUtils();
 
@@ -29,7 +32,9 @@ export class UserComponent implements OnInit {
     if (user) {
       this.nome = user.nome;
       this.abreviatura = this.localStorageUtils.findClaim("abreviatura");
-      this.papel = "Administrador";
+      this.papel = user.tipoCadastro == TipoCadastroEnum.Agente ? "Agente" : user.tipoCadastro == TipoCadastroEnum.Agencia ? "Administrador" : "NA";
+      this.tipoAgencia = user.tipoCadastro == TipoCadastroEnum.Agencia;
+      this.nomeFantasia = user.empresa?.nomeFantasia;
     }
 
     return this.localStorageUtils.usuarioLogado();
