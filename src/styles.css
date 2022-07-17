@@ -268,20 +268,20 @@ input[type="radio"]:disabled {
   background-color: #fffcfc26;
   border-radius: 50%;
 }
-
-input[type="radio"]:checked {
+/* essa cor era necessária em backgrounds mais escuro, por enquanto pode ficar sem esse estilo;
+  input[type="radio"]:checked {
   background-color: #11141b;
   border-color: #fcfcff7a;
 }
-
-/**/
-.form-bg input.form-control  {
+.form-container input.form-control  {
   color: #fff !important;
   background-color: #343a40 !important;
 
 }
+*/
 
-.form-bg .input-group-text{
+/**/
+.form-container .input-group-text{
  color: #fff !important;
 
  border-radius: 0;
@@ -296,22 +296,22 @@ input[type="radio"]:checked {
  border-radius: 0;
 }
 
-.form-bg input.as-label{
+.form-container input.as-label{
  background-color: #343a4000 !important;
    text-align: center;
    color: #bbbbbb !important;
 }
 
-.form-bg .form-group span {
+.form-container .form-group span {
   color: #dc3545 !important;
 }
 
-.form-bg .form-group span p {
+.form-container .form-group span p {
   position: absolute;
   font-size: 14px;
 }
 
-.form-bg .form-group .control-label span {
+.form-container .form-group .control-label span {
   color: #dc3545 !important;
   font-size: 18px;
   font-weight: 700;

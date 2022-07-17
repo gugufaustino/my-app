@@ -16,6 +16,7 @@ import { FormBaseComponent } from 'src/app/app-core/components/form-base.compone
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent extends FormBaseComponent implements OnInit, AfterViewInit {
 
@@ -49,15 +50,12 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
         cpf: 'formato inválido',
       },
       email: {
-        required: 'Requerido',
         email: 'formato inválido',
       },
       password: {
-        required: 'Requerido',
         rangeLength: 'Tamanho deve ser entre 6 e 15 caracteres',
       },
       confirmPassword: {
-        required: 'Requerido',
         rangeLength: 'Tamanho deve ser entre 6 e 15 caracteres',
         equalTo: 'As senhas não conferem'
       }
@@ -77,18 +75,16 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
       confirmPassword: ['', Validators.required],
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
       email: ['', [Validators.required, Validators.email]],
-      telefone: ['', [NgBrazilValidators.telefone]]
+      telefone: ['', [Validators.required, NgBrazilValidators.telefone]],
+
+
+      razaoSocial: ['', Validators.required],
+      nomeFantasia: ['', Validators.required],
+      cnpj: ['', [Validators.required, NgBrazilValidators.cnpj]],
     });
   }
 
   ngAfterViewInit(): void {
-    // let controlBlurs: Observable<any>[] = this.formInputElements
-    //   .map((formContro: ElementRef) => fromEvent(formContro.nativeElement, 'blur'));
-
-    // merge(...controlBlurs).subscribe(() => {
-    //   this.displayMessage = this.genericValidatior.processaMensgens(this.cadastroForm);
-    // });
-
     super.configurarMensagensValidacaoBase(this.validationMessages);
     super.configurarValidacaoFormularioBase(this.formInputElements, this.cadastroForm);
 
