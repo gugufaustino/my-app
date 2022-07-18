@@ -1,135 +1,43 @@
-<p>works cad age</p>
-
-<!-- <div class="container main-container form-container">
+<div class="container main-container form-container">
   <br>
-  <h1 _ngcontent-yhx-c165="" class="display-7 text-uppercase">Cadastro</h1>
+  <h1 class="display-7 text-uppercase">Cadastro Agência</h1>
   <hr />
+  <div class="row">
 
-  <form novalidate [formGroup]="cadastroForm" (ngSubmit)="adicionarUsuario()">
+    <span> Olá <b>{{user.nome}}</b></span><br>
+    <span>Seu cadastro foi realizado com sucesso. Agora vamos cadastrar a Agência!</span>
+    <br>
+  </div>
+  <br>
+  <form novalidate [formGroup]="cadastroForm" (ngSubmit)="salvar()">
     <div class="row">
-      <div class="col-md-7 pe-md-5 position-relative">
-        <div class="content-header mb-3">
-          <h4 class="mb-0">Conta de Usuário</h4>
-          <span>dados de acesso </span>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <app-label [required]="true">E-mail</app-label>
-            <div class="col-md-12">
-              <input class="form-control" id="email" type="text" placeholder="" formControlName="email" [ngClass]="{'is-invalid': displayMessage?.email}" />
-              <span class="text-danger" *ngIf="displayMessage?.email">
-                <p [innerHTML]="displayMessage?.email"></p>
-              </span>
-            </div>
-          </div>
-          <div class="form-group col-md-6">
-            <app-label [required]="true">Telefone</app-label>
-            <div class="col-md-12">
-              <input class="form-control" id="telefone" type="text" placeholder="" formControlName="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}" />
-              <span class="text-danger" *ngIf="displayMessage?.telefone">
-                <p [innerHTML]="displayMessage?.telefone"></p>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <app-label [required]="true">Password</app-label>
-            <div class="col-md-12">
-              <input class="form-control" id="password" type="text" placeholder="" formControlName="password" [ngClass]="{'is-invalid': displayMessage?.password}" />
-              <span class="text-danger" *ngIf="displayMessage?.password">
-                <p [innerHTML]="displayMessage?.password"></p>
-              </span>
-            </div>
-          </div>
-          <div class="form-group col-md-6">
-            <app-label [required]="true">Confirmação</app-label>
-            <div class="col-md-12">
-              <input class="form-control" id="confirmPassword" type="text" placeholder=" " formControlName="confirmPassword"
-                [ngClass]="{'is-invalid': displayMessage?.confirmPassword}" />
-              <span class="text-danger" *ngIf="displayMessage?.confirmPassword">
-                <p [innerHTML]="displayMessage?.confirmPassword"></p>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <br>
-        <div class="content-header mb-3">
-          <h4 class="mb-0">Identidade</h4>
-          <span>sua identificação como pessoa</span>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-7">
-            <app-label [required]="true">Nome Completo</app-label>
-            <div class="col-md-12">
-              <input class="form-control" id="nome" type="text" formControlName="nome" [ngClass]="{'is-invalid': displayMessage?.nome}" />
-              <span class="text-danger" *ngIf="displayMessage?.nome">
-                <p [innerHTML]="displayMessage?.nome"></p>
-              </span>
-            </div>
-          </div>
-          <div class="form-group col-5">
-            <app-label [required]="true">CPF</app-label>
-            <div class="col-md-12">
-              <input class="form-control" id="CPF" type="text" formControlName="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
-              <span class="text-danger" *ngIf="displayMessage?.cpf">
-                <p [innerHTML]="displayMessage?.cpf"></p>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <br class="d-md-none">
-        <br class="d-md-none">
-        <div class="hr-v d-none d-md-block"></div>
-      </div>
-
-
-      <div class="col-md-5">
+      <div class="col-md-12">
         <div class="row">
 
           <div class="col-md-12">
             <div class="card">
               <div class="card-header p-3">
-                <h4 class="mb-0"> Representação </h4>
-                <span>como se caracteriza ao realizar esse cadastro</span>
+                <p class="mb-1">Você se descreve como alguem que representa/trabalha na Agência, agora precisamos dos dados desta para fazer o cadastro e vincular seu usuário.</p>
+                <p class="mb-1">Os dados abaixo serão utilizados para conferência da existencia da empresa.</p>
+                <p class="mb-1">Será enviado ao e-mail principal da empresa uma solicitação de aprovação, assim que confirmado seu usuário recebrá acesso total.</p>
               </div>
+              <div class="card-body row">
 
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md mb-md-0 mb-2 p-1">
-                    <div class="form-check custom-option custom-option-icon">
-                      <label class="form-check-label custom-option-content" for="customRadioIcon1">
-                        <span class="custom-option-body">
-                          <i class="bx bx-rocket"></i>
-                          <span class="custom-option-title">Empresa Agência</span>
-                          <small> trabalho em uma agência de modelos e sou o responsável pelo catálogo na plataforma Onemodel.me</small>
-                        </span>
-                        <input name="customRadioIcon" class="form-check-input" type="radio" value="" id="customRadioIcon1" checked />
-                      </label>
-                    </div>
+                <div class="col-md-3">
+                  <div class="form-check custom-option nohover custom-option-icon">
+                    <label class="form-check-label custom-option-content" for="customRadioIcon1">
+                      <span class="custom-option-body">
+                        <i class="bx bx-rocket"></i>
+                        <span class="custom-option-title">Empresa Agência</span>
+                        <small> trabalho em uma agência de modelos e sou o responsável pelo catálogo na plataforma Onemodel.me</small>
+                      </span>
+                    </label>
                   </div>
-                  <div class="col-md p-1">
-                    <div class="form-check custom-option custom-option-icon">
-                      <label class="form-check-label custom-option-content" for="customRadioIcon2">
-                        <span class="custom-option-body">
-                          <i class="bx bx-user"></i>
-                          <span class="custom-option-title"> Agente autônomo </span>
-                          <small> sou um agente e não possuo empresa, mas quero ter meu catálogo na plataforma Onemodel.me</small>
-                        </span>
-                        <input name="customRadioIcon" class="form-check-input" type="radio" value="" id="customRadioIcon2" />
-                      </label>
-                    </div>
-                  </div>
-
                 </div>
 
-                <div class="col-md mb-md-0  p-1">
-                  <div class="row custom-option nohover pt-3 ">
-                    <div class="form-group col-12 ps-2 pe-2 ">
+                <div class="col-md-9  ">
+                  <div class=" row custom-option nohover pt-3 ">
+                    <div class="form-group col-7">
                       <app-label [required]="true">Razão Social</app-label>
                       <div class="col-md-12">
                         <input class="form-control" type="text" formControlName="razaoSocial" [ngClass]="{'is-invalid': displayMessage?.razaoSocial}" />
@@ -138,16 +46,7 @@
                         </span>
                       </div>
                     </div>
-                    <div class="form-group col-6 ps-2 pe-2">
-                      <app-label [required]="true">Nome Fantasia</app-label>
-                      <div class="col-md-12">
-                        <input class="form-control" type="text" formControlName="nomeFantasia" [ngClass]="{'is-invalid': displayMessage?.nomeFantasia}" />
-                        <span class="text-danger" *ngIf="displayMessage?.nomeFantasia">
-                          <p [innerHTML]="displayMessage?.nomeFantasia"></p>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="form-group col-6 ps-2 pe-2">
+                    <div class="form-group col-5">
                       <app-label [required]="true">CNPJ</app-label>
                       <div class="col-md-12">
                         <input class="form-control" type="text" formControlName="cnpj" [ngClass]="{'is-invalid': displayMessage?.cnpj}" [textMask]="{mask: MASKS?.cnpj.textMask}" />
@@ -156,6 +55,35 @@
                         </span>
                       </div>
                     </div>
+
+                    <div class="form-group col-4">
+                      <app-label [required]="true">Nome Fantasia</app-label>
+                      <div class="col-md-12">
+                        <input class="form-control" type="text" formControlName="nomeFantasia" [ngClass]="{'is-invalid': displayMessage?.nomeFantasia}" />
+                        <span class="text-danger" *ngIf="displayMessage?.nomeFantasia">
+                          <p [innerHTML]="displayMessage?.nomeFantasia"></p>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group col-4">
+                      <app-label [required]="true">Instagram</app-label>
+                      <div class="col-md-12">
+                        <input class="form-control" type="text" formControlName="nomeFantasia" [ngClass]="{'is-invalid': displayMessage?.nomeFantasia}" />
+                        <span class="text-danger" *ngIf="displayMessage?.nomeFantasia">
+                          <p [innerHTML]="displayMessage?.nomeFantasia"></p>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="form-group col-4">
+                      <app-label [required]="true">E-mail Principal</app-label>
+                      <div class="col-md-12">
+                        <input class="form-control" type="text" formControlName="nomeFantasia" [ngClass]="{'is-invalid': displayMessage?.nomeFantasia}" />
+                        <span class="text-danger" *ngIf="displayMessage?.nomeFantasia">
+                          <p [innerHTML]="displayMessage?.nomeFantasia"></p>
+                        </span>
+                      </div>
+                    </div>
+
 
                   </div>
                 </div>
@@ -177,20 +105,15 @@
       </ul>
     </div>
 
-    <div class="form-group">
-      <div class="col-md-4 col-md-offset-2">
-        <span><button [disabled]="(1 == 0) && !cadastroForm.valid"  class="btn btn-primary" id="Registrar" type="submit">Registrar</button></span>
+    <br>
+    <div class="d-flex flex-row-reverse">
+      <div class="form-group ">
+        <div class="col-md-4 col-md-offset-2 ">
+          <span> <button class="btn btn-primary" id="Registrar" type="submit">Registrar</button> </span>
+        </div>
 
-    </div>
-
-    <div class="form-group hidden">
-      <div class="col-md-4 col-md-offset-2">
-        <p>Valido: {{cadastroForm.valid}}</p>
-        <p>Tocado: {{cadastroForm.touched}}</p>
-        <p>Sujo: {{cadastroForm.dirty}}</p>
-        <p> {{formResult}}</p>
       </div>
     </div>
 
   </form>
-</div> -->
+</div>

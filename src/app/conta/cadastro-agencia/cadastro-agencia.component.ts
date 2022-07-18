@@ -1,3 +1,5 @@
+import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
+import { UserToken } from './../../app-core/models/user-token';
 import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,13 +13,13 @@ import { ContaService } from '../services/conta.service';
 @Component({
   selector: 'app-cadastro-agencia',
   templateUrl: './cadastro-agencia.component.html',
-  styleUrls: ['./cadastro-agencia.component.css']
+  styleUrls: ['../cadastro/cadastro.component.css']
 })
 export class CadastroAgenciaComponent  extends FormBaseComponent  implements OnInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-  usuario: Usuario
+  user: UserToken
   cadastroForm!: FormGroup;
 
   validationMessages: ValidationMessages;
@@ -29,6 +31,8 @@ export class CadastroAgenciaComponent  extends FormBaseComponent  implements OnI
     private toastr: ToastrService,
     private router: Router ) {
       super();
+
+      this.user = new LocalStorageUtils().obterUsuario();
 
     this.validationMessages = {
 
@@ -50,6 +54,10 @@ export class CadastroAgenciaComponent  extends FormBaseComponent  implements OnI
       cnpj: ['', [Validators.required, NgBrazilValidators.cnpj]],
       tipoCadastro: [null, Validators.required],
     });
+
+  }
+
+  salvar(){
 
   }
 
