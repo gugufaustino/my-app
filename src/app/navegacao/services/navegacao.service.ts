@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Usuario } from 'src/app/conta/models/usuario';
+import { Conta } from 'src/app/conta/models/conta';
 import { BaserService } from 'src/app/services/base.service';
 
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ export class NavegacaoService extends BaserService {
 
   constructor(private http: HttpClient) { super(); }
 
-  obterApelido(email: string): Observable<Usuario> {
+  obterApelido(email: string): Observable<Conta> {
 
     let response = this.http.get(this.UrlServiceV1 + 'cadastro/obter-apelido/' + email, this.ObterHeaderAuthJson())
       .pipe(

@@ -9,7 +9,7 @@ import { CustomValidators } from 'ng2-validation';
 import { DisplayMessage, GenericValidator } from '../../app-core/utils/generic-form-validation';
 import { ToastrService } from 'ngx-toastr';
 
-import { Usuario } from '../models/usuario';
+import { Conta } from '../models/conta';
 import { ContaService } from '../services/conta.service';
 import { Router } from '@angular/router';
 import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
@@ -24,7 +24,7 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-  usuario: Usuario
+  usuario: Conta
   cadastroForm!: FormGroup;
   formResult: string = '';
   errors: any = [];
@@ -91,7 +91,7 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
   }
 
-  adicionarUsuario() {
+  registrar() {
 
     super.validarFormulario(this.cadastroForm, true);
     if (this.cadastroForm.dirty && this.cadastroForm.valid) {

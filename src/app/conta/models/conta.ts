@@ -1,5 +1,5 @@
 
-export class Usuario {
+export class Conta {
     id: string;
     email: string;
     password: string;
@@ -9,14 +9,6 @@ export class Usuario {
     cpf: string;
     telefone: string;
     tipoCadastro: number;
-
-      // public static get tipoCadastroEnum(): OptionSelect[] {
-      // return [
-      //   new OptionSelect(1, 'Agente'),
-      //   new OptionSelect(2, 'Agência'),
-
-      // ]
-    // }
 }
 
 export enum TipoCadastroEnum  {

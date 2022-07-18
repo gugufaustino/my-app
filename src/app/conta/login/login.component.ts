@@ -3,12 +3,13 @@ import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/fo
 
 import { CustomValidators } from 'ng2-validation';
 
-import { Usuario } from '../models/usuario';
+import { Conta } from '../models/conta';
 import { ContaService } from '../services/conta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { FormBaseComponent } from 'src/app/app-core/components/form-base.component';
 import { ToastAppService } from 'src/app/services/toastapp.service';
+import { Login } from '../models/login';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
 
   controlsFormBase: any;
   componentForm: FormGroup;
-  usuario: Usuario
+  login: Login
   formResult: string = '';
   returnUrl: string;
   passwordType: boolean = true;
@@ -62,9 +63,9 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
   submitForm() {
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
-      this.usuario = Object.assign({}, this.usuario, this.componentForm.value)
+      this.login = Object.assign({}, this.login, this.componentForm.value)
 
-      this.contaService.login(this.usuario)
+      this.contaService.login(this.login)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
           falha => { this.processarFalha(falha) }

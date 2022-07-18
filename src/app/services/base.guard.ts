@@ -1,4 +1,4 @@
-import { TipoCadastroEnum } from 'src/app/conta/models/usuario';
+import { TipoCadastroEnum } from 'src/app/conta/models/conta';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { IFormComponent } from '../app-core/interfaces/components/iform.component';
@@ -71,7 +71,7 @@ export abstract class BaseGuard {
   protected verificarCadastroAgenciaCompleto() {
 
     const usuario = this.utilStorage.obterUsuario();
-    if (usuario.tipoCadastro == TipoCadastroEnum.Agencia && usuario.empresa === null) {
+    if (usuario.tipoCadastro == TipoCadastroEnum.Agencia && usuario.agencia === null) {
       this.router.navigate(['/conta/cadastro-agencia']);
 
       return true;
