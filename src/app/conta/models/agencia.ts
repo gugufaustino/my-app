@@ -1,6 +1,6 @@
 
 export class Agencia {
-    id : number;
+    nome: string;
     razaoSocial: string;
     cnpj: string;
     nomeFantasia: string;

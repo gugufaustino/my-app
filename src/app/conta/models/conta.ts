@@ -1,6 +1,6 @@
 
 export class Conta {
-    id: string;
+
     email: string;
     password: string;
     confirmPassword: string;
