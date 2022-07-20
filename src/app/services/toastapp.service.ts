@@ -21,24 +21,30 @@ export class ToastAppService {
   }
 
 
-  public error(throwError: any, titulo?: string): void {
+  public error(throwError: any, titulo?: string, observer?: any): void {
 
+    titulo = titulo ?? "Erro";
+    let toast:any ;
     if (throwError?.error?.errors != null) {
 
       let arrMens = throwError?.error?.errors.join()
-      this.toastr.error(arrMens, "Erro");
+      toast = this.toastr.error(arrMens, titulo);
 
     }
     else if (throwError?.error != null) {
 
-      this.toastr.error(throwError?.error, "Erro");
+      toast = this.toastr.error(throwError?.error, titulo);
 
     } else {
       if (this.isNullObj(throwError)) {
-        this.toastr.error("", "Erro");
+        toast =   this.toastr.error("", titulo);
       } else {
-        this.toastr.error(throwError, "Erro");
+        toast = this.toastr.error(throwError, titulo);
       }
+    }
+
+    if (toast && observer != null) {
+      toast.onHidden.subscribe(observer);
     }
 
   }

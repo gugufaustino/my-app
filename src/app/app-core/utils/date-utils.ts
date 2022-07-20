@@ -14,11 +14,12 @@ export class DateUtils {
     return dt.toISOString().substring(0, 10);
   }
 
-  public static Format(data: Date, format:string = 'L'): string {
+  public static Format(data: Date, format:string = 'L', uctToLocal:boolean = false): string {
     //L ='dd/MM/YYYY'
     var momentUtc = moment.utc(data)
     momentUtc.locale('pt-br');
-    var dt = momentUtc.format(format);
+
+    var dt = uctToLocal ? momentUtc.local().format(format) : momentUtc.format(format);
     return dt;
   }
 

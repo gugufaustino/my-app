@@ -121,7 +121,7 @@ let isRtl = window.Helpers.isRtl(),
 
     for (let i = 0; i < dropdownItems.length; i++) {
       dropdownItems[i].addEventListener('click', function (e) {
-        console.log('chamou function dropdownItems', this);
+        //console.log('chamou function dropdownItems', this);
         let currentLanguage = this.getAttribute('data-language');
         let selectedLangFlag = this.querySelector('.fi').getAttribute('class'),
           startsWith = 'fs-',
