@@ -27,6 +27,9 @@ export class CadastroAgenciaComponent extends FormBaseComponent implements OnIni
   genericValidatior: GenericValidator;
   displayMessage: DisplayMessage;
 
+  agenciaEmElaboracao: boolean;
+  agenciaExiste: boolean;
+
   constructor(private fb: FormBuilder,
     private contaService: ContaService,
     private toastr: ToastrService,
@@ -35,6 +38,9 @@ export class CadastroAgenciaComponent extends FormBaseComponent implements OnIni
     this.user = new LocalStorageUtils().obterUsuario();
     this.validationMessages = { }
     this.genericValidatior = new GenericValidator(this.validationMessages);
+
+    this.agenciaExiste = this.user?.agenciaTipoSituacao != null;
+    this.agenciaEmElaboracao =  this.user?.agenciaTipoSituacao == this.CoreEnum.TipoSituacaoAgencia.EmElaboracao
   }
 
   ngOnInit(): void {
@@ -69,18 +75,23 @@ export class CadastroAgenciaComponent extends FormBaseComponent implements OnIni
   private processarSucesso(response: any) {
     this.cadastroForm.reset();
     this.errors = [];
-    this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
-    let toastSucesso = this.toastr.success("cadastro realizado com sucesso.", "Bem vindo!");
+    let toastSucesso = this.toastr.success("Cadastro realizado com sucesso. Aguarde a aprovação, você receberá um e-mail assim que aprovado." );
     if (toastSucesso) {
       toastSucesso.onHidden.subscribe(() => {
-        this.router.navigate(['/conta/cadastro-agencia']);
+        this.agenciaExiste = true;
+        this.agenciaEmElaboracao = true;
       });
     }
   }
 
   private processarFalha(fail: any) {
-    this.errors = fail.error.errors;
+    debugger;
+    if(fail.error == null){
+      this.errors = [fail.message] ;
+    }else{
+      this.errors = fail.error.errors ;
+    }
     this.toastr.error("verifique os motivos na lista de erros.", "Erro ao registrar-se.");
   }
 

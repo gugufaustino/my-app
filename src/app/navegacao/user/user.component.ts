@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
       this.abreviatura = this.localStorageUtils.findClaim("abreviatura");
       this.papel = user.tipoCadastro == TipoCadastroEnum.Agente ? "Agente" : user.tipoCadastro == TipoCadastroEnum.Agencia ? "Administrador" : "NA";
       this.tipoAgencia = user.tipoCadastro == TipoCadastroEnum.Agencia;
-      this.nomeFantasia = user.agencia?.nomeFantasia;
+      this.nomeFantasia = user.agencia?.nomeAgencia;
     }
 
     return this.localStorageUtils.usuarioLogado();

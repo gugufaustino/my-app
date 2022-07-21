@@ -26,7 +26,7 @@ export class EditarComponent extends CatalogoBase implements OnInit, AfterViewIn
     super(fb, modal);
 
     this.model = Object.assign(this.model, this.route.snapshot.data["model"]);
-    console.log(this.model)
+
   }
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];

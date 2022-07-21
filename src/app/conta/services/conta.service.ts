@@ -26,7 +26,7 @@ export class ContaService extends BaserService {
 
     registraAgencia(agencia: Agencia): Observable<Agencia> {
       let response = this.http
-            .post(this.UrlServiceV1 + 'registrar-agencia', agencia, this.ObterHeaderJson())
+            .post(this.UrlServiceV1 + 'cadastro/adicionar-agencia', agencia, this.ObterHeaderAuthJson())
             .pipe(
                 map(this.extractData),
                 catchError(this.serviceError));

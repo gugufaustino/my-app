@@ -1,6 +1,6 @@
 import { DateUtils } from './../utils/date-utils';
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { BaseGuard } from 'src/app/services/base.guard';
 
 import { JwtHelperService } from "@auth0/angular-jwt";
@@ -14,10 +14,10 @@ export class AuthGuard extends BaseGuard implements CanActivate {
     super(router, jwtHelper);
   }
 
-  override canActivate() {
-
+  override canActivate(routeAc: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    let returnUrl: string = state.url;
     let encerrar = false;
-    encerrar = this.verificarAutenticacao();
+    encerrar = this.verificarAutenticacao(returnUrl);
     if (encerrar) return false;
 
     encerrar = this.verificarCadastroAgenciaCompleto();

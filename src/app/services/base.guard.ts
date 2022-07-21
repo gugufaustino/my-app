@@ -1,5 +1,5 @@
 import { TipoCadastroEnum } from 'src/app/conta/models/conta';
-import { Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { IFormComponent } from '../app-core/interfaces/components/iform.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -15,11 +15,11 @@ export abstract class BaseGuard {
     protected jwtHelper: JwtHelperService
   ) { }
 
-  canActivate(routeAc: ActivatedRouteSnapshot) {
-
+  canActivate(routeAc: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    let returnUrl: string = state.url;
     let encerrar = false;
 
-    encerrar = this.verificarAutenticacao();
+    encerrar = this.verificarAutenticacao(returnUrl);
     if (encerrar) return false;
 
     encerrar = this.verificarCadastroAgenciaCompleto();
@@ -40,20 +40,20 @@ export abstract class BaseGuard {
   }
 
 
-  protected verificarAutenticacao() {
+  protected verificarAutenticacao(returnUrl:string) {
 
     console.log("date:", DateUtils.Format(this.jwtHelper.getTokenExpirationDate()!, 'DD/MM/yyyy HH:mm:ss', true))
     console.log("expirado:", this.jwtHelper.isTokenExpired()!)
 
     if (!this.utilStorage.usuarioLogado()) {
-      this.navegarLogon();
+      this.navegarLogon(returnUrl);
       return true;
     }
     if (this.jwtHelper.isTokenExpired()) {  //TODO #3 Colocar aqui uma validação do token no backend
-      this.utilStorage.limparDadosLocaisUsuario();
       let toastApp = AppInjector.get(ToastAppService);
-      toastApp.error("Você precisa se autenticar novamente.", "Sessão Expirada", () => {
-        this.navegarLogon();
+      toastApp.error('Acesso expirou, faça login novamente.', "Erro", () => {
+        this.utilStorage.limparDadosLocaisUsuario();
+        this.navegarLogon(returnUrl);
       })
       return true;
     }
@@ -80,8 +80,8 @@ export abstract class BaseGuard {
   }
 
 
-  private navegarLogon() {
-    this.router.navigate(['/conta/login/'], { queryParams: { returnUrl: this.router.url } });
+  private navegarLogon(returnUrl:string) {
+    this.router.navigate(['/conta/login/'], { queryParams: { returnUrl: returnUrl } });
   }
   private navegarAcessoNegado() {
     this.router.navigate(['/acesso-negado']);

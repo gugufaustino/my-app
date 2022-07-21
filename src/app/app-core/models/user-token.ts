@@ -5,7 +5,20 @@ export class UserToken {
     email: string;
     nome: string;
     tipoCadastro: TipoCadastroEnum;
-    agencia: any;
+    agencia: Agencia;
+    agenciaTipoSituacao : TipoSituacaoAgenciaEnum
     claims: string[];
 }
+
+export class Agencia {
+  nomeAgencia : string
+}
+
+
+export enum TipoSituacaoAgenciaEnum  {
+  EmElaboracao = 0,
+  Ativado = 1,
+}
+
+
 
