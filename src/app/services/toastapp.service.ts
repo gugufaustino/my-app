@@ -8,7 +8,7 @@ export class ToastAppService {
 
   public success(mensagem: string[], titulo?: string, observer?: any): void {
 
-    let config = { timeOut: 800 } as IndividualConfig;
+    let config = { timeOut: 1000 } as IndividualConfig;
 
     let mens = mensagem == undefined
       ? 'Operação realizada!'
@@ -21,31 +21,26 @@ export class ToastAppService {
   }
 
 
-  public error(throwError: any, titulo?: string, observer?: any): void {
+  public error(throwError: any, titulo?: string, observer?: any, warning: boolean = false): void {
 
     titulo = titulo ?? "Erro";
-    let toast:any ;
+    let toast: any;
+    let message: any;
+
     if (throwError?.error?.errors != null) {
-
-      let arrMens = throwError?.error?.errors.join()
-      toast = this.toastr.error(arrMens, titulo);
-
-    }
-    else if (throwError?.error != null) {
-
-      toast = this.toastr.error(throwError?.error, titulo);
-
+      message = throwError?.error?.errors.join();
+    } else if (throwError?.error != null) {
+      message = throwError?.error;
+    } else if (!this.isNullObj(throwError)) {
+      message = throwError;
     } else {
-      if (this.isNullObj(throwError)) {
-        toast =   this.toastr.error("", titulo);
-      } else {
-        toast = this.toastr.error(throwError, titulo);
-      }
+      message = "";
     }
 
-    if (toast && observer != null) {
+    toast = warning ? this.toastr.warning(message, titulo) : this.toastr.error(message, titulo);
+
+    if (toast && observer != null)
       toast.onHidden.subscribe(observer);
-    }
 
   }
 
