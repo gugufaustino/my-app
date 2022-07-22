@@ -1,3 +1,4 @@
+import { ToastAppService } from './../../services/toastapp.service';
 import { LocalStorageUtils } from 'src/app/app-core/utils/localstorage';
 import { UserToken } from './../../app-core/models/user-token';
 import { Component, ElementRef, OnInit, ViewChildren, AfterViewInit } from '@angular/core';
@@ -25,15 +26,14 @@ export class CadastroAgenciaComponent extends FormBaseComponent implements OnIni
   agencia: Agencia;
   validationMessages: ValidationMessages;
   genericValidatior: GenericValidator;
-  displayMessage: DisplayMessage;
+
 
   agenciaEmElaboracao: boolean;
   agenciaExiste: boolean;
 
   constructor(private fb: FormBuilder,
     private contaService: ContaService,
-    private toastr: ToastrService,
-    private router: Router) {
+    private toastr: ToastAppService) {
     super();
     this.user = new LocalStorageUtils().obterUsuario();
     this.validationMessages = { }
@@ -75,24 +75,19 @@ export class CadastroAgenciaComponent extends FormBaseComponent implements OnIni
   private processarSucesso(response: any) {
     this.cadastroForm.reset();
     this.errors = [];
+    this.toastr.success(["Você receberá um e-mail assim que aprovado.", "Por favor aguarde"], "Cadastro realizado com sucesso!",
 
-    let toastSucesso = this.toastr.success("Cadastro realizado com sucesso. Aguarde a aprovação, você receberá um e-mail assim que aprovado." );
-    if (toastSucesso) {
-      toastSucesso.onHidden.subscribe(() => {
-        this.agenciaExiste = true;
-        this.agenciaEmElaboracao = true;
-      });
-    }
+    () => {
+      this.agenciaExiste = true;
+      this.agenciaEmElaboracao = true;
+    });
   }
 
+
   private processarFalha(fail: any) {
-    debugger;
-    if(fail.error == null){
-      this.errors = [fail.message] ;
-    }else{
-      this.errors = fail.error.errors ;
-    }
-    this.toastr.error("verifique os motivos na lista de erros.", "Erro ao registrar-se.");
+    this.validations = fail.error.validations;
+    this.errors = fail.error.errors;
+    this.toastr.error("verifique os motivos listados abaixo.", "Erro ao cadastrar.", null, this.errors.length == 0 );
   }
 
 }

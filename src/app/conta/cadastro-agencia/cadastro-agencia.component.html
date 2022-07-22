@@ -19,7 +19,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header p-3">
-                <p class="mb-1">Você se descreve como representante da Agência, agora precisamos dos dados desta para fazer o cadastro e vincular seu usuário.</p>
+                <p class="mb-1">Você se descreve como representante da agência, agora precisamos dos dados desta para fazer o cadastro e vincular seu usuário.</p>
                 <p class="mb-1">Será enviado ao e-mail principal da empresa uma solicitação de aprovação, assim que confirmado seu usuário recebrá acesso total.</p>
               </div>
               <div class="card-body row">
@@ -96,12 +96,19 @@
       </div>
     </div>
 
-
-    <div class=" alert alert-danger mt-3 mb-0" *ngIf="errors.length > 0">
-      <h5 id="msgRetorno">Erros:</h5>
-      <ul>
+    <div class="alert alert-danger mt-3 mb-0" *ngIf="errors.length > 0">
+      <h6 class="mb-2">Erros:</h6>
+      <ul class="mb-2">
         <li *ngFor="let error of errors">
           {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div class="alert alert-warning mt-3 mb-0" *ngIf="validations.length > 0">
+      <h6 class="mb-2">Validações:</h6>
+      <ul class="mb-2">
+        <li *ngFor="let validation of validations">
+          {{ validation }}
         </li>
       </ul>
     </div>

@@ -14,7 +14,7 @@
           <div class="form-group col-md-6">
             <app-label [required]="true">Telefone</app-label>
             <div class="col-md-12">
-              <input class="form-control" id="telefone" type="text" placeholder="" formControlName="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}" />
+              <input class="form-control" id="telefone" type="text" placeholder="" formControlName="telefone" [ngClass]="{'is-invalid': displayMessage?.telefone}" [textMask]="{mask: MASKS?.telefone.textMask}" />
               <span class="text-danger" *ngIf="displayMessage?.telefone">
                 <p [innerHTML]="displayMessage?.telefone"></p>
               </span>
@@ -73,7 +73,7 @@
           <div class="form-group col-5">
             <app-label [required]="true">CPF</app-label>
             <div class="col-md-12">
-              <input class="form-control" id="CPF" type="text" formControlName="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
+              <input class="form-control" id="cpf" type="text" formControlName="cpf" [ngClass]="{'is-invalid': displayMessage?.cpf}" [textMask]="{mask: MASKS?.cpf.textMask}" />
               <span class="text-danger" *ngIf="displayMessage?.cpf">
                 <p [innerHTML]="displayMessage?.cpf"></p>
               </span>
@@ -143,10 +143,18 @@
 
 
     <div class="alert alert-danger" *ngIf="errors.length > 0">
-      <h5 id="msgRetorno">Erros:</h5>
-      <ul>
+      <h6 class="mb-2">Erros:</h6>
+      <ul class="mb-2">
         <li *ngFor="let error of errors">
           {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div class="alert alert-warning " *ngIf="validations.length > 0">
+      <h6 class="mb-2">Validações:</h6>
+      <ul class="mb-2">
+        <li *ngFor="let validation of validations">
+          {{ validation }}
         </li>
       </ul>
     </div>
@@ -158,14 +166,14 @@
       </div>
     </div>
 
-    <div class="form-group hidden">
+    <!-- <div class="form-group hidden">
       <div class="col-md-4 col-md-offset-2">
         <p>Valido: {{cadastroForm.valid}}</p>
         <p>Tocado: {{cadastroForm.touched}}</p>
         <p>Sujo: {{cadastroForm.dirty}}</p>
         <p> {{formResult}}</p>
       </div>
-    </div>
+    </div> -->
 
   </form>
 </div>

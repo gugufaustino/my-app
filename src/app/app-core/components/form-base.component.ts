@@ -21,7 +21,8 @@ export abstract class FormBaseComponent implements IFormComponent {
 
   mudancasNaoSalvas: boolean;
   errors: any = [];
-  displayMessage: DisplayMessage = {};
+  validations: any = [];
+  displayMessage: DisplayMessage | any = {} ;
   genericValidator: GenericValidator;
   validationMessages: ValidationMessages;
 

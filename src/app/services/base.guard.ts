@@ -51,7 +51,7 @@ export abstract class BaseGuard {
     }
     if (this.jwtHelper.isTokenExpired()) {  //TODO #3 Colocar aqui uma validação do token no backend
       let toastApp = AppInjector.get(ToastAppService);
-      toastApp.error('Acesso expirou, faça login novamente.', "Erro", () => {
+      toastApp.error('Faça login novamente.', "Acesso expirou", () => {
         this.utilStorage.limparDadosLocaisUsuario();
         this.navegarLogon(returnUrl);
       })
