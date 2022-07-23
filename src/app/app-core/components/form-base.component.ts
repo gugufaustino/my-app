@@ -20,8 +20,8 @@ declare function translateWithI18next(): any;
 export abstract class FormBaseComponent implements IFormComponent {
 
   mudancasNaoSalvas: boolean;
-  errors: any = [];
-  validations: any = [];
+  errors: any[] = [];
+  validations: any[] = [];
   displayMessage: DisplayMessage | any = {} ;
   genericValidator: GenericValidator;
   validationMessages: ValidationMessages;
@@ -89,20 +89,24 @@ export abstract class FormBaseComponent implements IFormComponent {
       const propDescr: PropertyDescriptor | undefined = Reflect.getOwnPropertyDescriptor(source2, propKey)
       if (propDescr !== undefined) {
         let mapProperty = source1?.mappings.filter(i => i[propKey] != undefined);
-        if (mapProperty.length == 1) {
 
+        if (mapProperty.length == 1) {
           let mapType = mapProperty[0][propKey];
           let modelValue = model[propKey];
-          let parsed = null;
+          let parsed : any = null;
 
-          if (mapType == "number" && modelValue != "" && modelValue != null && isNaN(modelValue)) {
+          if (mapType == "number"
+                && modelValue != null
+                && modelValue != ''
+                && typeof(modelValue) != 'number') // se já é numero nao precisa tratar
+          {
             if (modelValue.indexOf(",") > 0) // temvirgula é decimal
               parsed = CurrencyUtils.StringParaDecimal(modelValue);
             else
               parsed = CurrencyUtils.ExtractNumber(modelValue);
 
             if (isNaN(parsed)) {
-              throw "Erro na conversao em 'mapToModel()'";
+              throw "Erro na conversao de numero em 'mapToModel()'";
             }
 
             model[propKey] = parsed;
@@ -144,6 +148,16 @@ export abstract class FormBaseComponent implements IFormComponent {
     formControl.nativeElement.classList.add(cssClass);
   }
 
+  protected processarSucessoBase() {
+    this.validations = [];
+    this.errors = [];
+    this.mudancasNaoSalvas = false;
+  }
 
+  protected processarFalha(fail: any) {
+    this.validations = fail?.error?.validations ?? [];
+    this.errors = fail?.error?.errors ?? [];
+
+  }
 
 }

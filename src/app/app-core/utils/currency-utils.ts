@@ -1,6 +1,6 @@
 export class CurrencyUtils {
 
-    public static StringParaDecimal(input: any): any {
+    public static StringParaDecimal(input: any): number {
         if (input === null) return 0;
 
         input = input.replace("R$ ", '');
@@ -22,10 +22,10 @@ export class CurrencyUtils {
         }
         return ret;
     }
-    
+
     public static ExtractNumber(input: any): number {
         input = input.replaceAll('.', '');
         return parseFloat(input.match(/(\d+)/)[0]);
     }
-    
+
 }
