@@ -66,7 +66,12 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
     this.toastr.error("verifique os motivos listados abaixo.", "Erro ao salvar.", null, this.validations?.length > 0);
   }
 
+  scrollTo(el:HTMLElement){
 
+
+
+    el.scrollIntoView({ behavior : 'smooth'});
+  }
 
   imageBase64: any;
   imagemPreview: any;
