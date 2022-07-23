@@ -45,12 +45,8 @@
 
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
-
-
             ],
             "scripts": [
-
-
               "src/assets/vendor/libs/jquery/jquery.js",
               "src/assets/vendor/libs/popper/popper.js",
               "src/assets/vendor/js/bootstrap.js",
@@ -59,7 +55,6 @@
               "src/assets/vendor/libs/i18n/i18n.js",
               "src/assets/vendor/libs/typeahead-js/typeahead.js",
               "src/assets/vendor/libs/apex-charts/apexcharts.js",
-
               "src/assets/vendor/libs/moment/moment.js",
               "src/assets/vendor/libs/datatables/jquery.dataTables.js",
               "src/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js",
@@ -67,7 +62,6 @@
               "src/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js",
               "src/assets/vendor/libs/datatables-buttons/datatables-buttons.js",
               "src/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js",
-
               "src/assets/vendor/libs/jszip/jszip.js",
               "src/assets/vendor/libs/pdfmake/pdfmake.js",
               "src/assets/vendor/libs/datatables-buttons/buttons.html5.js",
@@ -78,8 +72,8 @@
               "src/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js",
               "src/assets/vendor/libs/cleavejs/cleave.js",
               "src/assets/vendor/libs/cleavejs/cleave-phone.js",
-              "src/assets/js/tables-datatables.pt-br.js",
 
+              "src/assets/js/tables-datatables.pt-br.js",
               "src/assets/js/main/menu.js",
               "src/assets/js/main.js",
               "src/assets/js/app-user-list.js"
@@ -93,13 +87,6 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
@@ -118,7 +105,18 @@
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
-              ]
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": true,
+                "fonts": { "inline": false}
+              }
             },
             "development": {
               "optimization": {
@@ -128,7 +126,7 @@
               }
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

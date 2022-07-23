@@ -369,6 +369,10 @@ let isRtl = window.Helpers.isRtl(),
     i18nList.forEach(function (item) {
       item.innerHTML = i18next.t(item.dataset.i18n);
     });
+    let placeholdersList = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholdersList.forEach(function (item) {
+      item.placeholder = i18next.t(item.dataset['i18nPlaceholder']);
+    });
   }
 
 
