@@ -455,7 +455,7 @@ function appUserList(objData) {
     $(".datatables-users tbody").on("click", ".delete-record", function () {
       let objRef = $(this);
       deleteModel(objRef.data("id"), function () {
-        console.log("callback sucess", );
+        //console.log("callback sucess", );
         dt_user.row($(objRef).parents("tr")).remove().draw();
       });
     });
@@ -469,7 +469,8 @@ function appUserList(objData) {
 
     button = document.getElementById("btnInserir");
     button.addEventListener("click", (event) => {
-      window.location = userInsertView;
+      //window.location = userInsertView;
+      insertModel();
     });
   });
 
@@ -532,5 +533,10 @@ validationForm = function () {
 function deleteModel(id, fncallbackSucess) {
   window.angularComponentReference.zone.run(() => {
       window.angularComponentReference.callNgDeleteModel(id, fncallbackSucess);
+  });
+}
+function insertModel() {
+  window.angularComponentReference.zone.run(() => {
+      window.angularComponentReference.callNgInsertModel();
   });
 }

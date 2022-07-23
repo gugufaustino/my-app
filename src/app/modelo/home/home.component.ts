@@ -10,6 +10,7 @@ import { Modelo } from '../models/modelo';
 import { ToastAppService } from 'src/app/services/toastapp.service';
 import { DatePipe } from '@angular/common';
 import { DateUtils } from 'src/app/app-core/utils/date-utils';
+import { Router } from '@angular/router';
 
 declare function appUserList(data: any): any;
 
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   models: any;
   pathImagensPerfil: string = environment.imagensPerfil;
 
-  constructor(
+  constructor(private route: Router,
     private service: ModeloService<Modelo>,
     private ngZone: NgZone,
     private toastr: ToastAppService
@@ -50,7 +51,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
 
     (window as any)['angularComponentReference'] = {
-      component: this, zone: this.ngZone, callNgDeleteModel: (valor: number, fncallbk: any) => this.deleteModel(valor, fncallbk)
+      component: this, zone: this.ngZone,
+        callNgDeleteModel: (valor: number, fncallbk: any) => this.deleteModel(valor, fncallbk),
+        callNgInsertModel : () => this.inserirModel()
     };
 
   }
@@ -69,4 +72,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       );
 
   }
+
+  inserirModel(){
+    this.route.navigate(["models/insert"])
+  }
+
 }
