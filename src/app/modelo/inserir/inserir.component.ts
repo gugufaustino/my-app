@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModeloService } from '../services/modelo.service';
+import { Endereco } from 'src/app/app-core/models/endereco';
 
 @Component({
   selector: 'app-inserir',
@@ -43,25 +44,28 @@ export class InserirComponent extends CatalogoBase implements OnInit, AfterViewI
     super.validarFormulario(this.componentForm, true);
     if (this.componentForm.dirty && this.componentForm.valid) {
       this.model = super.mapToModel(this.model, this.componentForm.value)
+      this.model.endereco = super.mapToModel(new Endereco(), this.componentForm.get('endereco')!.value)
       this.model.imagemPerfilUpload = this.croppedImage.split(',')[1];
 
       this.service.inserir(this.model)
-        .subscribe(
-          sucesso => { this.processarSucesso(sucesso) },
-          falha => this.toastr.error(falha)
-        );
+        .subscribe(sucesso => this.processarSucesso(sucesso), falha => this.processarFalha(falha));
     }
   }
 
   processarSucesso(response: any) {
-    this.errors = [];
-    this.mudancasNaoSalvas = false;
+    super.processarSucessoBase();
 
     this.toastr.success(response.message, 'Sucesso!', () => {
       this.componentForm.reset();
       this.router.navigate(['/models']);
     });
   }
+
+  processarFalha(fail: any) {
+    super.processarFalha(fail);
+    this.toastr.error("verifique os motivos listados abaixo.", "Erro ao salvar.", null, this.validations?.length > 0);
+  }
+
 
 
   imageBase64: any;

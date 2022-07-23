@@ -111,9 +111,8 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
   }
 
-  private processarFalha(fail: any) {
-    this.validations = fail.error.validations;
-    this.errors = fail.error.errors;
+  processarFalha(fail: any) {
+    super.processarFalha(fail);
     this.toastr.error("verifique os motivos listados abaixo.", "Erro ao registrar-se.", null, this.errors.length == 0 );
   }
 

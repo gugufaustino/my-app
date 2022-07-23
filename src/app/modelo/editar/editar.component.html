@@ -366,6 +366,24 @@
     </div>
 
 
+    <div class="alert alert-danger" *ngIf="errors.length > 0">
+      <h6 class="mb-2">Erros:</h6>
+      <ul class="mb-2">
+        <li *ngFor="let error of errors">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div class="alert alert-warning" *ngIf="validations.length > 0">
+      <h6 class="mb-2">Validações:</h6>
+      <ul class="mb-2">
+        <li *ngFor="let validation of validations">
+          {{ validation }}
+        </li>
+      </ul>
+    </div>
+
+
     <div class="d-flex flex-row-reverse">
       <div class="form-group">
         <div class="col-md-4 col-md-offset-2 ">

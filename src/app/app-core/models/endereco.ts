@@ -1,4 +1,17 @@
-export class Endereco {
+import { MappingModel } from "../interfaces/models/mapping.model";
+
+export class Endereco implements MappingModel {
+  constructor() { this.toMap(); }
+  mappings: any[];
+  toMap(): void {
+    this.mappings = [
+      {
+        numero: "number",
+        latitude: "number",
+        longitude: "number"
+      }
+    ]
+  }
 
   cep: string;
   logradouro: string;
