@@ -30,10 +30,26 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/vendor/fonts/boxicons.css" ,
+              "src/assets/vendor/fonts/fontawesome.css",
+              "src/assets/vendor/fonts/flag-icons.css" ,
+              "src/assets/css/demo.css" ,
+              "src/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css",
+              "src/assets/vendor/libs/typeahead-js/typeahead.css"  ,
+              "src/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" ,
+              "src/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" ,
+              "src/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css"  ,
+              "src/assets/vendor/libs/select2/select2.css"  ,
+              "src/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css"  ,
+              "src/assets/vendor/libs/apex-charts/apex-charts.css",
+
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
+
+
             ],
             "scripts": [
+
 
               "src/assets/vendor/libs/jquery/jquery.js",
               "src/assets/vendor/libs/popper/popper.js",
@@ -44,25 +60,25 @@
               "src/assets/vendor/libs/typeahead-js/typeahead.js",
               "src/assets/vendor/libs/apex-charts/apexcharts.js",
 
- "src/assets/vendor/libs/moment/moment.js",
- "src/assets/vendor/libs/datatables/jquery.dataTables.js",
- "src/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js",
- "src/assets/vendor/libs/datatables-responsive/datatables.responsive.js",
- "src/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js",
- "src/assets/vendor/libs/datatables-buttons/datatables-buttons.js",
- "src/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js",
+              "src/assets/vendor/libs/moment/moment.js",
+              "src/assets/vendor/libs/datatables/jquery.dataTables.js",
+              "src/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js",
+              "src/assets/vendor/libs/datatables-responsive/datatables.responsive.js",
+              "src/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js",
+              "src/assets/vendor/libs/datatables-buttons/datatables-buttons.js",
+              "src/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js",
 
- "src/assets/vendor/libs/jszip/jszip.js",
- "src/assets/vendor/libs/pdfmake/pdfmake.js",
- "src/assets/vendor/libs/datatables-buttons/buttons.html5.js",
- "src/assets/vendor/libs/datatables-buttons/buttons.print.js",
- "src/assets/vendor/libs/select2/select2.js",
- "src/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js",
- "src/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js",
- "src/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js",
- "src/assets/vendor/libs/cleavejs/cleave.js",
- "src/assets/vendor/libs/cleavejs/cleave-phone.js",
- "src/assets/js/tables-datatables.pt-br.js",
+              "src/assets/vendor/libs/jszip/jszip.js",
+              "src/assets/vendor/libs/pdfmake/pdfmake.js",
+              "src/assets/vendor/libs/datatables-buttons/buttons.html5.js",
+              "src/assets/vendor/libs/datatables-buttons/buttons.print.js",
+              "src/assets/vendor/libs/select2/select2.js",
+              "src/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js",
+              "src/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js",
+              "src/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js",
+              "src/assets/vendor/libs/cleavejs/cleave.js",
+              "src/assets/vendor/libs/cleavejs/cleave-phone.js",
+              "src/assets/js/tables-datatables.pt-br.js",
 
               "src/assets/js/main/menu.js",
               "src/assets/js/main.js",
@@ -89,13 +105,13 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "outputPath": "/inetpub/wwwroot-sevennd/fin",
+              "outputPath": "/inetpub/wwwroot-onemodelme-app/",
               "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "1mb",
-                  "maximumError": "4mb"
+                  "maximumError": "25mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -103,9 +119,16 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": {
+                "scripts": true,
+                "styles": true,
+                "fonts": { "inline": false}
+              }
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

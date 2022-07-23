@@ -1,4 +1,4 @@
-import customizerStyle from './_template-customizer/_template-customizer.scss'
+// import customizerStyle from './_template-customizer/_template-customizer.scss'
 import customizerMarkup from './_template-customizer/_template-customizer.html'
 
 const CSS_FILENAME_PATTERN = '%name%.css'
