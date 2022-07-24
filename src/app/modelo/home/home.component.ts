@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     (window as any)['angularComponentReference'] = {
       component: this, zone: this.ngZone,
         callNgDeleteModel: (valor: number, fncallbk: any) => this.deleteModel(valor, fncallbk),
-        callNgInsertModel : () => this.inserirModel()
+        callNgNavegate : (url:string) => this.route.navigate([url])
     };
 
   }
@@ -70,11 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         () => { this.toastr.success(mens); fncallbk(); },
         error => this.toastr.error(error)
       );
-
   }
 
-  inserirModel(){
-    this.route.navigate(["models/insert"])
-  }
 
 }

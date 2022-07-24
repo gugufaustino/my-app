@@ -63,10 +63,7 @@ function appUserList(objData) {
                 $image = full["avatar"];
               if ($image) {
                 // For Avatar image
-                var $output =
-                  '<img src="' +
-                  $image +
-                  '" alt="Avatar" class="rounded-circle">';
+                var $output = '<img data-href="' + userEditView + "/" + $id + '" src="' + $image + '" alt="Avatar" class="edit-record rounded-circle">';
               } else {
                 // For Avatar badge
                 var stateNum = Math.floor(Math.random() * 6);
@@ -101,11 +98,7 @@ function appUserList(objData) {
                 "</div>" +
                 "</div>" +
                 '<div class="d-flex flex-column">' +
-                '<a href="' +
-                userEditView +
-                "/" +
-                $id +
-                '" class="text-body text-truncate"><span class="fw-semibold">' +
+                '<a data-href="' + userEditView + "/" + $id + '" class="edit-record text-body text-truncate"><span class="fw-semibold">' +
                 $name +
                 "</span></a>" +
                 '<small class="text-muted">' +
@@ -469,9 +462,13 @@ function appUserList(objData) {
 
     button = document.getElementById("btnInserir");
     button.addEventListener("click", (event) => {
-      //window.location = userInsertView;
-      insertModel();
+      navegateModel("models/insert");
     });
+
+    $(".datatables-users tbody").on("click", ".edit-record", function () {
+      navegateModel($(this).data("href"));
+    });
+
   });
 
   validationForm();
@@ -535,8 +532,8 @@ function deleteModel(id, fncallbackSucess) {
       window.angularComponentReference.callNgDeleteModel(id, fncallbackSucess);
   });
 }
-function insertModel() {
+function navegateModel(url) {
   window.angularComponentReference.zone.run(() => {
-      window.angularComponentReference.callNgInsertModel();
+      window.angularComponentReference.callNgNavegate(url);
   });
 }
