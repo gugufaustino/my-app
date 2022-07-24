@@ -40,7 +40,9 @@ implements IObter<TEntity>
 
   public inserir(modelo: TEntity): Observable<CustomResponse> {
     let response = this.http.post<CustomResponse>(this.UrlServiceV1 + this.apiUrl, modelo, this.ObterHeaderAuthJson())
-      .pipe(catchError(this.serviceError));
+      .pipe(
+        map(this.extractDefault),
+          catchError(this.serviceError));
     return response;
   }
 
@@ -56,10 +58,10 @@ implements IObter<TEntity>
 
   }
 
-  public editar(model: Modelo): Observable<TEntity> {
+  public editar(model: Modelo): Observable<CustomResponse> {
     let response = this.http
       .put(this.UrlServiceV1 + this.apiUrl + model.id, model, this.ObterHeaderAuthJson())
-      .pipe(map(this.extractData), catchError(this.serviceError));
+      .pipe(map(this.extractDefault), catchError(this.serviceError));
     return response;
   }
 

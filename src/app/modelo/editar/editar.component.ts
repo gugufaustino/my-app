@@ -102,10 +102,9 @@ export class EditarComponent extends CatalogoBase implements OnInit, AfterViewIn
   }
 
 
-
   processarSucesso(response: any) {
     super.processarSucessoBase();
-    this.toastr.success(response.message, 'Sucesso!', () => {
+    this.toastr.success(response.message, 'Salvo', () => {
       this.componentForm.reset();
       this.router.navigate(['/models']);
     });
@@ -113,7 +112,7 @@ export class EditarComponent extends CatalogoBase implements OnInit, AfterViewIn
 
   processarFalha(fail: any) {
     super.processarFalha(fail);
-    this.toastr.error("verifique os motivos listados abaixo.", "Erro ao salvar.", null, this.validations?.length > 0);
+    this.toastr.error("verifique os motivos listados abaixo.", "Falha ao salvar", null, this.validations?.length > 0);
   }
 
 }

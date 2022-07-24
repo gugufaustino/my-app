@@ -6,4 +6,5 @@ export class CustomResponse {
     data: object;
     message: string;
     errors: string[]
+    validations: string[]
 }

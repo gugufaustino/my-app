@@ -42,8 +42,8 @@ export abstract class BaseGuard {
 
   protected verificarAutenticacao(returnUrl:string) {
 
-    console.log("date:", DateUtils.Format(this.jwtHelper.getTokenExpirationDate()!, 'DD/MM/yyyy HH:mm:ss', true))
-    console.log("expirado:", this.jwtHelper.isTokenExpired()!)
+    console.log("date:", DateUtils.Format(this.jwtHelper.getTokenExpirationDate()!, 'DD/MM/yyyy HH:mm:ss', true),"expirado:", this.jwtHelper.isTokenExpired()!)
+
 
     if (!this.utilStorage.usuarioLogado()) {
       this.navegarLogon(returnUrl);

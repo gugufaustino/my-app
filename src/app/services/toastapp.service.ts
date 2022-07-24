@@ -6,13 +6,13 @@ export class ToastAppService {
 
   constructor(private toastr: ToastrService) { }
 
-  public success(mensagem: string[], titulo?: string, observer?: any): void {
+  public success(mensagem: string[] | undefined, titulo?: string, observer?: any): void {
 
     let config = { timeOut: 1000 } as IndividualConfig;
 
-    let mens = mensagem == undefined
-      ? 'Operação realizada!'
-      : mensagem[0] ?? ''.toString();
+    let mens = (mensagem == undefined || mensagem.length == 0)
+      ? 'Operação realizada com sucesso'
+      : mensagem[0] ?? '';
 
     let toast = this.toastr.success(mens, titulo, config);
     if (toast && observer != null) {

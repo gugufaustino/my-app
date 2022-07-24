@@ -29,6 +29,7 @@ export abstract class BaserService {
   }
   protected extractData(response: any) {
     console.log(response)
+    console.log(response.data || {})
     return response.data || {};
   }
 
