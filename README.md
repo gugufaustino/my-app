@@ -6,7 +6,7 @@ Arquitetura modelo para projeto Angular.
 - Registrar
 - Home
 - Welcome
-- Cadastros básicos
+- Cadastros básicos, fornecedor, cliente, contas a pagar, pagamentos...
 
 #### UI
 - bootstrap com estilo dark
@@ -25,7 +25,7 @@ Arquitetura modelo para projeto Angular.
 
 
 ##### Referências
-Essa projeto é resultado do conhecimento adquirido nos cursos:
-> Curso Angular - Loiane Groner, youtube;
-> Desenvolvimento SPA com Angular - Eduardo Pires, desenvolvedor.io; 
-> Desenvolvimento Avançado em Angular - Eduardo Pires, desenvolvedor.io; 
+<sub>Essa projeto é resultado do conhecimento adquirido nos cursos:</sub>
+> - Curso Angular - Loiane Groner, youtube
+> - Desenvolvimento SPA com Angular - Eduardo Pires, desenvolvedor.io
+> - Desenvolvimento Avançado em Angular - Eduardo Pires, desenvolvedor.io
